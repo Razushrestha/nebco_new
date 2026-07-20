@@ -1,26 +1,320 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --nebco-red: #bc2026;
+  --nebco-red-dark: #731215;
+  --nebco-red-hover: #9a1a1f;
+  --arch-black: #1a1a1a;
+  --arch-black-soft: #2d2d2d;
+  --silver-graphite: #525252;
+  --ivory: #efe9e2;
+  --ivory-light: #f5f2ed;
+  --soft-concrete: #e1dcd4;
+  --bronze: #d2c4b1;
+  --pale-gold: #b6a288;
+  --background: #efe9e2;
+  --foreground: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-nebco-red: var(--nebco-red);
+  --color-nebco-red-dark: var(--nebco-red-dark);
+  --color-nebco-red-hover: var(--nebco-red-hover);
+  --color-arch-black: var(--arch-black);
+  --color-arch-black-soft: var(--arch-black-soft);
+  --color-silver-graphite: var(--silver-graphite);
+  --color-ivory: var(--ivory);
+  --color-ivory-light: var(--ivory-light);
+  --color-soft-concrete: var(--soft-concrete);
+  --color-bronze: var(--bronze);
+  --color-pale-gold: var(--pale-gold);
+  --font-sans: var(--font-ibm-plex);
+  --font-heading: var(--font-manrope);
+  --font-mono: var(--font-ibm-mono);
+  --font-serif: var(--font-merriweather);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: var(--ivory-light);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.section-eyebrow {
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--nebco-red);
+}
+
+.hero-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.journey-grid-bg {
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.045) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+/*
+ * Hero diagonal — gentler slope matching design (54% top → 47% bottom)
+ */
+.hero-panel-clip {
+  clip-path: polygon(0 0, 54% 0, 47% 100%, 0 100%);
+}
+
+@media (max-width: 1023px) {
+  .hero-panel-clip {
+    clip-path: none;
+  }
+}
+
+
+.blueprint-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23bc2026' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.red-corner-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--nebco-red);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  opacity: 0.9;
+  z-index: 2;
+}
+
+.container-nebco {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@keyframes engage-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.engage-panel-enter {
+  animation: engage-panel-in 0.32s ease forwards;
+}
+
+@keyframes system-sketch-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes system-node-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes system-step-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes system-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.system-sketch-draw {
+  animation: system-sketch-in 1s ease forwards;
+}
+
+.system-node-pop {
+  animation: system-node-pop 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.system-step-rise {
+  animation: system-step-rise 0.5s ease both;
+}
+
+.system-detail-reveal {
+  animation: system-detail-in 0.38s ease forwards;
+}
+
+@keyframes showcase-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes showcase-step-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes showcase-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes showcase-cta-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.showcase-image-reveal {
+  animation: showcase-image-in 0.9s ease forwards;
+}
+
+.showcase-step-rise {
+  animation: showcase-step-rise 0.5s ease both;
+}
+
+.showcase-card-rise {
+  animation: showcase-card-rise 0.55s ease both;
+}
+
+.showcase-cta-pop {
+  animation: showcase-cta-pop 0.45s cubic-bezier(0.34, 1.35, 0.64, 1) both;
+}
+
+.showcase-detail-reveal {
+  animation: system-detail-in 0.35s ease forwards;
+}
+
+@keyframes capability-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes capability-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.capability-panel-enter {
+  animation: capability-panel-in 0.32s ease forwards;
+}
+
+.capability-image-enter {
+  animation: capability-image-in 0.4s ease forwards;
+}
+
+/* Consulting hero — responsive trend-line label sizing */
+.consulting-trend-line .consulting-trend-label {
+  font-size: 1.38px;
+}
+
+@media (min-width: 1024px) {
+  .consulting-trend-line .consulting-trend-label {
+    font-size: 1.48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .consulting-trend-line .consulting-trend-label {
+    font-size: 1.55px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-nebco {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-nebco {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 }
