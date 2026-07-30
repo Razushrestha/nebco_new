@@ -5,8 +5,6 @@ import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { IMAGES } from "@/lib/images";
 
-const GOLD = "#c5a059";
-
 const CAPABILITY_TOPICS = [
   {
     id: "residential",
@@ -156,20 +154,20 @@ const CAPABILITY_TOPICS = [
 
 function GoldArrow({ direction }: { direction: "left" | "right" }) {
   return (
-    <svg viewBox="0 0 16 10" fill="none" className="w-3.5 h-2.5" aria-hidden="true">
+    <svg viewBox="0 0 24 14" fill="none" className="capability-nav-arrow" aria-hidden="true">
       {direction === "left" ? (
         <path
-          d="M14 5H2M6 1.5L2 5l4 3.5"
-          stroke={GOLD}
-          strokeWidth="1.1"
+          d="M21 7H3M8 2L3 7l5 5"
+          stroke="currentColor"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       ) : (
         <path
-          d="M2 5h12M10 1.5l4 3.5-4 3.5"
-          stroke={GOLD}
-          strokeWidth="1.1"
+          d="M3 7h18M16 2l5 5-5 5"
+          stroke="currentColor"
+          strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -187,12 +185,8 @@ function CapabilityContent({
 }) {
   return (
     <div key={`${topicLabel}-${slide.title}`} className="capability-panel-enter">
-      <h3 className="font-heading font-bold text-[1.2rem] sm:text-[1.3rem] lg:text-[1.35rem] leading-[1.25] text-arch-black tracking-tight">
-        {slide.title}
-      </h3>
-      <p className="mt-4 text-[14px] lg:text-[15px] text-silver-graphite leading-[1.65] max-w-[20rem]">
-        {slide.description}
-      </p>
+      <h3 className="capability-slide-title">{slide.title}</h3>
+      <p className="capability-slide-body">{slide.description}</p>
     </div>
   );
 }
@@ -203,7 +197,7 @@ export function ConstructionCapabilitySection() {
 
   const activeTopic = CAPABILITY_TOPICS[activeTopicIndex];
   const activeSlide = activeTopic.slides[activeSlideIndex];
-  const slideCount = activeTopic.slides.length;
+  const totalCapabilities = CAPABILITY_TOPICS.length;
 
   const selectTopic = useCallback((index: number) => {
     setActiveTopicIndex(index);
@@ -233,30 +227,34 @@ export function ConstructionCapabilitySection() {
   }, [activeSlideIndex, activeTopic.slides.length, activeTopicIndex]);
 
   const globalIndex = activeTopicIndex + 1;
-  const totalCapabilities = CAPABILITY_TOPICS.length;
 
   return (
-    <section className="bg-ivory-light py-14 lg:py-20 xl:py-24">
+    <section className="capability-section bg-ivory-light py-14 lg:py-[4.5rem] xl:py-24">
       <div className="container-nebco">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12">
-          <div className="lg:col-span-4 xl:col-span-4">
+        <div className="capability-layout">
+          <div className="capability-heading-block">
             <SectionEyebrow
               number="01"
               title="CAPABILITY"
               className="!text-[11px] !tracking-[0.16em] !mb-4"
             />
-            <h2 className="font-heading font-bold text-[1.65rem] sm:text-[1.85rem] lg:text-[2rem] xl:text-[2.15rem] leading-[1.18] tracking-[-0.02em] text-arch-black max-w-[22rem]">
-              We build across different project types. The discipline remains the same.
+            <h2 className="capability-heading">
+              <span className="capability-heading-group">
+                We build across different
+                <br />
+                project types.
+              </span>
+              <span className="capability-heading-group capability-heading-group--second">
+                The discipline remains
+                <br />
+                the same.
+              </span>
             </h2>
           </div>
 
-          <div className="lg:col-span-8 xl:col-span-8 min-w-0">
-            <div
-              role="tablist"
-              aria-label="Construction capability types"
-              className="overflow-x-auto pb-1 -mx-1 px-1 lg:overflow-visible"
-            >
-              <div className="flex items-center gap-5 sm:gap-6 lg:gap-7 min-w-max lg:min-w-0 lg:flex-wrap lg:justify-start border-b border-soft-concrete/80">
+          <div className="min-w-0">
+            <div className="capability-tabs-wrap">
+              <div role="tablist" aria-label="Construction capability types" className="capability-tabs">
                 {CAPABILITY_TOPICS.map((topic, index) => (
                   <button
                     key={topic.id}
@@ -266,10 +264,8 @@ export function ConstructionCapabilitySection() {
                     aria-selected={activeTopicIndex === index}
                     aria-controls={`capability-panel-${topic.id}`}
                     onClick={() => selectTopic(index)}
-                    className={`pb-3 text-[10px] sm:text-[11px] font-mono font-medium uppercase tracking-[0.14em] transition-colors whitespace-nowrap border-b-2 -mb-px ${
-                      activeTopicIndex === index
-                        ? "text-nebco-red border-nebco-red"
-                        : "text-arch-black border-transparent hover:text-nebco-red/80"
+                    className={`capability-tab ${
+                      activeTopicIndex === index ? "capability-tab--active" : ""
                     }`}
                   >
                     {topic.label}
@@ -282,45 +278,43 @@ export function ConstructionCapabilitySection() {
               id={`capability-panel-${activeTopic.id}`}
               role="tabpanel"
               aria-labelledby={`capability-tab-${activeTopic.id}`}
-              className="grid grid-cols-1 md:grid-cols-[1.35fr_1fr] gap-6 lg:gap-8 mt-8 lg:mt-10 items-stretch"
+              className="capability-panel-grid"
             >
-              <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[280px] lg:min-h-[320px] xl:min-h-[340px] bg-soft-concrete overflow-hidden">
+              <div className="capability-image-frame">
                 <Image
                   key={`${activeTopic.id}-${activeSlideIndex}`}
                   src={activeSlide.image}
                   alt={activeSlide.title}
                   fill
-                  className="object-cover capability-image-enter"
-                  sizes="(max-width: 768px) 100vw, 55vw"
+                  className="capability-image-enter"
+                  sizes="(max-width: 768px) 100vw, 38vw"
+                  priority={activeTopicIndex === 0}
                 />
               </div>
 
-              <div className="flex flex-col justify-between py-1 md:py-2 min-h-[200px] md:min-h-0">
+              <div className="capability-copy-column">
                 <CapabilityContent slide={activeSlide} topicLabel={activeTopic.label} />
 
-                <div className="flex items-center gap-4 mt-8 md:mt-10">
+                <div className="capability-nav">
                   <button
                     type="button"
                     onClick={goPrev}
-                    className="p-1 hover:opacity-70 transition-opacity"
+                    className="capability-nav-btn"
                     aria-label={`Previous ${activeTopic.label} capability`}
                   >
                     <GoldArrow direction="left" />
                   </button>
-                  <span className="font-mono text-[12px] tracking-[0.12em]" style={{ color: GOLD }}>
+                  <span className="capability-nav-count">
                     {String(globalIndex).padStart(2, "0")} / {String(totalCapabilities).padStart(2, "0")}
                   </span>
                   <button
                     type="button"
                     onClick={goNext}
-                    className="p-1 hover:opacity-70 transition-opacity"
+                    className="capability-nav-btn"
                     aria-label={`Next ${activeTopic.label} capability`}
                   >
                     <GoldArrow direction="right" />
                   </button>
-                  <span className="ml-auto text-[10px] font-mono uppercase tracking-[0.12em] text-silver-graphite/80">
-                    {String(activeSlideIndex + 1).padStart(2, "0")} / {String(slideCount).padStart(2, "0")}
-                  </span>
                 </div>
               </div>
             </div>

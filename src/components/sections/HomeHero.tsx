@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { HeroNavbar } from "@/components/layout/HeroNavbar";
 import { HeroTrustStrip } from "@/components/sections/HeroTrustStrip";
 import { HeroAngleLayers } from "@/components/ui/HeroAngleEdge";
 import { HeroBlueprintOverlay } from "@/components/ui/HeroBlueprintOverlay";
@@ -13,12 +12,9 @@ const GOLD = "#c5a059";
 
 export function HomeHero() {
   return (
-    <section className="relative h-[100svh] min-h-[100svh] max-h-[100svh] bg-black flex flex-col overflow-hidden">
-      {/* Solid black navbar — diagonal starts below this */}
-      <HeroNavbar />
-
-      {/* Hero body — split layout lives here */}
-      <div className="relative flex-1 min-h-0">
+    <section className="relative flex h-[calc(100svh-88px)] min-h-[calc(100svh-88px)] max-h-[calc(100svh-88px)] flex-col overflow-hidden bg-black">
+      {/* Hero body — global Header sits above; diagonal starts here */}
+      <div className="relative min-h-0 flex-1">
         {/* Building photograph */}
         <div className="absolute inset-0">
           <Image
@@ -36,10 +32,10 @@ export function HomeHero() {
         <HeroAngleLayers />
         <HeroBlueprintOverlay />
 
-        <div className="absolute inset-0 z-[1] bg-[#111111]/93 lg:hidden pointer-events-none" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-[#111111]/93 lg:hidden" aria-hidden="true" />
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col h-full min-h-[calc(100svh-88px)]">
+        <div className="relative z-10 flex h-full min-h-0 flex-col">
           <div className="relative flex-1 flex flex-col justify-center px-6 sm:px-8 lg:px-12 xl:px-[56px] py-10 lg:py-8">
             {/* Gold vertical spine */}
             <div

@@ -4,30 +4,34 @@ import { IMAGES } from "@/lib/images";
 const GOLD = "#c5a059";
 
 const SUMMARY_ROWS = [
-  { label: "Land Value", value: "NPR 42.5M" },
-  { label: "Total Built-up Area", value: "18,400 sq.ft." },
+  { label: "Land Area (sq. ft.)", value: "12,450" },
+  { label: "Total Built-up Area", value: "48,200" },
+  { label: "Saleable / Leasable", value: "36,800" },
   { label: "Construction Cost", value: "NPR 68.2M" },
-  { label: "Development Margin", value: "22.4%" },
-  { label: "Projected Yield", value: "14.8%" },
+  { label: "Total Project Cost", value: "NPR 112M" },
+  { label: "Estimated Revenue", value: "NPR 148M" },
+  { label: "Project IRR", value: "18.6%" },
+  { label: "Project Duration", value: "28 mo" },
 ] as const;
 
 function HouseWireframe() {
   return (
-    <svg
-      viewBox="0 0 120 100"
-      fill="none"
-      className="w-full h-full"
-      aria-hidden="true"
-    >
-      <g stroke="white" strokeWidth="0.9" opacity="0.88">
-        <path d="M20 72 L60 38 L100 72" />
-        <rect x="28" y="72" width="64" height="22" />
-        <line x1="44" y1="72" x2="44" y2="94" />
-        <line x1="76" y1="72" x2="76" y2="94" />
-        <rect x="52" y="80" width="16" height="14" />
-        <line x1="36" y1="79" x2="36" y2="87" />
-        <line x1="84" y1="79" x2="84" y2="87" />
-        <path d="M32 94 L32 98 M88 94 L88 98" strokeWidth="0.7" />
+    <svg viewBox="0 0 160 130" fill="none" className="h-full w-full" aria-hidden="true">
+      <g stroke="white" strokeWidth="0.85" opacity="0.72">
+        {/* Isometric-ish frame */}
+        <path d="M28 88 L80 42 L132 88" />
+        <path d="M28 88 L28 118 L80 98 L132 118 L132 88" />
+        <path d="M80 42 L80 98" />
+        <path d="M28 88 L80 72 L132 88" opacity="0.55" />
+        <path d="M52 102 L52 78 M108 102 L108 78" opacity="0.5" />
+        <rect x="70" y="82" width="20" height="16" opacity="0.65" />
+        {/* Floor plan ghost */}
+        <path
+          d="M98 28 H148 V58 H128 V48 H118 V58 H98 Z"
+          opacity="0.4"
+          strokeWidth="0.7"
+        />
+        <path d="M108 28 V38 M128 28 V38" opacity="0.35" strokeWidth="0.65" />
       </g>
     </svg>
   );
@@ -35,44 +39,55 @@ function HouseWireframe() {
 
 function DevelopmentPieChart() {
   return (
-    <svg viewBox="0 0 80 80" className="w-full h-full" aria-hidden="true">
-      <circle cx="40" cy="40" r="32" fill="#d4c4a8" opacity="0.35" />
-      <path d="M40 40 L40 8 A32 32 0 0 1 68 52 Z" fill="#9a8b72" opacity="0.55" />
-      <path d="M40 40 L68 52 A32 32 0 0 1 24 64 Z" fill="#c5b89a" opacity="0.5" />
-      <path d="M40 40 L24 64 A32 32 0 0 1 40 8 Z" fill="#e8dfd0" opacity="0.45" />
-      <circle cx="40" cy="40" r="14" fill="#1a1a1a" opacity="0.15" />
+    <svg viewBox="0 0 80 80" className="h-full w-full" aria-hidden="true">
+      <circle cx="40" cy="40" r="32" fill="#c5b89a" opacity="0.45" />
+      <path d="M40 40 L40 8 A32 32 0 0 1 70 54 Z" fill="#9a8b72" opacity="0.7" />
+      <path d="M40 40 L70 54 A32 32 0 0 1 22 62 Z" fill="#e8dfd0" opacity="0.55" />
+      <path d="M40 40 L22 62 A32 32 0 0 1 40 8 Z" fill="#a8864d" opacity="0.55" />
+      <circle cx="40" cy="40" r="13" fill="#1a1a1a" opacity="0.18" />
     </svg>
   );
 }
 
+/** Right panel: clean photography + coded overlays (table, wireframe, trend). */
 export function ConsultingHeroCollage() {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 overflow-hidden bg-[#1a1a1a]">
+      {/* Base — building photo (no baked graphics) */}
       <Image
         src={IMAGES.brickBuilding}
-        alt="Modern residential building in an urban setting"
+        alt="Modern residential building in an urban valley setting"
         fill
-        className="object-cover object-[center_35%]"
+        className="object-cover object-[center_30%]"
         priority
-        sizes="(max-width: 1024px) 100vw, 58vw"
+        sizes="(max-width: 1024px) 100vw, 60vw"
       />
 
-      {/* Sketch fade from left panel */}
+      {/* Right-side light panel wash for sketches / table */}
       <div
-        className="absolute inset-y-0 left-0 w-[28%] bg-gradient-to-r from-[#111111] via-[#111111]/55 to-transparent pointer-events-none z-[1]"
+        className="pointer-events-none absolute inset-y-0 right-0 w-[48%] bg-gradient-to-l from-white/55 via-white/20 to-transparent"
         aria-hidden="true"
       />
-      <div className="hero-grid-bg absolute inset-y-0 left-0 w-[32%] opacity-30 pointer-events-none z-[2]" aria-hidden="true" />
 
-      {/* Top-right wireframe */}
-      <div className="absolute top-[6%] right-[4%] w-[28%] max-w-[9.5rem] aspect-[6/5] z-[4] opacity-90">
+      {/* Blend into dark left content panel */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[20%] bg-gradient-to-r from-[#111111] via-[#111111]/65 to-transparent sm:w-[16%] lg:w-[12%]"
+        aria-hidden="true"
+      />
+      <div
+        className="hero-grid-bg pointer-events-none absolute inset-y-0 left-0 z-[2] w-[24%] opacity-30 sm:w-[18%] lg:w-[14%]"
+        aria-hidden="true"
+      />
+
+      {/* Architectural wireframe */}
+      <div className="absolute top-[5%] right-[3%] z-[4] aspect-[8/6.5] w-[34%] max-w-[11rem] opacity-90 sm:right-[4%] sm:w-[30%]">
         <HouseWireframe />
       </div>
 
-      {/* Development summary table */}
-      <div className="absolute top-[7%] right-[22%] sm:right-[24%] lg:right-[26%] w-[40%] max-w-[12rem] z-[5] bg-black/40 backdrop-blur-[2px] border border-white/12 px-3.5 py-3">
+      {/* Development summary — HTML table for crisp type */}
+      <div className="absolute top-[7%] right-[18%] z-[5] w-[44%] max-w-[13.5rem] border border-white/15 bg-black/45 px-3.5 py-3 backdrop-blur-[3px] sm:right-[20%] lg:right-[22%] lg:max-w-[14.5rem]">
         <p
-          className="font-mono text-[9px] sm:text-[9px] lg:text-[10px] uppercase tracking-[0.14em] mb-2 pb-2 border-b border-white/15"
+          className="mb-2 border-b border-white/15 pb-2 font-mono text-[9px] uppercase tracking-[0.14em] lg:text-[10px]"
           style={{ color: GOLD }}
         >
           Development Summary
@@ -81,41 +96,46 @@ export function ConsultingHeroCollage() {
           {SUMMARY_ROWS.map((row) => (
             <div
               key={row.label}
-              className="flex justify-between gap-2.5 text-[8px] sm:text-[8px] lg:text-[9px] xl:text-[10px] leading-snug"
+              className="flex justify-between gap-3 text-[8px] leading-snug sm:text-[8.5px] lg:text-[9.5px]"
             >
-              <dt className="text-white/55 shrink-0">{row.label}</dt>
-              <dd className="text-white/85 font-medium text-right">{row.value}</dd>
+              <dt className="shrink-0 text-white/55">{row.label}</dt>
+              <dd className="text-right font-medium text-white/90">{row.value}</dd>
             </div>
           ))}
         </dl>
       </div>
 
       {/* Pie chart */}
-      <div className="absolute top-[34%] right-[8%] w-[18%] max-w-[4.5rem] aspect-square z-[4] opacity-85">
+      <div className="absolute top-[38%] right-[6%] z-[4] aspect-square w-[16%] max-w-[4.75rem] opacity-90 sm:right-[7%]">
         <DevelopmentPieChart />
       </div>
 
-      {/* Team meeting inset */}
+      {/* Meeting inset */}
       <div
-        className="absolute bottom-0 right-0 w-[62%] sm:w-[54%] lg:w-[50%] h-[48%] sm:h-[45%] z-[6] overflow-hidden"
-        style={{ clipPath: "polygon(12% 0, 100% 0, 100% 100%, 0 100%)" }}
+        className="absolute bottom-0 right-0 z-[6] h-[46%] w-[64%] overflow-hidden sm:h-[44%] sm:w-[56%] lg:w-[52%]"
+        style={{ clipPath: "polygon(14% 0, 100% 0, 100% 100%, 0 100%)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent z-[1] pointer-events-none" />
         <Image
-          src={IMAGES.meetingOffice}
-          alt="Consulting professionals reviewing development plans"
+          src={IMAGES.consultingMeeting}
+          alt="Consultants reviewing architectural plans"
           fill
-          className="object-cover object-[center_30%]"
-          sizes="30vw"
+          className="object-cover object-[center_25%]"
+          sizes="32vw"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#111111]/40 pointer-events-none"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#111111]/35"
           aria-hidden="true"
         />
       </div>
 
-      {/* Subtle top vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/15 pointer-events-none z-[3]" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-b from-black/20 via-transparent to-black/10"
+        aria-hidden="true"
+      />
     </div>
   );
 }

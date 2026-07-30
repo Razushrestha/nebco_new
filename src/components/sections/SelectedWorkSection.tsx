@@ -60,7 +60,7 @@ export function SelectedWorkSection({ compact = false }: SelectedWorkSectionProp
         style={{ borderColor: BORDER }}
       >
         <div
-          className={`px-7 sm:px-8 lg:px-9 ${
+          className={`px-7 sm:px-8 lg:px-9 shrink-0 ${
             compact ? "pt-5 pb-4" : "pt-5 lg:pt-6 pb-4 lg:pb-5"
           }`}
         >
@@ -72,35 +72,28 @@ export function SelectedWorkSection({ compact = false }: SelectedWorkSectionProp
         </div>
 
         <div
-          className={`grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] border-t ${
-            compact ? "flex-1 min-h-0" : ""
-          }`}
+          className={`selected-work-body border-t ${compact ? "flex-1 min-h-0" : ""}`}
           style={{ borderColor: BORDER }}
         >
           <div
-            className={`grid grid-cols-1 sm:grid-cols-[38%_1fr] border-b lg:border-b-0 lg:border-r ${
-              compact ? "h-full min-h-0" : ""
+            className={`selected-work-featured border-b lg:border-b-0 lg:border-r ${
+              compact ? "min-h-0" : ""
             }`}
             style={{ borderColor: BORDER }}
           >
-            <div
-              className={`relative bg-soft-concrete/30 ${
-                compact
-                  ? "min-h-[200px] sm:min-h-0 sm:h-full"
-                  : "aspect-[4/5] sm:aspect-auto sm:min-h-[280px] lg:min-h-[300px]"
-              }`}
-            >
+            <div className="selected-work-featured-image">
               <Image
                 src={FEATURED.image}
                 alt={FEATURED.title}
                 fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                priority
               />
             </div>
 
             <div
-              className={`flex flex-col justify-center ${
+              className={`flex flex-col justify-center h-full min-h-0 ${
                 compact ? "px-7 sm:px-8 lg:px-9 py-6 lg:py-7" : "px-7 sm:px-8 lg:px-10 py-6 lg:py-8"
               }`}
             >
@@ -138,18 +131,8 @@ export function SelectedWorkSection({ compact = false }: SelectedWorkSectionProp
                   { label: "Status", value: FEATURED.status },
                 ].map((item) => (
                   <div key={item.label} className="grid grid-cols-[5.5rem_1fr] gap-2 items-baseline">
-                    <dt
-                      className={`font-heading font-bold text-arch-black ${
-                        compact ? "text-[13px]" : "text-[13px]"
-                      }`}
-                    >
-                      {item.label}
-                    </dt>
-                    <dd
-                      className={`text-silver-graphite/90 ${compact ? "text-[13px]" : "text-[13px]"}`}
-                    >
-                      {item.value}
-                    </dd>
+                    <dt className="font-heading font-bold text-arch-black text-[13px]">{item.label}</dt>
+                    <dd className="text-silver-graphite/90 text-[13px]">{item.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -166,28 +149,28 @@ export function SelectedWorkSection({ compact = false }: SelectedWorkSectionProp
             </div>
           </div>
 
-          <div className={`flex flex-col ${compact ? "h-full min-h-0" : ""}`}>
+          <div className={`flex flex-col h-full min-h-0`}>
             {SECONDARY.map((project, i) => (
               <Link
                 key={project.title}
                 href={project.href}
-                className={`group grid grid-cols-[132px_1fr] hover:bg-black/[0.02] transition-colors ${
+                className={`selected-work-secondary-card group hover:bg-black/[0.02] transition-colors ${
                   compact ? "flex-1 min-h-0" : "min-h-[145px] lg:min-h-[160px]"
                 } ${i > 0 ? "border-t" : ""}`}
                 style={{ borderColor: BORDER }}
               >
-                <div className={`relative h-full min-h-[130px] bg-soft-concrete/30`}>
+                <div className="selected-work-secondary-thumb">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover"
-                    sizes="132px"
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 40vw, 15vw"
                   />
                 </div>
 
                 <div
-                  className={`flex flex-col justify-center ${
+                  className={`flex flex-col justify-center min-h-0 ${
                     compact ? "px-6 lg:px-7 py-5" : "px-6 lg:px-7 py-5"
                   }`}
                   style={{ backgroundColor: CARD_SHADE }}
@@ -200,14 +183,14 @@ export function SelectedWorkSection({ compact = false }: SelectedWorkSectionProp
                     {project.title}
                   </h4>
                   <p
-                    className={`mt-1.5 font-serif tracking-wide ${compact ? "text-[14px]" : "text-[14px]"}`}
+                    className={`mt-1.5 font-serif tracking-wide text-[14px]`}
                     style={{ color: GOLD }}
                   >
                     {project.category}
                   </p>
                   <p
-                    className={`text-nebco-red font-mono mt-2.5 tracking-wide ${
-                      compact ? "text-[11px]" : "text-[12px] mt-3"
+                    className={`text-nebco-red font-mono tracking-wide ${
+                      compact ? "text-[11px] mt-2.5" : "text-[12px] mt-3"
                     }`}
                   >
                     {project.status}

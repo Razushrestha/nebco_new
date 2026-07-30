@@ -1,96 +1,72 @@
+import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-
-const RED = "#bc2026";
 
 const STEPS = [
   {
     num: "01",
     title: "Understand",
     desc: "Clarify goals, context and opportunity.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <path d="M16 4c-4.4 0-8 3.1-8 7 0 5.2 8 13 8 13s8-7.8 8-13c0-3.9-3.6-7-8-7z" stroke={RED} strokeWidth="1.2" />
-        <circle cx="16" cy="11" r="2.5" stroke={RED} strokeWidth="1.1" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Understand.png",
   },
   {
     num: "02",
     title: "Evaluate",
     desc: "Study feasibility, risks and potential.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <circle cx="14" cy="14" r="7" stroke={RED} strokeWidth="1.2" />
-        <path d="M19 19l6 6" stroke={RED} strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M10 18v4M14 16v6M18 14v8" stroke={RED} strokeWidth="1.1" strokeLinecap="round" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Evaluate.png",
   },
   {
     num: "03",
     title: "Structure",
     desc: "Define strategy, structure and commercial approach.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <path d="M6 20l6-10 6 6 8-12" stroke={RED} strokeWidth="1.2" strokeLinejoin="round" />
-        <rect x="5" y="22" width="8" height="6" stroke={RED} strokeWidth="1.1" />
-        <rect x="13" y="18" width="8" height="10" stroke={RED} strokeWidth="1.1" />
-        <rect x="21" y="14" width="6" height="14" stroke={RED} strokeWidth="1.1" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Structure.png",
   },
   {
     num: "04",
     title: "Design",
     desc: "Shape the vision and technical solution.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <path d="M8 24 L20 8 L26 14 L14 28 Z" stroke={RED} strokeWidth="1.2" strokeLinejoin="round" />
-        <path d="M6 26h20" stroke={RED} strokeWidth="1.1" strokeLinecap="round" />
-        <path d="M22 10l4-4" stroke={RED} strokeWidth="1.1" strokeLinecap="round" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Design.png",
   },
   {
     num: "05",
     title: "Finance",
     desc: "Arrange funding and financial structure.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <ellipse cx="16" cy="22" rx="9" ry="3" stroke={RED} strokeWidth="1.1" />
-        <ellipse cx="16" cy="18" rx="9" ry="3" stroke={RED} strokeWidth="1.1" />
-        <ellipse cx="16" cy="14" rx="9" ry="3" stroke={RED} strokeWidth="1.1" />
-        <path d="M7 22v-2M25 22v-2" stroke={RED} strokeWidth="1" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Finance.png",
   },
   {
     num: "06",
     title: "Build",
     desc: "Execute with quality, safety and discipline.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <path d="M6 26h20M10 26V14h8v12" stroke={RED} strokeWidth="1.2" />
-        <path d="M14 14V8h8v6" stroke={RED} strokeWidth="1.2" />
-        <path d="M14 8h10" stroke={RED} strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M24 8v3" stroke={RED} strokeWidth="1.2" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Build.png",
   },
   {
     num: "07",
     title: "Activate",
     desc: "Prepare for operation and long-term value.",
-    icon: (
-      <svg viewBox="0 0 32 32" fill="none" className="w-8 h-8" aria-hidden="true">
-        <circle cx="14" cy="18" r="6" stroke={RED} strokeWidth="1.2" />
-        <path d="M14 18v-4" stroke={RED} strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M20 18h6" stroke={RED} strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M23 15v6" stroke={RED} strokeWidth="1.1" strokeLinecap="round" />
-      </svg>
-    ),
+    iconSrc: "/development_journey/Activate.png",
   },
 ] as const;
+
+function JourneyStepIcon({
+  src,
+  alt,
+  compact,
+}: {
+  src: string;
+  alt: string;
+  compact?: boolean;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={512}
+      height={512}
+      quality={100}
+      unoptimized
+      className={`object-contain ${compact ? "w-[36px] h-[36px]" : "w-8 h-8 sm:w-9 sm:h-9"}`}
+    />
+  );
+}
 
 function BuildingWatermark() {
   return (
@@ -157,25 +133,20 @@ export function DevelopmentJourneySection({ compact = false }: DevelopmentJourne
 
         <div className="overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible">
           <div className="min-w-[700px] lg:min-w-0">
-            <div className={`grid grid-cols-7 ${compact ? "gap-1 [&_svg]:w-[34px] [&_svg]:h-[34px]" : "gap-2"}`}>
+            <div className={`grid grid-cols-7 ${compact ? "gap-1" : "gap-2"}`}>
               {STEPS.map((step) => (
                 <div key={step.num} className={`flex justify-center ${compact ? "pb-5" : "pb-3"}`}>
-                  {step.icon}
+                  <JourneyStepIcon src={step.iconSrc} alt={step.title} compact={compact} />
                 </div>
               ))}
             </div>
 
-            <div className={`relative flex items-center ${compact ? "h-5" : "h-5"}`}>
-              <div className="absolute left-[7.14%] right-[7.14%] top-1/2 -translate-y-1/2 h-px bg-nebco-red/90" />
+            <div className={`relative flex items-center ${compact ? "h-6" : "h-6"}`}>
+              <div className="development-journey-rail absolute left-[7.14%] right-[7.14%] top-1/2 -translate-y-1/2" />
               <div className="grid grid-cols-7 w-full relative z-10">
                 {STEPS.map((step) => (
                   <div key={step.num} className="flex justify-center">
-                    <span
-                      className={`inline-block rounded-full border border-nebco-red bg-ivory-light ${
-                        compact ? "w-[7px] h-[7px]" : "w-[7px] h-[7px]"
-                      }`}
-                      aria-hidden="true"
-                    />
+                    <span className="development-journey-node" aria-hidden="true" />
                   </div>
                 ))}
               </div>

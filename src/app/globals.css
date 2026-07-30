@@ -79,6 +79,21 @@ h1, h2, h3, h4, h5, h6 {
   mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
 }
 
+.development-journey-rail {
+  height: 3px;
+  background-color: var(--nebco-red);
+  border-radius: 9999px;
+}
+
+.development-journey-node {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  border: 2px solid var(--nebco-red);
+  background-color: var(--ivory-light);
+}
+
 /*
  * Hero diagonal — gentler slope matching design (54% top → 47% bottom)
  */
@@ -132,6 +147,95 @@ h1, h2, h3, h4, h5, h6 {
 
 .engage-panel-enter {
   animation: engage-panel-in 0.32s ease forwards;
+}
+
+/* 03 / HOW WE ENGAGE — tab bar */
+.engage-tablist {
+  --engage-icon-size: 120px;
+  --engage-tab-color: #8f7358;
+}
+
+@media (min-width: 1024px) {
+  .engage-tablist {
+    --engage-icon-size: 120px;
+  }
+}
+
+.engage-tab {
+  padding: 0.875rem 0.375rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .engage-tab {
+    padding: 1rem 0.5rem 1.125rem;
+  }
+}
+
+.engage-tab-icon {
+  display: block;
+  width: var(--engage-icon-size);
+  height: var(--engage-icon-size);
+  flex-shrink: 0;
+  background-color: var(--engage-tab-color);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  transition: background-color 0.2s ease;
+}
+
+.engage-tab--active .engage-tab-icon {
+  background-color: var(--nebco-red);
+}
+
+.engage-tab-label {
+  display: block;
+  margin-top: 0.625rem;
+  max-width: 6.25rem;
+  text-align: center;
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--engage-tab-color);
+}
+
+@media (min-width: 1280px) {
+  .engage-tab-label {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+  }
+}
+
+.engage-tab-divider {
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background-color: color-mix(in srgb, var(--pale-gold) 55%, transparent);
+}
+
+.engage-tab-indicator {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid var(--nebco-red);
+}
+
+.engage-tab--active .engage-tab-label {
+  color: #6b5644;
 }
 
 @keyframes system-sketch-in {
@@ -284,25 +388,254 @@ h1, h2, h3, h4, h5, h6 {
   animation: capability-panel-in 0.32s ease forwards;
 }
 
+.consulting-process-enter {
+  animation: capability-panel-in 0.28s ease forwards;
+}
+
 .capability-image-enter {
   animation: capability-image-in 0.4s ease forwards;
 }
 
-/* Consulting hero — responsive trend-line label sizing */
-.consulting-trend-line .consulting-trend-label {
-  font-size: 1.38px;
+/* 01 / CAPABILITY — construction page */
+.capability-section {
+  --capability-left-width: 28%;
+  --capability-image-ratio: 1.85;
+  --capability-image-height: 300px;
+  --capability-tab-size: 12px;
+  --capability-title-size: 21px;
+  --capability-body-size: 14px;
+  --capability-gold: #9a7840;
+  --capability-col-gap: 2.75rem;
+}
+
+@media (min-width: 1280px) {
+  .capability-section {
+    --capability-image-height: 310px;
+    --capability-title-size: 22px;
+    --capability-body-size: 15px;
+    --capability-tab-size: 12.5px;
+  }
+}
+
+.capability-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
 }
 
 @media (min-width: 1024px) {
-  .consulting-trend-line .consulting-trend-label {
-    font-size: 1.48px;
+  .capability-layout {
+    grid-template-columns: minmax(220px, var(--capability-left-width)) minmax(0, 1fr);
+    column-gap: var(--capability-col-gap);
+    align-items: start;
+  }
+}
+
+.capability-heading-block {
+  max-width: 16.5rem;
+}
+
+@media (min-width: 1024px) {
+  .capability-heading-block {
+    padding-top: 0.125rem;
+    max-width: 17rem;
+  }
+}
+
+.capability-heading {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: clamp(1.65rem, 2.4vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1.26;
+  letter-spacing: -0.02em;
+  color: var(--arch-black);
+}
+
+.capability-heading-group {
+  display: block;
+}
+
+.capability-heading-group--second {
+  margin-top: 0.7rem;
+}
+
+.capability-tabs-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -0.25rem;
+  padding: 0 0.25rem;
+}
+
+@media (min-width: 1024px) {
+  .capability-tabs-wrap {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.capability-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.25rem;
+  min-width: max-content;
+  border-bottom: 1px solid color-mix(in srgb, var(--soft-concrete) 85%, transparent);
+  padding-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .capability-tabs {
+    gap: 2.75rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .consulting-trend-line .consulting-trend-label {
-    font-size: 1.55px;
+  .capability-tabs {
+    gap: 3.25rem;
   }
+}
+
+.capability-tab {
+  position: relative;
+  padding: 0 0 0.75rem;
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: var(--capability-tab-size);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--arch-black) 72%, transparent);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.capability-tab:hover {
+  color: var(--arch-black);
+}
+
+.capability-tab--active {
+  color: var(--arch-black);
+  font-weight: 600;
+}
+
+.capability-tab--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2.5px;
+  background-color: var(--nebco-red);
+}
+
+.capability-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .capability-panel-grid {
+    grid-template-columns: minmax(0, 1.62fr) minmax(0, 0.95fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1280px) {
+  .capability-panel-grid {
+    gap: 2.25rem;
+    margin-top: 2.125rem;
+  }
+}
+
+.capability-image-frame {
+  position: relative;
+  width: 100%;
+  height: var(--capability-image-height);
+  background-color: color-mix(in srgb, var(--soft-concrete) 35%, transparent);
+  overflow: hidden;
+}
+
+.capability-image-frame img {
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.capability-copy-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: var(--capability-image-height);
+  padding-top: 0.125rem;
+}
+
+.capability-slide-title {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: var(--capability-title-size);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  color: var(--arch-black);
+  max-width: 19rem;
+}
+
+.capability-slide-body {
+  margin-top: 1rem;
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: var(--capability-body-size);
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--silver-graphite) 95%, transparent);
+  max-width: 19.5rem;
+}
+
+.capability-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.625rem;
+  margin-top: 2rem;
+  color: var(--capability-gold);
+}
+
+@media (min-width: 768px) {
+  .capability-nav {
+    margin-top: 0;
+    gap: 1.75rem;
+  }
+}
+
+.capability-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--capability-gold);
+  transition: opacity 0.2s ease;
+}
+
+.capability-nav-btn:hover {
+  opacity: 0.72;
+}
+
+.capability-nav-arrow {
+  width: 1.875rem;
+  height: 1.125rem;
+  display: block;
+}
+
+.capability-nav-count {
+  font-family: var(--font-ibm-mono), monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--capability-gold);
 }
 
 @media (min-width: 768px) {
@@ -312,9 +645,435 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Consulting hero — trend labels + nodes */
+.consulting-trend-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 0, 0, 0.4);
+  opacity: 0.96;
+}
+
+@media (min-width: 1280px) {
+  .consulting-trend-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+}
+
+.consulting-trend-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  border-radius: 50%;
+  background: #bc2026;
+  box-shadow:
+    0 0 0 3px rgba(188, 32, 38, 0.35),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* Start node — glowing gold orb on dark blueprint (LAND OPPORTUNITY) */
+.consulting-trend-node--start {
+  width: 13px;
+  height: 13px;
+  margin: -6.5px 0 0 -6.5px;
+  background: radial-gradient(circle at 40% 35%, #f0d090 0%, #e0b45a 35%, #c5a059 70%, #a8864d 100%);
+  box-shadow:
+    0 0 10px 3px rgba(224, 180, 90, 0.75),
+    0 0 22px 6px rgba(197, 160, 89, 0.4),
+    0 0 0 1px rgba(240, 208, 144, 0.5);
+}
+
+.consulting-trend-node--peak {
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: #c5a059;
+  box-shadow:
+    0 0 0 2.5px #bc2026,
+    0 0 0 6px rgba(197, 160, 89, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.consulting-trend-node--peak::after {
+  content: "";
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.9;
+}
+
 @media (min-width: 1280px) {
   .container-nebco {
     padding-left: 4rem;
     padding-right: 4rem;
   }
+}
+
+/* 02 / THREE DIVISIONS — tile typography & icon scale matched to design ref */
+.three-divisions-tile {
+  --division-icon-size: 104px;
+  --division-title-size: 30px;
+  --division-tagline-size: 15px;
+  --division-tile-padding: 2.75rem;
+  --division-icon-title-gap: calc(var(--division-title-size) * 1.35);
+  --division-title-tagline-gap: 0.375rem;
+  --division-tagline-arrow-gap: 1.375rem;
+}
+
+.three-divisions-tile--compact {
+  --division-icon-size: 96px;
+  --division-title-size: 26px;
+  --division-tagline-size: 14px;
+  --division-tile-padding: 2.25rem;
+  --division-icon-title-gap: calc(var(--division-title-size) * 1.35);
+  --division-title-tagline-gap: 0.25rem;
+  --division-tagline-arrow-gap: 1.25rem;
+}
+
+.three-divisions-icon {
+  width: var(--division-icon-size);
+  height: var(--division-icon-size);
+  min-width: var(--division-icon-size);
+  min-height: var(--division-icon-size);
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.three-divisions-title {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: var(--division-title-size);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-top: var(--division-icon-title-gap);
+}
+
+.three-divisions-tagline {
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: var(--division-tagline-size);
+  font-weight: 400;
+  line-height: 1.45;
+  margin-top: var(--division-title-tagline-gap);
+}
+
+.three-divisions-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.three-divisions-arrow {
+  margin-top: auto;
+  padding-top: var(--division-tagline-arrow-gap);
+}
+
+.three-divisions-tile-body {
+  padding: var(--division-tile-padding);
+}
+
+/* 01 / FOUNDATION — milestone timeline */
+.foundation-section-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .foundation-section-layout {
+    grid-template-columns: minmax(240px, 38%) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+  }
+
+  .foundation-section-layout--compact {
+    gap: 2rem 2.75rem;
+  }
+}
+
+.foundation-section-heading {
+  max-width: 22rem;
+}
+
+.foundation-milestones {
+  --foundation-art-height: 132px;
+  --foundation-rail-height: 3px;
+  --foundation-node-size: 9px;
+  --foundation-era-size: 13px;
+  --foundation-title-size: 15px;
+  --foundation-desc-size: 12px;
+  --foundation-col-gap: 1.5rem;
+}
+
+.foundation-milestones--compact {
+  --foundation-art-height: 96px;
+  --foundation-rail-height: 3px;
+  --foundation-node-size: 8px;
+  --foundation-era-size: 12px;
+  --foundation-title-size: 14px;
+  --foundation-desc-size: 11px;
+  --foundation-col-gap: 1rem;
+}
+
+.foundation-milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--foundation-col-gap);
+  row-gap: 0;
+  width: 100%;
+}
+
+.foundation-milestone-column {
+  min-width: 0;
+}
+
+.foundation-milestones-rail {
+  grid-column: 1 / -1;
+  margin-top: 0.75rem;
+}
+
+.foundation-milestone-art {
+  height: var(--foundation-art-height);
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.foundation-milestone-art__img {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 92%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.foundation-milestone-art--muted .foundation-milestone-art__img {
+  filter: grayscale(1) contrast(1.12) brightness(1.04);
+}
+
+.foundation-timeline-rail {
+  position: relative;
+  width: 100%;
+  height: calc(var(--foundation-node-size) + 8px);
+}
+
+.foundation-timeline-rail__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: var(--foundation-rail-height);
+  background-color: var(--nebco-red);
+}
+
+.foundation-timeline-rail__nodes {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+.foundation-timeline-rail__node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foundation-timeline-rail__dot {
+  width: var(--foundation-node-size);
+  height: var(--foundation-node-size);
+  border-radius: 9999px;
+  border: 1.5px solid var(--nebco-red);
+  background-color: var(--ivory-light);
+  flex-shrink: 0;
+}
+
+.foundation-milestone-copy {
+  margin-top: 0.75rem;
+  text-align: left;
+}
+
+.foundation-milestone-era {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: var(--foundation-era-size);
+  font-weight: 700;
+  color: var(--nebco-red);
+  margin-bottom: 0.2rem;
+}
+
+.foundation-milestone-title {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: var(--foundation-title-size);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--nebco-red);
+}
+
+.foundation-milestone-desc {
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: var(--foundation-desc-size);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--arch-black) 78%, transparent);
+  margin-top: 0.35rem;
+  max-width: 13.5rem;
+}
+
+/* 02 / THREE DIVISIONS — hover flip card */
+.division-flip-card {
+  perspective: 1200px;
+}
+
+.division-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.division-flip-face {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.division-flip-front {
+  display: flex;
+  flex-direction: column;
+}
+
+.division-flip-back {
+  transform: rotateY(180deg);
+}
+
+@media (hover: hover) {
+  .division-flip-card:hover .division-flip-inner,
+  .division-flip-card:focus-within .division-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.division-flip-back-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--division-tile-padding);
+}
+
+.division-flip-back-panel--red {
+  background: rgba(115, 18, 21, 0.92);
+}
+
+.division-flip-back-panel--dark {
+  background: rgba(12, 12, 12, 0.94);
+}
+
+.division-flip-back-panel--light {
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.division-flip-services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.division-flip-services li {
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: var(--division-tagline-size);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #c5a059;
+  letter-spacing: 0.01em;
+}
+
+.division-flip-services li::before {
+  content: "—";
+  margin-right: 0.5rem;
+  opacity: 0.75;
+}
+
+@media (min-width: 768px) {
+  .three-divisions-tile--compact .division-flip-services li {
+    font-size: 13px;
+  }
+}
+
+/* 04 / SELECTED WORK — column ratios from design ref (1024px crop) */
+.selected-work-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .selected-work-body {
+    grid-template-columns: minmax(0, 1.53fr) minmax(0, 1fr);
+  }
+}
+
+.selected-work-featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  min-height: 0;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .selected-work-featured {
+    grid-template-columns: minmax(0, 1.21fr) minmax(0, 1fr);
+  }
+}
+
+.selected-work-featured-image {
+  position: relative;
+  min-height: 240px;
+  height: 100%;
+  background-color: color-mix(in srgb, var(--soft-concrete) 30%, transparent);
+}
+
+@media (min-width: 1024px) {
+  .selected-work-featured-image {
+    min-height: 0;
+  }
+}
+
+.selected-work-featured-image img {
+  object-fit: cover;
+  object-position: center center;
+}
+
+.selected-work-secondary-card {
+  display: grid;
+  grid-template-columns: minmax(120px, 38%) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 0;
+}
+
+.selected-work-secondary-thumb {
+  position: relative;
+  min-height: 120px;
+  height: 100%;
+  background-color: color-mix(in srgb, var(--soft-concrete) 30%, transparent);
 }

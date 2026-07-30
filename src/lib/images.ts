@@ -16,8 +16,10 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
   workersPlans:
     "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
-  constructionHero:
-    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=90",
+  constructionHero: "/images/construction-hero.jpg",
+  consultingMeeting:
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=85",
+  consultingQuestionVisual: "/images/consulting-question-visual.png",
   villa:
     "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
   cityKathmandu:
@@ -26,6 +28,10 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80",
   meetingOffice:
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
+  contactHero: "/images/contact-hero.jpg",
+  insightsHero: "/images/insights-hero.jpg",
+  partnersHero: "/images/partners-hero.jpg",
+  partnersMd: "/images/partners-md.jpg",
   nightBuilding:
     "https://images.unsplash.com/photo-1515263487990-61b07816b324?w=1200&q=80",
   mountainsSite:
@@ -40,6 +46,10 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
   brickBuilding:
     "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+  investmentsHero:
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85",
+  investmentsApproach:
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=85",
   qualityWorker:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
   qualityInspector: "/images/quality-inspector.jpg",

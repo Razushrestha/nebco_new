@@ -131,11 +131,11 @@ const FOOTER_COLUMNS = [
 export function Footer() {
   return (
     <footer className="bg-[#141414] text-white">
-      <div className="container-nebco py-12 lg:py-14 xl:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-8 lg:gap-y-0">
+      <div className="container-nebco py-8 lg:py-9 xl:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-7 lg:gap-y-0">
           <div className="lg:pr-8 lg:border-r lg:border-pale-gold/25">
             <FooterLogo />
-            <div className="flex gap-2.5 mt-6">
+            <div className="flex gap-2.5 mt-5">
               <SocialLink href="#" label="LinkedIn">
                 <SocialLinkedIn />
               </SocialLink>
@@ -153,10 +153,10 @@ export function Footer() {
 
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="lg:px-7 lg:border-r lg:border-pale-gold/25">
-              <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-4" style={{ color: GOLD }}>
+              <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
                 {col.title}
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -172,10 +172,10 @@ export function Footer() {
           ))}
 
           <div className="lg:pl-7">
-            <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-4" style={{ color: GOLD }}>
+            <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
               Contact
             </h4>
-            <div className="space-y-3 text-[13px] text-white/75 leading-snug">
+            <div className="space-y-2.5 text-[13px] text-white/75 leading-snug">
               <p>
                 NEBCO Pvt. Ltd.
                 <br />
@@ -204,7 +204,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-pale-gold/20">
-        <div className="container-nebco py-4 lg:py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/45">
+        <div className="container-nebco py-3.5 lg:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/45">
           <p>© {new Date().getFullYear()} NEBCO Pvt. Ltd. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">

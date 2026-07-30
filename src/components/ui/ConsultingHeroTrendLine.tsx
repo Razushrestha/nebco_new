@@ -1,83 +1,128 @@
 const RED = "#bc2026";
 const GOLD = "#c5a059";
 
+/**
+ * Full-hero coordinates (0–100). Left panel ~0–38, visual ~38–100.
+ * Thin gold lead-in on the dark blueprint; red curve continues into the collage.
+ */
+const GOLD_LEAD = "M 28 90 L 32 84 L 36 78";
+const RED_PATH = "M 36 78 L 44 70 L 52 60 L 60 50 L 68 42 L 74 36";
+
 const NODES = [
-  { x: 14, y: 84, label: "LAND OPPORTUNITY", highlight: false, labelY: -3.4 },
-  { x: 48, y: 52, label: "STRATEGIC DECISIONS", highlight: false, labelY: -3.4 },
-  { x: 86, y: 20, label: "STRONGER OUTCOMES", highlight: true, labelY: 4 },
+  {
+    x: 36,
+    y: 78,
+    lines: ["LAND", "OPPORTUNITY"] as const,
+    labelSide: "below" as const,
+    variant: "start" as const,
+  },
+  {
+    x: 52,
+    y: 60,
+    lines: ["STRATEGIC", "DECISIONS"] as const,
+    labelSide: "below" as const,
+    variant: "mid" as const,
+  },
+  {
+    x: 74,
+    y: 36,
+    lines: ["STRONGER", "OUTCOMES"] as const,
+    labelSide: "above" as const,
+    variant: "peak" as const,
+  },
 ] as const;
 
-/** Red progress line bridging the consulting hero left panel into the visual collage */
+/** Trend overlay: gold glowing start on dark panel → bold red curve into the visual. */
 export function ConsultingHeroTrendLine() {
   return (
-    <svg
-      className="consulting-trend-line absolute inset-0 z-20 w-full h-full pointer-events-none hidden md:block"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <polyline
-        points="8,88 28,72 48,52 68,34 86,20"
-        fill="none"
-        stroke={RED}
-        strokeWidth="0.22"
-        vectorEffect="non-scaling-stroke"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
+    <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block" aria-hidden="true">
+      <svg className="absolute inset-0 h-full w-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <filter id="consulting-trend-soft" x="-8%" y="-8%" width="116%" height="116%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Thin gold lead-in into LAND OPPORTUNITY */}
+        <path
+          d={GOLD_LEAD}
+          fill="none"
+          stroke={GOLD}
+          strokeWidth="1.15"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+
+        {/* Red continuation */}
+        <path
+          d={RED_PATH}
+          fill="none"
+          stroke={RED}
+          strokeWidth="7"
+          strokeOpacity="0.2"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d={RED_PATH}
+          fill="none"
+          stroke={RED}
+          strokeWidth="4.5"
+          strokeOpacity="0.5"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+        />
+        <path
+          d={RED_PATH}
+          fill="none"
+          stroke={RED}
+          strokeWidth="2.75"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          filter="url(#consulting-trend-soft)"
+        />
+      </svg>
 
       {NODES.map((node) => (
-        <g key={node.label}>
-          {node.highlight ? (
-            <>
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="1.8"
-                fill="none"
-                stroke={GOLD}
-                strokeWidth="0.2"
-                vectorEffect="non-scaling-stroke"
-              />
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="0.95"
-                fill={GOLD}
-                stroke={RED}
-                strokeWidth="0.12"
-                vectorEffect="non-scaling-stroke"
-              />
-            </>
-          ) : (
-            <circle
-              cx={node.x}
-              cy={node.y}
-              r="0.75"
-              fill={GOLD}
-              stroke={RED}
-              strokeWidth="0.1"
-              vectorEffect="non-scaling-stroke"
-            />
-          )}
-        </g>
-      ))}
-
-      {NODES.map((node) => (
-        <text
-          key={`${node.label}-label`}
-          x={node.x}
-          y={node.y + node.labelY}
-          className="consulting-trend-label"
-          fill="white"
-          fontFamily="monospace"
-          letterSpacing="0.05"
-          textAnchor="middle"
-          opacity="0.88"
+        <div
+          key={node.lines.join(" ")}
+          className="absolute"
+          style={{ left: `${node.x}%`, top: `${node.y}%` }}
         >
-          {node.label}
-        </text>
+          <span
+            className={
+              node.variant === "start"
+                ? "consulting-trend-node consulting-trend-node--start"
+                : node.variant === "peak"
+                  ? "consulting-trend-node consulting-trend-node--peak"
+                  : "consulting-trend-node"
+            }
+          />
+          <span
+            className="consulting-trend-label absolute left-1/2 text-center font-heading font-semibold uppercase text-white"
+            style={{
+              transform:
+                node.labelSide === "above"
+                  ? "translate(-50%, calc(-100% - 16px))"
+                  : "translate(-50%, 14px)",
+            }}
+          >
+            {node.lines.map((line) => (
+              <span key={line} className="block leading-[1.15]">
+                {line}
+              </span>
+            ))}
+          </span>
+        </div>
       ))}
-    </svg>
+    </div>
   );
 }

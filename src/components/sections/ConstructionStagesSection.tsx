@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { StageMarginRail } from "@/components/ui/StageMarginRail";
 import { IMAGES } from "@/lib/images";
 
-const GOLD = "#c5a059";
+const GOLD = "#b08d57";
+const LIGHT_STROKE = "rgba(26, 26, 26, 0.14)";
 
 const STAGES = [
   {
@@ -49,56 +51,27 @@ const STAGES = [
 function GoldBullet() {
   return (
     <span
-      className="inline-block w-4 h-px shrink-0 mt-[0.55rem]"
+      className="block h-[2px] w-[30px] shrink-0 rounded-none"
       style={{ backgroundColor: GOLD }}
       aria-hidden="true"
     />
   );
 }
 
-function StageRail() {
-  return (
-    <div
-      className="hidden lg:flex absolute right-0 top-[10%] bottom-[10%] w-px flex-col items-center pointer-events-none"
-      aria-hidden="true"
-    >
-      <span className="w-3 h-px" style={{ backgroundColor: GOLD }} />
-      <span className="flex-1 w-px mt-0" style={{ backgroundColor: `${GOLD}88` }} />
-    </div>
-  );
-}
-
 function OutlineNumber({
   num,
   variant,
-  layout,
 }: {
   num: string;
   variant: "light" | "dark";
-  layout: "overlap" | "inline";
 }) {
   const isGold = variant === "dark";
 
-  if (layout === "inline") {
-    return (
-      <span
-        className="font-heading font-bold text-[3.5rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-none select-none pointer-events-none shrink-0"
-        style={{
-          WebkitTextStroke: isGold ? `1.5px ${GOLD}` : "1px rgba(26, 26, 26, 0.14)",
-          color: "transparent",
-        }}
-        aria-hidden="true"
-      >
-        {num}
-      </span>
-    );
-  }
-
   return (
     <span
-      className="absolute left-4 sm:left-6 lg:-left-[18%] xl:-left-[22%] top-1/2 -translate-y-1/2 font-heading font-bold text-[4.5rem] sm:text-[5rem] lg:text-[5.5rem] xl:text-[6.5rem] leading-none select-none pointer-events-none z-[1]"
+      className="pointer-events-none shrink-0 select-none font-heading text-[4.5rem] font-bold leading-none sm:text-[5rem] lg:text-[5.75rem] xl:text-[6.5rem]"
       style={{
-        WebkitTextStroke: "1px rgba(26, 26, 26, 0.12)",
+        WebkitTextStroke: isGold ? `1.25px ${GOLD}` : `1px ${LIGHT_STROKE}`,
         color: "transparent",
       }}
       aria-hidden="true"
@@ -108,9 +81,42 @@ function OutlineNumber({
   );
 }
 
+function StageCopy({
+  title,
+  items,
+  tone,
+}: {
+  title: string;
+  items: readonly string[];
+  tone: "light" | "dark";
+}) {
+  const bodyTone = tone === "dark" ? "text-white/70" : "text-silver-graphite";
+
+  return (
+    <div className="min-w-0 max-w-[18.5rem] lg:max-w-[19.5rem] xl:max-w-[20.5rem]">
+      <h3 className="font-heading text-[1.125rem] font-bold tracking-[-0.015em] text-nebco-red sm:text-[1.2rem] lg:text-[1.26rem] xl:text-[1.3rem]">
+        {title}
+      </h3>
+      <ul className="mt-[1.125rem] flex flex-col gap-4 lg:gap-[1.05rem]">
+        {items.map((item) => (
+          <li
+            key={item}
+            className="grid grid-cols-[30px_minmax(0,1fr)] gap-x-3.5 text-[12.5px] leading-[1.5] lg:text-[13px] xl:text-[14px]"
+          >
+            <div className="flex h-[1.5em] w-[30px] items-center">
+              <GoldBullet />
+            </div>
+            <span className={bodyTone}>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function StageImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-full min-h-0 bg-soft-concrete overflow-hidden">
+    <div className="relative aspect-[16/10] min-h-0 overflow-hidden bg-soft-concrete sm:aspect-[16/9] lg:aspect-auto lg:h-full">
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
     </div>
   );
@@ -122,24 +128,13 @@ function LightContentPanel({
   stage: (typeof STAGES)[number] & { variant: "light" };
 }) {
   return (
-    <div className="relative flex items-center bg-ivory-light px-6 sm:px-8 lg:px-10 xl:px-12 py-6 lg:py-0 lg:h-full min-h-0 overflow-hidden">
-      <OutlineNumber num={stage.num} variant="light" layout="overlap" />
-
-      <div className="relative z-[2] ml-0 lg:ml-[3rem] xl:ml-[3.5rem] max-w-[22rem]">
-        <h3 className="font-heading font-bold text-[1.15rem] sm:text-[1.2rem] lg:text-[1.25rem] xl:text-[1.3rem] text-nebco-red tracking-tight">
-          {stage.title}
-        </h3>
-        <ul className="mt-3 lg:mt-4 space-y-1.5 lg:space-y-2">
-          {stage.items.map((item) => (
-            <li key={item} className="flex items-start gap-2.5">
-              <GoldBullet />
-              <span className="text-[12px] lg:text-[13px] xl:text-[14px] text-arch-black leading-snug">{item}</span>
-            </li>
-          ))}
-        </ul>
+    <div className="relative flex items-center bg-ivory-light px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-[4.5rem] xl:pl-11 xl:pr-20">
+      <div className="relative z-[2] flex w-full items-center gap-8 sm:gap-9 lg:gap-11 xl:gap-[3.25rem]">
+        <OutlineNumber num={stage.num} variant="light" />
+        <StageCopy title={stage.title} items={stage.items} tone="light" />
       </div>
 
-      <StageRail />
+      <StageMarginRail />
     </div>
   );
 }
@@ -150,23 +145,10 @@ function DarkContentPanel({
   stage: (typeof STAGES)[number] & { variant: "dark" };
 }) {
   return (
-    <div className="relative flex items-center bg-arch-black px-6 sm:px-8 lg:px-10 xl:px-12 py-6 lg:py-0 lg:h-full min-h-0 overflow-hidden">
-      <div className="relative z-[2] flex items-center gap-4 lg:gap-5 xl:gap-6 w-full max-w-[30rem]">
-        <OutlineNumber num={stage.num} variant="dark" layout="inline" />
-
-        <div className="min-w-0">
-          <h3 className="font-heading font-bold text-[1.15rem] sm:text-[1.2rem] lg:text-[1.25rem] xl:text-[1.3rem] text-nebco-red tracking-tight">
-            {stage.title}
-          </h3>
-          <ul className="mt-3 lg:mt-4 space-y-1.5 lg:space-y-2">
-            {stage.items.map((item) => (
-              <li key={item} className="flex items-start gap-2.5">
-                <GoldBullet />
-                <span className="text-[12px] lg:text-[13px] xl:text-[14px] text-white/75 leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="relative flex items-center bg-arch-black px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-10 xl:pl-11 xl:pr-12">
+      <div className="relative z-[2] flex w-full items-center gap-8 sm:gap-9 lg:gap-11 xl:gap-[3.25rem]">
+        <OutlineNumber num={stage.num} variant="dark" />
+        <StageCopy title={stage.title} items={stage.items} tone="dark" />
       </div>
     </div>
   );
@@ -183,7 +165,7 @@ function StageRow({ stage }: { stage: (typeof STAGES)[number] }) {
     );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch flex-1 min-h-0">
+    <div className="grid min-h-0 flex-1 grid-cols-1 items-stretch border-b border-soft-concrete/40 last:border-b-0 lg:grid-cols-2">
       {stage.imageFirst ? (
         <>
           {image}
@@ -201,19 +183,19 @@ function StageRow({ stage }: { stage: (typeof STAGES)[number] }) {
 
 export function ConstructionStagesSection() {
   return (
-    <section className="bg-ivory-light border-t border-soft-concrete/70 flex flex-col lg:h-screen lg:min-h-[640px] lg:max-h-[100dvh] pt-8 lg:pt-9 xl:pt-10 pb-10 lg:pb-0">
-      <div className="container-nebco mb-5 lg:mb-4 xl:mb-5 shrink-0">
+    <section className="flex flex-col border-t border-soft-concrete/70 bg-ivory-light pt-8 lg:h-screen lg:max-h-[100dvh] lg:min-h-[640px] lg:pt-9 xl:pt-10">
+      <div className="container-nebco mb-5 shrink-0 lg:mb-4 xl:mb-5">
         <div className="flex items-center gap-4 lg:gap-5">
           <SectionEyebrow
             number="02"
             title="THREE STAGES"
-            className="!text-[11px] !tracking-[0.16em] !mb-0 shrink-0"
+            className="!mb-0 shrink-0 !text-[11px] !tracking-[0.16em]"
           />
-          <div className="flex-1 h-px bg-nebco-red/35" aria-hidden="true" />
+          <div className="h-px flex-1 bg-nebco-red/35" aria-hidden="true" />
         </div>
       </div>
 
-      <div className="flex flex-col flex-1 min-h-0 lg:overflow-hidden">
+      <div className="flex min-h-0 flex-1 flex-col lg:overflow-hidden">
         {STAGES.map((stage) => (
           <StageRow key={stage.num} stage={stage} />
         ))}

@@ -105,6 +105,7 @@ interface ProjectCardProps {
   image: string;
   href?: string;
   large?: boolean;
+  /** Color of the flipped info face */
   variant?: "image" | "red" | "dark";
 }
 
@@ -117,35 +118,62 @@ export function ProjectCard({
   large = false,
   variant = "image",
 }: ProjectCardProps) {
-  if (variant === "red" || variant === "dark") {
-    return (
-      <Link
-        href={href}
-        className={`group flex flex-col justify-end p-6 min-h-[200px] ${
-          variant === "red" ? "bg-nebco-red" : "bg-arch-black"
-        } ${large ? "lg:min-h-[280px]" : ""}`}
-      >
-        <p className="text-white/60 text-xs uppercase tracking-widest font-mono">{status}</p>
-        <h3 className="font-heading font-bold text-white text-lg mt-2 group-hover:underline">
-          {title}
-        </h3>
-        <p className="text-white/60 text-sm mt-1">{location}</p>
-        <span className="text-white text-xs mt-4 uppercase tracking-wide">View Project →</span>
-      </Link>
-    );
-  }
+  const backTone = variant === "red" ? "bg-nebco-red" : "bg-[#161616]";
 
   return (
-    <Link href={href} className={`group relative overflow-hidden block ${large ? "lg:row-span-2" : ""}`}>
-      <div className={`relative ${large ? "aspect-[4/5] lg:aspect-auto lg:h-full min-h-[280px]" : "aspect-[4/3]"}`}>
-        <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div className="absolute inset-0 bg-gradient-to-t from-arch-black/80 via-arch-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
+    <Link
+      href={href}
+      className={`group block ${large ? "lg:row-span-2" : ""}`}
+      style={{ perspective: "1200px" }}
+    >
+      <div
+        className={`relative w-full transition-transform duration-500 ease-[cubic-bezier(0.4,0.0,0.2,1)] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] ${
+          large ? "aspect-[4/5] min-h-[280px] lg:aspect-auto lg:h-full" : "aspect-[4/3]"
+        }`}
+      >
+        {/* Front — photo */}
+        <div className="absolute inset-0 overflow-hidden [backface-visibility:hidden]">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+            {status && (
+              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+                {status}
+              </p>
+            )}
+            <h3 className="font-heading text-[1.05rem] font-bold leading-[1.2] text-white sm:text-[1.15rem]">
+              {title}
+            </h3>
+            <p className="mt-1 text-[13px] text-white/75 sm:text-[14px]">{location}</p>
+          </div>
+        </div>
+
+        {/* Back — solid info face */}
+        <div
+          className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] ${backTone}`}
+        >
           {status && (
-            <p className="text-white/60 text-xs uppercase tracking-widest font-mono mb-1">{status}</p>
+            <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+              {status}
+            </p>
           )}
-          <h3 className="font-heading font-bold text-white text-lg">{title}</h3>
-          <p className="text-white/60 text-sm">{location}</p>
+          <h3 className="font-heading text-[1.05rem] font-bold leading-[1.2] text-white sm:text-[1.15rem]">
+            {title}
+          </h3>
+          <p className="mt-1 text-[13px] text-white/80 sm:text-[14px]">{location}</p>
+          <span className="mt-5 inline-flex items-center gap-2 font-heading text-[10.5px] font-bold uppercase tracking-[0.14em] text-white sm:text-[11px]">
+            View Project
+            <span aria-hidden="true">→</span>
+          </span>
         </div>
       </div>
     </Link>
