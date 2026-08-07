@@ -73,7 +73,7 @@ export function ContactClosingCtaSection() {
 
       <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-11 sm:px-8 sm:py-12 lg:flex-row lg:items-center lg:gap-12 lg:px-10 lg:py-14 xl:px-12">
         <div className="max-w-[34rem]">
-          <h2 className="font-heading text-[1.55rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-[1.75rem] lg:text-[1.95rem]">
+          <h2 className="type-h2 tracking-[-0.02em] text-white">
             Tell us what you are planning.
           </h2>
           <p className="mt-2.5 text-[14px] leading-[1.55] text-white/90 sm:mt-3 sm:text-[15px]">

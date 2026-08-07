@@ -135,10 +135,10 @@ export function PartnersResponsibilitiesSection() {
     <section className="bg-[#f5f2ed]">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-10 px-6 pb-4 pt-12 sm:px-8 sm:pb-5 sm:pt-14 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.6fr)] lg:gap-10 lg:px-10 lg:pb-6 lg:pt-16 xl:gap-12 xl:px-12">
         <div className="max-w-[22rem] lg:max-w-[24rem]">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             04 / Responsibilities Remain Clear
           </p>
-          <h2 className="mt-4 font-heading text-[1.55rem] font-bold leading-[1.18] tracking-[-0.02em] text-arch-black sm:mt-5 sm:text-[1.75rem] lg:text-[1.9rem] xl:text-[2.05rem]">
+          <h2 className="type-h2 mt-4 tracking-[-0.02em] text-arch-black sm:mt-5">
             Collaboration works when accountability stays visible.
           </h2>
           <span

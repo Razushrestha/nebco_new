@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ConstructionHeroBlueprint } from "@/components/ui/ConstructionHeroBlueprint";
 import { IMAGES } from "@/lib/images";
 
 const GOLD = "#c5a059";
@@ -26,13 +25,21 @@ const TRUST = [
   },
 ] as const;
 
-function TrustIcon({ type }: { type: (typeof TRUST)[number]["icon"] }) {
+function TrustIcon({
+  type,
+  compact = false,
+}: {
+  type: (typeof TRUST)[number]["icon"];
+  compact?: boolean;
+}) {
+  const size = compact ? 28 : 40;
   const common = {
-    width: 40,
-    height: 40,
+    width: size,
+    height: size,
     viewBox: "0 0 40 40",
     fill: "none" as const,
     "aria-hidden": true as const,
+    className: "shrink-0",
   };
   const s = {
     stroke: GOLD,
@@ -77,68 +84,119 @@ function TrustIcon({ type }: { type: (typeof TRUST)[number]["icon"] }) {
   }
 }
 
+function WireframeBackdrop() {
+  return (
+    <div className="nrn-start-confidently__wireframe" aria-hidden="true">
+      <Image
+        src={IMAGES.nrnStartConfidentlyWireframe}
+        alt=""
+        fill
+        quality={100}
+        unoptimized
+        className="nrn-start-confidently__wireframe-img"
+        sizes="50vw"
+      />
+    </div>
+  );
+}
+
+function StartConfidentlyPanel({
+  compact = false,
+}: {
+  compact?: boolean;
+}) {
+  return (
+    <div className="nrn-start-confidently__panel relative text-white" style={{ backgroundColor: PANEL }}>
+      <WireframeBackdrop />
+
+      <div className="nrn-start-confidently__content relative z-10">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          07 / Start Confidently
+        </p>
+
+        <h2
+          className={`nrn-start-confidently__heading font-heading font-bold tracking-[-0.02em] text-white ${
+            compact ? "" : "type-h2 mt-4 sm:mt-5"
+          }`}
+        >
+          Your property is in Nepal.
+          <span className="block">Your visibility should</span>
+          <span className="block">travel with you.</span>
+        </h2>
+
+        <Link
+          href="/contact?type=nrn"
+          className={`nrn-start-confidently__cta inline-flex w-fit items-center justify-center gap-2 bg-nebco-red font-heading font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-nebco-red-hover ${
+            compact ? "" : "mt-7 px-5 py-3.5 text-[10.5px] sm:mt-8 sm:px-6 sm:text-[11px]"
+          }`}
+        >
+          Book an Online Consultation
+          <span aria-hidden="true" className="text-[13px] leading-none">
+            →
+          </span>
+        </Link>
+
+        <div className="nrn-start-confidently__trust">
+          {TRUST.map((item) => (
+            <div key={item.title} className="nrn-start-confidently__trust-item">
+              <TrustIcon type={item.icon} compact={compact} />
+              <div className="nrn-start-confidently__trust-copy">
+                <p className="nrn-start-confidently__trust-title font-heading font-bold text-white">
+                  {item.title}
+                </p>
+                <p className="nrn-start-confidently__trust-desc text-white/55">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /**
  * 07 / Start Confidently — closing split CTA for the NRN page.
  */
-export function NrnStartConfidentlySection() {
+export function NrnStartConfidentlySection({ compact = false }: { compact?: boolean }) {
+  if (compact) {
+    return (
+      <section className="nrn-start-confidently">
+        <div className="nrn-start-confidently__image">
+          <Image
+            src={IMAGES.selectedWorkCommercial}
+            alt="Commercial mixed-use building development in Lazimpat, Kathmandu"
+            fill
+            className="object-cover object-[52%_42%]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority={false}
+          />
+          <span className="nrn-start-confidently__mark" aria-hidden="true">
+            N
+          </span>
+        </div>
+
+        <StartConfidentlyPanel compact />
+      </section>
+    );
+  }
+
   return (
-    <section className="border-t border-nebco-red grid grid-cols-1 lg:grid-cols-2 lg:min-h-[min(72svh,560px)]">
-      {/* Image — full bleed half */}
-      <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-0">
+    <section className="nrn-start-confidently nrn-start-confidently--full lg:min-h-[min(72svh,560px)] lg:grid-cols-2">
+      <div className="nrn-start-confidently__image lg:min-h-0">
         <Image
-          src={IMAGES.nightBuilding}
-          alt="Completed residential building in Nepal"
+          src={IMAGES.selectedWorkCommercial}
+          alt="Commercial mixed-use building development in Lazimpat, Kathmandu"
           fill
-          className="object-cover object-[50%_40%]"
+          className="object-cover object-[52%_42%]"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority={false}
         />
+        <span className="nrn-start-confidently__mark" aria-hidden="true">
+          N
+        </span>
       </div>
 
-      {/* Dark copy panel */}
-      <div
-        className="relative flex flex-col justify-center overflow-hidden px-6 py-12 text-white sm:px-10 sm:py-14 lg:px-12 lg:py-16 xl:px-14"
-        style={{ backgroundColor: PANEL }}
-      >
-        <div className="pointer-events-none absolute inset-0 opacity-[0.2]">
-          <ConstructionHeroBlueprint />
-        </div>
-        <div className="hero-grid-bg pointer-events-none absolute inset-0 opacity-[0.22]" />
-
-        <div className="relative z-10 max-w-[32rem]">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
-            07 / Start Confidently
-          </p>
-
-          <h2 className="mt-4 font-heading text-[1.55rem] font-bold leading-[1.16] tracking-[-0.02em] sm:mt-5 sm:text-[1.85rem] lg:text-[2.05rem] xl:text-[2.2rem]">
-            Your property is in Nepal.
-            <span className="block">Your visibility should</span>
-            <span className="block">travel with you.</span>
-          </h2>
-
-          <Link
-            href="/contact?type=nrn"
-            className="mt-7 inline-flex items-center justify-center gap-2.5 bg-nebco-red px-5 py-3.5 font-heading text-[10.5px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-nebco-red-hover sm:mt-8 sm:px-6 sm:text-[11px]"
-          >
-            Book an Online Consultation
-            <span aria-hidden="true" className="text-[14px] leading-none">
-              →
-            </span>
-          </Link>
-
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-3 sm:gap-5 lg:gap-6">
-            {TRUST.map((item) => (
-              <div key={item.title} className="flex flex-col items-start sm:items-center sm:text-center">
-                <TrustIcon type={item.icon} />
-                <p className="mt-3 font-heading text-[12.5px] font-bold text-white sm:mt-3.5 sm:text-[13px]">
-                  {item.title}
-                </p>
-                <p className="mt-1 text-[11.5px] leading-snug text-white/55 sm:text-[12px]">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <StartConfidentlyPanel />
     </section>
   );
 }

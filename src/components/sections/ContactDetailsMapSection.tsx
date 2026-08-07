@@ -200,7 +200,7 @@ export function ContactDetailsMapSection() {
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
         {/* Left — details */}
         <div className="relative flex flex-col justify-center px-6 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16 xl:px-12">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-[11px]">
+          <p className="type-label font-semibold uppercase tracking-[0.16em]">
             <span className="text-nebco-red">03 /</span>{" "}
             <span className="text-[#c45a5a]">Contact Nebco</span>
           </p>

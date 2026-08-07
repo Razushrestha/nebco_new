@@ -349,7 +349,7 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
       {/* 01 / EXPLORE THE PORTFOLIO */}
       <section className="border-b border-[#d8d2c8]">
         <div className="mx-auto max-w-[1440px] px-6 pt-7 sm:px-8 sm:pt-8 lg:px-10 xl:px-12">
-          <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
+          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             01 / Explore the Portfolio
           </p>
 
@@ -368,7 +368,7 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
                     type="button"
                     onClick={() => onFilterChange(item)}
                     aria-pressed={active}
-                    className={`relative pb-3 font-heading text-[10.5px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11px] ${
+                    className={`relative pb-3 font-heading text-[10.61px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11.11px] ${
                       active ? "text-arch-black" : "text-[#5a5a5a] hover:text-arch-black"
                     }`}
                   >
@@ -389,7 +389,7 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
 
       {/* 02 / FEATURED PROJECT */}
       <section id="featured-project" className="mx-auto max-w-[1440px] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-11 xl:px-12 scroll-mt-24">
-        <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           02 / Featured Project
         </p>
 
@@ -411,15 +411,15 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
           </div>
 
           <div className="flex flex-col bg-[#111111] px-6 py-7 text-white sm:px-8 sm:py-8 lg:px-9 lg:py-9 xl:px-10">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[10.5px]">
+            <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
               Featured Project
             </p>
 
-            <h2 className="mt-3 font-heading text-[1.35rem] font-bold leading-[1.25] tracking-[-0.02em] text-white sm:text-[1.5rem] lg:text-[1.65rem] xl:text-[1.75rem]">
+            <h2 className="type-h2 mt-3 tracking-[-0.02em] text-white">
               {display.title} — {display.location}
             </h2>
 
-            <div className="mt-6 grid grid-cols-2 gap-y-4 sm:mt-7 sm:grid-cols-4 sm:gap-y-0">
+            <div className="mt-6 grid grid-cols-2 gap-y-4 text-center sm:mt-7 sm:grid-cols-4 sm:gap-y-0">
               {display.meta.map((item, i) => (
                 <div
                   key={item.label}
@@ -427,7 +427,7 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
                     i > 0 ? "sm:border-l sm:border-nebco-red/60" : ""
                   }`}
                 >
-                  <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-white/80 sm:text-[9.5px]">
+                  <p className="type-label font-semibold uppercase tracking-[0.16em] text-white/80">
                     {item.label}
                   </p>
                   <p className="mt-1.5 font-heading text-[12.5px] font-semibold leading-snug text-white/90 sm:text-[13px]">
@@ -439,13 +439,13 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
 
             <div className="mt-5 h-px bg-nebco-red/70 sm:mt-6" aria-hidden="true" />
 
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-7 sm:grid-cols-3 sm:gap-5 lg:gap-6">
+            <div className="mt-6 grid grid-cols-1 gap-6 text-center sm:mt-7 sm:grid-cols-3 sm:gap-5 lg:gap-6">
               {display.narrative.map(({ title, body, Icon }) => (
-                <div key={title}>
+                <div key={title} className="flex flex-col items-center">
                   <span style={{ color: GOLD }} aria-hidden="true">
                     <Icon className="h-8 w-8 sm:h-9 sm:w-9" />
                   </span>
-                  <h3 className="mt-3 font-heading text-[13px] font-bold text-white sm:text-[13.5px]">
+                  <h3 className="type-h3 mt-3 text-white">
                     {title}
                   </h3>
                   <p className="mt-2 text-[12px] leading-[1.55] text-white/65 sm:text-[12.5px]">{body}</p>

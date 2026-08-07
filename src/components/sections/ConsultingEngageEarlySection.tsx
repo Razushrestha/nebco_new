@@ -1,114 +1,160 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { IMAGES } from "@/lib/images";
 
 const BENEFITS = [
-  { id: "decisions", label: "Better Decisions" },
-  { id: "risk", label: "Lower Risk" },
-  { id: "returns", label: "Stronger Returns" },
-  { id: "value", label: "Long-Term Value" },
+  { id: "decisions", label: "Better Decisions", Icon: IconDecisions },
+  { id: "risk", label: "Lower Risk", Icon: IconRisk },
+  { id: "returns", label: "Stronger Returns", Icon: IconReturns },
+  { id: "value", label: "Long-Term Value", Icon: IconValue },
 ] as const;
 
-/**
- * Icon slots — drop PNGs into /public/engage-early/ later and set iconSrc here.
- */
-type Benefit = (typeof BENEFITS)[number] & { iconSrc?: string };
+function IconDecisions({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="1.45" />
+      <circle cx="24" cy="24" r="5.25" stroke="currentColor" strokeWidth="1.35" />
+      <path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+      <path
+        d="M30.5 17.5 L36 12 L34.5 19.5 Z"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
-const BENEFITS_WITH_ICONS: Benefit[] = BENEFITS.map((b) => ({ ...b }));
+function IconRisk({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M24 7 L38 14 V26 C38 34.5 31.5 40.5 24 42 C16.5 40.5 10 34.5 10 26 V14 Z"
+        stroke="currentColor"
+        strokeWidth="1.45"
+        strokeLinejoin="round"
+      />
+      <path d="M17 24.5 L21.5 29 L31 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconReturns({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path d="M10 34 V22 h6 v12 h5 V18 h5 v16 h5 V14 h7 v20" stroke="currentColor" strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M12 28 C18 22 22 20 30 14" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" />
+      <path d="M26 14 h6 v6" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconValue({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
+      <path d="M8 34 V18 h8 v16" stroke="currentColor" strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M16 34 V12 h10 v22" stroke="currentColor" strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M26 34 V20 h10 v14" stroke="currentColor" strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M36 34 V24 h6 v10" stroke="currentColor" strokeWidth="1.45" strokeLinejoin="round" />
+      <path d="M8 34 h34" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function EngageEarlyCtaWireframe() {
+  return (
+    <svg
+      className="consulting-engage-early-cta__wireframe"
+      viewBox="0 0 720 420"
+      fill="none"
+      preserveAspectRatio="xMaxYMid slice"
+      aria-hidden="true"
+    >
+      <g stroke="white" strokeWidth="1.1">
+        <rect x="80" y="60" width="180" height="300" />
+        <line x1="80" y1="110" x2="260" y2="110" />
+        <line x1="80" y1="160" x2="260" y2="160" />
+        <line x1="80" y1="210" x2="260" y2="210" />
+        <line x1="80" y1="260" x2="260" y2="260" />
+        <line x1="80" y1="310" x2="260" y2="310" />
+        <line x1="140" y1="60" x2="140" y2="360" />
+        <line x1="200" y1="60" x2="200" y2="360" />
+        <rect x="290" y="100" width="120" height="260" />
+        <line x1="290" y1="150" x2="410" y2="150" />
+        <line x1="290" y1="200" x2="410" y2="200" />
+        <line x1="290" y1="250" x2="410" y2="250" />
+        <line x1="290" y1="300" x2="410" y2="300" />
+        <line x1="350" y1="100" x2="350" y2="360" />
+        <rect x="440" y="80" width="150" height="280" />
+        <line x1="440" y1="130" x2="590" y2="130" />
+        <line x1="440" y1="180" x2="590" y2="180" />
+        <line x1="440" y1="230" x2="590" y2="230" />
+        <line x1="440" y1="280" x2="590" y2="280" />
+        <line x1="515" y1="80" x2="515" y2="360" />
+        <rect x="620" y="120" width="90" height="240" />
+        <line x1="620" y1="170" x2="710" y2="170" />
+        <line x1="620" y1="220" x2="710" y2="220" />
+        <line x1="620" y1="270" x2="710" y2="270" />
+        <line x1="665" y1="120" x2="665" y2="360" />
+        <line x1="60" y1="360" x2="680" y2="360" strokeWidth="0.9" opacity="0.7" />
+        <path d="M80 360 L380 240 L590 360" strokeWidth="0.9" opacity="0.55" />
+      </g>
+    </svg>
+  );
+}
 
 export function ConsultingEngageEarlySection() {
   return (
     <>
-      <section className="overflow-hidden bg-[#f5f2ed]">
-        <div className="mx-auto max-w-[1440px] px-5 py-5 sm:px-8 sm:py-6 lg:px-10 lg:pb-7 lg:pt-2 xl:px-12">
-          <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
-            07 / WHY ENGAGE EARLY
-          </p>
+      <section className="consulting-engage-early">
+        <div className="consulting-engage-early__inner mx-auto max-w-[1440px]">
+          <p className="consulting-engage-early__eyebrow">07 / WHY ENGAGE EARLY</p>
 
-          {/* Horizontal: landscape image | content — compact for one-screen pair with 06 */}
-          <div className="mt-4 grid grid-cols-1 items-center gap-5 lg:mt-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-8 xl:gap-10">
-            <div className="relative min-h-[180px] w-full overflow-hidden sm:min-h-[220px] lg:min-h-0 lg:h-[min(28vh,240px)]">
+          <div className="consulting-engage-early__layout">
+            <div className="consulting-engage-early__media">
               <Image
-                src={IMAGES.sunsetSite}
+                src={IMAGES.consultingEngageEarly}
                 alt="Construction team overlooking the city at sunset"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 52vw"
-                priority={false}
               />
             </div>
 
-            <div className="flex flex-col justify-center">
-              <h2 className="max-w-[28rem] font-heading text-[1.35rem] font-bold leading-[1.22] tracking-[-0.02em] text-arch-black sm:text-[1.5rem] lg:text-[1.65rem] xl:text-[1.75rem]">
+            <div className="consulting-engage-early__content">
+              <h2 className="consulting-engage-early__heading">
                 The earlier the questions are answered, the stronger the project becomes.
               </h2>
-              <p className="mt-2.5 max-w-[30rem] text-[13px] leading-[1.55] text-[#444444] sm:text-[14px] lg:mt-3">
+              <p className="consulting-engage-early__body">
                 Early clarity reduces risk, protects money and time, and creates better buildings, better
                 returns and lasting value.
               </p>
 
-              <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-4 sm:mt-6 sm:grid-cols-4 sm:gap-x-2 lg:mt-6 lg:gap-x-3">
-                {BENEFITS_WITH_ICONS.map((item) => (
-                  <div key={item.id} className="flex flex-col items-center text-center">
-                    <div
-                      className="flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10"
-                      data-engage-early-icon={item.id}
-                    >
-                      {item.iconSrc ? (
-                        <Image
-                          src={item.iconSrc}
-                          alt=""
-                          width={36}
-                          height={36}
-                          className="h-8 w-8 object-contain sm:h-9 sm:w-9"
-                        />
-                      ) : (
-                        <span
-                          className="block h-8 w-8 border border-nebco-red/35 sm:h-9 sm:w-9"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </div>
-                    <p className="mt-1.5 max-w-[6.5rem] font-heading text-[10px] font-semibold leading-[1.3] text-[#2a2a2a] sm:text-[11px]">
-                      {item.label}
-                    </p>
-                  </div>
+              <ul className="consulting-engage-early__benefits">
+                {BENEFITS.map(({ id, label, Icon }) => (
+                  <li key={id} className="consulting-engage-early__benefit">
+                    <span className="consulting-engage-early__benefit-icon">
+                      <Icon className="h-full w-full" />
+                    </span>
+                    <span className="consulting-engage-early__benefit-label">{label}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA — sits just below the one-screen pair */}
-      <section className="relative overflow-hidden bg-nebco-red">
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-[42%] opacity-[0.14]"
-          aria-hidden="true"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200' fill='none' stroke='%23ffffff' stroke-width='0.7'%3E%3Cpath d='M40 180 V60 H90 V180 M100 180 V40 H160 V180 M170 180 V80 H210 V180 M220 180 V30 H290 V180 M40 180 H290'/%3E%3Cpath d='M300 180 L340 100 L380 180 Z'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right bottom",
-            backgroundSize: "auto 95%",
-          }}
-        />
-        <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col gap-5 px-5 py-8 sm:px-8 sm:py-9 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-10 lg:py-10 xl:px-12">
-          <h2 className="max-w-[20rem] shrink-0 font-heading text-[1.35rem] font-bold leading-[1.2] tracking-tight text-white sm:text-[1.55rem] lg:max-w-[22rem] lg:text-[1.7rem]">
-            What should this property become?
-          </h2>
-          <p className="max-w-[22rem] text-[14px] leading-[1.55] text-white/90 sm:text-[15px] lg:flex-1 lg:text-center">
+      <section className="consulting-engage-early-cta relative overflow-hidden bg-nebco-red">
+        <EngageEarlyCtaWireframe />
+        <div className="consulting-engage-early-cta__inner relative z-10 mx-auto max-w-[1440px]">
+          <h2 className="consulting-engage-early-cta__heading">What should this property become?</h2>
+          <p className="consulting-engage-early-cta__body">
             Let&apos;s explore the possibilities—together.
           </p>
-          <Link
-            href="/contact?type=land-evaluation"
-            className="inline-flex shrink-0 items-center justify-center bg-white px-6 py-3.5 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-nebco-red transition-colors hover:bg-ivory-light sm:px-7 sm:text-[12px]"
-          >
+          <Link href="/contact?type=land-evaluation" className="consulting-engage-early-cta__btn">
             Evaluate My Property
-            <span className="ml-2" aria-hidden="true">
-              →
-            </span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>

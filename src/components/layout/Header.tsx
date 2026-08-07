@@ -12,28 +12,38 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function navLinkClass(active: boolean, mobile = false) {
+  const base = mobile
+    ? "type-small px-4 py-2.5 transition-colors rounded-full"
+    : "type-small whitespace-nowrap rounded-full px-3 py-2 transition-colors";
+
+  if (active) {
+    return `${base} bg-white font-medium text-arch-black`;
+  }
+
+  return `${base} font-normal text-white/90 hover:bg-white hover:text-arch-black`;
+}
+
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 shrink-0 bg-black">
-      <div className="px-5 sm:px-8 lg:px-12 xl:px-[56px]">
+    <header className="sticky top-0 z-50 shrink-0 border-b border-white/10 bg-black">
+      <div className="mx-auto max-w-[1520px] px-5 sm:px-8 lg:px-12 xl:px-[56px]">
         <div className="grid h-[88px] grid-cols-[auto_1fr_auto] items-center gap-4 xl:grid-cols-[1fr_auto_1fr]">
           <div className="justify-self-start">
             <Logo variant="hero" />
           </div>
 
-          <nav className="hidden items-center justify-center gap-5 xl:flex 2xl:gap-6">
+          <nav className="hidden items-center justify-center gap-1 xl:flex 2xl:gap-1.5">
             {ALL_NAV.map((link) => {
               const active = isActive(pathname, link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`whitespace-nowrap text-[14px] font-normal leading-none transition-colors ${
-                    active ? "text-white" : "text-white/90 hover:text-white"
-                  }`}
+                  className={navLinkClass(active)}
                   aria-current={active ? "page" : undefined}
                 >
                   {link.label}
@@ -45,7 +55,7 @@ export function Header() {
           <div className="flex items-center justify-self-end gap-3">
             <Link
               href={CTA_LINK.href}
-              className="hidden shrink-0 items-center gap-2.5 bg-nebco-red px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-nebco-red-hover lg:inline-flex"
+              className="type-caption hidden shrink-0 items-center gap-2.5 bg-nebco-red px-6 py-3.5 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-nebco-red-hover lg:inline-flex"
             >
               {CTA_LINK.label}
               <span aria-hidden="true">→</span>
@@ -71,7 +81,7 @@ export function Header() {
       </div>
 
       {menuOpen && (
-        <nav className="flex flex-col border-t border-white/10 bg-black px-5 py-4 xl:hidden">
+        <nav className="flex flex-col gap-1 border-t border-white/10 bg-black px-5 py-4 xl:hidden">
           {ALL_NAV.map((link) => {
             const active = isActive(pathname, link.href);
             return (
@@ -79,9 +89,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`border-b border-white/5 px-2 py-3.5 text-[14px] last:border-0 ${
-                  active ? "text-white" : "text-white/90 hover:text-white"
-                }`}
+                className={navLinkClass(active, true)}
                 aria-current={active ? "page" : undefined}
               >
                 {link.label}
@@ -91,7 +99,7 @@ export function Header() {
           <Link
             href={CTA_LINK.href}
             onClick={() => setMenuOpen(false)}
-            className="mt-4 bg-nebco-red px-6 py-3.5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white"
+            className="type-caption mt-4 bg-nebco-red px-6 py-3.5 text-center font-semibold uppercase tracking-[0.14em] text-white"
           >
             {CTA_LINK.label} →
           </Link>

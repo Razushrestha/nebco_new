@@ -1,8 +1,31 @@
+import Image from "next/image";
+import { IMAGES } from "@/lib/images";
+
+type ClosingBlueprintOverlayProps = {
+  variant?: "svg" | "sketch";
+};
+
 /** Faint architectural wireframe for closing CTA panel */
-export function ClosingBlueprintOverlay() {
+export function ClosingBlueprintOverlay({ variant = "svg" }: ClosingBlueprintOverlayProps) {
+  if (variant === "sketch") {
+    return (
+      <div className="start-project-blueprint-art" aria-hidden="true">
+        <Image
+          src={IMAGES.startProjectBlueprint}
+          alt=""
+          fill
+          quality={100}
+          unoptimized
+          className="start-project-blueprint-art__img"
+          sizes="40vw"
+        />
+      </div>
+    );
+  }
+
   return (
     <svg
-      className="absolute inset-0 w-full h-full opacity-[0.12] pointer-events-none"
+      className="absolute inset-0 h-full w-full opacity-[0.12] pointer-events-none"
       viewBox="0 0 400 300"
       preserveAspectRatio="xMaxYMid slice"
       aria-hidden="true"

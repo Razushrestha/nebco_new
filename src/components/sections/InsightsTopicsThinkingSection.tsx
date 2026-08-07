@@ -467,7 +467,7 @@ export function InsightsTopicsThinkingSection() {
       <div className="shrink-0 border-y" style={{ borderColor: LINE }}>
         <div className="mx-auto flex max-w-[1440px] items-end gap-4 px-6 py-4 sm:px-8 sm:py-5 lg:px-10 xl:px-12">
           <div className="min-w-0 flex-1">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+            <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
               02 / Topics
             </p>
 
@@ -478,14 +478,14 @@ export function InsightsTopicsThinkingSection() {
                   return (
                     <li key={item} className="flex items-center">
                       {index > 0 ? (
-                        <span className="mx-2 text-[11px] text-arch-black/25 sm:mx-2.5" aria-hidden="true">
+                        <span className="mx-2 text-[11.11px] text-arch-black/25 sm:mx-2.5" aria-hidden="true">
                           /
                         </span>
                       ) : null}
                       <button
                         type="button"
                         onClick={() => selectTopic(item)}
-                        className={`relative whitespace-nowrap pb-1.5 font-heading text-[10.5px] font-semibold uppercase tracking-[0.06em] transition-colors sm:text-[11.5px] ${
+                        className={`relative whitespace-nowrap pb-1.5 font-heading text-[10.61px] font-semibold uppercase tracking-[0.06em] transition-colors sm:text-[11.62px] ${
                           active ? "" : "text-arch-black/40 hover:text-arch-black/65"
                         }`}
                         style={active ? { color: GOLD } : undefined}
@@ -517,7 +517,7 @@ export function InsightsTopicsThinkingSection() {
 
       {/* 03 / Latest Thinking — featured + four compact cards */}
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-6 py-5 sm:px-8 sm:py-6 lg:min-h-0 lg:px-10 lg:py-6 xl:px-12">
-        <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+        <p className="shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           03 / Latest Thinking
         </p>
 
@@ -545,13 +545,13 @@ export function InsightsTopicsThinkingSection() {
 
             <div className="flex flex-col bg-[#1a1a1a] px-5 py-4 text-white sm:px-6 sm:py-5 lg:px-7 lg:py-5">
               <p
-                className="font-mono text-[9px] font-semibold uppercase tracking-[0.16em]"
+                className="type-label font-semibold uppercase tracking-[0.16em]"
                 style={{ color: GOLD }}
               >
                 Featured Insight
               </p>
 
-              <h2 className="mt-2.5 font-heading text-[1.15rem] font-bold leading-[1.18] tracking-[-0.02em] sm:text-[1.25rem] lg:text-[1.35rem]">
+              <h2 className="type-h3 mt-2.5 tracking-[-0.02em]">
                 {bundle.featured.title}
               </h2>
 
@@ -629,7 +629,7 @@ function ArticleCardCompact({
         />
       </div>
       <div className="mt-2.5 flex min-h-0 flex-1 flex-col sm:mt-3">
-        <h3 className="font-heading text-[12.5px] font-bold leading-snug tracking-[-0.01em] text-arch-black transition-colors group-hover:text-nebco-red sm:text-[13px] lg:text-[13.5px]">
+        <h3 className="type-h4 tracking-[-0.01em] text-arch-black transition-colors group-hover:text-nebco-red">
           {article.title}
         </h3>
         <p className="mt-1 line-clamp-2 text-[11px] leading-[1.4] text-arch-black/55 sm:text-[11.5px]">

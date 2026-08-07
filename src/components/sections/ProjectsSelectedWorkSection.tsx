@@ -157,7 +157,7 @@ function CardFront({ card }: { card: WorkCard }) {
         </div>
         <Tone tone={card.tone} className="flex shrink-0 items-start justify-between gap-5 px-5 py-4 sm:px-6 sm:py-5">
           <div className="min-w-0 max-w-[48%]">
-            <h3 className="font-heading text-[14px] font-bold leading-[1.25] sm:text-[15px] lg:text-[16px]">
+            <h3 className="type-h4">
               {card.title}
             </h3>
             <p className="mt-1.5 text-[12px] leading-snug text-white/70 sm:text-[12.5px]">{card.location}</p>
@@ -180,7 +180,7 @@ function CardFront({ card }: { card: WorkCard }) {
           <ZoomImage src={card.image} alt={card.title} sizes="(max-width: 1024px) 100vw, 33vw" />
         </div>
         <Tone tone={card.tone} className="shrink-0 px-5 py-4 sm:px-6 sm:py-5">
-          <h3 className="font-heading text-[14px] font-bold leading-[1.25] sm:text-[15px] lg:text-[16px]">
+          <h3 className="type-h4">
             {card.title}
           </h3>
           <p className="mt-1 text-[12px] text-white/70 sm:text-[12.5px]">{card.location}</p>
@@ -203,7 +203,7 @@ function CardFront({ card }: { card: WorkCard }) {
           tone={card.tone}
           className="absolute right-0 top-0 flex h-[72%] w-[42%] min-w-[10.5rem] max-w-[13rem] flex-col overflow-hidden px-4 py-5 sm:w-[44%] sm:px-5 sm:py-6 lg:px-5"
         >
-          <h3 className="shrink-0 font-heading text-[14px] font-bold leading-[1.2] text-white sm:text-[15px]">
+          <h3 className="type-h4 shrink-0 text-white">
             {card.title}
           </h3>
           <p className="mt-1.5 shrink-0 text-[11.5px] leading-snug text-white/75 sm:text-[12px]">
@@ -213,7 +213,7 @@ function CardFront({ card }: { card: WorkCard }) {
           <div className="mt-auto space-y-4 pt-5 sm:pt-6">
             <div>
               <p
-                className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em]"
+                className="type-label font-semibold uppercase tracking-[0.16em]"
                 style={{ color: GOLD }}
               >
                 Service
@@ -225,7 +225,7 @@ function CardFront({ card }: { card: WorkCard }) {
             <div className="h-px w-8 bg-white/20" aria-hidden="true" />
             <div>
               <p
-                className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em]"
+                className="type-label font-semibold uppercase tracking-[0.16em]"
                 style={{ color: GOLD }}
               >
                 Status
@@ -249,7 +249,7 @@ function CardFront({ card }: { card: WorkCard }) {
         tone={card.tone}
         className="absolute left-0 top-0 flex h-[86%] w-[38%] min-w-[9.5rem] max-w-[11.5rem] flex-col overflow-hidden px-4 py-5 sm:w-[40%] sm:px-5 sm:py-6 lg:px-5"
       >
-        <h3 className="shrink-0 font-heading text-[14px] font-bold leading-[1.2] text-white sm:text-[15px]">
+        <h3 className="type-h4 shrink-0 text-white">
           {card.title}
         </h3>
         <p className="mt-1.5 shrink-0 text-[11.5px] leading-snug text-white/80 sm:text-[12px]">
@@ -259,7 +259,7 @@ function CardFront({ card }: { card: WorkCard }) {
         <div className="mt-auto space-y-4 pt-5">
           <div className="h-px w-8 bg-white/45" aria-hidden="true" />
           <div>
-            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white/70">
+            <p className="type-label font-semibold uppercase tracking-[0.16em] text-white/70">
               Service
             </p>
             <p className="mt-1 font-heading text-[12px] font-semibold leading-snug text-white sm:text-[12.5px]">
@@ -268,7 +268,7 @@ function CardFront({ card }: { card: WorkCard }) {
           </div>
           <div className="h-px w-8 bg-white/45" aria-hidden="true" />
           <div>
-            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white/70">
+            <p className="type-label font-semibold uppercase tracking-[0.16em] text-white/70">
               Status
             </p>
             <p className="mt-1 font-heading text-[12px] font-semibold leading-snug text-white sm:text-[12.5px]">
@@ -298,8 +298,8 @@ function FlipCard({ card }: { card: WorkCard }) {
         <div
           className={`absolute inset-0 flex flex-col justify-end p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-7 ${backTone}`}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/65">{card.status}</p>
-          <h3 className="mt-2 font-heading text-[1.15rem] font-bold leading-[1.2] text-white">{card.title}</h3>
+          <p className="type-label font-semibold uppercase tracking-[0.16em] text-white/65">{card.status}</p>
+          <h3 className="type-h4 mt-2 text-white">{card.title}</h3>
           <p className="mt-1.5 text-[13px] text-white/75">{card.location}</p>
           <div className="mt-5 grid grid-cols-2 gap-4">
             <MetaBlock label="Service" value={card.service} />
@@ -319,7 +319,7 @@ export function ProjectsSelectedWorkSection() {
   return (
     <section className="bg-[#f5f2ed]">
       <div className="mx-auto max-w-[1440px] px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
-        <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           03 / Selected Work
         </p>
 

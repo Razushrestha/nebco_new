@@ -206,7 +206,7 @@ function FeaturedProjectCard({
       </div>
       <div className="flex min-h-0 flex-col justify-between bg-ivory-light p-5 lg:p-6 xl:p-7">
         <div>
-          <h3 className="font-heading text-[13px] font-bold uppercase leading-tight tracking-[0.05em] text-nebco-red lg:text-[14px]">
+          <h3 className="type-h3 uppercase tracking-[0.05em] text-nebco-red">
             {project.title}
           </h3>
           <div className="mt-4 space-y-3.5">
@@ -251,7 +251,7 @@ function CompactProjectCard({
         />
       </div>
       <div className="p-4 lg:p-5 flex flex-col flex-1 min-h-0 bg-ivory-light">
-        <h3 className="font-heading font-bold text-[12px] lg:text-[13px] text-nebco-red tracking-[0.05em] uppercase leading-tight">
+        <h3 className="type-h3 text-nebco-red tracking-[0.05em] uppercase">
           {project.title}
         </h3>
         <div className="mt-3.5 grid grid-cols-2 gap-x-5 gap-y-3 flex-1">
@@ -390,7 +390,7 @@ export function ConstructionShowcaseSection() {
 
               <Link
                 href="/contact?type=construction"
-                className={`inline-flex w-full max-w-[16rem] items-center justify-center self-start px-5 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:brightness-110 lg:text-[11px] ${
+                className={`inline-flex w-full max-w-[16rem] items-center justify-center self-start px-5 py-2.5 type-label font-semibold uppercase tracking-[0.16em] text-white transition-all duration-300 hover:brightness-110 ${
                   inView ? "showcase-cta-pop" : ""
                 }`}
                 style={{ backgroundColor: GOLD, animationDelay: inView ? "0.45s" : undefined }}

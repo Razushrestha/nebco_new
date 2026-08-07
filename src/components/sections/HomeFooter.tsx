@@ -1,16 +1,5 @@
 import Link from "next/link";
-
-function LogoMark({ size = 40 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 56 56" fill="none" aria-hidden="true">
-      <circle cx="28" cy="28" r="27" fill="#bc2026" />
-      <rect x="24" y="9" width="8" height="30" fill="#d8dce2" rx="0.5" />
-      <rect x="15" y="17" width="7" height="22" fill="#b8bcc6" />
-      <rect x="34" y="15" width="7" height="24" fill="#c8ccd4" />
-      <line x1="11" y1="39" x2="45" y2="39" stroke="#a8adb5" strokeWidth="1.5" />
-    </svg>
-  );
-}
+import { Logo } from "@/components/ui/Logo";
 
 function SocialIcon({ type }: { type: "linkedin" | "facebook" | "instagram" }) {
   const label = type.charAt(0).toUpperCase() + type.slice(1);
@@ -72,21 +61,8 @@ export function HomeFooter() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 lg:gap-4 xl:gap-6">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <LogoMark size={36} />
-              <div className="flex flex-col leading-tight">
-                <span
-                  className="font-serif font-bold text-nebco-red text-[1.1rem] tracking-wide uppercase"
-                  style={{ fontFamily: "var(--font-merriweather), serif" }}
-                >
-                  NEBCO
-                </span>
-                <span className="text-[7.5px] tracking-[0.14em] uppercase text-white/55 mt-0.5">
-                  A Class Company | Nepal
-                </span>
-              </div>
-            </Link>
-            <p className="mt-3 text-[10px] lg:text-[11px] text-white/50 leading-relaxed max-w-[11rem]">
+            <Logo variant="light" />
+            <p className="mt-3 max-w-[11rem] text-[10px] leading-relaxed text-white/50 lg:text-[11px]">
               Construction · Consulting · Investments
               <br />
               Built on experience. Driven by purpose.
@@ -95,7 +71,7 @@ export function HomeFooter() {
 
           {COLUMNS.map((col) => (
             <div key={col.title}>
-              <h4 className="font-heading font-bold text-[9px] lg:text-[10px] uppercase tracking-[0.14em] text-white mb-2 lg:mb-2.5">
+              <h4 className="type-h4 uppercase tracking-[0.14em] text-white mb-2 lg:mb-2.5">
                 {col.title}
               </h4>
               <ul className="space-y-1 lg:space-y-1.5">
@@ -115,7 +91,7 @@ export function HomeFooter() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-heading font-bold text-[9px] lg:text-[10px] uppercase tracking-[0.14em] text-white mb-2 lg:mb-2.5">
+            <h4 className="type-h4 uppercase tracking-[0.14em] text-white mb-2 lg:mb-2.5">
               Connect
             </h4>
             <ul className="space-y-1 lg:space-y-1.5 text-[10px] lg:text-[11px] text-white/50">

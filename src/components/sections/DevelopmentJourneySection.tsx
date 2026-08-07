@@ -46,15 +46,7 @@ const STEPS = [
   },
 ] as const;
 
-function JourneyStepIcon({
-  src,
-  alt,
-  compact,
-}: {
-  src: string;
-  alt: string;
-  compact?: boolean;
-}) {
+function JourneyStepIcon({ src, alt }: { src: string; alt: string }) {
   return (
     <Image
       src={src}
@@ -63,41 +55,87 @@ function JourneyStepIcon({
       height={512}
       quality={100}
       unoptimized
-      className={`object-contain ${compact ? "w-[36px] h-[36px]" : "w-8 h-8 sm:w-9 sm:h-9"}`}
+      className="development-journey-step-icon object-contain"
     />
   );
 }
 
-function BuildingWatermark() {
+function DevelopmentJourneyIntro({ compact = false }: { compact?: boolean }) {
   return (
-    <>
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[70%] journey-grid-bg pointer-events-none hidden lg:block"
-        aria-hidden="true"
-      />
-      <svg
-        className="absolute -bottom-2 left-0 w-[200px] h-[120px] opacity-[0.06] pointer-events-none hidden lg:block"
-        viewBox="0 0 200 120"
-        fill="none"
-        aria-hidden="true"
-      >
-        <g stroke="#1a1a1a" strokeWidth="0.8">
-          <rect x="20" y="30" width="60" height="80" />
-          <line x1="20" y1="45" x2="80" y2="45" />
-          <line x1="20" y1="60" x2="80" y2="60" />
-          <line x1="20" y1="75" x2="80" y2="75" />
-          <line x1="50" y1="30" x2="50" y2="110" />
-          <rect x="80" y="50" width="40" height="60" />
-          <line x1="80" y1="65" x2="120" y2="65" />
-          <line x1="80" y1="80" x2="120" y2="80" />
-          <rect x="120" y="40" width="50" height="70" />
-          <line x1="120" y1="55" x2="170" y2="55" />
-          <line x1="120" y1="70" x2="170" y2="70" />
-          <line x1="145" y1="40" x2="145" y2="110" />
-          <line x1="10" y1="110" x2="190" y2="110" />
-        </g>
-      </svg>
-    </>
+    <div className={`development-journey-intro ${compact ? "development-journey-intro--compact" : ""}`}>
+      <div className="development-journey-intro__copy">
+        <SectionEyebrow
+          number="03"
+          title="DEVELOPMENT JOURNEY"
+          className={
+            compact
+              ? "!mb-4 !text-[11px] !tracking-[0.16em] lg:!mb-[1.15rem]"
+              : "!mb-5 !text-[11px] !tracking-[0.16em] sm:!text-[12px] lg:!mb-6"
+          }
+        />
+        <h2 className="development-journey-intro__heading">
+          <span className="block">One property.</span>
+          <span className="block">Many decisions.</span>
+          <span className="block">One coordinated</span>
+          <span className="block">direction.</span>
+        </h2>
+      </div>
+
+      <div className="development-journey-intro__art" aria-hidden="true">
+        <Image
+          src="/Web_images/development_journey-trim.png"
+          alt=""
+          width={1536}
+          height={645}
+          quality={100}
+          unoptimized
+          className="development-journey-intro__art-img"
+          sizes="(max-width: 1024px) 55vw, 320px"
+        />
+      </div>
+    </div>
+  );
+}
+
+function JourneyTimeline({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      className={`development-journey-timeline ${compact ? "development-journey-timeline--compact" : ""} ${
+        compact ? "w-full min-w-0" : "overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible"
+      }`}
+    >
+      <div className={compact ? "w-full min-w-0" : "min-w-[700px] lg:min-w-0"}>
+        <div className="development-journey-timeline__icons grid grid-cols-7 gap-0">
+          {STEPS.map((step) => (
+            <div key={`${step.num}-icon`} className="development-journey-timeline__icon-cell flex justify-center">
+              <JourneyStepIcon src={step.iconSrc} alt={step.title} />
+            </div>
+          ))}
+        </div>
+
+        <div className="development-journey-timeline__rail-row relative flex items-center">
+          <div className="development-journey-rail development-journey-rail--span absolute top-1/2 -translate-y-1/2" />
+          <div className="development-journey-timeline__nodes relative z-10 grid w-full grid-cols-7">
+            {STEPS.map((step) => (
+              <div key={`${step.num}-node`} className="flex justify-center">
+                <span className="development-journey-node" aria-hidden="true" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="development-journey-timeline__copy grid grid-cols-7 gap-0">
+          {STEPS.map((step) => (
+            <div key={`${step.num}-copy`} className="development-journey-timeline__copy-cell text-center">
+              <p className="development-journey-timeline__title">
+                <span className="font-mono font-medium text-nebco-red">{step.num}</span> {step.title}
+              </p>
+              <p className="development-journey-timeline__desc">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -106,93 +144,30 @@ type DevelopmentJourneySectionProps = {
 };
 
 export function DevelopmentJourneySection({ compact = false }: DevelopmentJourneySectionProps) {
-  const headingSize = compact
-    ? "text-[1.5rem] sm:text-[1.65rem] lg:text-[1.75rem] xl:text-[1.95rem]"
-    : "text-[1.65rem] sm:text-[1.85rem] lg:text-[2rem] xl:text-[2.15rem]";
-
   const content = (
-    <div className={compact ? "container-nebco w-full h-full flex items-center" : "container-nebco"}>
+    <div className={`container-nebco ${compact ? "h-full w-full" : ""}`}>
       <div
-        className={`grid grid-cols-1 lg:grid-cols-[minmax(240px,34%)_1fr] w-full ${
-          compact ? "gap-8 lg:gap-12 xl:gap-14 items-center" : "gap-8 lg:gap-10 items-start"
+        className={`grid w-full grid-cols-1 ${
+          compact
+            ? "h-full min-h-0 items-stretch gap-8 py-8 lg:grid-cols-[minmax(0,36%)_minmax(0,1fr)] lg:gap-10 lg:py-5 xl:gap-12"
+            : "items-start gap-8 lg:grid-cols-[minmax(240px,34%)_1fr] lg:gap-10"
         }`}
       >
-        <div className="relative z-[1]">
-          <SectionEyebrow
-            number="03"
-            title="DEVELOPMENT JOURNEY"
-            className={compact ? "!mb-4 !text-[11px] !tracking-[0.16em]" : undefined}
-          />
-          <h2
-            className={`font-heading font-bold ${headingSize} leading-[1.16] tracking-[-0.02em] text-arch-black max-w-[21rem]`}
-          >
-            One property. Many decisions. One coordinated direction.
-          </h2>
-          <BuildingWatermark />
-        </div>
+        <DevelopmentJourneyIntro compact={compact} />
 
-        <div className="overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible">
-          <div className="min-w-[700px] lg:min-w-0">
-            <div className={`grid grid-cols-7 ${compact ? "gap-1" : "gap-2"}`}>
-              {STEPS.map((step) => (
-                <div key={step.num} className={`flex justify-center ${compact ? "pb-5" : "pb-3"}`}>
-                  <JourneyStepIcon src={step.iconSrc} alt={step.title} compact={compact} />
-                </div>
-              ))}
-            </div>
-
-            <div className={`relative flex items-center ${compact ? "h-6" : "h-6"}`}>
-              <div className="development-journey-rail absolute left-[7.14%] right-[7.14%] top-1/2 -translate-y-1/2" />
-              <div className="grid grid-cols-7 w-full relative z-10">
-                {STEPS.map((step) => (
-                  <div key={step.num} className="flex justify-center">
-                    <span className="development-journey-node" aria-hidden="true" />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={`grid grid-cols-7 ${compact ? "gap-0 mt-5" : "gap-1 mt-3"}`}>
-              {STEPS.map((step) => (
-                <div key={step.num} className="text-center px-1">
-                  <p
-                    className={`font-heading font-bold text-arch-black leading-tight ${
-                      compact ? "text-[13px] sm:text-[14px]" : "text-[12px] sm:text-[13px]"
-                    }`}
-                  >
-                    <span
-                      className={`font-mono font-medium text-nebco-red ${
-                        compact ? "text-[11px] sm:text-[12px]" : "text-[11px] sm:text-[12px]"
-                      }`}
-                    >
-                      {step.num}
-                    </span>{" "}
-                    {step.title}
-                  </p>
-                  <p
-                    className={`text-silver-graphite/90 leading-[1.45] mx-auto ${
-                      compact
-                        ? "text-[10.5px] sm:text-[11px] mt-2 max-w-[9.5rem]"
-                        : "text-[10px] sm:text-[11px] mt-1.5 max-w-[9rem]"
-                    }`}
-                  >
-                    {step.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className={`min-w-0 ${compact ? "flex items-center" : ""}`}>
+          <JourneyTimeline compact={compact} />
         </div>
       </div>
     </div>
   );
 
   if (compact) {
-    return <div className="w-full h-full flex items-center py-10 lg:py-6 overflow-hidden">{content}</div>;
+    return <div className="h-full min-h-0 w-full overflow-hidden">{content}</div>;
   }
 
   return (
-    <section className="bg-ivory-light py-10 lg:py-14 overflow-hidden">
+    <section className="overflow-hidden bg-ivory-light py-10 lg:py-14">
       {content}
     </section>
   );

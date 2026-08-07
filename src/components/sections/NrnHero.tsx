@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ConstructionHeroBlueprint } from "@/components/ui/ConstructionHeroBlueprint";
+import { NrnHeroWireframe } from "@/components/ui/NrnHeroWireframe";
 import { IMAGES } from "@/lib/images";
 
 const GOLD = "#c5a059";
@@ -248,74 +248,82 @@ export function NrnHero() {
           className="pointer-events-none absolute inset-0 bg-[#111111]/88 lg:hidden"
           aria-hidden="true"
         />
+        {/* Mobile — wireframe over photo, under copy */}
+        <div className="pointer-events-none absolute inset-0 z-[1] lg:hidden">
+          <NrnHeroWireframe />
+        </div>
       </div>
 
       {/* Dark diagonal panel */}
       <div
-        className="absolute inset-0 z-10 hidden lg:block"
+        className="nrn-hero__dark-panel absolute inset-0 z-10 hidden lg:block"
         style={{ clipPath: BLACK_CLIP, backgroundColor: PANEL }}
         aria-hidden="true"
       >
-        <div className="pointer-events-none absolute inset-0 opacity-[0.22]">
-          <ConstructionHeroBlueprint />
-        </div>
-        <div className="hero-grid-bg pointer-events-none absolute inset-0 opacity-[0.28]" />
+        <div className="hero-grid-bg pointer-events-none absolute inset-0 z-[1] opacity-[0.22]" />
+        <NrnHeroWireframe />
       </div>
 
       {/* Copy — sits in the dark panel */}
       <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
-        <div className="flex flex-1 flex-col justify-between px-6 py-12 sm:px-8 sm:py-14 lg:w-[min(42%,36rem)] lg:px-10 lg:py-14 xl:w-[min(40%,34rem)] xl:px-12 xl:pl-14 xl:py-16">
-          <div className="max-w-[30rem] lg:my-auto">
-            <p className="flex items-center gap-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
-              <span className="inline-block h-3.5 w-[2px] shrink-0 bg-nebco-red" aria-hidden="true" />
-              NRN &amp; Overseas Client Services
-            </p>
+        <div className="nrn-hero__panel relative flex flex-1 flex-col justify-between px-6 py-12 sm:px-8 sm:py-14 lg:max-w-[min(42%,32rem)] lg:px-10 lg:py-16 xl:max-w-[36rem] xl:px-12 xl:pl-14">
+          <div className="relative z-[1] flex flex-1 flex-col justify-between lg:my-auto">
+            <div className="nrn-hero__content relative w-full max-w-[36rem]">
+              <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+                NRN &amp; Overseas Client Services
+              </p>
 
-            <h1 className="mt-5 font-heading text-[1.75rem] font-bold leading-[1.14] tracking-[-0.02em] text-white sm:mt-6 sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.45rem]">
-              Develop your property in Nepal—
-              <span className="block">without losing visibility or control.</span>
-            </h1>
+              <h1 className="nrn-hero__heading mt-5 tracking-[-0.02em] text-white sm:mt-6">
+                <span className="block">Develop your property in Nepal—</span>
+                <span className="block">without losing visibility or control.</span>
+              </h1>
 
-            <p className="mt-5 max-w-[27rem] text-[14px] leading-[1.65] text-white/68 sm:mt-6 sm:text-[15px]">
-              Local project coordination supported by documented decisions, digital reporting and clear
-              milestones.
-            </p>
+              <span
+                className="mt-5 block h-[3px] w-11 bg-nebco-red sm:mt-6 sm:w-12"
+                aria-hidden="true"
+              />
 
-            <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3">
-              <Link
-                href="/contact?type=nrn"
-                className="inline-flex items-center justify-center gap-2.5 bg-nebco-red px-5 py-3.5 font-heading text-[10px] font-semibold uppercase tracking-[0.11em] text-white transition-colors hover:bg-nebco-red-hover sm:px-5 sm:text-[10.5px] lg:text-[11px]"
-              >
-                Book an Online Consultation
-                <span aria-hidden="true" className="text-[13px] leading-none">
-                  →
-                </span>
-              </Link>
-              <Link
-                href="/contact?type=land-evaluation"
-                className="inline-flex items-center justify-center gap-2.5 border px-5 py-3.5 font-heading text-[10px] font-semibold uppercase tracking-[0.11em] transition-colors hover:bg-white/5 sm:px-5 sm:text-[10.5px] lg:text-[11px]"
-                style={{ borderColor: GOLD, color: GOLD }}
-              >
-                Tell Us About Your Property
-                <span aria-hidden="true" className="text-[13px] leading-none">
-                  →
-                </span>
-              </Link>
+              <p className="mt-5 max-w-[26rem] text-[14px] leading-[1.65] text-white/78 sm:mt-6 sm:text-[15px]">
+                Local project coordination supported by documented decisions, digital reporting and clear
+                milestones.
+              </p>
+
+              <div className="nrn-hero__actions mt-8 flex flex-row flex-nowrap items-center justify-start gap-2.5 sm:mt-9 sm:gap-3">
+                <Link
+                  href="/contact?type=nrn"
+                  className="nrn-hero__btn inline-flex shrink-0 items-center justify-center gap-2 bg-nebco-red px-4 py-3 font-heading text-[8px] font-semibold uppercase leading-tight tracking-[0.1em] text-white transition-colors hover:bg-nebco-red-hover sm:px-4 sm:py-3.5 sm:text-[9.5px] lg:text-[10px]"
+                >
+                  Book an Online Consultation
+                  <span aria-hidden="true" className="text-[12px] leading-none">
+                    →
+                  </span>
+                </Link>
+                <Link
+                  href="/contact?type=land-evaluation"
+                  className="nrn-hero__btn inline-flex shrink-0 items-center justify-center gap-2 border px-4 py-3 font-heading text-[8px] font-semibold uppercase leading-tight tracking-[0.1em] transition-colors hover:bg-white/5 sm:px-4 sm:py-3.5 sm:text-[9.5px] lg:text-[10px]"
+                  style={{ borderColor: GOLD, color: GOLD }}
+                >
+                  Tell Us About Your Property
+                  <span aria-hidden="true" className="text-[12px] leading-none">
+                    →
+                  </span>
+                </Link>
+              </div>
             </div>
-          </div>
 
-          <div
-            className="mt-10 flex flex-wrap items-center gap-x-3.5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.12em] sm:mt-12 sm:text-[10px] lg:mt-0 lg:pt-8"
-            style={{ color: GOLD }}
-          >
-            <span className="inline-flex items-center gap-2">
-              <ClockIcon />
-              Timezone NPT UTC+05:45
-            </span>
-            <span className="hidden h-3 w-px bg-current/50 sm:inline-block" aria-hidden="true" />
-            <span>
-              Lat 27.7172° N&nbsp;&nbsp;Long 85.3240° E
-            </span>
+            <div
+              className="nrn-hero__meta mt-10 flex w-full max-w-[36rem] flex-wrap items-center justify-start gap-x-3.5 gap-y-2 type-label font-semibold uppercase tracking-[0.16em] sm:mt-12 lg:mt-0 lg:pt-8"
+              style={{ color: GOLD }}
+            >
+              <span className="inline-flex items-center gap-2">
+                <ClockIcon />
+                Timezone NPT UTC+05:45
+              </span>
+              <span className="hidden h-3 w-px bg-current/50 sm:inline-block" aria-hidden="true" />
+              <span>
+                Lat 27.7172° N&nbsp;&nbsp;Long 85.3240° E
+              </span>
+            </div>
           </div>
         </div>
 

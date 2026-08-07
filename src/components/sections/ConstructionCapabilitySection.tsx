@@ -14,7 +14,7 @@ const CAPABILITY_TOPICS = [
         title: "Homes and communities built for real life.",
         description:
           "Apartments, villas and mixed-use communities delivered with care and long-term value.",
-        image: IMAGES.modernApartment,
+        image: IMAGES.capabilityResidential,
       },
       {
         title: "Apartment blocks designed for durability and daily use.",
@@ -229,26 +229,22 @@ export function ConstructionCapabilitySection() {
   const globalIndex = activeTopicIndex + 1;
 
   return (
-    <section className="capability-section bg-ivory-light py-14 lg:py-[4.5rem] xl:py-24">
+    <section className="capability-section bg-ivory-light py-8 lg:py-10 xl:py-11">
       <div className="container-nebco">
         <div className="capability-layout">
           <div className="capability-heading-block">
             <SectionEyebrow
               number="01"
               title="CAPABILITY"
-              className="!text-[11px] !tracking-[0.16em] !mb-4"
+              className="!text-[11px] !tracking-[0.16em] !mb-1.5"
             />
             <h2 className="capability-heading">
-              <span className="capability-heading-group">
-                We build across different
-                <br />
-                project types.
-              </span>
-              <span className="capability-heading-group capability-heading-group--second">
+              <span className="capability-heading-line">We build across different</span>
+              <span className="capability-heading-line">project types.</span>
+              <span className="capability-heading-line capability-heading-line--second">
                 The discipline remains
-                <br />
-                the same.
               </span>
+              <span className="capability-heading-line">the same.</span>
             </h2>
           </div>
 

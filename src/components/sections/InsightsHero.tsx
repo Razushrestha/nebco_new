@@ -76,12 +76,12 @@ export function InsightsHero() {
       <div className="relative z-20 flex min-h-[calc(100svh-88px)] flex-col">
         <div className="flex flex-1 flex-col px-6 py-14 sm:px-8 sm:py-16 lg:max-w-[min(48%,36rem)] lg:px-10 lg:py-16 xl:max-w-[34rem] xl:px-12 xl:pl-14">
           <div className="relative my-auto max-w-[32rem]">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-[11px]">
+            <p className="type-label font-semibold uppercase tracking-[0.16em]">
               <span className="text-white/85">01 /</span>{" "}
               <span className="text-nebco-red">Insights</span>
             </p>
 
-            <h1 className="mt-5 font-heading text-[1.85rem] font-bold leading-[1.14] tracking-[-0.02em] text-white sm:mt-6 sm:text-[2.25rem] sm:leading-[1.12] lg:text-[2.45rem] lg:leading-[1.1] xl:text-[2.65rem]">
+            <h1 className="type-h1 mt-5 tracking-[-0.02em] text-white sm:mt-6">
               Practical insight for better property and project decisions.
             </h1>
 
@@ -107,7 +107,7 @@ export function InsightsHero() {
               </div>
             </div>
 
-            <p className="mt-3.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-white/70 sm:mt-4 sm:text-[10px] sm:tracking-[0.2em]">
+            <p className="mt-3.5 type-label font-semibold uppercase tracking-[0.16em] text-white/70 sm:mt-4 sm:tracking-[0.2em]">
               {VALUES.map((label, i) => (
                 <span key={label}>
                   {i > 0 ? (

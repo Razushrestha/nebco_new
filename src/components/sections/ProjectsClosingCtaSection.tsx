@@ -57,7 +57,7 @@ export function ProjectsClosingCtaSection() {
       <div className="relative z-[1] mx-auto flex max-w-[1440px] flex-col gap-6 px-6 py-7 sm:px-8 sm:py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10 lg:py-9 xl:gap-20 xl:px-12">
         {/* Text — sits after the left illustration zone */}
         <div className="min-w-0 max-w-[34rem] lg:ml-[min(22%,12rem)] xl:ml-[min(20%,11rem)]">
-          <h2 className="font-heading text-[1.4rem] font-bold leading-[1.22] tracking-[-0.02em] text-arch-black sm:text-[1.55rem] lg:text-[1.7rem] xl:text-[1.8rem]">
+          <h2 className="type-h2 tracking-[-0.02em] text-arch-black">
             Have a project at a different stage?
           </h2>
           <p className="mt-2.5 text-[13.5px] leading-[1.55] text-[#3a3a3a] sm:mt-3 sm:text-[14.5px] lg:text-[15px]">

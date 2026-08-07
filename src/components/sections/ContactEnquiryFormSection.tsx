@@ -115,11 +115,11 @@ export function ContactEnquiryFormSection() {
               aria-hidden="true"
             />
 
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+            <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
               02 / General Project Enquiry
             </p>
 
-            <h2 className="mt-5 max-w-[15ch] font-heading text-[1.75rem] font-bold leading-[1.12] tracking-[-0.02em] text-arch-black sm:mt-6 sm:text-[2rem] lg:text-[2.2rem]">
+            <h2 className="type-h2 mt-5 max-w-[15ch] tracking-[-0.02em] text-arch-black sm:mt-6">
               Tell us about your <span className="text-nebco-red">project</span> or idea.
             </h2>
 

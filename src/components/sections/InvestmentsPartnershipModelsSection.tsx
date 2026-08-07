@@ -150,7 +150,7 @@ export function InvestmentsPartnershipModelsSection({
             : `mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-10 xl:px-12 ${shellPad}`
         }
       >
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[10.5px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           03 / PARTNERSHIP MODELS
         </p>
 

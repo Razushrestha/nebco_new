@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IMAGES } from "@/lib/images";
@@ -10,35 +11,40 @@ const CREAM = "#f5f2ed";
 const JOURNEY = [
   {
     num: "01",
-    title: "Before 2001 — Industry Foundation",
+    title: "Before 2001",
+    subtitle: "Industry Foundation",
     desc: "Hands-on construction experience that shaped how we understand sites, people and delivery.",
     image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=700&q=80",
     tone: "mono" as const,
   },
   {
     num: "02",
-    title: "2001 — NEBCO Formally Established",
+    title: "2001",
+    subtitle: "NEBCO Formally Established",
     desc: "National Estate Builders Co. registered with stronger systems, wider capability and lasting structure.",
     image: IMAGES.commercialBuilding,
     tone: "color" as const,
   },
   {
     num: "03",
-    title: "Second Generation — Growth",
+    title: "Second Generation",
+    subtitle: "Growth",
     desc: "Expanded building works and real estate projects across Kathmandu Valley and beyond.",
     image: IMAGES.constructionSite,
     tone: "color" as const,
   },
   {
     num: "04",
-    title: "Current Chapter — Integrated Platform",
+    title: "Current Chapter",
+    subtitle: "Integrated Platform",
     desc: "Construction, consulting and selective investments aligned under one coordination structure.",
     image: IMAGES.nightBuilding,
     tone: "color" as const,
   },
   {
     num: "05",
-    title: "The Future — Strategic Outcomes",
+    title: "The Future",
+    subtitle: "Strategic Outcomes",
     desc: "A trusted ecosystem from concept to market readiness for owners, partners and communities.",
     image: IMAGES.modernApartment,
     tone: "color" as const,
@@ -141,6 +147,25 @@ const COMPANY_META = [
     label: "Registration No.",
     value: "110424/058/059",
     icon: "seal" as const,
+  },
+] as const;
+
+const CERTIFICATES = [
+  {
+    src: "/images/certificates/certificate-1.png",
+    alt: "Government of Nepal — A-Class Certificate of Construction",
+  },
+  {
+    src: "/images/certificates/certificate-2.png",
+    alt: "NEBCO registration certificate",
+  },
+  {
+    src: "/images/certificates/certificate-3.png",
+    alt: "NEBCO compliance certificate",
+  },
+  {
+    src: "/images/certificates/certificate-4.png",
+    alt: "NEBCO industry accreditation certificate",
   },
 ] as const;
 
@@ -315,16 +340,16 @@ const STORY_IMAGE =
 
 export function AboutOurStorySection() {
   return (
-    <section style={{ backgroundColor: CREAM }}>
+    <section className="lg:pb-4" style={{ backgroundColor: CREAM }}>
       {/* Mobile stack */}
       <div className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 lg:hidden">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           01 / Our Story
         </p>
-        <h2 className="mt-4 max-w-[26rem] font-heading text-[1.45rem] font-bold leading-[1.2] tracking-[-0.02em] text-arch-black sm:text-[1.6rem]">
+        <h2 className="type-h2 mt-4 max-w-[26rem] tracking-[-0.02em] text-arch-black">
           From construction experience to an integrated development platform.
         </h2>
-        <div className="mt-5 max-w-[34rem] space-y-4 text-[13.5px] leading-[1.7] text-arch-black/65 sm:text-[14px]">
+        <div className="type-small mt-5 max-w-[34rem] space-y-4 text-arch-black/65">
           <p>
             NEBCO began with a construction company built on craftsmanship and trust. Over time, the needs
             around us evolved, projects required more than construction, and clients needed a partner who could
@@ -355,7 +380,7 @@ export function AboutOurStorySection() {
               <span className="font-heading text-[2.75rem] leading-none text-nebco-red" aria-hidden="true">
                 “
               </span>
-              <blockquote className="mt-3 font-heading text-[1.05rem] font-semibold leading-[1.5]">
+              <blockquote className="type-small mt-3 font-heading font-semibold leading-[1.5]">
                 We did not expand beyond construction by assumption. We evolved through the problems our clients
                 asked us to solve.
               </blockquote>
@@ -366,16 +391,16 @@ export function AboutOurStorySection() {
       </div>
 
       {/* Desktop — single letterbox composition */}
-      <div className="relative mx-auto hidden h-[min(52vh,500px)] min-h-[440px] max-w-[1600px] lg:block">
-        {/* Copy — left ~30%, sits under/beside the slant */}
-        <div className="absolute inset-y-0 left-0 z-0 flex w-[32%] flex-col justify-center px-10 pr-6 xl:w-[30%] xl:px-12 xl:pr-8">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-nebco-red">
+      <div className="relative mx-auto hidden h-[min(56vh,520px)] min-h-[460px] max-w-[1600px] overflow-hidden lg:block xl:h-[min(54vh,540px)] xl:min-h-[480px]">
+        {/* Copy — left ~30% */}
+        <div className="absolute inset-y-0 left-0 z-0 flex w-[31%] flex-col justify-center overflow-hidden px-10 py-8 xl:w-[29%] xl:px-12">
+          <p className="type-label shrink-0 font-semibold uppercase tracking-[0.16em] text-nebco-red">
             01 / Our Story
           </p>
-          <h2 className="mt-4 max-w-[17.5rem] font-heading text-[1.45rem] font-bold leading-[1.18] tracking-[-0.02em] text-arch-black xl:max-w-[19rem] xl:text-[1.6rem]">
+          <h2 className="type-h3 mt-4 max-w-[16.5rem] shrink-0 tracking-[-0.02em] text-arch-black xl:max-w-[18rem]">
             From construction experience to an integrated development platform.
           </h2>
-          <div className="mt-5 max-w-[17.5rem] space-y-3.5 text-[13px] leading-[1.65] text-arch-black/62 xl:max-w-[18.5rem] xl:text-[13.5px]">
+          <div className="type-small mt-4 max-w-[16.5rem] space-y-3 text-arch-black/62 xl:max-w-[18rem]">
             <p>
               NEBCO began with a construction company built on craftsmanship and trust. Over time, the needs
               around us evolved, projects required more than construction, and clients needed a partner who
@@ -389,12 +414,12 @@ export function AboutOurStorySection() {
           </div>
         </div>
 
-        {/* Photo — ~45% width, overlaps left so diagonal cuts into cream/copy */}
+        {/* Photo — center band with diagonal left edge */}
         <div
           className="absolute inset-y-0 z-10"
           style={{
-            left: "24%",
-            right: "26%",
+            left: "26%",
+            right: "24%",
             clipPath: `polygon(${STORY_SLANT}% 0, 100% 0, 100% 100%, 0 100%)`,
           }}
         >
@@ -402,23 +427,23 @@ export function AboutOurStorySection() {
             src={STORY_IMAGE}
             alt="Construction team at work on an active site"
             fill
-            className="object-cover object-[48%_35%]"
+            className="object-cover object-[48%_38%]"
             sizes="50vw"
           />
         </div>
 
-        {/* Quote — ~26%, same height, flush to photo */}
-        <aside className="absolute inset-y-0 right-0 z-20 flex w-[26%] flex-col justify-between bg-[#111111] px-8 py-10 text-white xl:px-9 xl:py-11">
+        {/* Quote — right ~24% */}
+        <aside className="absolute inset-y-0 right-0 z-20 flex w-[24%] flex-col justify-between overflow-hidden bg-[#111111] px-7 py-9 text-white xl:w-[25%] xl:px-9 xl:py-10">
           <div>
-            <span className="block font-heading text-[3rem] leading-none text-nebco-red xl:text-[3.25rem]" aria-hidden="true">
+            <span className="block font-heading text-[2.75rem] leading-none text-nebco-red xl:text-[3rem]" aria-hidden="true">
               “
             </span>
-            <blockquote className="mt-3 font-heading text-[1.08rem] font-semibold leading-[1.5] xl:text-[1.15rem]">
+            <blockquote className="type-small mt-3 max-w-[14rem] font-heading font-semibold leading-[1.55] xl:text-[15px]">
               We did not expand beyond construction by assumption. We evolved through the problems our clients
               asked us to solve.
             </blockquote>
           </div>
-          <span className="block h-px w-10 bg-nebco-red" aria-hidden="true" />
+          <span className="block h-px w-10 shrink-0 bg-nebco-red" aria-hidden="true" />
         </aside>
       </div>
     </section>
@@ -427,11 +452,11 @@ export function AboutOurStorySection() {
 
 export function AboutJourneySection() {
   return (
-    <section style={{ backgroundColor: CREAM }}>
-      <div className="mx-auto max-w-[1440px] px-6 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-16 xl:px-12">
+    <section className="pb-14 pt-10 sm:pb-16 sm:pt-12 lg:pb-16 lg:pt-14" style={{ backgroundColor: CREAM }}>
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-10 xl:px-12">
         {/* Eyebrow + red rule across the section */}
         <div className="flex items-center gap-4">
-          <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red sm:text-[11px]">
+          <p className="shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             02 / The Journey
           </p>
           <span className="h-px min-w-0 flex-1 bg-nebco-red" aria-hidden="true" />
@@ -439,14 +464,19 @@ export function AboutJourneySection() {
 
         <div className="-mx-6 mt-10 overflow-x-auto px-6 sm:-mx-8 sm:mt-12 sm:px-8 lg:mx-0 lg:mt-14 lg:overflow-visible lg:px-0">
           <div className="relative min-w-[980px] lg:min-w-0">
-            {/* Timeline track — red → gold */}
+            {/* Timeline track — red → gold with traveling light */}
             <div
-              className="pointer-events-none absolute left-0 right-0 top-[5px] z-0 h-px"
-              style={{
-                background: `linear-gradient(90deg, #bc2026 0%, #bc2026 22%, ${GOLD} 100%)`,
-              }}
+              className="pointer-events-none absolute left-0 right-0 top-[4px] z-0 h-[3px] overflow-visible"
               aria-hidden="true"
-            />
+            >
+              <div
+                className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2"
+                style={{
+                  background: `linear-gradient(90deg, #bc2026 0%, #bc2026 22%, ${GOLD} 100%)`,
+                }}
+              />
+              <span className="journey-line-light" />
+            </div>
 
             <ol className="relative z-[1] grid grid-cols-5">
               {JOURNEY.map((item, i) => (
@@ -478,17 +508,19 @@ export function AboutJourneySection() {
                     >
                       <Image
                         src={item.image}
-                        alt={item.title}
+                        alt={`${item.title} ${item.subtitle}`}
                         fill
                         className={`object-cover ${item.tone === "mono" ? "grayscale contrast-[1.05]" : ""}`}
                         sizes="(max-width: 1024px) 200px, 18vw"
                       />
                     </div>
 
-                    <h3 className="mt-4 font-heading text-[12.5px] font-bold leading-snug text-arch-black sm:mt-5 sm:text-[13.5px] lg:text-[14px]">
+                    <h3 className="type-h4 mt-4 text-arch-black sm:mt-5">
                       {item.title}
+                      <br />
+                      {item.subtitle}
                     </h3>
-                    <p className="mt-2 text-[11.5px] leading-[1.5] text-arch-black/58 sm:text-[12px] sm:leading-[1.55]">
+                    <p className="mt-2 text-[11.73px] leading-[1.5] text-arch-black/58 sm:text-[12.24px] sm:leading-[1.55]">
                       {item.desc}
                     </p>
                   </div>
@@ -502,84 +534,95 @@ export function AboutJourneySection() {
   );
 }
 
-export function AboutPurposeValuesSection() {
+export function AboutPurposeSection() {
+  return (
+    <section className="relative overflow-hidden bg-[#0e0e0e] text-white">
+      <div className="mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          03 / Purpose
+        </p>
+
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 sm:grid-cols-3 sm:gap-0 lg:mt-12">
+          {PURPOSE.map((item, i) => (
+            <div
+              key={item.title}
+              className={`flex flex-col items-center px-4 py-2 text-center sm:px-5 lg:px-8 ${
+                i > 0 ? "border-t sm:border-l sm:border-t-0" : ""
+              }`}
+              style={i > 0 ? { borderColor: `${GOLD}55` } : undefined}
+            >
+              <PurposeIcon type={item.icon} />
+              <h3 className="type-h4 mt-5 uppercase tracking-[0.16em]" style={{ color: GOLD }}>
+                {item.title}
+              </h3>
+              <p className="mt-3 max-w-[15rem] text-[13px] leading-[1.55] text-white/75 sm:text-[13.5px]">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
+    </section>
+  );
+}
+
+export function AboutValuesSection() {
   const leftValues = VALUES.slice(0, 3);
   const rightValues = VALUES.slice(3);
 
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-2">
-      {/* 03 / PURPOSE — dark */}
-      <div className="bg-[#0e0e0e] text-white">
-        <div className="mx-auto h-full max-w-[720px] px-6 py-14 sm:px-8 sm:py-16 lg:ml-auto lg:max-w-none lg:px-10 lg:py-16 xl:px-12">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red sm:text-[11px]">
-            03 / Purpose
-          </p>
+    <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+      <div className="mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          04 / Values
+        </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-3 sm:gap-0">
-            {PURPOSE.map((item, i) => (
-              <div
-                key={item.title}
-                className={`flex flex-col items-center px-4 py-2 text-center sm:px-5 lg:px-6 ${
-                  i > 0 ? "border-t sm:border-l sm:border-t-0" : ""
-                }`}
-                style={i > 0 ? { borderColor: `${GOLD}55` } : undefined}
-              >
-                <PurposeIcon type={item.icon} />
-                <h3
-                  className="mt-5 font-heading text-[12px] font-bold uppercase tracking-[0.16em] sm:text-[13px]"
-                  style={{ color: GOLD }}
-                >
-                  {item.title}
-                </h3>
-                <p className="mt-3 max-w-[14rem] text-[13px] leading-[1.55] text-white/75 sm:text-[13.5px]">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 sm:grid-cols-2 sm:gap-0 lg:mt-12">
+          {[leftValues, rightValues].map((col, colIdx) => (
+            <ul
+              key={colIdx}
+              className={`space-y-7 sm:space-y-8 ${
+                colIdx > 0
+                  ? "border-t pt-8 sm:border-l sm:border-t-0 sm:pt-0 sm:pl-8 lg:pl-12"
+                  : "sm:pr-8 lg:pr-12"
+              }`}
+              style={colIdx > 0 ? { borderColor: `${GOLD}55` } : undefined}
+            >
+              {col.map((v) => (
+                <li key={v.num} className="flex gap-3.5 sm:gap-4">
+                  <span
+                    className="shrink-0 font-heading text-[1.55rem] font-medium leading-none tracking-[-0.02em] sm:text-[1.7rem]"
+                    style={{ color: GOLD }}
+                  >
+                    {v.num}
+                  </span>
+                  <div className="min-w-0 pt-0.5">
+                    <h3 className="type-h4 uppercase tracking-[0.12em] text-nebco-red">{v.title}</h3>
+                    <p className="mt-1.5 text-[13px] leading-[1.5] text-arch-black/65 sm:text-[13.5px]">
+                      {v.desc}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
       </div>
 
-      {/* 04 / VALUES — cream */}
-      <div style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto h-full max-w-[720px] px-6 py-14 sm:px-8 sm:py-16 lg:mr-auto lg:max-w-none lg:px-10 lg:py-16 xl:px-12">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red sm:text-[11px]">
-            04 / Values
-          </p>
-
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-0">
-            {[leftValues, rightValues].map((col, colIdx) => (
-              <ul
-                key={colIdx}
-                className={`space-y-7 sm:space-y-8 ${
-                  colIdx > 0 ? "border-t pt-8 sm:border-l sm:border-t-0 sm:pt-0 sm:pl-8 lg:pl-10" : "sm:pr-8 lg:pr-10"
-                }`}
-                style={colIdx > 0 ? { borderColor: `${GOLD}55` } : undefined}
-              >
-                {col.map((v) => (
-                  <li key={v.num} className="flex gap-3.5 sm:gap-4">
-                    <span
-                      className="shrink-0 font-heading text-[1.55rem] font-medium leading-none tracking-[-0.02em] sm:text-[1.7rem]"
-                      style={{ color: GOLD }}
-                    >
-                      {v.num}
-                    </span>
-                    <div className="min-w-0 pt-0.5">
-                      <h3 className="font-heading text-[12px] font-bold uppercase tracking-[0.12em] text-nebco-red sm:text-[13px]">
-                        {v.title}
-                      </h3>
-                      <p className="mt-1.5 text-[13px] leading-[1.5] text-arch-black/65 sm:text-[13.5px]">
-                        {v.desc}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-        </div>
-      </div>
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
     </section>
+  );
+}
+
+/** Backward-compatible wrapper — prefer AboutPurposeSection + AboutValuesSection */
+export function AboutPurposeValuesSection() {
+  return (
+    <>
+      <AboutPurposeSection />
+      <AboutValuesSection />
+    </>
   );
 }
 
@@ -615,265 +658,337 @@ function DirectorAvatar() {
   );
 }
 
-/** 05 + 06 + 07 — compact single-screen band on desktop */
+/** 05 — three responsibility columns */
 export function AboutResponsibilitiesSection() {
   return (
-    <section
-      className="relative flex flex-col overflow-hidden xl:min-h-[calc(100svh-88px)]"
-      style={{ backgroundColor: CREAM }}
-    >
-      <div className="pointer-events-none absolute inset-y-[8%] right-0 w-[40%] opacity-[0.05]">
-        <LeadershipBlueprint />
-      </div>
+    <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+      <div className="mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          05 / One Platform, Three Responsibilities
+        </p>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1520px] flex-1 flex-col justify-between gap-6 px-5 py-6 sm:px-7 sm:py-7 lg:px-9 xl:gap-5 xl:px-11 xl:py-6">
-        {/* ——— Top: 05 Responsibilities + 06 Leadership ——— */}
-        <div className="grid min-h-0 flex-[1.15] grid-cols-1 gap-7 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] xl:items-stretch xl:gap-6">
-          <div className="flex min-h-0 flex-col">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red">
-              05 / One Platform, Three Responsibilities
-            </p>
+        <div className="mt-5 grid grid-cols-1 overflow-hidden border border-arch-black/[0.08] md:grid-cols-3 md:min-h-[min(420px,calc(100svh-88px-8rem))]">
+          {DIVISIONS.map((d) => {
+            const isRed = d.tone === "red";
+            const isCream = d.tone === "cream";
+            const arrowVariant = isRed
+              ? ("red-on-white" as const)
+              : isCream
+                ? ("dark-on-gold" as const)
+                : ("gold-on-white" as const);
 
-            <div className="mt-3 grid min-h-0 flex-1 grid-cols-1 overflow-hidden border border-arch-black/[0.08] md:grid-cols-3 xl:min-h-[240px]">
-              {DIVISIONS.map((d) => {
-                const isRed = d.tone === "red";
-                const isCream = d.tone === "cream";
-                const arrowVariant = isRed
-                  ? ("red-on-white" as const)
-                  : isCream
-                    ? ("dark-on-gold" as const)
-                    : ("gold-on-white" as const);
-
-                return (
-                  <Link
-                    key={d.title}
-                    href={d.href}
-                    className={`group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden px-4 py-5 md:min-h-0 xl:px-4 xl:py-5 ${
-                      isRed
-                        ? "bg-nebco-red text-white"
-                        : isCream
-                          ? "border-l border-arch-black/[0.06] bg-[#f7f4ef] text-arch-black md:border-l-0"
-                          : "bg-[#111111] text-white"
-                    }`}
-                  >
-                    <div
-                      className={`pointer-events-none absolute inset-x-0 bottom-0 translate-y-[8%] ${
-                        isCream ? "opacity-[0.38]" : "opacity-[0.36]"
-                      }`}
-                      aria-hidden="true"
-                    >
-                      <Image
-                        src={d.backgroundSrc}
-                        alt=""
-                        width={480}
-                        height={380}
-                        className="ml-auto h-auto w-[min(100%,14rem)] max-w-none"
-                      />
-                    </div>
-
-                    <div className="relative z-10">
-                      <span className="relative block h-10 w-10" aria-hidden="true">
-                        <Image
-                          src={d.iconSrc}
-                          alt=""
-                          fill
-                          sizes="40px"
-                          className={`object-contain object-left ${isRed || !isCream ? "brightness-0 invert" : ""}`}
-                        />
-                      </span>
-                      <h3
-                        className={`mt-4 font-heading text-[0.95rem] font-bold uppercase tracking-[0.07em] ${
-                          isCream ? "text-arch-black" : "text-white"
-                        }`}
-                      >
-                        {d.title}
-                      </h3>
-                      <p
-                        className="mt-1 font-heading text-[10px] font-bold uppercase tracking-[0.12em]"
-                        style={{ color: GOLD }}
-                      >
-                        {d.verb}
-                      </p>
-                      <p
-                        className={`mt-2.5 max-w-[15rem] text-[12px] leading-[1.5] ${
-                          isCream ? "text-arch-black/62" : "text-white/78"
-                        }`}
-                      >
-                        {d.desc}
-                      </p>
-                    </div>
-
-                    <div className="relative z-10 mt-5 flex justify-center xl:mt-auto xl:pt-4">
-                      <ArrowCircle variant={arrowVariant} />
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="flex min-h-0 flex-col">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red">
-              06 / Leadership
-            </p>
-
-            <div className="mt-3 flex min-h-0 flex-1 flex-col">
-              <div className="flex h-full min-h-[220px] flex-1 flex-col gap-5 lg:flex-row lg:items-start lg:gap-5 xl:min-h-0">
-                <div className="flex h-full min-h-[220px] w-full shrink-0 flex-col overflow-hidden border border-arch-black/[0.08] bg-[#f7f4ef] sm:flex-row lg:w-auto lg:max-w-[18.5rem] lg:flex-none xl:min-h-[240px]">
-                  <div className="relative mx-auto aspect-[3/4] w-[130px] shrink-0 overflow-hidden bg-[#e8e3da] sm:mx-0 sm:aspect-auto sm:h-auto sm:w-[38%] sm:self-stretch">
-                    <Image
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=85"
-                      alt="NEBCO Chairman"
-                      fill
-                      className="object-cover object-[50%_10%] grayscale contrast-[1.08]"
-                      sizes="140px"
-                    />
-                  </div>
-                  <div className="flex min-w-0 flex-1 flex-col justify-center px-3.5 py-4 text-center sm:px-4 sm:text-left">
-                    <p
-                      className="font-heading text-[9.5px] font-semibold uppercase tracking-[0.14em]"
-                      style={{ color: "#a8864d" }}
-                    >
-                      Leadership in action.
-                    </p>
-                    <h2 className="mt-0.5 font-heading text-[0.95rem] font-bold uppercase leading-[1.15] tracking-[0.02em] text-nebco-red">
-                      Built on
-                      <br />
-                      experience.
-                    </h2>
-                    <p className="mt-3.5 font-heading text-[9.5px] font-bold uppercase tracking-[0.14em] text-nebco-red">
-                      Chairman
-                    </p>
-                    <p className="mt-0.5 font-heading text-[0.9rem] font-bold text-arch-black">Name Placeholder</p>
-                    <p className="mt-1.5 text-[11.5px] leading-[1.45] text-arch-black/60">
-                      Leading with integrity and purpose. Focused on building a stronger Nepal through
-                      responsible development and long-term value creation.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid w-full min-w-0 flex-1 grid-cols-1 gap-0 self-start sm:grid-cols-3 sm:gap-x-2.5">
-                  {LEADERS.map((person, i) => (
-                    <div
-                      key={person.roleLines.join(" ")}
-                      className={`flex min-w-0 flex-col ${
-                        i > 0 ? "border-t border-arch-black/10 pt-4 sm:border-t-0 sm:pt-0" : ""
-                      }`}
-                    >
-                      <div className="flex h-[88px] w-full items-center justify-center bg-[#ddd8cf] sm:h-[96px]">
-                        <DirectorAvatar />
-                      </div>
-                      <div className="pt-2 text-left">
-                        <p className="font-heading text-[9px] font-bold uppercase leading-[1.25] tracking-[0.08em] text-nebco-red">
-                          {person.roleLines.map((line) => (
-                            <span key={line} className="block">
-                              {line}
-                            </span>
-                          ))}
-                        </p>
-                        <p className="mt-1 font-heading text-[12px] font-bold leading-[1.25] text-arch-black">
-                          Name Placeholder
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ——— Bottom: 07 Credentials ——— */}
-        <div className="min-h-0 shrink-0">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-nebco-red">
-            07 / Credentials
-          </p>
-
-          <div className="mt-3 grid grid-cols-1 items-center gap-5 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)_minmax(0,0.65fr)] lg:gap-5 xl:gap-6">
-            <div className="bg-[#111111] px-3 py-5 text-white sm:px-4 sm:py-5 lg:py-5">
-              <div className="grid grid-cols-1 gap-0 sm:grid-cols-3">
-                {CREDENTIALS.map((item, i) => (
-                  <div
-                    key={item.title}
-                    className={`relative flex items-start gap-3 px-2.5 py-3 sm:px-3 sm:py-0 ${
-                      i > 0 ? "border-t border-white/10 pt-4 sm:border-t-0 sm:pt-0" : ""
-                    }`}
-                  >
-                    {i > 0 ? (
-                      <span
-                        className="pointer-events-none absolute bottom-2 left-0 top-2 hidden w-px sm:block"
-                        style={{ backgroundColor: `${GOLD}55` }}
-                        aria-hidden="true"
-                      />
-                    ) : null}
-                    <span className="shrink-0 scale-90" aria-hidden="true">
-                      <CredIcon type={item.icon} />
-                    </span>
-                    <div className="min-w-0 text-left">
-                      <h3
-                        className="font-heading text-[11px] font-bold uppercase tracking-[0.12em]"
-                        style={{ color: GOLD }}
-                      >
-                        {item.title}
-                      </h3>
-                      <p className="mt-1.5 text-[12px] leading-[1.45] text-[#d8d4ce]">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none">
-              <div
-                className="relative overflow-hidden bg-[#f7f1e6]"
-                style={{
-                  boxShadow: "inset 0 0 0 1px #b08950, inset 0 0 0 3px #f3ebe0, inset 0 0 0 4px #c4a574",
-                }}
+            return (
+              <Link
+                key={d.title}
+                href={d.href}
+                className={`group relative flex min-h-[280px] flex-col items-center justify-between overflow-hidden px-5 py-6 text-center sm:px-6 sm:py-7 md:min-h-0 ${
+                  isRed
+                    ? "bg-nebco-red text-white"
+                    : isCream
+                      ? "border-t border-arch-black/[0.06] bg-[#f7f4ef] text-arch-black md:border-t-0 md:border-l"
+                      : "border-t border-arch-black/[0.06] bg-[#111111] text-white md:border-t-0 md:border-l"
+                }`}
               >
-                <div className="relative aspect-[3/2] w-full">
+                <div
+                  className={`pointer-events-none absolute inset-x-0 bottom-0 translate-y-[8%] ${
+                    isCream ? "opacity-[0.38]" : "opacity-[0.36]"
+                  }`}
+                  aria-hidden="true"
+                >
                   <Image
-                    src="/images/a-class-certificate.png"
-                    alt="Government of Nepal — A-Class Certificate of Construction"
-                    fill
-                    className="object-contain object-center p-1.5"
-                    sizes="380px"
+                    src={d.backgroundSrc}
+                    alt=""
+                    width={480}
+                    height={380}
+                    className="ml-auto h-auto w-[min(100%,16rem)] max-w-none"
                   />
                 </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col justify-center gap-4 sm:gap-5 lg:gap-5">
-              {COMPANY_META.map((row) => (
-                <div key={row.label} className="flex items-center gap-3.5">
-                  <span className="shrink-0 scale-90" aria-hidden="true">
-                    <MetaIcon type={row.icon} />
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <span className="relative mx-auto block h-11 w-11" aria-hidden="true">
+                    <Image
+                      src={d.iconSrc}
+                      alt=""
+                      fill
+                      sizes="44px"
+                      className={`object-contain object-center ${isRed || !isCream ? "brightness-0 invert" : ""}`}
+                    />
                   </span>
-                  <div className="min-w-0">
-                    <p
-                      className="font-heading text-[10px] font-bold uppercase tracking-[0.14em]"
-                      style={{ color: GOLD }}
-                    >
-                      {row.label}
-                    </p>
-                    <p className="mt-0.5 text-[13px] leading-snug text-arch-black/85">{row.value}</p>
-                  </div>
+                  <h3
+                    className={`type-h4 mt-5 uppercase tracking-[0.07em] ${
+                      isCream ? "text-arch-black" : "text-white"
+                    }`}
+                  >
+                    {d.title}
+                  </h3>
+                  <p
+                    className="mt-1.5 font-heading text-[11px] font-bold uppercase tracking-[0.12em]"
+                    style={{ color: GOLD }}
+                  >
+                    {d.verb}
+                  </p>
+                  <p
+                    className={`mt-3 max-w-[16rem] text-[13px] leading-[1.55] ${
+                      isCream ? "text-arch-black/62" : "text-white/78"
+                    }`}
+                  >
+                    {d.desc}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
+
+                <div className="relative z-10 mt-8 flex justify-center md:mt-auto md:pt-6">
+                  <ArrowCircle variant={arrowVariant} />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
-      <div className="h-px w-full shrink-0 bg-nebco-red" aria-hidden="true" />
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
     </section>
   );
 }
 
 export function AboutLeadershipSection() {
-  return null;
+  return (
+    <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+      <div className="pointer-events-none absolute inset-y-[10%] right-0 w-[38%] opacity-[0.05]">
+        <LeadershipBlueprint />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          06 / Leadership
+        </p>
+
+        <div className="mt-5 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-8">
+          <div className="flex w-full shrink-0 flex-col overflow-hidden border border-arch-black/[0.08] bg-[#f7f4ef] sm:flex-row lg:max-w-[min(100%,28rem)] lg:flex-none">
+            <div className="relative mx-auto aspect-[3/4] w-[min(100%,180px)] shrink-0 overflow-hidden bg-[#e8e3da] sm:mx-0 sm:aspect-auto sm:h-auto sm:w-[42%] sm:self-stretch">
+              <Image
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=85"
+                alt="NEBCO Chairman"
+                fill
+                className="object-cover object-[50%_10%] grayscale contrast-[1.08]"
+                sizes="(max-width: 1024px) 180px, 220px"
+              />
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col justify-center px-5 py-6 text-center sm:px-6 sm:text-left">
+              <p
+                className="font-heading text-[10px] font-semibold uppercase tracking-[0.14em]"
+                style={{ color: "#a8864d" }}
+              >
+                Leadership in action.
+              </p>
+              <h2 className="type-h2 mt-1 uppercase tracking-[0.02em] text-nebco-red">
+                Built on
+                <br />
+                experience.
+              </h2>
+              <p className="mt-4 font-heading text-[10px] font-bold uppercase tracking-[0.14em] text-nebco-red">
+                Chairman
+              </p>
+              <p className="mt-1 font-heading text-[1rem] font-bold text-arch-black">Name Placeholder</p>
+              <p className="mt-2 text-[13px] leading-[1.5] text-arch-black/60">
+                Leading with integrity and purpose. Focused on building a stronger Nepal through
+                responsible development and long-term value creation.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid min-w-0 flex-1 grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-5">
+            {LEADERS.map((person, i) => (
+              <div
+                key={person.roleLines.join(" ")}
+                className={`flex min-w-0 flex-col ${
+                  i > 0 ? "border-t border-arch-black/10 pt-6 sm:border-t-0 sm:pt-0" : ""
+                }`}
+              >
+                <div className="flex aspect-[4/3] w-full items-center justify-center bg-[#ddd8cf] sm:aspect-auto sm:h-[120px]">
+                  <DirectorAvatar />
+                </div>
+                <div className="pt-3 text-left">
+                  <p className="font-heading text-[10px] font-bold uppercase leading-[1.25] tracking-[0.08em] text-nebco-red">
+                    {person.roleLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </p>
+                  <p className="mt-1.5 font-heading text-[13px] font-bold leading-[1.25] text-arch-black">
+                    {person.name}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
+    </section>
+  );
+}
+
+function CredentialsGrid() {
+  return (
+    <svg
+      className="absolute inset-0 h-full w-full"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern id="cred-grid" width="8" height="8" patternUnits="userSpaceOnUse">
+          <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#1a1a1a" strokeWidth="0.15" opacity="0.12" />
+        </pattern>
+      </defs>
+      <rect width="100" height="100" fill="url(#cred-grid)" />
+    </svg>
+  );
+}
+
+const CERTIFICATE_INTERVAL_MS = 4500;
+
+function CertificateCarousel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || CERTIFICATES.length <= 1) return;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % CERTIFICATES.length);
+    }, CERTIFICATE_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="certificate-carousel">
+      <div
+        className="relative overflow-hidden bg-[#f7f1e6]"
+        style={{
+          boxShadow: "inset 0 0 0 1px #b08950, inset 0 0 0 3px #f3ebe0, inset 0 0 0 4px #c4a574",
+        }}
+      >
+        <div className="relative aspect-[3/2] w-full">
+          {CERTIFICATES.map((certificate, index) => (
+            <Image
+              key={certificate.src}
+              src={certificate.src}
+              alt={certificate.alt}
+              fill
+              priority={index === 0}
+              className={`certificate-carousel-image absolute inset-0 object-contain object-center p-2 sm:p-2.5 ${
+                index === activeIndex ? "is-active" : ""
+              }`}
+              sizes="(max-width: 1024px) 460px, 560px"
+            />
+          ))}
+        </div>
+      </div>
+
+      <p className="sr-only" aria-live="polite">
+        {CERTIFICATES[activeIndex]?.alt}
+      </p>
+
+      <div className="mt-4 flex items-center justify-center gap-2" aria-hidden="true">
+        {CERTIFICATES.map((certificate, index) => (
+          <span
+            key={certificate.src}
+            className={`certificate-carousel-dot ${index === activeIndex ? "is-active" : ""}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export function AboutCredentialsSection() {
-  return null;
+  return (
+    <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+      <div className="mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          07 / Credentials
+        </p>
+
+        <div className="mt-5 bg-[#111111] px-4 py-6 text-white sm:px-5 sm:py-7 lg:py-8">
+          <div className="grid grid-cols-1 gap-0 sm:grid-cols-3">
+            {CREDENTIALS.map((item, i) => (
+              <div
+                key={item.title}
+                className={`relative flex items-start gap-3 px-3 py-3 sm:px-4 sm:py-0 lg:px-5 ${
+                  i > 0 ? "border-t border-white/10 pt-6 sm:border-t-0 sm:pt-0" : ""
+                }`}
+              >
+                {i > 0 ? (
+                  <span
+                    className="pointer-events-none absolute bottom-2 left-0 top-2 hidden w-px sm:block"
+                    style={{ backgroundColor: `${GOLD}55` }}
+                    aria-hidden="true"
+                  />
+                ) : null}
+                <span className="shrink-0 scale-90" aria-hidden="true">
+                  <CredIcon type={item.icon} />
+                </span>
+                <div className="min-w-0 text-left">
+                  <h3 className="type-h4 uppercase tracking-[0.12em]" style={{ color: GOLD }}>
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-[12px] leading-[1.45] text-[#d8d4ce] sm:text-[12.5px]">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
+    </section>
+  );
+}
+
+export function AboutCompanyDetailsSection() {
+  return (
+    <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+      <div className="pointer-events-none absolute inset-0 opacity-[0.45]">
+        <CredentialsGrid />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1520px] px-5 py-10 sm:px-7 sm:py-12 lg:px-9 lg:py-14 xl:px-11">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-10 xl:gap-12">
+          <div className="mx-auto w-full max-w-[460px] lg:mx-0 lg:max-w-none">
+            <CertificateCarousel />
+          </div>
+
+          <div className="flex flex-col justify-center gap-6 sm:gap-7">
+            {COMPANY_META.map((row) => (
+              <div key={row.label} className="flex items-center gap-4">
+                <span className="shrink-0 scale-95" aria-hidden="true">
+                  <MetaIcon type={row.icon} />
+                </span>
+                <div className="min-w-0">
+                  <p
+                    className="font-heading text-[10px] font-bold uppercase tracking-[0.14em]"
+                    style={{ color: GOLD }}
+                  >
+                    {row.label}
+                  </p>
+                  <p className="mt-1 text-[13px] leading-snug text-arch-black/85 sm:text-[14px]">
+                    {row.value}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="h-px w-full bg-nebco-red" aria-hidden="true" />
+    </section>
+  );
 }
 

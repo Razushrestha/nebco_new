@@ -245,11 +245,11 @@ export function InsightsMarketPerspectiveSection() {
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-6 py-12 sm:gap-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.1fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10 lg:px-10 lg:py-16 xl:gap-14 xl:px-12">
         {/* Left — intro */}
         <div>
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             04 / Nebco Market Perspective
           </p>
 
-          <h2 className="mt-5 max-w-[16ch] font-heading text-[1.55rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:mt-6 sm:text-[1.75rem] lg:text-[1.9rem]">
+          <h2 className="type-h2 mt-5 max-w-[16ch] tracking-[-0.02em] text-white sm:mt-6">
             Market Perspective: Kathmandu Valley
           </h2>
 
@@ -280,7 +280,7 @@ export function InsightsMarketPerspectiveSection() {
               <InsightIcon id={item.id} />
               <div className="min-w-0 pt-0.5">
                 <p
-                  className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] sm:text-[10.5px]"
+                  className="type-label font-semibold uppercase tracking-[0.16em]"
                   style={{ color: GOLD }}
                 >
                   {item.title}

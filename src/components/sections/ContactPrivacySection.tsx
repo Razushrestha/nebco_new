@@ -37,7 +37,7 @@ export function ContactPrivacySection() {
   return (
     <section className="border-t border-[#e5e1da] bg-[#f4f1ed]">
       <div className="mx-auto max-w-[1440px] px-6 py-11 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           06 / Confidentiality + Privacy
         </p>
 
@@ -46,7 +46,7 @@ export function ContactPrivacySection() {
           <div className="flex items-start gap-4 sm:gap-5 lg:pr-12 xl:pr-16">
             <ShieldLockIcon />
             <div className="min-w-0 pt-0.5">
-              <h3 className="font-heading text-[1.05rem] font-bold leading-snug tracking-[-0.01em] text-arch-black sm:text-[1.15rem] lg:text-[1.2rem]">
+              <h3 className="type-h3 tracking-[-0.01em] text-arch-black">
                 Your information and documents are treated with care.
               </h3>
               <p className="mt-2.5 max-w-[36rem] text-[13.5px] leading-[1.6] text-arch-black/70 sm:mt-3 sm:text-[14px]">

@@ -1,31 +1,41 @@
-/** Wireframe sketch overlay on the building photo (left edge near diagonal) */
+import { heroPhotoClipPath, HOME_HERO_ANGLE } from "@/components/ui/HeroAngleEdge";
+
+/** Wireframe on photo — blueprint near seam, fades to full render on the right */
 export function HeroPhotoWireframe() {
+  const seamMid = (HOME_HERO_ANGLE.top + HOME_HERO_ANGLE.bottom) / 2;
+
   return (
     <div
-      className="absolute inset-0 z-[1] pointer-events-none hidden lg:block"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 8%, transparent 22%)",
-        maskImage: "linear-gradient(90deg, black 0%, black 18%, transparent 32%)",
-        WebkitMaskImage: "linear-gradient(90deg, black 0%, black 18%, transparent 32%)",
-      }}
+      className="pointer-events-none absolute inset-0 z-[1] hidden lg:block"
+      style={{ clipPath: heroPhotoClipPath() }}
       aria-hidden="true"
     >
       <svg
-        className="absolute inset-0 w-full h-full opacity-[0.55]"
+        className="absolute inset-0 h-full w-full"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid slice"
+        style={{
+          maskImage:
+            "linear-gradient(90deg, black 0%, black 14%, rgba(0,0,0,0.7) 26%, rgba(0,0,0,0.35) 40%, transparent 58%)",
+          WebkitMaskImage:
+            "linear-gradient(90deg, black 0%, black 14%, rgba(0,0,0,0.7) 26%, rgba(0,0,0,0.35) 40%, transparent 58%)",
+          opacity: 0.9,
+        }}
       >
-        <g stroke="white" strokeWidth="0.14" fill="none">
-          <rect x="48" y="18" width="28" height="62" />
-          <line x1="48" y1="28" x2="76" y2="28" />
-          <line x1="48" y1="38" x2="76" y2="38" />
-          <line x1="48" y1="48" x2="76" y2="48" />
-          <line x1="48" y1="58" x2="76" y2="58" />
-          <line x1="48" y1="68" x2="76" y2="68" />
-          <line x1="62" y1="18" x2="62" y2="80" />
-          <line x1="48" y1="18" x2="62" y2="38" opacity="0.5" />
-          <line x1="76" y1="18" x2="62" y2="38" opacity="0.5" />
+        <g stroke="white" strokeWidth="0.11" fill="none">
+          <rect x={seamMid - 2} y="10" width="36" height="76" />
+          <line x1={seamMid - 2} y1="20" x2={seamMid + 34} y2="20" />
+          <line x1={seamMid - 2} y1="30" x2={seamMid + 34} y2="30" />
+          <line x1={seamMid - 2} y1="40" x2={seamMid + 34} y2="40" />
+          <line x1={seamMid - 2} y1="50" x2={seamMid + 34} y2="50" />
+          <line x1={seamMid - 2} y1="60" x2={seamMid + 34} y2="60" />
+          <line x1={seamMid - 2} y1="70" x2={seamMid + 34} y2="70" />
+          <line x1={seamMid - 2} y1="80" x2={seamMid + 34} y2="80" />
+          <line x1={seamMid + 8} y1="10" x2={seamMid + 8} y2="86" />
+          <line x1={seamMid + 18} y1="10" x2={seamMid + 18} y2="86" />
+          <line x1={seamMid + 28} y1="10" x2={seamMid + 28} y2="86" />
+          <line x1={seamMid - 2} y1="10" x2={seamMid + 18} y2="34" opacity="0.45" />
+          <line x1={seamMid + 34} y1="10" x2={seamMid + 18} y2="34" opacity="0.45" />
         </g>
       </svg>
     </div>

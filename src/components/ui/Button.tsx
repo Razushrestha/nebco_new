@@ -34,7 +34,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold tracking-wide uppercase transition-all duration-200 font-heading";
+    "inline-flex items-center justify-center gap-2 px-6 py-3 type-caption font-heading font-semibold tracking-wide uppercase transition-all duration-200";
 
   const classes = `${base} ${variants[variant]} ${className}`;
 

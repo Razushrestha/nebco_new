@@ -33,7 +33,7 @@ export function HeroSplit({
         {eyebrow && (
           <p className="section-eyebrow mb-6">{eyebrow}</p>
         )}
-        <h1 className="font-heading font-extrabold text-4xl lg:text-5xl xl:text-[3.25rem] leading-[1.1] tracking-tight">
+        <h1 className="type-h1 tracking-tight">
           {title}
         </h1>
         {subtitle && (

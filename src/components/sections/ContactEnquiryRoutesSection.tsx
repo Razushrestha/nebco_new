@@ -207,7 +207,7 @@ export function ContactEnquiryRoutesSection() {
     <section id="enquiry-routes" className="bg-white">
       <div className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16 xl:px-12">
         <div className="mb-7 flex items-center gap-5 sm:mb-8">
-          <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+          <p className="shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             01 / Find the Right Starting Point
           </p>
           <div className="h-px flex-1 bg-nebco-red/40" aria-hidden="true" />

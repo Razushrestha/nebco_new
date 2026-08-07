@@ -71,12 +71,17 @@ function PartnersExpertiseRail() {
       <div className="mx-auto max-w-[1440px] px-5 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-[1.15rem] xl:px-12">
         <div className="relative">
           <div
-            className="absolute left-[4%] right-[4%] top-[5px] h-px sm:top-[6px]"
-            style={{ backgroundColor: RED }}
+            className="pointer-events-none absolute left-[4%] right-[4%] top-[4px] z-0 h-[3px] overflow-visible sm:top-[5px]"
             aria-hidden="true"
-          />
+          >
+            <div
+              className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2"
+              style={{ backgroundColor: RED }}
+            />
+            <span className="journey-line-light" />
+          </div>
 
-          <ul className="grid grid-cols-3 gap-y-5 sm:grid-cols-6 sm:gap-y-0">
+          <ul className="relative z-[1] grid grid-cols-3 gap-y-5 sm:grid-cols-6 sm:gap-y-0">
             {EXPERTISE.map((label) => (
               <li key={label} className="relative flex flex-col items-center text-center">
                 <span
@@ -144,13 +149,13 @@ export function PartnersHero() {
         <div className="flex flex-1 flex-col justify-center px-6 py-12 sm:px-8 sm:py-14 lg:max-w-[min(42%,32rem)] lg:px-10 lg:py-16 xl:max-w-[30rem] xl:px-12 xl:pl-14">
           <div className="relative max-w-[30rem]">
             <p
-              className="mb-5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] sm:mb-6 sm:text-[11px]"
+              className="mb-5 type-label font-semibold uppercase tracking-[0.16em] sm:mb-6"
               style={{ color: GOLD_MUTED }}
             >
               Partners &amp; Experts
             </p>
 
-            <h1 className="font-heading text-[1.85rem] font-bold leading-[1.16] tracking-[-0.02em] text-white sm:text-[2.15rem] sm:leading-[1.14] lg:text-[2.35rem] lg:leading-[1.12] xl:text-[2.55rem]">
+            <h1 className="type-h1 tracking-[-0.02em] text-white">
               <span className="block">The right expertise,</span>
               <span className="block">assembled around</span>
               <span className="block">the project.</span>

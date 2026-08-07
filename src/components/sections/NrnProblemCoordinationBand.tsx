@@ -8,7 +8,7 @@ import { NrnCoordinationSection } from "@/components/sections/NrnCoordinationSec
  */
 export function NrnProblemCoordinationBand() {
   return (
-    <section className="flex flex-col lg:min-h-[100svh]">
+    <section className="nrn-problem-coordination-band flex flex-col">
       <NrnDistanceProblemSection />
       <NrnCoordinationSection />
     </section>

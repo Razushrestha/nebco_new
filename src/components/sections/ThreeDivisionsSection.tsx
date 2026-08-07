@@ -210,7 +210,7 @@ export function ThreeDivisionsSection({ compact = false }: ThreeDivisionsSection
                   </div>
 
                   <div className={`division-flip-back-panel ${backPanelClass} z-10`}>
-                    <p className="text-white/80 font-mono text-[10px] uppercase tracking-[0.18em] mb-4">
+                    <p className="text-white/80 type-label font-semibold uppercase tracking-[0.16em] mb-4">
                       Services
                     </p>
                     <ul className="division-flip-services">

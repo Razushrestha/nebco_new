@@ -72,9 +72,9 @@ const CARDS_BY_TAB: Record<TabId, readonly PartnerCard[]> = {
   ],
 };
 
-function PlaceholderIcon({ mark }: { mark: PartnerCard["mark"] }) {
+function PlaceholderIcon({ mark, highlighted }: { mark: PartnerCard["mark"]; highlighted?: boolean }) {
   const common = {
-    className: "h-[4.25rem] w-auto text-white/75 sm:h-[4.75rem]",
+    className: `partner-network-icon h-[3.75rem] w-auto text-white/75 sm:h-[4.25rem] ${highlighted ? "is-highlighted" : ""}`,
     fill: "none" as const,
     stroke: "currentColor",
     strokeWidth: 1.15,
@@ -140,15 +140,19 @@ function PlaceholderIcon({ mark }: { mark: PartnerCard["mark"] }) {
   }
 }
 
-function CardVisual({ card }: { card: PartnerCard }) {
+function CardVisual({ card, highlighted }: { card: PartnerCard; highlighted?: boolean }) {
   if (card.imageSrc) {
     return (
       // Native img keeps this slot simple until assets are finalized
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={card.imageSrc} alt="" className="max-h-[5.5rem] w-auto object-contain opacity-90" />
+      <img
+        src={card.imageSrc}
+        alt=""
+        className={`partner-network-icon max-h-[4.75rem] w-auto object-contain opacity-90 ${highlighted ? "is-highlighted" : ""}`}
+      />
     );
   }
-  return <PlaceholderIcon mark={card.mark} />;
+  return <PlaceholderIcon mark={card.mark} highlighted={highlighted} />;
 }
 
 function NetworkLegend() {
@@ -187,6 +191,7 @@ function NetworkLegend() {
 
 export function PartnersNetworkSection() {
   const [activeTab, setActiveTab] = useState<TabId>("Architecture");
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const cards = CARDS_BY_TAB[activeTab];
 
   return (
@@ -195,12 +200,12 @@ export function PartnersNetworkSection() {
         {/* Left copy */}
         <div className="max-w-[26rem] lg:pt-1">
           <p
-            className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-[11px]"
+            className="type-label font-semibold uppercase tracking-[0.16em]"
             style={{ color: GOLD }}
           >
             03 / External Professional Network
           </p>
-          <h2 className="mt-4 font-heading text-[1.55rem] font-bold leading-[1.18] tracking-[-0.02em] text-white sm:mt-5 sm:text-[1.75rem] lg:text-[1.9rem] xl:text-[2.05rem]">
+          <h2 className="type-h2 mt-4 tracking-[-0.02em] text-white sm:mt-5">
             Specialized expertise.
             <br />
             Aligned by responsibility.
@@ -233,7 +238,7 @@ export function PartnersNetworkSection() {
                   aria-selected={active}
                   id={`network-tab-${tab}`}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative shrink-0 px-3 pb-3 pt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:text-[10px] lg:px-4 ${
+                  className={`relative shrink-0 px-3 pb-3 pt-1 type-label font-semibold uppercase tracking-[0.16em] transition-colors sm:px-3.5 lg:px-4 ${
                     active ? "text-white" : "text-white/45 hover:text-white/75"
                   }`}
                 >
@@ -251,35 +256,42 @@ export function PartnersNetworkSection() {
           </div>
 
           {/* Flush 4-up card rail — swaps with active tab */}
-          <div
-            role="tabpanel"
-            aria-labelledby={`network-tab-${activeTab}`}
-            className="mt-5 grid grid-cols-2 border border-white/20 sm:mt-6 lg:grid-cols-4"
-            key={activeTab}
-          >
-            {cards.map((card, index) => (
-              <article
-                key={card.id}
-                className={`flex min-h-[200px] flex-col justify-between px-4 py-5 sm:min-h-[220px] sm:px-5 sm:py-6 lg:min-h-[240px] ${
-                  index % 2 === 1 ? "border-l border-white/20" : ""
-                } ${index >= 2 ? "border-t border-white/20 lg:border-t-0" : ""} ${
-                  index > 0 ? "lg:border-l lg:border-white/20" : ""
-                }`}
-              >
-                <div className="flex min-h-[5.5rem] items-center justify-center sm:min-h-[6rem]">
-                  <CardVisual card={card} />
-                </div>
+          <div className="mt-5 overflow-x-auto sm:mt-6">
+            <div
+              role="tabpanel"
+              aria-labelledby={`network-tab-${activeTab}`}
+              className="grid min-w-[680px] grid-cols-4 border border-white/20"
+              key={activeTab}
+            >
+              {cards.map((card, index) => {
+                const isHovered = hoveredCard === card.id;
+                return (
+                  <article
+                    key={card.id}
+                    onMouseEnter={() => setHoveredCard(card.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    onFocus={() => setHoveredCard(card.id)}
+                    onBlur={() => setHoveredCard(null)}
+                    className={`group flex min-h-[210px] min-w-0 flex-col justify-between px-3 py-5 transition-colors duration-300 sm:min-h-[230px] sm:px-4 sm:py-6 lg:min-h-[250px] lg:px-5 ${
+                      isHovered ? "bg-white/[0.03]" : ""
+                    } ${index > 0 ? "border-l border-white/20" : ""}`}
+                  >
+                    <div className="flex min-h-[4.5rem] items-center justify-center sm:min-h-[5rem]">
+                      <CardVisual card={card} highlighted={isHovered} />
+                    </div>
 
-                <div className="mt-5">
-                  <h3 className="font-heading text-[11px] font-bold uppercase leading-[1.25] tracking-[0.04em] text-white sm:text-[12px]">
-                    {card.title}
-                  </h3>
-                  <p className="mt-1.5 text-[11px] leading-none" style={{ color: INK_MUTED }}>
-                    {card.subtitle}
-                  </p>
-                </div>
-              </article>
-            ))}
+                    <div className="mt-4 min-w-0 sm:mt-5">
+                      <h3 className="font-heading text-[10px] font-bold uppercase leading-[1.25] tracking-[0.05em] text-white sm:text-[10.5px] lg:text-[11px] xl:text-[11.5px]">
+                        {card.title}
+                      </h3>
+                      <p className="mt-2 text-[10px] leading-none sm:text-[10.5px]" style={{ color: INK_MUTED }}>
+                        {card.subtitle}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
 
           <NetworkLegend />

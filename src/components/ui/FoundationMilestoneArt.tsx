@@ -3,21 +3,29 @@ import Image from "next/image";
 type FoundationMilestoneArtProps = {
   src: string;
   alt: string;
-  muted?: boolean;
+  width: number;
+  height: number;
+  variant?: "roots" | "established" | "today";
 };
 
-export function FoundationMilestoneArt({ src, alt, muted = false }: FoundationMilestoneArtProps) {
+export function FoundationMilestoneArt({
+  src,
+  alt,
+  width,
+  height,
+  variant = "roots",
+}: FoundationMilestoneArtProps) {
   return (
-    <div className={`foundation-milestone-art ${muted ? "foundation-milestone-art--muted" : ""}`}>
+    <div className={`foundation-milestone-art foundation-milestone-art--${variant}`}>
       <Image
         src={src}
         alt={alt}
-        width={512}
-        height={512}
+        width={width}
+        height={height}
         quality={100}
         unoptimized
         className="foundation-milestone-art__img"
-        sizes="(max-width: 768px) 30vw, 180px"
+        sizes="(max-width: 768px) 30vw, 260px"
       />
     </div>
   );

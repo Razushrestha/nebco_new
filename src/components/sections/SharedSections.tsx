@@ -69,7 +69,7 @@ export function CTABand({
       <div className="container-nebco relative z-10 py-12 lg:py-14 xl:py-16">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
           <div className="max-w-xl lg:max-w-2xl">
-            <h2 className="font-heading font-bold text-[1.65rem] sm:text-[1.85rem] lg:text-[2rem] xl:text-[2.15rem] text-white leading-[1.15] tracking-tight">
+            <h2 className="type-h2 text-white tracking-tight">
               {title}
             </h2>
             {subtitle && (
@@ -146,11 +146,11 @@ export function ProjectCard({
           />
           <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
             {status && (
-              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+              <p className="mb-1.5 type-label font-semibold uppercase tracking-[0.16em] text-white/70">
                 {status}
               </p>
             )}
-            <h3 className="font-heading text-[1.05rem] font-bold leading-[1.2] text-white sm:text-[1.15rem]">
+            <h3 className="type-h3 text-white">
               {title}
             </h3>
             <p className="mt-1 text-[13px] text-white/75 sm:text-[14px]">{location}</p>
@@ -162,11 +162,11 @@ export function ProjectCard({
           className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] ${backTone}`}
         >
           {status && (
-            <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+            <p className="mb-1.5 type-label font-semibold uppercase tracking-[0.16em] text-white/70">
               {status}
             </p>
           )}
-          <h3 className="font-heading text-[1.05rem] font-bold leading-[1.2] text-white sm:text-[1.15rem]">
+          <h3 className="type-h3 text-white">
             {title}
           </h3>
           <p className="mt-1 text-[13px] text-white/80 sm:text-[14px]">{location}</p>

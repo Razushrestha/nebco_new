@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HeroTrustStrip } from "@/components/sections/HeroTrustStrip";
-import { HeroAngleLayers } from "@/components/ui/HeroAngleEdge";
-import { HeroBlueprintOverlay } from "@/components/ui/HeroBlueprintOverlay";
+import { heroAngleStyle, HeroAngleLayers } from "@/components/ui/HeroAngleEdge";
 import { HeroPhotoWireframe } from "@/components/ui/HeroPhotoWireframe";
 import { IMAGES } from "@/lib/images";
 
@@ -12,65 +11,55 @@ const GOLD = "#c5a059";
 
 export function HomeHero() {
   return (
-    <section className="relative flex h-[calc(100svh-88px)] min-h-[calc(100svh-88px)] max-h-[calc(100svh-88px)] flex-col overflow-hidden bg-black">
-      {/* Hero body — global Header sits above; diagonal starts here */}
+    <section
+      className="relative flex h-[calc(100svh-88px)] min-h-[calc(100svh-88px)] max-h-[calc(100svh-88px)] flex-col overflow-hidden bg-[#111111]"
+      style={heroAngleStyle()}
+    >
       <div className="relative min-h-0 flex-1">
-        {/* Building photograph */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-0">
           <Image
             src={IMAGES.heroBuilding}
-            alt="Modern building development in Kathmandu, Nepal"
+            alt="Modern mixed-use building on a street corner in Kathmandu, Nepal"
             fill
-            className="object-cover object-[65%_40%]"
+            className="object-cover object-[58%_46%]"
             priority
             sizes="100vw"
           />
           <HeroPhotoWireframe />
         </div>
 
-        {/* Red band + black panel */}
         <HeroAngleLayers />
-        <HeroBlueprintOverlay />
 
         <div className="pointer-events-none absolute inset-0 z-[1] bg-[#111111]/93 lg:hidden" aria-hidden="true" />
 
-        {/* Content */}
-        <div className="relative z-10 flex h-full min-h-0 flex-col">
-          <div className="relative flex-1 flex flex-col justify-center px-6 sm:px-8 lg:px-12 xl:px-[56px] py-10 lg:py-8">
-            {/* Gold vertical spine */}
-            <div
-              className="hidden lg:block absolute top-[12%] bottom-[28%] left-12 xl:left-[56px] w-[2px]"
-              style={{ backgroundColor: GOLD }}
-              aria-hidden="true"
-            />
-
-            <div className="relative max-w-[32rem] lg:max-w-[34rem] lg:pl-7">
-              <p className="flex items-center gap-3 text-nebco-red text-[11px] font-mono font-semibold uppercase tracking-[0.2em] mb-6">
-                <span className="inline-block w-[2px] h-3.5 bg-nebco-red shrink-0" aria-hidden="true" />
-                Construction · Consulting · Investments
+        <div className="relative z-20 flex h-full min-h-0 flex-col">
+          <div className="relative flex flex-1 flex-col justify-center px-6 py-10 sm:px-8 lg:max-w-[min(40%,31rem)] lg:px-10 lg:py-6 xl:max-w-[min(38%,33rem)] xl:px-12 xl:pl-14">
+            <div className="relative max-w-[28rem]">
+              <p className="type-label mb-5 font-semibold uppercase tracking-[0.18em] text-nebco-red">
+                Construction • Consulting • Investments
               </p>
 
-              <h1 className="font-heading font-extrabold text-[2.75rem] sm:text-5xl lg:text-[3.6rem] xl:text-[4rem] leading-[1.02] tracking-tight">
-                <span className="text-white block">From Land</span>
-                <span className="text-nebco-red block">to Landmark</span>
+              <h1 className="type-h1 tracking-tight">
+                <span className="block text-white">From Land</span>
+                <span className="block text-nebco-red">to Landmark</span>
               </h1>
 
-              <p className="mt-6 text-[15px] lg:text-[16px] text-white/75 leading-[1.7] max-w-[28rem]">
+              <p className="type-body mt-5 max-w-[25rem] text-white/80">
                 Construction, development intelligence and project coordination—brought together through one
                 experienced platform.
               </p>
 
-              <div className="flex flex-wrap items-center gap-3.5 mt-9">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="/contact?type=project"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-nebco-red text-white text-[11px] font-semibold uppercase tracking-[0.14em] hover:bg-nebco-red-hover transition-colors"
+                  className="type-caption inline-flex items-center gap-2 bg-nebco-red px-5 py-3 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-nebco-red-hover"
                 >
                   Discuss Your Project
                   <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white border transition-colors hover:bg-white/5"
+                  className="type-caption inline-flex items-center gap-2 border px-5 py-3 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/5"
                   style={{ borderColor: GOLD }}
                 >
                   See How NEBCO Works
@@ -85,9 +74,8 @@ export function HomeHero() {
           <HeroTrustStrip />
         </div>
 
-        {/* Coordinates — bottom of image area */}
         <div
-          className="absolute bottom-6 left-1/2 translate-x-[18%] lg:translate-x-[22%] z-20 hidden sm:flex items-center gap-2.5 text-[10px] font-mono tracking-[0.12em] pointer-events-none"
+          className="pointer-events-none absolute bottom-5 right-8 z-20 hidden items-center gap-2 text-[10px] font-mono tracking-[0.1em] sm:flex lg:right-10 xl:right-12"
           style={{ color: GOLD }}
         >
           <span>LAT 27.7172° N</span>

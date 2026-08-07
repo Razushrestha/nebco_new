@@ -70,13 +70,13 @@ export function InvestmentsHero() {
       <div className="relative z-10 order-1 flex flex-1 flex-col px-7 py-12 sm:px-9 sm:py-14 lg:absolute lg:inset-0 lg:justify-between lg:px-12 lg:pb-9 lg:pt-14 xl:px-[56px] xl:pb-10 xl:pt-16">
         <div className="relative my-auto max-w-[34rem] lg:max-w-[36rem] xl:max-w-[38rem]">
           <p
-            className="mb-5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] sm:mb-6 sm:text-[11px]"
+            className="mb-5 type-label font-semibold uppercase tracking-[0.16em] sm:mb-6"
             style={{ color: GOLD_MUTED }}
           >
             NEBCO INVESTMENTS
           </p>
 
-          <h1 className="font-heading text-[2rem] font-extrabold leading-[1.08] tracking-[-0.025em] sm:text-[2.5rem] sm:leading-[1.06] lg:text-[2.85rem] xl:text-[3.15rem]">
+          <h1 className="type-h1 tracking-[-0.025em]">
             <span className="block text-white">Viable property.</span>
             <span className="block text-white">Clear structure.</span>
             <span className="block text-nebco-red">The right partnership.</span>

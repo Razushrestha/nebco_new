@@ -1,56 +1,53 @@
+import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { IntegratedHubDiagram } from "@/components/ui/IntegratedHubDiagram";
-
-const COPY_COL = "w-full max-w-[22rem] xl:max-w-[24rem]";
+import { IMAGES } from "@/lib/images";
 
 type TrustSectionProps = {
   compact?: boolean;
 };
 
 export function TrustSection({ compact = false }: TrustSectionProps) {
-  const headingSize = compact
-    ? "text-[1.3rem] sm:text-[1.45rem] lg:text-[1.4rem] xl:text-[1.55rem]"
-    : "text-[1.55rem] sm:text-[1.7rem] lg:text-[1.85rem] xl:text-[2rem]";
-
   const content = (
-    <div className={compact ? "container-nebco w-full h-full flex items-center" : "container-nebco"}>
-      <div
-        className={`grid grid-cols-1 lg:grid-cols-[minmax(0,26rem)_1fr] w-full ${
-          compact ? "gap-6 lg:gap-8 xl:gap-10 items-center" : "gap-8 lg:gap-12 xl:gap-14 items-center"
-        }`}
-      >
-        <div className={COPY_COL}>
-          <SectionEyebrow
-            number="05"
-            title="TRUST + INTEGRATED EXPERTISE"
-            className={`!text-[11px] !tracking-[0.16em] !leading-none ${compact ? "!mb-3" : "!mb-4"}`}
-          />
-          <h2
-            className={`font-heading font-bold ${headingSize} leading-[1.2] text-white tracking-[-0.02em] m-0 p-0`}
-          >
-            The project does not need more disconnected consultants. It needs the right specialists working in{" "}
-            <span className="text-nebco-red">one direction.</span>
-          </h2>
-        </div>
+    <div className={`trust-section ${compact ? "trust-section--compact" : ""}`}>
+      <div className="trust-section__copy">
+        <SectionEyebrow
+          number="05"
+          title="TRUST + INTEGRATED EXPERTISE"
+          className="trust-section__eyebrow"
+        />
+        <h2 className="trust-section__heading">
+          The project does not need more disconnected consultants. It needs the right specialists working in{" "}
+          <span className="trust-section__heading-accent">one direction.</span>
+        </h2>
+      </div>
 
-        <div className="flex justify-center lg:justify-end">
-          <IntegratedHubDiagram variant={compact ? "compact" : "default"} />
-        </div>
+      <div className="trust-section__diagram">
+        <Image
+          src={IMAGES.trustHubDiagram}
+          alt="NEBCO integrated expertise hub — Construction, Marketing, Real Estate, Engineering, Finance, Legal, and Banking"
+          width={3872}
+          height={1056}
+          quality={100}
+          unoptimized
+          className="trust-section__diagram-img"
+          sizes="(max-width: 1024px) 90vw, 58vw"
+          priority
+        />
       </div>
     </div>
   );
 
   if (compact) {
     return (
-      <div className="bg-black w-full h-full flex items-center py-8 lg:py-0 overflow-hidden">
-        {content}
+      <div className="flex h-full min-h-0 w-full items-center bg-black py-6 lg:py-4">
+        <div className="container-nebco w-full">{content}</div>
       </div>
     );
   }
 
   return (
     <section className="bg-black py-12 lg:py-16">
-      {content}
+      <div className="container-nebco">{content}</div>
     </section>
   );
 }

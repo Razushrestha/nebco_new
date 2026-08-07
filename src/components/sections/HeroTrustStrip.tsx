@@ -1,8 +1,10 @@
+import { heroPanelClipPath } from "@/components/ui/HeroAngleEdge";
+
 const GOLD = "#c5a059";
 
 function ClockIcon() {
   return (
-    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 shrink-0" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" className="h-10 w-10 shrink-0" aria-hidden="true">
       <circle cx="20" cy="20" r="16" stroke={GOLD} strokeWidth="1.15" />
       <line x1="20" y1="20" x2="20" y2="10" stroke={GOLD} strokeWidth="1.2" strokeLinecap="round" />
       <line x1="20" y1="20" x2="26.5" y2="15" stroke={GOLD} strokeWidth="1.2" strokeLinecap="round" />
@@ -13,7 +15,7 @@ function ClockIcon() {
 
 function CertificateIcon() {
   return (
-    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 shrink-0" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" className="h-10 w-10 shrink-0" aria-hidden="true">
       <rect x="6" y="4" width="17" height="24" stroke={GOLD} strokeWidth="1.15" />
       <path d="M10 11h9M10 15h9M10 19h6" stroke={GOLD} strokeWidth="0.9" strokeLinecap="round" />
       <circle cx="26" cy="26" r="7.5" stroke={GOLD} strokeWidth="1.15" />
@@ -30,7 +32,7 @@ function CertificateIcon() {
 
 function MedalIcon() {
   return (
-    <svg viewBox="0 0 40 40" fill="none" className="w-10 h-10 shrink-0" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" className="h-10 w-10 shrink-0" aria-hidden="true">
       <circle cx="20" cy="14" r="10" stroke={GOLD} strokeWidth="1.15" />
       <path
         d="M20 8 L22.2 12.4 L27 13 L23.5 16 L24.5 20.5 L20 18 L15.5 20.5 L16.5 16 L13 13 L17.8 12.4 Z"
@@ -66,11 +68,36 @@ const TRUST_ITEMS = [
 
 export function HeroTrustStrip() {
   return (
-    <div className="relative z-20 w-full mt-auto">
-      <div className="px-6 sm:px-8 lg:px-12 xl:px-[56px] pb-6 lg:pb-7 pt-2">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10 lg:gap-12 xl:gap-14 max-w-4xl">
+    <>
+      <div
+        className="relative z-20 mt-auto hidden w-full lg:block"
+        style={{ clipPath: heroPanelClipPath() }}
+      >
+        <div className="px-10 pb-7 pt-3 xl:px-12 xl:pl-14">
+          <div className="flex items-center gap-10 xl:gap-12">
+            {TRUST_ITEMS.map((item) => (
+              <div key={item.lines.join("-")} className="flex shrink-0 items-center gap-3.5">
+                {item.icon}
+                <div
+                  className="text-[13px] leading-[1.35] font-normal font-sans"
+                  style={{ color: GOLD }}
+                >
+                  {item.lines.map((line) => (
+                    <span key={line} className="block whitespace-nowrap">
+                      {line}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-20 mt-auto w-full px-6 pb-6 pt-2 sm:px-8 lg:hidden">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
           {TRUST_ITEMS.map((item) => (
-            <div key={item.lines.join("-")} className="flex items-center gap-3.5 shrink-0">
+            <div key={item.lines.join("-")} className="flex shrink-0 items-center gap-3.5">
               {item.icon}
               <div
                 className="text-[13px] leading-[1.35] font-normal font-sans"
@@ -86,6 +113,6 @@ export function HeroTrustStrip() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }

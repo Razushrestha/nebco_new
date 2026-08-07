@@ -26,7 +26,7 @@ export default function InsightsPage() {
         </div>
         <div className="container-nebco relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
           <div>
-            <h2 className="font-heading text-2xl font-bold lg:text-3xl">
+            <h2 className="type-h2">
               Follow the decisions shaping Nepal&apos;s built environment.
             </h2>
             <p className="mt-3 text-sm text-white/80">Practical insights delivered to your inbox.</p>

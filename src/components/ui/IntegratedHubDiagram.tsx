@@ -1,3 +1,5 @@
+import { LogoImage } from "@/components/ui/Logo";
+
 const GOLD = "#c5a059";
 
 const SPOKES = [
@@ -98,10 +100,10 @@ export function IntegratedHubDiagram({ variant = "default" }: IntegratedHubDiagr
 
   return (
     <div
-      className={`relative shrink-0 aspect-square ${
+      className={`relative aspect-square shrink-0 ${
         compact
-          ? "w-[180px] sm:w-[200px] lg:w-[min(28vh,220px)] xl:w-[min(30vh,240px)]"
-          : "w-full max-w-[420px] lg:max-w-[460px] mx-auto lg:mx-0 lg:ml-auto"
+          ? "w-[200px] sm:w-[220px] lg:w-[min(34vh,280px)] xl:w-[min(36vh,300px)]"
+          : "mx-auto w-full max-w-[420px] lg:mx-0 lg:ml-auto lg:max-w-[460px]"
       }`}
     >
       <div
@@ -113,15 +115,7 @@ export function IntegratedHubDiagram({ variant = "default" }: IntegratedHubDiagr
         aria-hidden="true"
       />
 
-      <svg viewBox="0 0 400 400" className="w-full h-full relative z-10" aria-hidden="true">
-        <defs>
-          <radialGradient id="nebco-disc" cx="50%" cy="30%" r="68%">
-            <stop offset="0%" stopColor="#e03038" />
-            <stop offset="50%" stopColor="#bc2026" />
-            <stop offset="100%" stopColor="#8f1519" />
-          </radialGradient>
-        </defs>
-
+      <svg viewBox="0 0 400 400" className="relative z-10 h-full w-full" aria-hidden="true">
         <circle cx={cx} cy={cy} r={ringR} fill="none" stroke={GOLD} strokeWidth="1.35" />
 
         {SPOKES.map(({ label, angle }) => {
@@ -151,42 +145,13 @@ export function IntegratedHubDiagram({ variant = "default" }: IntegratedHubDiagr
           );
         })}
 
-        <circle cx={cx} cy={cy} r={centerR} fill="url(#nebco-disc)" />
+        <circle cx={cx} cy={cy} r={centerR} fill="#111111" />
         <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={GOLD} strokeWidth={compact ? 1.3 : 1.5} />
-
-        <rect x={cx - 3} y={cy - (compact ? 17 : 20)} width="6" height={compact ? 20 : 24} fill="#e2e6ec" rx="0.5" />
-        <rect x={cx - 11} y={cy - (compact ? 10 : 12)} width="5" height={compact ? 14 : 16} fill="#c4c8d2" rx="0.5" />
-        <rect x={cx + 6} y={cy - (compact ? 13 : 15)} width="5" height={compact ? 17 : 19} fill="#d4d8e0" rx="0.5" />
-        <line x1={cx - 14} y1={cy + (compact ? 5 : 6)} x2={cx + 13} y2={cy + (compact ? 5 : 6)} stroke="#a8adb8" strokeWidth="1.3" />
-
-        <text
-          x={cx}
-          y={cy + (compact ? 17 : 20)}
-          textAnchor="middle"
-          fill="white"
-          style={{
-            fontSize: compact ? "12px" : "14px",
-            fontFamily: "var(--font-merriweather), serif",
-            fontWeight: 700,
-          }}
-        >
-          NEBCO
-        </text>
-        <text
-          x={cx}
-          y={cy + (compact ? 28 : 33)}
-          textAnchor="middle"
-          fill="#ffd8da"
-          style={{
-            fontSize: compact ? "5px" : "5.5px",
-            fontFamily: "var(--font-ibm-plex), sans-serif",
-            letterSpacing: "0.18em",
-            fontWeight: 600,
-          }}
-        >
-          A CLASS COMPANY
-        </text>
       </svg>
+
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 scale-[0.82]">
+        <LogoImage size={compact ? "compact" : "hub"} className="mx-auto" />
+      </div>
     </div>
   );
 }

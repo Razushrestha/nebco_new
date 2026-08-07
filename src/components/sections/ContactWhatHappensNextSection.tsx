@@ -36,7 +36,7 @@ export function ContactWhatHappensNextSection() {
       style={{ borderColor: `${LINE}18` }}
     >
       <div className="mx-auto max-w-[1440px] px-6 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-[4.5rem] xl:px-12">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           04 / What Happens Next
         </p>
 
@@ -62,7 +62,7 @@ export function ContactWhatHappensNextSection() {
                   aria-hidden="true"
                 />
 
-                <h3 className="mt-5 max-w-[14rem] font-heading text-[15px] font-bold leading-snug tracking-[-0.01em] text-arch-black sm:mt-6 sm:text-[16px] lg:text-[17px]">
+                <h3 className="type-h3 mt-5 max-w-[14rem] tracking-[-0.01em] text-arch-black sm:mt-6">
                   {step.title}
                 </h3>
                 <p className="mt-2 max-w-[15rem] text-[12.5px] leading-[1.5] text-arch-black/55 sm:text-[13px] lg:max-w-[16rem]">
@@ -89,7 +89,7 @@ export function ContactWhatHappensNextSection() {
               />
               <div>
                 <span className="font-heading text-[14px] font-bold text-nebco-red">{step.num}</span>
-                <h3 className="mt-1 font-heading text-[15px] font-bold text-arch-black">{step.title}</h3>
+                <h3 className="type-h3 mt-1 text-arch-black">{step.title}</h3>
                 <p className="mt-1.5 text-[13px] leading-[1.5] text-arch-black/55">{step.subtitle}</p>
               </div>
             </li>

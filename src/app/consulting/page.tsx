@@ -1,29 +1,48 @@
 "use client";
 
+import { useState } from "react";
 import { ConsultingHero } from "@/components/sections/ConsultingHero";
 import { ConsultingQuestionSection } from "@/components/sections/ConsultingQuestionSection";
-import { ConsultingServeSection } from "@/components/sections/ConsultingServeSection";
+import {
+  ConsultingServeContent,
+  ConsultingServeTabs,
+  type AudienceId,
+} from "@/components/sections/ConsultingServeSection";
 import { ConsultingPillarsSection } from "@/components/sections/ConsultingPillarsSection";
-import { ConsultingPackagesSection } from "@/components/sections/ConsultingPackagesSection";
+import {
+  ConsultingDevelopmentProcessPanel,
+  ConsultingPackagesStrip,
+} from "@/components/sections/ConsultingPackagesSection";
 import { ConsultingDisciplinesSection } from "@/components/sections/ConsultingDisciplinesSection";
 import { ConsultingEngageEarlySection } from "@/components/sections/ConsultingEngageEarlySection";
 
 export default function ConsultingPage() {
+  const [serveId, setServeId] = useState<AudienceId>("landowners");
+  const [packageId, setPackageId] = useState("land");
+
   return (
     <>
       <ConsultingHero />
 
-      <ConsultingQuestionSection />
+      <div className="consulting-intro-screen">
+        <ConsultingQuestionSection />
+        <div className="consulting-intro-screen__serve">
+          <ConsultingServeTabs activeId={serveId} onSelect={setServeId} />
+          <ConsultingServeContent activeId={serveId} />
+        </div>
+      </div>
 
-      <ConsultingServeSection />
+      <div className="consulting-pillars-packages-screen">
+        <ConsultingPillarsSection />
+        <ConsultingPackagesStrip activeId={packageId} onSelect={setPackageId} />
+      </div>
 
-      <ConsultingPillarsSection />
+      <ConsultingDevelopmentProcessPanel packageId={packageId} />
 
-      <ConsultingPackagesSection />
-
-      <ConsultingDisciplinesSection />
-
-      <ConsultingEngageEarlySection />
+      <div className="consulting-closing-screen">
+        <ConsultingDisciplinesSection />
+        <ConsultingEngageEarlySection />
+      </div>
     </>
   );
 }

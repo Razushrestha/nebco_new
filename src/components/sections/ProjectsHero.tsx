@@ -340,11 +340,11 @@ export function ProjectsHero() {
         <div className="hero-grid-bg pointer-events-none absolute inset-0 opacity-[0.28]" aria-hidden="true" />
 
         <div className="relative z-[1] my-auto max-w-[28rem] lg:max-w-[30rem]">
-          <p className="mb-5 font-mono text-[10.5px] font-semibold uppercase tracking-[0.2em] text-nebco-red sm:mb-6 sm:text-[11px]">
+          <p className="mb-5 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red sm:mb-6">
             Projects
           </p>
 
-          <h1 className="font-heading text-[1.85rem] font-extrabold leading-[1.12] tracking-[-0.025em] text-white sm:text-[2.15rem] sm:leading-[1.1] lg:text-[2.35rem] lg:leading-[1.08] xl:text-[2.55rem]">
+          <h1 className="type-h1 tracking-[-0.025em] text-white">
             <span className="block">Projects shaped by</span>
             <span className="block">different needs,</span>
             <span className="block">stages and</span>

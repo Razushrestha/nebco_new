@@ -119,18 +119,15 @@ const MOBILE_TREND_END = { x: 100, y: 100 } as const;
 function CopyBlock({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
-      <p
-        className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] sm:text-[11px]"
-        style={{ color: GOLD }}
-      >
+      <p className="type-label font-semibold uppercase tracking-[0.22em]" style={{ color: GOLD }}>
         About NEBCO
       </p>
-      <h1 className="mt-4 font-heading text-[1.5rem] font-bold leading-[1.15] tracking-[-0.02em] text-white sm:text-[1.75rem] lg:text-[1.95rem] xl:text-[2.1rem]">
+      <h1 className="type-h2 mt-4 tracking-[-0.02em] text-white">
         Built on Experience.
         <span className="block">Evolving with Purpose.</span>
       </h1>
       <span className="mt-4 block h-[2px] w-12 bg-nebco-red sm:mt-5 sm:w-14" aria-hidden="true" />
-      <p className="mt-4 text-[13px] leading-[1.65] text-white/70 sm:mt-5 sm:text-[14px]">
+      <p className="type-small mt-4 text-white/70 sm:mt-5">
         A three-generation journey through construction, development and the changing needs of our clients.
       </p>
     </div>

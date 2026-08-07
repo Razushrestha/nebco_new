@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import { IMAGES } from "@/lib/images";
+
 const RED = "#bc2026";
-const NODE = "#5c4033";
 const BG = "#f3f1ec";
 
 const STEPS = [
@@ -57,12 +59,12 @@ const STEPS = [
 
 function StepIcon({ type }: { type: (typeof STEPS)[number]["icon"] }) {
   const common = {
-    width: 28,
-    height: 28,
+    width: 30,
+    height: 30,
     viewBox: "0 0 28 28",
     fill: "none" as const,
     "aria-hidden": true as const,
-    className: "mx-auto",
+    className: "nrn-journey__step-svg",
   };
   const s = {
     stroke: RED,
@@ -145,121 +147,93 @@ function StepIcon({ type }: { type: (typeof STEPS)[number]["icon"] }) {
   }
 }
 
-function BuildingWatermark() {
+function JourneyGrid() {
   return (
     <svg
-      className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] w-full opacity-[0.07]"
-      viewBox="0 0 1200 280"
-      preserveAspectRatio="xMidYMax meet"
-      fill="none"
+      className="pointer-events-none absolute inset-0 h-full w-full"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
       aria-hidden="true"
     >
-      <g stroke="#1a1a1a" strokeWidth="1.1">
-        <rect x="40" y="40" width="160" height="220" />
-        <line x1="40" y1="80" x2="200" y2="80" />
-        <line x1="40" y1="120" x2="200" y2="120" />
-        <line x1="40" y1="160" x2="200" y2="160" />
-        <line x1="40" y1="200" x2="200" y2="200" />
-        <line x1="120" y1="40" x2="120" y2="260" />
-        <rect x="200" y="90" width="90" height="170" />
-        <line x1="200" y1="130" x2="290" y2="130" />
-        <line x1="200" y1="170" x2="290" y2="170" />
-        <line x1="245" y1="90" x2="245" y2="260" />
-        <rect x="290" y="60" width="140" height="200" />
-        <line x1="290" y1="100" x2="430" y2="100" />
-        <line x1="290" y1="140" x2="430" y2="140" />
-        <line x1="290" y1="180" x2="430" y2="180" />
-        <line x1="360" y1="60" x2="360" y2="260" />
-        <rect x="480" y="30" width="180" height="230" />
-        <line x1="480" y1="75" x2="660" y2="75" />
-        <line x1="480" y1="120" x2="660" y2="120" />
-        <line x1="480" y1="165" x2="660" y2="165" />
-        <line x1="480" y1="210" x2="660" y2="210" />
-        <line x1="570" y1="30" x2="570" y2="260" />
-        <rect x="660" y="80" width="100" height="180" />
-        <line x1="660" y1="120" x2="760" y2="120" />
-        <line x1="660" y1="160" x2="760" y2="160" />
-        <line x1="710" y1="80" x2="710" y2="260" />
-        <rect x="800" y="50" width="150" height="210" />
-        <line x1="800" y1="95" x2="950" y2="95" />
-        <line x1="800" y1="140" x2="950" y2="140" />
-        <line x1="800" y1="185" x2="950" y2="185" />
-        <line x1="875" y1="50" x2="875" y2="260" />
-        <rect x="980" y="70" width="120" height="190" />
-        <line x1="980" y1="110" x2="1100" y2="110" />
-        <line x1="980" y1="150" x2="1100" y2="150" />
-        <line x1="980" y1="190" x2="1100" y2="190" />
-        <line x1="1040" y1="70" x2="1040" y2="260" />
-        <line x1="20" y1="260" x2="1180" y2="260" />
-      </g>
+      <defs>
+        <pattern id="journey-grid" width="100" height="8" patternUnits="userSpaceOnUse">
+          <path d="M 0 0 L 100 0" fill="none" stroke="#1a1a1a" strokeWidth="0.15" opacity="0.1" />
+        </pattern>
+      </defs>
+      <rect width="100" height="100" fill="url(#journey-grid)" />
     </svg>
+  );
+}
+
+/**
+ * Panoramic wireframe 4162×1024 (≈4.06:1).
+ * Drawing begins ~6% from left; denser mass sits on the right.
+ */
+function JourneyWireframe() {
+  return (
+    <div className="nrn-journey__wireframe" aria-hidden="true">
+      <Image
+        src={IMAGES.nrnTypicalJourneyWireframe}
+        alt=""
+        fill
+        quality={100}
+        unoptimized
+        sizes="(max-width: 1024px) 90vw, 72vw"
+        className="nrn-journey__wireframe-img"
+      />
+    </div>
   );
 }
 
 /**
  * 05 / Typical Journey — 8-step horizontal process timeline.
  */
-export function NrnTypicalJourneySection() {
+export function NrnTypicalJourneySection({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: BG }}>
-      <BuildingWatermark />
+    <section
+      className={`nrn-journey relative overflow-hidden ${compact ? "nrn-journey--compact" : ""}`}
+      style={{ backgroundColor: BG }}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-55">
+        <JourneyGrid />
+      </div>
+      <JourneyWireframe />
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-[4.25rem] xl:px-12">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+      <div className="nrn-journey__inner relative z-10">
+        <p className="nrn-journey__eyebrow type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           05 / Typical Journey
         </p>
-        <h2 className="mt-3 max-w-[40rem] font-heading text-[1.55rem] font-bold leading-[1.18] tracking-[-0.02em] text-arch-black sm:mt-3.5 sm:text-[1.85rem] lg:text-[2.05rem] xl:text-[2.15rem]">
+        <h2 className="nrn-journey__heading font-heading font-bold tracking-[-0.02em] text-arch-black">
           A clear path from your first conversation to handover.
         </h2>
 
-        {/* Horizontal timeline — scrolls on smaller screens */}
-        <div className="-mx-6 mt-12 overflow-x-auto px-6 sm:-mx-8 sm:mt-14 sm:px-8 md:mt-14 lg:mx-0 lg:mt-16 lg:overflow-visible lg:px-0">
-          <div className="min-w-[920px] lg:min-w-0">
-            {/* Icons */}
-            <div className="grid grid-cols-8 gap-x-2 xl:gap-x-3">
-              {STEPS.map((step) => (
-                <div key={`icon-${step.num}`} className="flex h-9 items-center justify-center">
-                  <StepIcon type={step.icon} />
-                </div>
-              ))}
-            </div>
+        <div className="nrn-journey__scroller">
+          <div className="nrn-journey__track">
+            <div className="nrn-journey__line" aria-hidden="true" />
 
-            {/* Rail: line + nodes — line centered on node midpoints */}
-            <div className="relative mt-3 h-3 lg:mt-3.5">
-              <div
-                className="absolute left-[6.25%] right-[6.25%] top-1/2 h-px -translate-y-1/2"
-                style={{ backgroundColor: RED }}
-                aria-hidden="true"
-              />
-              <div className="relative z-[1] grid h-full grid-cols-8 gap-x-2 xl:gap-x-3">
-                {STEPS.map((step) => (
-                  <div key={`node-${step.num}`} className="flex items-center justify-center">
-                    <span
-                      className="block h-[10px] w-[10px] rounded-full"
-                      style={{ backgroundColor: NODE }}
-                      aria-hidden="true"
-                    />
+            <ol className="nrn-journey__steps">
+              {STEPS.map((step) => (
+                <li key={step.num} className="nrn-journey__step">
+                  <div className="nrn-journey__icon">
+                    <StepIcon type={step.icon} />
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Numbers + copy */}
-            <div className="mt-3.5 grid grid-cols-8 gap-x-2 sm:mt-4 xl:gap-x-3">
-              {STEPS.map((step) => (
-                <div key={step.num} className="flex flex-col items-center text-center">
-                  <p className="font-mono text-[12px] font-semibold leading-none tabular-nums text-nebco-red sm:text-[13px]">
+                    <div className="nrn-journey__node-wrap">
+                    <span className="nrn-journey__node" aria-hidden="true" />
+                  </div>
+
+                  <p className="nrn-journey__num font-mono font-semibold tabular-nums text-nebco-red">
                     {step.num}
                   </p>
-                  <h3 className="mt-1.5 max-w-[9.5rem] font-heading text-[12.5px] font-bold leading-snug tracking-[-0.01em] text-arch-black sm:text-[13px] lg:max-w-[10.5rem] xl:text-[13.5px]">
+
+                  <h3 className="nrn-journey__title font-heading font-bold text-arch-black">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 max-w-[10rem] text-[11px] leading-[1.4] text-arch-black/50 sm:text-[11.5px] lg:max-w-[11rem]">
-                    {step.subtitle}
-                  </p>
-                </div>
+
+                  <p className="nrn-journey__desc">{step.subtitle}</p>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </div>
       </div>

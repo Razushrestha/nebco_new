@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { IMAGES } from "@/lib/images";
-
 const RED = "#bc2026";
 const GREEN = "#2f9b5a";
 const AMBER = "#c4922a";
@@ -41,18 +41,33 @@ const FEATURES = [
   },
 ] as const;
 
-const PORTAL_NAV = [
-  { label: "Overview", icon: "overview", active: false },
-  { label: "Site Updates", icon: "updates", active: true },
-  { label: "Documents", icon: "docs", active: false },
-  { label: "Milestones", icon: "flag", active: false },
-  { label: "Decisions", icon: "check", active: false },
-  { label: "Costs", icon: "cost", active: false },
-  { label: "Team", icon: "team", active: false },
-  { label: "Reports", icon: "chart", active: false },
-  { label: "Settings", icon: "gear", active: false },
-  { label: "Support", icon: "support", active: false },
+const PORTAL_NAV_MAIN = [
+  { label: "Overview", icon: "overview" },
+  { label: "Site Updates", icon: "updates" },
+  { label: "Documents", icon: "docs" },
+  { label: "Milestones", icon: "flag" },
+  { label: "Decisions", icon: "check" },
+  { label: "Costs", icon: "cost" },
+  { label: "Team", icon: "team" },
+  { label: "Reports", icon: "chart" },
 ] as const;
+
+const PORTAL_NAV_FOOTER = [
+  { label: "Settings", icon: "gear" },
+  { label: "Support", icon: "support" },
+] as const;
+
+const FEATURE_TO_PORTAL: Record<
+  (typeof FEATURES)[number]["icon"],
+  (typeof PORTAL_NAV_MAIN)[number]["icon"] | (typeof PORTAL_NAV_FOOTER)[number]["icon"]
+> = {
+  comm: "overview",
+  docs: "docs",
+  progress: "updates",
+  decision: "check",
+  cost: "cost",
+  milestone: "flag",
+};
 
 const MILESTONES = [
   { label: "Foundation", pct: 100, tone: "done" as const },
@@ -70,60 +85,78 @@ const DOC_LEGEND = [
   { label: "Overdue", count: 1, color: RED },
 ];
 
-function FeatureIcon({ type }: { type: (typeof FEATURES)[number]["icon"] }) {
+function FeatureIcon({ type, highlighted }: { type: (typeof FEATURES)[number]["icon"]; highlighted?: boolean }) {
   const common = {
-    width: 22,
-    height: 22,
-    viewBox: "0 0 22 22",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
     fill: "none" as const,
     "aria-hidden": true as const,
-    className: "shrink-0",
+    className: `digital-feature-icon ${highlighted ? "is-highlighted" : ""}`,
   };
-  const s = { stroke: RED, strokeWidth: 1.35, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  const s = {
+    stroke: RED,
+    strokeWidth: 1.35,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
 
   switch (type) {
     case "comm":
+      /* Target dial with accent dot */
       return (
         <svg {...common}>
-          <path d="M4 6.5h14v8.2H9.2L6 17.5v-2.8H4V6.5Z" {...s} />
-          <path d="M7.5 10h7M7.5 12.5h4.5" {...s} />
+          <circle cx="12" cy="12" r="8.25" {...s} />
+          <circle cx="12" cy="12" r="4.75" {...s} />
+          <circle cx="15.75" cy="15.15" r="1.35" {...s} />
         </svg>
       );
     case "docs":
+      /* Document with plain seal */
       return (
         <svg {...common}>
-          <path d="M6 3.5h7.2L16.5 6.8V18H6V3.5Z" {...s} />
-          <path d="M13 3.5V7h3.4" {...s} />
-          <path d="M8.5 11h5M8.5 13.5h5M8.5 16h3.2" {...s} />
+          <path d="M6.75 3h7.5L18.75 7.5V21H6.75V3Z" {...s} />
+          <path d="M14.25 3V7.75H18.75" {...s} />
+          <path d="M9.25 10.75h5.75M9.25 13.5h5.75M9.25 16.25h3.25" {...s} />
+          <circle cx="16.15" cy="17.85" r="2.35" {...s} />
         </svg>
       );
     case "progress":
+      /* Chart frame */
       return (
         <svg {...common}>
-          <rect x="3.5" y="5" width="15" height="11.5" rx="1.2" {...s} />
-          <circle cx="11" cy="10.8" r="3" {...s} />
-          <path d="M7 5l1.4-1.8h5.2L15 5" {...s} />
+          <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="1.1" {...s} />
+          <path d="M6.9 15.9l3.35-4.15 2.9 2.4 4-5.75" {...s} />
+          <circle cx="17.15" cy="8.4" r="1.2" {...s} />
         </svg>
       );
     case "decision":
+      /* Document with check stamp */
       return (
         <svg {...common}>
-          <circle cx="11" cy="11" r="7.2" {...s} />
-          <path d="M7.6 11.2l2.2 2.2 4.6-4.8" {...s} />
+          <path d="M6.75 3h7.5L18.75 7.5V21H6.75V3Z" {...s} />
+          <path d="M14.25 3V7.75H18.75" {...s} />
+          <path d="M9.25 10.75h5.75M9.25 13.5h4" {...s} />
+          <circle cx="16.2" cy="17.7" r="2.85" {...s} />
+          <path d="M14.95 17.65l1 1.05 1.95-2.05" {...s} />
         </svg>
       );
     case "cost":
+      /* Spreadsheet */
       return (
         <svg {...common}>
-          <circle cx="11" cy="11" r="7.2" {...s} />
-          <path d="M11 6.8v8.4M8.6 8.6c.6-.9 1.5-1.3 2.4-1.3 1.5 0 2.5.8 2.5 2s-1.1 1.9-2.5 1.9-2.5.6-2.5 1.8c0 1.1 1.1 1.9 2.6 1.9.9 0 1.8-.3 2.4-1.1" {...s} />
+          <rect x="3.75" y="3.25" width="16.5" height="17.5" rx="1" {...s} />
+          <path d="M3.75 8h16.5M3.75 12.75h16.5M3.75 17.5h16.5M9.5 8V20.75M14.5 8V20.75" {...s} />
         </svg>
       );
     case "milestone":
+      /* Stopwatch / gauge */
       return (
         <svg {...common}>
-          <path d="M5 18V4.5h8.5l-1.2 2.8 1.2 2.8H5" {...s} />
-          <path d="M5 18h3" {...s} />
+          <circle cx="12" cy="13.1" r="7.6" {...s} />
+          <path d="M9.75 3.5h4.5M12 3.5V6.1" {...s} />
+          <path d="M12 13.1V9.4M12 13.1l3.75 2.35" {...s} />
+          <path d="M17.85 7.25l1.25-1.25" {...s} />
         </svg>
       );
     default:
@@ -236,10 +269,19 @@ function DocDonut() {
   );
 }
 
-function ProjectPortalDashboard() {
+function ProjectPortalDashboard({
+  highlightedNav,
+  compact = false,
+}: {
+  highlightedNav: string;
+  compact?: boolean;
+}) {
   return (
-    <div className="overflow-hidden rounded-[12px] border border-[#e4dfd6] bg-[#ece8e1] shadow-[0_18px_50px_rgba(0,0,0,0.12)]">
-      {/* Top chrome */}
+    <div
+      className={`digital-portal overflow-hidden rounded-[14px] border border-[#e4dfd6] bg-[#ece8e1] shadow-[0_20px_55px_rgba(0,0,0,0.12)] ${
+        compact ? "digital-portal--compact h-full" : ""
+      }`}
+    >
       <div className="flex items-center justify-between border-b border-[#ddd7ce] bg-[#f7f4ef] px-3 py-2 sm:px-3.5">
         <div className="flex items-center gap-2">
           <span className="flex h-5 w-5 items-center justify-center rounded-full bg-nebco-red text-[8px] font-bold text-white">
@@ -266,62 +308,90 @@ function ProjectPortalDashboard() {
         </div>
       </div>
 
-      <div className="flex min-h-[300px] sm:min-h-[340px] lg:min-h-[min(58svh,400px)]">
-        {/* Dark sidebar */}
-        <aside className="hidden w-[118px] shrink-0 flex-col bg-[#1a1a1a] px-2 py-3 sm:flex sm:w-[128px]">
+      <div
+        className={`flex ${
+          compact
+            ? "min-h-0 flex-1"
+            : "min-h-[300px] sm:min-h-[340px] lg:min-h-[min(58svh,420px)]"
+        }`}
+      >
+        <aside className="hidden w-[112px] shrink-0 flex-col bg-[#1a1a1a] px-1.5 py-2.5 sm:flex sm:w-[120px]">
           <nav className="space-y-0.5">
-            {PORTAL_NAV.map((item) => (
-              <div
-                key={item.label}
-                className={`flex items-center gap-2 rounded-sm px-1.5 py-1.5 text-[9.5px] sm:text-[10px] ${
-                  item.active ? "bg-white/10 font-semibold text-white" : "font-medium text-white/45"
-                }`}
-              >
-                <SidebarIcon type={item.icon} active={item.active} />
-                <span className="leading-none">{item.label}</span>
-              </div>
-            ))}
+            {PORTAL_NAV_MAIN.map((item) => {
+              const isActive = item.icon === highlightedNav;
+              return (
+                <div
+                  key={item.label}
+                  className={`flex items-center gap-2 rounded-md px-1.5 py-1.5 text-[9.5px] transition-colors duration-300 sm:text-[10px] ${
+                    isActive ? "bg-white/12 font-semibold text-white" : "font-medium text-white/45"
+                  }`}
+                >
+                  <SidebarIcon type={item.icon} active={isActive} />
+                  <span className="leading-none">{item.label}</span>
+                </div>
+              );
+            })}
+          </nav>
+          <nav className="mt-auto space-y-0.5 border-t border-white/10 pt-2">
+            {PORTAL_NAV_FOOTER.map((item) => {
+              const isActive = item.icon === highlightedNav;
+              return (
+                <div
+                  key={item.label}
+                  className={`flex items-center gap-2 rounded-md px-1.5 py-1.5 text-[9.5px] transition-colors duration-300 sm:text-[10px] ${
+                    isActive ? "bg-white/12 font-semibold text-white" : "font-medium text-white/45"
+                  }`}
+                >
+                  <SidebarIcon type={item.icon} active={isActive} />
+                  <span className="leading-none">{item.label}</span>
+                </div>
+              );
+            })}
           </nav>
         </aside>
 
-        {/* Main grid */}
-        <div className="min-w-0 flex-1 space-y-2.5 p-2.5 sm:p-3">
-          {/* Stat row */}
+        <div
+          className={`min-w-0 flex-1 ${
+            compact ? "space-y-2 p-2 sm:p-2.5" : "space-y-2.5 p-2.5 sm:p-3"
+          }`}
+        >
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <div className="rounded-md bg-white px-2.5 py-2 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="rounded-lg bg-white px-2.5 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <p className="text-[9px] font-medium uppercase tracking-[0.08em] text-arch-black/45">Project</p>
               <p className="mt-1 font-heading text-[12px] font-bold leading-snug text-arch-black sm:text-[12.5px]">
                 Lazimpat Residence
               </p>
             </div>
-            <div className="rounded-md bg-white px-2.5 py-2 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="rounded-lg bg-white px-2.5 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <p className="text-[9px] font-medium uppercase tracking-[0.08em] text-arch-black/45">Status</p>
               <p className="mt-1 flex items-center gap-1.5 font-heading text-[12px] font-bold text-arch-black sm:text-[12.5px]">
                 <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: GREEN }} />
                 On Track
               </p>
             </div>
-            <div className="rounded-md bg-white px-2.5 py-2 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="rounded-lg bg-white px-2.5 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <p className="text-[9px] font-medium uppercase tracking-[0.08em] text-arch-black/45">Overall Progress</p>
               <p className="mt-0.5 font-heading text-[15px] font-bold text-arch-black">42%</p>
               <div className="mt-1.5 h-1 w-full overflow-hidden rounded-sm bg-[#ebe7e0]">
                 <div className="h-full bg-nebco-red" style={{ width: "42%" }} />
               </div>
             </div>
-            <div className="rounded-md bg-white px-2.5 py-2 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="rounded-lg bg-white px-2.5 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <p className="text-[9px] font-medium uppercase tracking-[0.08em] text-arch-black/45">Last Site Update</p>
               <p className="mt-1 font-heading text-[12px] font-bold text-arch-black sm:text-[12.5px]">12 May 2025</p>
             </div>
           </div>
 
-          {/* Detail cards */}
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-[1.15fr_0.95fr_0.95fr]">
-            {/* Site progress */}
-            <div className="rounded-md bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-3">
-              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-arch-black/55">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-[1.2fr_0.95fr_0.95fr] sm:gap-2.5">
+            <div className="rounded-lg bg-white p-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] sm:p-3">
+              <p className="type-label font-semibold uppercase tracking-[0.16em] text-arch-black/55">
                 Site Progress
               </p>
-              <div className="relative mt-2 aspect-[16/10] overflow-hidden bg-[#e8e4dc]">
+              <div
+                className={`relative mt-2 overflow-hidden bg-[#e8e4dc] ${
+                  compact ? "aspect-[16/9]" : "aspect-[16/10]"
+                }`}
+              >
                 <Image
                   src={IMAGES.constructionSite}
                   alt="Site progress photo"
@@ -335,12 +405,11 @@ function ProjectPortalDashboard() {
               </p>
             </div>
 
-            {/* Milestones */}
-            <div className="rounded-md bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-3">
-              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-arch-black/55">
+            <div className="rounded-lg bg-white p-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] sm:p-3">
+              <p className="type-label font-semibold uppercase tracking-[0.16em] text-arch-black/55">
                 Milestones
               </p>
-              <ul className="mt-2.5 space-y-2">
+              <ul className={`mt-2.5 ${compact ? "space-y-1.5" : "space-y-2"}`}>
                 {MILESTONES.map((m) => (
                   <li key={m.label} className="flex items-center gap-2">
                     <MilestoneMark tone={m.tone} />
@@ -371,9 +440,8 @@ function ProjectPortalDashboard() {
               </ul>
             </div>
 
-            {/* Document status */}
-            <div className="rounded-md bg-white p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] sm:p-3">
-              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-arch-black/55">
+            <div className="rounded-lg bg-white p-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.04)] sm:p-3">
+              <p className="type-label font-semibold uppercase tracking-[0.16em] text-arch-black/55">
                 Document Status
               </p>
               <div className="mt-3 flex items-center gap-3">
@@ -403,45 +471,72 @@ function ProjectPortalDashboard() {
 
 /**
  * 04 / Digital Visibility — feature list + Project Portal dashboard.
- * Sized for one desktop viewport.
  */
-export function NrnDigitalVisibilitySection() {
-  return (
-    <section className="bg-[#f5f2ed] lg:min-h-[100svh] lg:content-center">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-8 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.4fr)] lg:gap-10 lg:px-10 lg:py-10 xl:gap-12 xl:px-12">
-        {/* Copy + features */}
-        <div className="max-w-[30rem]">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
-            04 / Digital Visibility
-          </p>
-          <h2 className="mt-2.5 font-heading text-[1.25rem] font-bold leading-[1.2] tracking-[-0.02em] text-arch-black sm:mt-3 sm:text-[1.4rem] lg:whitespace-nowrap lg:text-[1.5rem] xl:text-[1.55rem]">
-            Real-time clarity. Documented progress.
-          </h2>
-          <p className="mt-2 text-[13px] leading-[1.45] text-arch-black/50 sm:text-[14px]">
-            Your project dashboard—anytime, anywhere.
-          </p>
+export function NrnDigitalVisibilitySection({ compact = false }: { compact?: boolean }) {
+  const [activeFeature, setActiveFeature] = useState(2);
+  const highlightedNav = FEATURE_TO_PORTAL[FEATURES[activeFeature]?.icon ?? "progress"];
 
-          <ul className="mt-6 overflow-hidden rounded-sm border border-[#e8dfc8] bg-[#f7f0e0] sm:mt-7">
-            {FEATURES.map((f, index) => (
-              <li
-                key={f.title}
-                className={`flex items-center gap-3.5 px-3.5 py-3 sm:gap-4 sm:px-4 sm:py-3.5 ${
-                  index < FEATURES.length - 1 ? "border-b border-[#e8dfc8]" : ""
-                }`}
-              >
-                <FeatureIcon type={f.icon} />
-                <div className="min-w-0">
-                  <p className="font-heading text-[13px] font-bold text-arch-black sm:text-[14px]">{f.title}</p>
-                  <p className="mt-0.5 text-[12px] leading-snug text-arch-black/55 sm:text-[12.5px]">{f.desc}</p>
-                </div>
-              </li>
-            ))}
+  return (
+    <section
+      className={`bg-[#f5f2ed] ${
+        compact
+          ? "nrn-digital-visibility nrn-digital-visibility--compact flex flex-col justify-start overflow-visible"
+          : "lg:min-h-[100svh] lg:content-center"
+      }`}
+    >
+      <div
+        className={`digital-visibility__inner mx-auto grid max-w-[1440px] grid-cols-1 items-start px-6 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.5fr)] lg:px-10 xl:px-12 ${
+          compact
+            ? "h-auto gap-6 py-2 sm:gap-8 sm:py-2 lg:gap-10 lg:py-2 xl:gap-12"
+            : "gap-10 py-10 sm:py-12 lg:gap-12 lg:py-12 xl:gap-14"
+        }`}
+      >
+        <div className="digital-visibility__copy w-full min-w-0 lg:pt-0.5">
+          <div className="digital-visibility__intro">
+            <p className="digital-visibility__eyebrow type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+              04 / Digital Visibility
+            </p>
+            <h2
+              className={`digital-visibility__heading font-heading font-bold text-arch-black ${
+                compact ? "is-compact" : ""
+              }`}
+            >
+              Real-time clarity. Documented progress.
+            </h2>
+            <p className={`digital-visibility__lede ${compact ? "is-compact" : ""}`}>
+              Your project dashboard—anytime, anywhere.
+            </p>
+          </div>
+
+          <ul className={`digital-feature-list ${compact ? "mt-2.5" : "mt-7 sm:mt-8"}`}>
+            {FEATURES.map((f, index) => {
+              const isActive = activeFeature === index;
+              return (
+                <li key={f.title} className="digital-feature-list__item">
+                  <button
+                    type="button"
+                    onMouseEnter={() => setActiveFeature(index)}
+                    onFocus={() => setActiveFeature(index)}
+                    className={`digital-feature-row ${isActive ? "is-active" : ""} ${
+                      compact ? "is-compact" : ""
+                    }`}
+                  >
+                    <span className="digital-feature-row__icon" aria-hidden="true">
+                      <FeatureIcon type={f.icon} highlighted={isActive} />
+                    </span>
+                    <span className="digital-feature-row__copy">
+                      <span className="digital-feature-row__title">{f.title}</span>
+                      <span className="digital-feature-row__desc">{f.desc}</span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
-        {/* Dashboard */}
-        <div className="min-w-0 lg:justify-self-end lg:w-full">
-          <ProjectPortalDashboard />
+        <div className={`min-w-0 lg:w-full ${compact ? "h-full min-h-0" : ""}`}>
+          <ProjectPortalDashboard highlightedNav={highlightedNav} compact={compact} />
         </div>
       </div>
     </section>

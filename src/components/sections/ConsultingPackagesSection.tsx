@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const GOLD = "#c5a059";
@@ -16,37 +17,37 @@ const PACKAGES: readonly Package[] = [
     id: "land",
     title: "LAND POTENTIAL ASSESSMENT",
     description: "High-level evaluation of land potential, use options and key constraints.",
-    icon: "/service-package/land-potential.png",
+    icon: "/icons/land-potential-assessment.png",
   },
   {
     id: "feasibility",
     title: "FEASIBILITY STUDY",
     description: "Detailed feasibility including market, technical, financial and regulatory analysis.",
-    icon: "/service-package/feasibility-study.png",
+    icon: "/icons/feasibility-study.png",
   },
   {
     id: "strategy",
     title: "DEVELOPMENT STRATEGY",
     description: "Development concept, phasing strategy, financial model and execution roadmap.",
-    icon: "/service-package/development-strategy.png",
+    icon: "/icons/development-strategy.png",
   },
   {
     id: "precon",
     title: "PRE-CONSTRUCTION MANAGEMENT",
     description: "Approvals, design coordination, tendering and pre-construction planning.",
-    icon: "/service-package/pre-construction.png",
+    icon: "/icons/pre-construction-management.png",
   },
   {
     id: "e2e",
     title: "END-TO-END DEVELOPMENT MANAGEMENT",
     description: "Complete development management from concept to handover.",
-    icon: "/service-package/end-to-end.png",
+    icon: "/icons/end-to-end-project-management.png",
   },
   {
     id: "nrn",
     title: "NRN PROJECT MANAGEMENT",
     description: "Specialized support for NRNs—representation, reporting and end-to-end execution.",
-    icon: "/service-package/nrn-project.png",
+    icon: "/icons/nrn-project-management.png",
   },
 ] as const;
 
@@ -128,24 +129,21 @@ function PackageIcon({
   alt: string;
   active: boolean;
 }) {
-  /* CSS mask keeps inactive icons nebco-red and active icons white */
   return (
     <span
-      className="mx-auto block h-10 w-10 sm:h-11 sm:w-11"
-      style={{
-        backgroundColor: active ? "#ffffff" : "#bc2026",
-        WebkitMaskImage: `url('${src}')`,
-        maskImage: `url('${src}')`,
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
+      className={`consulting-packages__icon${active ? " consulting-packages__icon--active" : ""}`}
       role="img"
       aria-label={alt}
-    />
+    >
+      <Image
+        src={src}
+        alt=""
+        width={72}
+        height={72}
+        unoptimized
+        className="consulting-packages__icon-img"
+      />
+    </span>
   );
 }
 
@@ -196,19 +194,23 @@ function DevelopmentProcessPanel({ packageId }: { packageId: string }) {
           ) : null}
         </div>
 
-        <div className="-mx-1 overflow-x-auto pb-1">
-          <div className="relative min-w-[920px] px-1 lg:min-w-0">
+        <div className="consulting-process-timeline__scroll">
+          <div className="consulting-process-timeline__inner relative px-1">
             <div className="grid grid-cols-8 gap-2">
-              {steps.map((step) => (
-                <div key={`${packageId}-${step.num}`} className="min-w-0 text-center">
+              {steps.map((step, i) => (
+                <div
+                  key={`${packageId}-${step.num}`}
+                  className="consulting-process-step min-w-0 text-center"
+                  style={{ animationDelay: `${0.45 + i * 0.06}s` }}
+                >
                   <p
-                    className="font-heading text-[11px] font-bold tabular-nums sm:text-[12px]"
+                    className="consulting-process-step__num font-heading text-[11px] font-bold tabular-nums sm:text-[12px]"
                     style={{ color: GOLD }}
                   >
                     {step.num}
                   </p>
                   <p
-                    className="mt-0.5 font-heading text-[9px] font-semibold uppercase leading-tight tracking-[0.06em] sm:text-[10px] lg:text-[10.5px]"
+                    className="consulting-process-step__title mt-0.5 font-heading text-[9px] font-semibold uppercase leading-tight tracking-[0.06em] sm:text-[10px] lg:text-[10.5px]"
                     style={{ color: GOLD }}
                   >
                     {step.title}
@@ -217,14 +219,18 @@ function DevelopmentProcessPanel({ packageId }: { packageId: string }) {
               ))}
             </div>
 
-            <div className="relative my-3 h-4 sm:my-3.5">
-              <div className="absolute inset-x-[6%] top-1/2 h-[3px] -translate-y-1/2 rounded-full bg-nebco-red" />
+            <div className="consulting-process-timeline__rail relative my-3 h-4 sm:my-3.5">
+              <div className="consulting-process-timeline__line" aria-hidden="true" />
+              <span className="consulting-process-timeline__glow" aria-hidden="true" />
 
               {Array.from({ length: 7 }).map((_, i) => (
                 <span
                   key={`dot-${packageId}-${i}`}
-                  className="absolute top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-nebco-red/80"
-                  style={{ left: `${((i + 1) / 8) * 100}%` }}
+                  className="consulting-process-timeline__mid-dot"
+                  style={{
+                    left: `${((i + 1) / 8) * 100}%`,
+                    animationDelay: `${0.55 + i * 0.07}s`,
+                  }}
                   aria-hidden="true"
                 />
               ))}
@@ -232,18 +238,22 @@ function DevelopmentProcessPanel({ packageId }: { packageId: string }) {
               {steps.map((step, i) => (
                 <span
                   key={`${packageId}-node-${step.num}`}
-                  className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-nebco-red shadow-[0_0_10px_rgba(188,32,38,0.75)] sm:h-3.5 sm:w-3.5"
-                  style={{ left: `${((i + 0.5) / 8) * 100}%` }}
+                  className="consulting-process-timeline__node"
+                  style={{
+                    left: `${((i + 0.5) / 8) * 100}%`,
+                    animationDelay: `${0.25 + i * 0.09}s`,
+                  }}
                   aria-hidden="true"
                 />
               ))}
             </div>
 
             <div className="grid grid-cols-8 gap-2">
-              {steps.map((step) => (
+              {steps.map((step, i) => (
                 <p
                   key={`${packageId}-${step.num}-desc`}
-                  className="min-w-0 text-center text-[10px] leading-[1.4] text-white/70 sm:text-[11px] lg:text-[11.5px]"
+                  className="consulting-process-step__desc min-w-0 text-center text-[10px] leading-[1.4] text-white/70 sm:text-[11px] lg:text-[11.5px]"
+                  style={{ animationDelay: `${0.7 + i * 0.06}s` }}
                 >
                   {step.desc}
                 </p>
@@ -256,62 +266,42 @@ function DevelopmentProcessPanel({ packageId }: { packageId: string }) {
   );
 }
 
-/** 04 Service Packages + 05 Development Process revealed under the active card. */
-export function ConsultingPackagesSection() {
-  const [activeId, setActiveId] = useState("feasibility");
-
+/** 04 / Service packages strip — six selectable package cards. */
+export function ConsultingPackagesStrip({
+  activeId,
+  onSelect,
+}: {
+  activeId: string;
+  onSelect: (id: string) => void;
+}) {
   return (
-    <section className="overflow-hidden bg-[#f5f2ed]">
-      <div className="mx-auto max-w-[1440px] px-5 pb-0 pt-3 sm:px-8 sm:pt-4 lg:px-10 lg:pt-5 xl:px-12">
-        <div className="mb-5 flex items-center gap-4 sm:mb-6">
-          <p className="shrink-0 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
-            04 / SERVICE PACKAGES
-          </p>
-          <span className="h-px min-w-0 flex-1 bg-nebco-red/70" aria-hidden="true" />
+    <section className="consulting-packages overflow-hidden bg-[#f5f2ed]">
+      <div className="consulting-packages__inner mx-auto max-w-[1440px]">
+        <div className="consulting-packages__header">
+          <p className="consulting-packages__eyebrow">04 / SERVICE PACKAGES</p>
+          <span className="consulting-packages__rule" aria-hidden="true" />
         </div>
 
-        {/* Always 6 equal columns in one row (scroll on narrow viewports) */}
-        <div className="-mx-1 overflow-x-auto pb-3">
-          <div className="relative mx-1 min-w-[980px] border border-[#d8d2c8] lg:min-w-0">
-            <div className="grid grid-cols-6">
+        <div className="consulting-packages__scroll">
+          <div className="consulting-packages__frame">
+            <div className="consulting-packages__grid">
               {PACKAGES.map((pkg, index) => {
                 const isActive = pkg.id === activeId;
                 return (
                   <button
                     key={pkg.id}
                     type="button"
-                    onClick={() => setActiveId(pkg.id)}
-                    className={`relative flex min-h-[200px] flex-col items-center px-2.5 py-6 text-center transition-colors sm:min-h-[210px] sm:px-3 sm:py-7 lg:min-h-[220px] lg:px-3.5 lg:py-7 ${
-                      isActive
-                        ? "z-[1] bg-nebco-red text-white"
-                        : "bg-[#f5f2ed] text-arch-black hover:bg-[#efeae3]"
-                    } ${index > 0 ? "border-l border-[#d8d2c8]" : ""}`}
+                    onClick={() => onSelect(pkg.id)}
+                    className={`consulting-packages__card${isActive ? " is-active" : ""}${index > 0 ? " has-divider" : ""}`}
                   >
-                    <PackageIcon src={pkg.icon} alt="" active={isActive} />
-
-                    <h3
-                      className={`mt-4 font-heading text-[10px] font-bold uppercase leading-[1.25] tracking-[0.05em] sm:text-[10.5px] lg:text-[11px] ${
-                        isActive ? "text-white" : "text-arch-black"
-                      }`}
-                    >
-                      {pkg.title}
-                    </h3>
-
-                    <p
-                      className={`mt-2 max-w-[11.5rem] text-[11px] leading-[1.45] sm:mt-2.5 sm:text-[11.5px] lg:text-[12px] ${
-                        isActive ? "text-white/90" : "text-[#555555]"
-                      }`}
-                    >
-                      {pkg.description}
-                    </p>
+                    <div className="consulting-packages__card-inner">
+                      <PackageIcon src={pkg.icon} alt={pkg.title} active={isActive} />
+                      <h3 className="consulting-packages__title">{pkg.title}</h3>
+                      <p className="consulting-packages__desc">{pkg.description}</p>
+                    </div>
 
                     {isActive ? (
-                      <span
-                        className="pointer-events-none absolute left-1/2 top-full z-[3] -translate-x-1/2"
-                        aria-hidden="true"
-                      >
-                        <span className="block h-0 w-0 border-x-[8px] border-t-[9px] border-x-transparent border-t-nebco-red" />
-                      </span>
+                      <span className="consulting-packages__pointer" aria-hidden="true" />
                     ) : null}
                   </button>
                 );
@@ -320,11 +310,26 @@ export function ConsultingPackagesSection() {
           </div>
         </div>
       </div>
-
-      {/* Process panel — linked under the active package pointer */}
-      <div className="relative z-0">
-        <DevelopmentProcessPanel packageId={activeId} />
-      </div>
     </section>
+  );
+}
+
+export function ConsultingDevelopmentProcessPanel({ packageId }: { packageId: string }) {
+  return (
+    <div className="consulting-packages__process relative z-0">
+      <DevelopmentProcessPanel packageId={packageId} />
+    </div>
+  );
+}
+
+/** 04 Service Packages + 05 Development Process revealed under the active card. */
+export function ConsultingPackagesSection() {
+  const [activeId, setActiveId] = useState("land");
+
+  return (
+    <>
+      <ConsultingPackagesStrip activeId={activeId} onSelect={setActiveId} />
+      <ConsultingDevelopmentProcessPanel packageId={activeId} />
+    </>
   );
 }

@@ -209,11 +209,11 @@ export function InvestmentsApproachPairSection() {
               </div>
 
               <div className="relative z-[1]">
-                <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
+                <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
                   01 / OUR APPROACH
                 </p>
 
-                <h2 className="mt-3 max-w-[24rem] font-heading text-[1.45rem] font-bold leading-[1.2] tracking-[-0.02em] text-arch-black sm:text-[1.65rem] lg:text-[1.8rem] xl:text-[1.95rem]">
+                <h2 className="type-h2 mt-3 max-w-[24rem] tracking-[-0.02em] text-arch-black">
                   Participation is built on feasibility—not assumptions.
                 </h2>
 
@@ -252,7 +252,7 @@ export function InvestmentsApproachPairSection() {
 
         {/* ——— 02 / WHO CAN APPROACH US ——— */}
         <div className="mt-8 lg:mt-7">
-          <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
+          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             02 / WHO CAN APPROACH US
           </p>
 

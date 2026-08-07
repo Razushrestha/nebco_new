@@ -146,7 +146,7 @@ export function ProjectsStoryFormatSection({ compact = false }: ProjectsStoryFor
                 src={step.iconSrc}
                 className={compact ? "h-11 w-11" : "h-[3.25rem] w-[3.25rem]"}
               />
-              <h3 className="mt-3.5 font-heading text-[1.05rem] font-bold tracking-[-0.015em] text-nebco-red">
+              <h3 className="type-h3 mt-3.5 tracking-[-0.015em] text-nebco-red">
                 {step.title}
               </h3>
               <p className="mt-1.5 max-w-[16.5rem] text-[13px] leading-[1.5] text-[#3a3a3a]">

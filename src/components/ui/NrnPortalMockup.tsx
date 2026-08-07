@@ -20,8 +20,8 @@ const DOCUMENTS = [
 ];
 
 const MILESTONES = [
-  { title: "Concept Approval", status: "Completed", date: "14 May 2025", done: true },
-  { title: "Design Development", status: "Completed", date: "19 May 2025", done: true },
+  { title: "Concept Approval", status: "Completed", date: "21 May 2025", done: true },
+  { title: "Design Development", status: "Completed", date: "28 May 2025", done: true },
   { title: "Building Permit", status: "In Progress", date: "", active: true },
   { title: "Construction Start", status: "Upcoming", date: "", upcoming: true },
 ];
@@ -118,7 +118,7 @@ export function NrnPortalMockup({ variant = "default", className = "" }: NrnPort
 
   return (
     <div
-      className={`bg-white rounded-[6px] shadow-[0_20px_60px_rgba(0,0,0,0.28)] overflow-hidden w-full h-[240px] sm:h-[260px] lg:h-full lg:max-h-full lg:min-h-0 ${className}`}
+      className={`h-[240px] w-full overflow-hidden rounded-[8px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:h-[260px] lg:h-full lg:max-h-full lg:min-h-0 ${className}`}
     >
       <NrnPortalGrid compact />
     </div>
@@ -135,22 +135,22 @@ function NrnPortalGrid({ compact }: { compact: boolean }) {
     <div
       className={`grid h-full min-h-0 ${
         compact
-          ? "grid-cols-[100px_minmax(0,1.35fr)_128px_132px] sm:grid-cols-[108px_minmax(0,1.45fr)_132px_136px] lg:grid-cols-[112px_minmax(0,1.5fr)_136px_140px]"
+          ? "grid-cols-[92px_minmax(0,1.35fr)_120px_124px] sm:grid-cols-[98px_minmax(0,1.4fr)_124px_128px] lg:grid-cols-[104px_minmax(0,1.45fr)_128px_132px]"
           : "grid-cols-[132px_1fr_152px_152px]"
       }`}
     >
       {/* Sidebar */}
-      <aside className="hidden sm:flex flex-col border-r border-[#e5e1db] bg-[#f8f7f5] py-2 px-1.5 min-h-0 overflow-hidden">
-        <p className={`font-heading font-bold text-arch-black px-1 shrink-0 ${compact ? "text-[9px] mb-1.5" : "text-[10.5px] mb-3"}`}>
+      <aside className="hidden min-h-0 flex-col overflow-hidden border-r border-[#e5e1db] bg-[#f8f7f5] px-1.5 py-2 sm:flex">
+        <p className={`shrink-0 px-1 font-heading font-bold text-arch-black ${compact ? "mb-1.5 text-[9px]" : "mb-3 text-[10.5px]"}`}>
           NRN Portal
         </p>
-        <nav className="space-y-px overflow-y-auto min-h-0 flex-1">
+        <nav className="min-h-0 flex-1 space-y-0.5 overflow-y-auto">
           {NAV.map((item) => (
             <div
               key={item.label}
-              className={`flex items-center gap-1 rounded-[2px] ${compact ? "text-[7.5px] px-1.5 py-[3px]" : "text-[9px] px-2 py-[5px]"} ${
+              className={`flex items-center gap-1 rounded-full ${compact ? "px-1.5 py-[2px] text-[7.5px]" : "px-2 py-[5px] text-[9px]"} ${
                 "active" in item && item.active
-                  ? "bg-nebco-red text-white font-semibold"
+                  ? "bg-nebco-red font-semibold text-white"
                   : "text-silver-graphite"
               }`}
             >
@@ -183,7 +183,7 @@ function NrnPortalGrid({ compact }: { compact: boolean }) {
       </div>
 
       {/* Documents */}
-      <div className="hidden md:flex flex-col border-r border-[#e5e1db] p-2 lg:p-2.5 min-h-0 min-w-0">
+      <div className="hidden min-h-0 min-w-0 flex-col border-r border-[#e5e1db] p-2 md:flex lg:p-2.5">
         <p className={`font-heading font-bold text-arch-black leading-none shrink-0 ${colHeader}`}>Documents</p>
         <ul className={`flex-1 min-h-0 flex flex-col justify-center ${compact ? "gap-1.5 my-1" : "gap-2.5 my-2"}`}>
           {DOCUMENTS.map((doc) => (
@@ -204,7 +204,7 @@ function NrnPortalGrid({ compact }: { compact: boolean }) {
       </div>
 
       {/* Milestones */}
-      <div className="hidden lg:flex flex-col p-2 lg:p-2.5 min-h-0 min-w-0">
+      <div className="hidden min-h-0 min-w-0 flex-col p-2 lg:flex lg:p-2.5">
         <div className="flex items-center justify-between shrink-0 mb-1.5">
           <p className={`font-heading font-bold text-arch-black leading-none ${compact ? "text-[10px]" : "text-[11.5px]"}`}>
             Milestones

@@ -76,13 +76,13 @@ export function InvestmentsClosingPairSection() {
       <div className="mx-auto w-full max-w-[1440px] shrink-0 px-6 pb-2 pt-5 sm:px-8 sm:pb-2.5 sm:pt-6 lg:px-10 lg:pb-2 lg:pt-5 xl:px-12">
         <section>
           <div className="flex items-center gap-4">
-            <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[10.5px]">
+            <p className="shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
               06 / LANDOWNER + STRATEGIC PARTICIPANT
             </p>
             <span className="h-px flex-1 bg-nebco-red/35" aria-hidden="true" />
           </div>
 
-          <div className="relative mt-4 grid grid-cols-1 lg:mt-5 lg:grid-cols-2 lg:pb-4">
+          <div className="relative mt-4 grid grid-cols-1 lg:mt-5 lg:grid-cols-2">
             {/* Landowner — icon left, copy right */}
             <article className="relative flex items-center gap-5 border border-[#ddd7ce] bg-[#f5f2ed] px-5 py-5 sm:gap-6 sm:px-6 sm:py-6 lg:border-r-0 lg:gap-7 lg:px-7 lg:py-6 xl:px-8">
               <span
@@ -99,7 +99,7 @@ export function InvestmentsClosingPairSection() {
               </span>
 
               <div className="min-w-0 flex-1">
-                <h3 className="max-w-[18rem] font-heading text-[1.05rem] font-bold leading-[1.25] tracking-[-0.02em] text-arch-black sm:text-[1.15rem] lg:text-[1.2rem]">
+                <h3 className="type-h3 max-w-[18rem] tracking-[-0.02em] text-arch-black">
                   Have Land with Development Potential?
                 </h3>
                 <p className="mt-2 max-w-[22rem] text-[12.5px] leading-[1.5] text-[#555555] sm:text-[13px]">
@@ -123,7 +123,7 @@ export function InvestmentsClosingPairSection() {
               </span>
 
               <div className="min-w-0 flex-1">
-                <h3 className="max-w-[20rem] font-heading text-[1.05rem] font-bold leading-[1.25] tracking-[-0.02em] text-white sm:text-[1.15rem] lg:text-[1.2rem]">
+                <h3 className="type-h3 max-w-[20rem] tracking-[-0.02em] text-white">
                   Interested in Project-Specific Collaboration?
                 </h3>
                 <p className="mt-2 max-w-[24rem] text-[12.5px] leading-[1.5] text-white/85 sm:text-[13px]">
@@ -140,42 +140,42 @@ export function InvestmentsClosingPairSection() {
                 </Link>
               </div>
             </article>
-
-            {/* OR badge */}
-            <span
-              className="absolute bottom-0 left-1/2 z-[2] hidden h-9 w-9 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border border-nebco-red bg-white font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-nebco-red lg:flex"
-              aria-hidden="true"
-            >
-              OR
-            </span>
           </div>
         </section>
       </div>
 
       {/* 07 / DISCLAIMER — full-bleed marble parchment band */}
-      <section className="relative mt-1 shrink-0 overflow-hidden border-t border-[#d5cfc4] lg:mt-0">
-        <div
-          className="absolute inset-0"
+      <section className="relative mt-1 shrink-0 overflow-visible border-t border-[#d5cfc4] lg:mt-0">
+        {/* OR badge — centered on the section divider */}
+        <span
+          className="absolute left-1/2 top-0 z-[3] hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-nebco-red bg-white font-heading text-[9.09px] font-bold uppercase leading-none tracking-[0.1em] text-nebco-red lg:flex"
           aria-hidden="true"
-          style={{
-            backgroundColor: "#efebe3",
-            backgroundImage: "url(/textures/disclaimer-marble.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute inset-0"
-          aria-hidden="true"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(245,242,237,0.35) 0%, rgba(239,235,227,0.15) 40%, rgba(245,242,237,0.3) 100%)",
-          }}
-        />
+        >
+          OR
+        </span>
+        <div className="relative overflow-hidden">
+          <div
+            className="absolute inset-0"
+            aria-hidden="true"
+            style={{
+              backgroundColor: "#efebe3",
+              backgroundImage: "url(/textures/disclaimer-marble.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0"
+            aria-hidden="true"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(245,242,237,0.35) 0%, rgba(239,235,227,0.15) 40%, rgba(245,242,237,0.3) 100%)",
+            }}
+          />
 
-        <div className="relative z-[1] mx-auto flex max-w-[1440px] flex-col items-start gap-4 px-6 py-5 sm:flex-row sm:items-center sm:gap-0 sm:px-8 sm:py-5 lg:px-10 lg:py-5 xl:px-12">
-          <p className="shrink-0 whitespace-nowrap font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:mr-10 sm:text-[11px] lg:mr-14">
+          <div className="relative z-[1] mx-auto flex max-w-[1440px] flex-col items-start gap-4 px-6 py-5 sm:flex-row sm:items-center sm:gap-0 sm:px-8 sm:py-5 lg:px-10 lg:py-5 xl:px-12">
+          <p className="shrink-0 whitespace-nowrap type-label font-semibold uppercase tracking-[0.16em] text-nebco-red sm:mr-10 lg:mr-14">
             07 / DISCLAIMER
           </p>
 
@@ -188,6 +188,7 @@ export function InvestmentsClosingPairSection() {
             accept or decline any opportunity without assigning any reason. Submission of an opportunity
             does not constitute any obligation or commitment of any kind.
           </p>
+          </div>
         </div>
       </section>
 
@@ -219,7 +220,7 @@ export function InvestmentsClosingPairSection() {
         </div>
 
         <div className="relative z-[1] mx-auto flex max-w-[1100px] flex-col items-start justify-between gap-6 px-8 py-8 sm:px-10 sm:py-9 lg:flex-row lg:items-center lg:gap-16 lg:px-12 lg:py-10 xl:gap-24">
-          <h2 className="max-w-[26rem] font-heading text-[1.4rem] font-bold leading-[1.22] tracking-[-0.02em] sm:text-[1.55rem] lg:text-[1.7rem] xl:text-[1.8rem]">
+          <h2 className="type-h2 max-w-[26rem] tracking-[-0.02em]">
             <span className="block text-white">Start with the opportunity.</span>
             <span className="mt-1.5 block text-nebco-red">We will evaluate the structure.</span>
           </h2>

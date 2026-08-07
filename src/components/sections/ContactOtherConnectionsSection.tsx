@@ -142,7 +142,7 @@ export function ContactOtherConnectionsSection() {
   return (
     <section className="border-t border-[#e5e1da] bg-[#f7f5f1]">
       <div className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16 xl:px-12">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           05 / Other Connections
         </p>
 
@@ -172,7 +172,7 @@ export function ContactOtherConnectionsSection() {
               <ConnectionIcon id={item.id} />
 
               <div className="min-w-0 flex-1 pt-0.5">
-                <h3 className="font-heading text-[15px] font-bold leading-snug tracking-[-0.01em] text-arch-black sm:text-[15.5px] lg:text-[16px]">
+                <h3 className="type-h3 tracking-[-0.01em] text-arch-black">
                   {item.title}
                 </h3>
                 <p className="mt-1.5 text-[13px] leading-[1.5] text-arch-black/55 sm:mt-2">{item.subtitle}</p>

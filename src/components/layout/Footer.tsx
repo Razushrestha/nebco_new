@@ -1,30 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Logo } from "@/components/ui/Logo";
 
 const GOLD = "#c5a059";
-
-function FooterLogo() {
-  return (
-    <Link href="/" className="inline-flex flex-col items-start group">
-      <svg width={52} height={52} viewBox="0 0 56 56" fill="none" aria-hidden="true">
-        <circle cx="28" cy="28" r="27" fill="#bc2026" />
-        <rect x="24" y="9" width="8" height="30" fill="#d8dce2" rx="0.5" />
-        <rect x="15" y="17" width="7" height="22" fill="#b8bcc6" />
-        <rect x="34" y="15" width="7" height="24" fill="#c8ccd4" />
-        <line x1="11" y1="39" x2="45" y2="39" stroke="#a8adb5" strokeWidth="1.5" />
-      </svg>
-      <span
-        className="font-serif font-bold text-nebco-red text-[1.35rem] tracking-[0.06em] uppercase mt-2 leading-none group-hover:text-nebco-red-hover transition-colors"
-        style={{ fontFamily: "var(--font-merriweather), Georgia, serif" }}
-      >
-        NEBCO
-      </span>
-      <span className="text-[8px] tracking-[0.18em] uppercase text-white/55 mt-1.5">
-        Quality · Integrity · Timely
-      </span>
-    </Link>
-  );
-}
 
 function SocialLink({ href, label, children }: { href: string; label: string; children: ReactNode }) {
   return (
@@ -134,7 +112,7 @@ export function Footer() {
       <div className="container-nebco py-8 lg:py-9 xl:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-7 lg:gap-y-0">
           <div className="lg:pr-8 lg:border-r lg:border-pale-gold/25">
-            <FooterLogo />
+            <Logo variant="light" />
             <div className="flex gap-2.5 mt-5">
               <SocialLink href="#" label="LinkedIn">
                 <SocialLinkedIn />
@@ -153,7 +131,7 @@ export function Footer() {
 
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="lg:px-7 lg:border-r lg:border-pale-gold/25">
-              <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
+              <h4 className="type-h4 font-mono uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
                 {col.title}
               </h4>
               <ul className="space-y-2">
@@ -172,7 +150,7 @@ export function Footer() {
           ))}
 
           <div className="lg:pl-7">
-            <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
+            <h4 className="type-h4 font-mono uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
               Contact
             </h4>
             <div className="space-y-2.5 text-[13px] text-white/75 leading-snug">

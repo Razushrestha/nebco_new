@@ -34,76 +34,108 @@ function BuildingsIcon() {
   );
 }
 
-type CompactProps = { compact?: boolean };
+type Props = { compact?: boolean; inPair?: boolean };
 
-export function PartnersWorkWithSection({ compact = false }: CompactProps) {
+export function PartnersWorkWithSection({ compact = false, inPair = false }: Props) {
   const body = (
     <>
-      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
-        06 / Work With NEBCO
-      </p>
+      {!inPair && (
+        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          06 / Work With NEBCO
+        </p>
+      )}
+
       <h2
-        className={`mt-3 max-w-[22rem] font-heading font-bold leading-[1.18] tracking-[-0.02em] text-arch-black ${
-          compact
-            ? "text-[1.2rem] sm:text-[1.35rem] lg:text-[1.45rem]"
-            : "text-[1.35rem] sm:mt-4 sm:text-[1.5rem] lg:text-[1.65rem]"
+        className={`max-w-[22rem] font-heading font-bold leading-[1.18] tracking-[-0.02em] text-arch-black ${
+          inPair
+            ? "partners-closing-pair__headline text-[1.2rem] sm:text-[1.35rem] lg:text-[1.45rem]"
+            : compact
+              ? "mt-3 text-[1.2rem] sm:text-[1.35rem] lg:text-[1.45rem]"
+              : "mt-3 text-[1.35rem] sm:mt-4 sm:text-[1.5rem] lg:text-[1.65rem]"
         }`}
       >
         Bring the right capability to the right project.
       </h2>
 
       <div
-        className={`grid grid-cols-1 sm:grid-cols-2 ${compact ? "mt-4" : "mt-6 sm:mt-7"}`}
+        className={`partners-closing-pair__action ${
+          inPair || compact ? "mt-4" : "mt-6 sm:mt-7"
+        }`}
       >
         <div
-          className={`flex flex-col justify-between bg-nebco-red px-5 text-white sm:px-6 ${
-            compact ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5" : "min-h-[11.5rem] py-6 sm:min-h-[12.5rem] sm:py-7"
+          className={`partners-closing-pair__cards grid ${
+            inPair ? "grid-cols-1 gap-0 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2"
           }`}
         >
-          <PersonIcon />
-          <div className={compact ? "mt-4" : "mt-6"}>
-            <h3 className="font-heading text-[11px] font-bold uppercase tracking-[0.07em] sm:text-[12px]">
-              For Professionals
-            </h3>
-            <p className="mt-1.5 text-[12px] leading-[1.45] text-white/85 sm:text-[13px]">
-              Architects, engineers, advisors and experts.
-            </p>
+          <div
+            className={`flex flex-col justify-between bg-nebco-red px-5 text-white sm:px-6 ${
+              inPair
+                ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5"
+                : compact
+                  ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5"
+                  : "min-h-[11.5rem] py-6 sm:min-h-[12.5rem] sm:py-7"
+            }`}
+          >
+            <PersonIcon />
+            <div className={inPair || compact ? "mt-4" : "mt-6"}>
+              <h3 className="type-h3 uppercase tracking-[0.07em]">For Professionals</h3>
+              <p className="mt-1.5 text-[12px] leading-[1.45] text-white/85 sm:text-[13px]">
+                Architects, engineers, advisors and experts.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className={`flex flex-col justify-between border border-[#ddd7ce] bg-[#ebe7e0] px-5 sm:px-6 ${
+              inPair
+                ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5"
+                : compact
+                  ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5"
+                  : "min-h-[11.5rem] py-6 sm:min-h-[12.5rem] sm:py-7"
+            }`}
+          >
+            <BuildingsIcon />
+            <div className={inPair || compact ? "mt-4" : "mt-6"}>
+              <h3 className="type-h3 uppercase tracking-[0.07em] text-arch-black">
+                For Specialist Organisations
+              </h3>
+              <p className="mt-1.5 text-[12px] leading-[1.45] text-arch-black/70 sm:text-[13px]">
+                Contractors, suppliers and service providers.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div
-          className={`flex flex-col justify-between border border-[#ddd7ce] bg-[#ebe7e0] px-5 sm:px-6 ${
-            compact ? "min-h-[9.25rem] py-4 sm:min-h-[10rem] sm:py-5" : "min-h-[11.5rem] py-6 sm:min-h-[12.5rem] sm:py-7"
-          }`}
-        >
-          <BuildingsIcon />
-          <div className={compact ? "mt-4" : "mt-6"}>
-            <h3 className="font-heading text-[11px] font-bold uppercase tracking-[0.07em] text-arch-black sm:text-[12px]">
-              For Specialist Organisations
-            </h3>
-            <p className="mt-1.5 text-[12px] leading-[1.45] text-arch-black/70 sm:text-[13px]">
-              Contractors, suppliers and service providers.
-            </p>
-          </div>
+        <div className="partners-closing-pair__cta flex w-full flex-col items-stretch">
+          <Link
+            href="/contact?type=partnership"
+            className="inline-flex w-full items-center justify-center rounded-sm bg-nebco-red px-7 py-3.5 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-nebco-red-hover sm:px-8 sm:text-[12px]"
+          >
+            Become a Partner
+            <span className="ml-2" aria-hidden="true">
+              →
+            </span>
+          </Link>
+          <p className="mt-2.5 text-center text-[10.5px] text-black/45 sm:text-[11px]">
+            Registration does not guarantee appointment.
+          </p>
         </div>
-      </div>
-
-      <div className={`flex flex-col items-center ${compact ? "mt-4" : "mt-6 sm:mt-7"}`}>
-        <Link
-          href="/contact?type=partnership"
-          className="inline-flex items-center justify-center rounded-sm bg-nebco-red px-7 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-nebco-red-hover sm:px-8 sm:text-[12px]"
-        >
-          Become a Partner
-          <span className="ml-2" aria-hidden="true">
-            →
-          </span>
-        </Link>
-        <p className="mt-2.5 text-center text-[10.5px] text-black/45 sm:text-[11px]">
-          Registration does not guarantee appointment.
-        </p>
       </div>
     </>
   );
+
+  if (inPair) {
+    return (
+      <div className="partners-closing-pair__col partners-closing-pair__col--work flex h-full min-w-0 flex-col">
+        <p className="partners-closing-pair__eyebrow type-label shrink-0 font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          06 / Work With NEBCO
+        </p>
+        <div className="partners-closing-pair__content mt-3 flex min-h-0 flex-1 flex-col justify-center sm:mt-4">
+          {body}
+        </div>
+      </div>
+    );
+  }
 
   if (compact) {
     return <div>{body}</div>;

@@ -1,20 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { HUB_LOGO_PATH } from "@/components/ui/Logo";
 
 const GOLD = "#c5a059";
 const RED = "#bc2026";
 const CREAM = "#f5f2ed";
 
-/** Six spokes — diagonals carry dual red nodes; verticals get a gold diamond at the ring. */
+/** Six spokes at 60° — even hexagonal layout around the hub. */
 const HUB_NODES = [
   { label: "Property", angle: 0, icon: "property" as const, side: "right" as const, accent: "diamond" as const },
-  { label: "Consultants", angle: 58, icon: "consultants" as const, side: "right" as const, accent: "reds" as const },
-  { label: "Approvals", angle: 122, icon: "approvals" as const, side: "right" as const, accent: "reds" as const },
+  { label: "Consultants", angle: 60, icon: "consultants" as const, side: "right" as const, accent: "reds" as const },
+  { label: "Approvals", angle: 120, icon: "approvals" as const, side: "right" as const, accent: "reds" as const },
   { label: "Finance", angle: 180, icon: "finance" as const, side: "right" as const, accent: "diamond" as const },
-  { label: "Construction", angle: 238, icon: "construction" as const, side: "left" as const, accent: "reds" as const },
-  { label: "Market", angle: 302, icon: "market" as const, side: "left" as const, accent: "reds" as const },
-];
+  { label: "Construction", angle: 240, icon: "construction" as const, side: "left" as const, accent: "reds" as const },
+  { label: "Market", angle: 300, icon: "market" as const, side: "left" as const, accent: "reds" as const },
+] as const;
+
+const HUB_VB = 440;
+const HUB_CX = HUB_VB / 2;
+const HUB_CY = HUB_VB / 2;
+/** Extra viewBox padding so outer labels (Market, Construction, etc.) are not clipped. */
+const HUB_VB_PAD = { left: 58, right: 28, top: 18, bottom: 18 };
+const HUB_VIEW_W = HUB_VB + HUB_VB_PAD.left + HUB_VB_PAD.right;
+const HUB_VIEW_H = HUB_VB + HUB_VB_PAD.top + HUB_VB_PAD.bottom;
+/** Shift whole hub diagram within the viewBox. */
+const HUB_DIAGRAM_OFFSET_X = -18;
+const HUB_RING_R = 72;
+const HUB_ICON_R = 148;
+const HUB_NODE_R = 21;
+const HUB_LABEL_GAP = 14;
 
 const COORDINATE_ITEMS = [
   {
@@ -58,6 +73,17 @@ const COORDINATE_ITEMS = [
     desc: "Market readiness and smooth activation.",
   },
 ] as const;
+
+const COORDINATE_TO_HUB: Record<(typeof COORDINATE_ITEMS)[number]["num"], (typeof HUB_NODES)[number]["icon"]> = {
+  "01": "property",
+  "02": "property",
+  "03": "consultants",
+  "04": "approvals",
+  "05": "finance",
+  "06": "construction",
+  "07": "construction",
+  "08": "market",
+};
 
 function polar(cx: number, cy: number, r: number, deg: number) {
   const rad = ((deg - 90) * Math.PI) / 180;
@@ -133,109 +159,122 @@ function SpokeIcon({ type, x, y }: { type: (typeof HUB_NODES)[number]["icon"]; x
   }
 }
 
-function CoordinationHub() {
-  const cx = 220;
-  const cy = 220;
-  const ringR = 58;
-  const iconR = 118;
-  const nodeR = 17.5;
+function CoordinationHub({ highlightedIcon }: { highlightedIcon: (typeof HUB_NODES)[number]["icon"] }) {
+  const cx = HUB_CX + HUB_DIAGRAM_OFFSET_X;
+  const cy = HUB_CY;
+  const ringR = HUB_RING_R;
+  const iconR = HUB_ICON_R;
+  const nodeR = HUB_NODE_R;
+  const innerR = ringR - 1;
+  const logoSize = innerR * 2 * 0.94;
+  const logoX = cx - logoSize / 2;
+  const logoY = cy - logoSize / 2;
+  const clipId = "coordination-hub-logo-clip";
+
+  const spokes = HUB_NODES.map((node) => {
+    const start = polar(cx, cy, ringR, node.angle);
+    const icon = polar(cx, cy, iconR, node.angle);
+    const end = polar(cx, cy, iconR - nodeR, node.angle);
+    const span = iconR - ringR - nodeR;
+    const red1 = polar(cx, cy, ringR + span * 0.34, node.angle);
+    const red2 = polar(cx, cy, ringR + span * 0.62, node.angle);
+    const labelX =
+      node.side === "left" ? icon.x - nodeR - HUB_LABEL_GAP : icon.x + nodeR + HUB_LABEL_GAP;
+    const isHighlighted = node.icon === highlightedIcon;
+
+    return { node, start, icon, end, red1, red2, labelX, isHighlighted };
+  });
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[min(100%,320px)] sm:max-w-[340px] lg:max-w-[min(42vh,360px)]">
-      <svg viewBox="0 0 440 440" className="relative z-10 h-full w-full" aria-hidden="true">
+    <div className="coordination-hub-diagram relative mx-auto aspect-square max-w-full overflow-visible">
+      <svg
+        viewBox={`-${HUB_VB_PAD.left} -${HUB_VB_PAD.top} ${HUB_VIEW_W} ${HUB_VIEW_H}`}
+        overflow="visible"
+        className="relative z-10 block h-full w-full overflow-visible"
+        aria-hidden="true"
+      >
         <defs>
-          <radialGradient id="nrn-logo-glow" cx="50%" cy="28%" r="62%">
-            <stop offset="0%" stopColor="#e84a50" stopOpacity="0.95" />
-            <stop offset="42%" stopColor="#bc2026" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="#bc2026" stopOpacity="0" />
-          </radialGradient>
+          <clipPath id={clipId}>
+            <circle cx={cx} cy={cy} r={innerR} />
+          </clipPath>
         </defs>
 
-        <circle cx={cx} cy={cy} r={ringR} fill="#0f0f0f" stroke={GOLD} strokeWidth="1.3" />
+        {/* Spoke lines — behind hub fill */}
+        {spokes.map(({ node, start, end }) => (
+          <line
+            key={`${node.label}-line`}
+            x1={start.x}
+            y1={start.y}
+            x2={end.x}
+            y2={end.y}
+            stroke={GOLD}
+            strokeWidth="1.05"
+          />
+        ))}
 
-        {HUB_NODES.map((node) => {
-          const start = polar(cx, cy, ringR, node.angle);
-          const icon = polar(cx, cy, iconR, node.angle);
-          const end = polar(cx, cy, iconR - nodeR, node.angle);
-          const span = iconR - ringR - nodeR;
-          const red1 = polar(cx, cy, ringR + span * 0.34, node.angle);
-          const red2 = polar(cx, cy, ringR + span * 0.62, node.angle);
-          const labelX = node.side === "left" ? icon.x - nodeR - 10 : icon.x + nodeR + 10;
+        {/* Hub center mask */}
+        <circle cx={cx} cy={cy} r={ringR + 0.5} fill="#0f0f0f" />
 
-          return (
-            <g key={node.label}>
-              <line x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke={GOLD} strokeWidth="1.05" />
+        {/* Logo — square mark, centroid aligned to hub center */}
+        <image
+          href={HUB_LOGO_PATH}
+          x={logoX}
+          y={logoY}
+          width={logoSize}
+          height={logoSize}
+          clipPath={`url(#${clipId})`}
+        />
 
-              {node.accent === "diamond" ? (
-                <path
-                  d={`M ${start.x} ${start.y - 2.8} L ${start.x + 2.8} ${start.y} L ${start.x} ${start.y + 2.8} L ${start.x - 2.8} ${start.y} Z`}
-                  fill={GOLD}
-                />
-              ) : (
-                <>
-                  <circle cx={red1.x} cy={red1.y} r="1.9" fill={RED} />
-                  <circle cx={red2.x} cy={red2.y} r="1.9" fill={RED} />
-                </>
-              )}
+        {/* Ring accents + outer nodes */}
+        {spokes.map(({ node, start, icon, red1, red2, labelX, isHighlighted }) => (
+          <g key={node.label}>
+            {node.accent === "diamond" ? (
+              <path
+                d={`M ${start.x} ${start.y - 2.8} L ${start.x + 2.8} ${start.y} L ${start.x} ${start.y + 2.8} L ${start.x - 2.8} ${start.y} Z`}
+                fill={GOLD}
+              />
+            ) : (
+              <>
+                <circle cx={red1.x} cy={red1.y} r="1.9" fill={RED} />
+                <circle cx={red2.x} cy={red2.y} r="1.9" fill={RED} />
+              </>
+            )}
 
-              <circle cx={icon.x} cy={icon.y} r={nodeR} fill="#0f0f0f" stroke={GOLD} strokeWidth="1.15" />
+            <g
+              className={`coordination-hub-spoke ${isHighlighted ? "is-highlighted" : ""}`}
+              style={{ transformOrigin: `${icon.x}px ${icon.y}px` }}
+            >
+              <circle
+                cx={icon.x}
+                cy={icon.y}
+                r={nodeR}
+                fill="#0f0f0f"
+                stroke={GOLD}
+                strokeWidth={isHighlighted ? 1.45 : 1.15}
+              />
               <SpokeIcon type={node.icon} x={icon.x} y={icon.y} />
-
-              <text
-                x={labelX}
-                y={icon.y}
-                textAnchor={node.side === "left" ? "end" : "start"}
-                dominantBaseline="middle"
-                fill="#ffffff"
-                style={{
-                  fontSize: "12px",
-                  fontFamily: "var(--font-ibm-plex), system-ui, sans-serif",
-                  fontWeight: 500,
-                }}
-              >
-                {node.label}
-              </text>
             </g>
-          );
-        })}
 
-        <circle cx={cx} cy={cy} r={ringR - 0.5} fill="#0f0f0f" />
-        <circle cx={cx} cy={cy} r={42} fill="url(#nrn-logo-glow)" />
+            <text
+              x={labelX}
+              y={icon.y}
+              textAnchor={node.side === "left" ? "end" : "start"}
+              dominantBaseline="middle"
+              fill={isHighlighted ? GOLD : "#ffffff"}
+              className={`coordination-hub-label ${isHighlighted ? "is-highlighted" : ""}`}
+              style={{
+                fontSize: "14px",
+                fontFamily: "var(--font-ibm-plex), system-ui, sans-serif",
+                fontWeight: 500,
+              }}
+            >
+              {node.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Gold hub ring on top */}
         <circle cx={cx} cy={cy} r={ringR} fill="none" stroke={GOLD} strokeWidth="1.3" />
-
-        <rect x={cx - 3} y={cy - 26} width="6" height="21" fill="#c8ccd5" rx="0.35" />
-        <rect x={cx - 10} y={cy - 18} width="5" height="13" fill="#b0b5c0" rx="0.35" />
-        <rect x={cx + 5} y={cy - 20} width="5" height="15" fill="#bcc1cb" rx="0.35" />
-        <line x1={cx - 13} y1={cy - 4} x2={cx + 13} y2={cy - 4} stroke="#9aa0ab" strokeWidth="1.1" />
-
-        <text
-          x={cx}
-          y={cy + 11}
-          textAnchor="middle"
-          fill={RED}
-          style={{
-            fontSize: "14.5px",
-            fontFamily: "var(--font-merriweather), Georgia, serif",
-            fontWeight: 700,
-            letterSpacing: "0.04em",
-          }}
-        >
-          NEBCO
-        </text>
-        <text
-          x={cx}
-          y={cy + 23}
-          textAnchor="middle"
-          fill="#ffffff"
-          style={{
-            fontSize: "5px",
-            fontFamily: "var(--font-ibm-plex), system-ui, sans-serif",
-            letterSpacing: "0.18em",
-            fontWeight: 600,
-          }}
-        >
-          A CLASS COMPANY
-        </text>
       </svg>
     </div>
   );
@@ -246,25 +285,27 @@ function CoordinationHub() {
  * Fills remaining viewport under the Distance Problem band.
  */
 export function NrnCoordinationSection() {
-  const [active, setActive] = useState("02");
+  const [active, setActive] = useState<(typeof COORDINATE_ITEMS)[number]["num"]>("02");
+  const highlightedIcon = COORDINATE_TO_HUB[active];
 
   return (
-    <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-2 lg:items-stretch">
+    <div className="nrn-coordination grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-2 lg:items-stretch">
       {/* 02 — dark hub */}
-      <div className="flex min-h-0 flex-col bg-[#0f0f0f] px-6 py-8 text-white sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12">
-        <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+      <div className="nrn-coordination__dark flex min-h-0 flex-col bg-[#0f0f0f] px-6 py-8 text-white sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12">
+        <p className="nrn-coordination__eyebrow shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           02 / One Local Coordination Point
         </p>
-        <h2 className="mt-3 max-w-[22rem] shrink-0 font-heading text-[1.4rem] font-bold leading-[1.18] tracking-[-0.02em] sm:text-[1.55rem] lg:text-[1.65rem]">
-          One local team.
-          <span className="block">All critical connections.</span>
+        <h2 className="nrn-coordination__heading font-heading font-bold tracking-[-0.02em] text-white">
+          One local team. All critical
+          <br />
+          connections.
         </h2>
 
-        <div className="my-4 flex min-h-0 flex-1 items-center justify-center lg:my-3">
-          <CoordinationHub />
+        <div className="nrn-coordination__hub flex min-h-0 w-full flex-1 items-center justify-center">
+          <CoordinationHub highlightedIcon={highlightedIcon} />
         </div>
 
-        <p className="mx-auto max-w-[28rem] shrink-0 text-center text-[12px] leading-[1.55] text-white/65 sm:text-[12.5px]">
+        <p className="nrn-coordination__lede mx-auto max-w-[28rem] shrink-0 text-center text-[12px] leading-[1.55] text-white/65 sm:text-[12.5px]">
           We coordinate the people, processes and information that keep your project moving—while you stay
           in control.
         </p>
@@ -272,16 +313,16 @@ export function NrnCoordinationSection() {
 
       {/* 03 — cream timeline list */}
       <div
-        className="flex min-h-0 flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12"
+        className="nrn-coordination__light flex min-h-0 flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12"
         style={{ backgroundColor: CREAM }}
       >
-        <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
+        <p className="nrn-coordination__eyebrow shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           03 / What We Coordinate
         </p>
 
-        <ul className="relative mt-5 flex min-h-0 flex-1 flex-col justify-between sm:mt-6">
+        <ul className="nrn-coordination-list relative mt-5 flex min-h-0 flex-1 flex-col justify-between sm:mt-6">
           <span
-            className="pointer-events-none absolute bottom-[0.65rem] left-[5.5px] top-[0.65rem] w-px sm:left-[6.5px]"
+            className="nrn-coordination-list__rail pointer-events-none absolute bottom-[0.65rem] left-[5.5px] top-[0.65rem] w-px sm:left-[6.5px]"
             style={{ backgroundColor: GOLD }}
             aria-hidden="true"
           />
@@ -291,11 +332,11 @@ export function NrnCoordinationSection() {
             const isLast = index === COORDINATE_ITEMS.length - 1;
 
             return (
-              <li key={item.num} className="relative flex items-center gap-3 sm:gap-3.5">
+              <li key={item.num} className="nrn-coordination-list__item relative flex items-center gap-3 sm:gap-3.5">
                 <span className="relative z-[1] flex w-3 shrink-0 items-center justify-center" aria-hidden="true">
                   <span
                     className={`block h-[10px] w-[10px] rounded-full border-[1.5px] sm:h-[11px] sm:w-[11px] ${
-                      isActive ? "bg-[#1a1a1a]" : "bg-[#f5f2ed]"
+                      isActive ? "border-[#c5a059] bg-[#1a1a1a]" : "bg-[#f5f2ed]"
                     }`}
                     style={{ borderColor: GOLD }}
                   />
@@ -305,14 +346,14 @@ export function NrnCoordinationSection() {
                   type="button"
                   onMouseEnter={() => setActive(item.num)}
                   onFocus={() => setActive(item.num)}
-                  className={`grid min-w-0 flex-1 grid-cols-[1.75rem_minmax(0,10.5rem)_minmax(0,1fr)] items-center gap-x-2.5 py-2 text-left transition-colors sm:grid-cols-[2rem_minmax(0,11.5rem)_minmax(0,1fr)] sm:gap-x-3 sm:py-2.5 ${
+                  className={`nrn-coordination-list__row grid min-w-0 flex-1 items-center text-left transition-colors ${
                     isActive
-                      ? "rounded-md bg-[#1a1a1a] px-2.5 sm:px-3"
-                      : `px-2.5 sm:px-3 ${!isLast ? "border-b border-[#e4dfd6]" : ""}`
+                      ? "is-active rounded-md bg-[#1a1a1a] px-3 py-2.5 sm:px-3.5 sm:py-3"
+                      : `px-3 py-2.5 sm:px-3.5 sm:py-3 ${!isLast ? "border-b border-[#e4dfd6]" : ""}`
                   }`}
                 >
                   <span
-                    className={`font-mono text-[11px] font-semibold tabular-nums sm:text-[12px] ${
+                    className={`nrn-coordination-list__num font-mono font-semibold tabular-nums ${
                       isActive ? "text-white" : "text-nebco-red"
                     }`}
                   >
@@ -320,7 +361,7 @@ export function NrnCoordinationSection() {
                   </span>
 
                   <span
-                    className={`font-heading text-[12px] font-bold leading-snug sm:text-[13px] ${
+                    className={`nrn-coordination-list__title font-heading font-bold ${
                       isActive ? "text-white" : "text-arch-black"
                     }`}
                   >
@@ -328,8 +369,8 @@ export function NrnCoordinationSection() {
                   </span>
 
                   <span
-                    className={`text-[11px] leading-snug sm:text-[12px] ${
-                      isActive ? "text-white/70" : "text-arch-black/55"
+                    className={`nrn-coordination-list__desc ${
+                      isActive ? "text-white/72" : "text-arch-black/55"
                     }`}
                   >
                     {item.desc}

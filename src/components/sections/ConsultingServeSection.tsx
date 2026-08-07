@@ -6,7 +6,7 @@ import { IMAGES } from "@/lib/images";
 
 const GOLD = "#c5a059";
 
-type AudienceId =
+export type AudienceId =
   | "landowners"
   | "nrns"
   | "businesses"
@@ -23,7 +23,7 @@ type Audience = {
   imageAlt: string;
 };
 
-const AUDIENCES: readonly Audience[] = [
+export const AUDIENCES: readonly Audience[] = [
   {
     id: "landowners",
     label: "LANDOWNERS",
@@ -36,8 +36,8 @@ const AUDIENCES: readonly Audience[] = [
       "Financial feasibility and risk assessment",
       "End-to-end development partner",
     ],
-    image: IMAGES.workersPlans,
-    imageAlt: "Advisors reviewing land development plans on site",
+    image: IMAGES.consultingServeLandowners,
+    imageAlt: "Landowners reviewing development plans on a Kathmandu rooftop",
   },
   {
     id: "nrns",
@@ -187,12 +187,7 @@ const TAB_ICONS = {
 
 function ServeWireframe() {
   return (
-    <svg
-      viewBox="0 0 280 420"
-      fill="none"
-      className="h-full w-full"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 280 420" fill="none" className="h-full w-full" aria-hidden="true">
       <g stroke={GOLD} strokeWidth="0.9" opacity="0.28">
         <path d="M40 380 V120 L140 40 L240 120 V380" />
         <path d="M40 120 H240" />
@@ -206,29 +201,30 @@ function ServeWireframe() {
   );
 }
 
-export function ConsultingServeSection() {
-  const [activeId, setActiveId] = useState<AudienceId>("landowners");
-  const active = AUDIENCES.find((a) => a.id === activeId) ?? AUDIENCES[0];
-
+export function ConsultingServeTabs({
+  activeId,
+  onSelect,
+}: {
+  activeId: AudienceId;
+  onSelect: (id: AudienceId) => void;
+}) {
   return (
-    <section className="relative overflow-hidden bg-[#121212]">
-      {/* Gold wireframe — far right */}
+    <div className="consulting-serve-tabs relative">
       <div
-        className="pointer-events-none absolute bottom-0 right-0 top-16 hidden w-[min(28%,280px)] opacity-90 lg:block"
+        className="pointer-events-none absolute bottom-0 right-0 top-0 hidden w-[min(28%,280px)] opacity-90 lg:block"
         aria-hidden="true"
       >
         <ServeWireframe />
       </div>
 
-      <div className="relative z-[1] mx-auto max-w-[1440px] px-0 pt-10 sm:pt-12 lg:pt-14">
+      <div className="relative z-[1] mx-auto max-w-[1440px] px-0">
         <p
-          className="mb-6 px-7 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] sm:mb-7 sm:px-10 sm:text-[11px] lg:mb-8 lg:px-12 xl:px-14"
+          className="consulting-serve-tabs__eyebrow font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] sm:text-[11px]"
           style={{ color: GOLD }}
         >
           02 / WHO WE SERVE
         </p>
 
-        {/* Tab bar — equal segments, gold dividers */}
         <div
           className="flex flex-col border-y lg:flex-row"
           style={{ borderColor: `${GOLD}55` }}
@@ -240,8 +236,8 @@ export function ConsultingServeSection() {
               <button
                 key={aud.id}
                 type="button"
-                onClick={() => setActiveId(aud.id)}
-                className={`relative flex min-h-[4.25rem] flex-1 flex-col items-center justify-center gap-1.5 border-b px-2 py-3.5 text-center transition-colors last:border-b-0 lg:min-h-[4.75rem] lg:border-b-0 lg:px-3 ${
+                onClick={() => onSelect(aud.id)}
+                className={`consulting-serve-tabs__btn relative flex flex-1 flex-col items-center justify-center gap-1.5 border-b px-2 py-3.5 text-center transition-colors last:border-b-0 lg:border-b-0 lg:px-3 ${
                   isActive
                     ? "bg-nebco-red text-white"
                     : "bg-transparent text-white/90 hover:bg-white/[0.04] hover:text-white"
@@ -256,38 +252,54 @@ export function ConsultingServeSection() {
             );
           })}
         </div>
+      </div>
+    </div>
+  );
+}
 
-        {/* Content */}
-        <div className="grid grid-cols-1 items-start gap-8 px-7 py-10 sm:gap-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 lg:px-12 lg:py-14 xl:gap-16 xl:px-14">
-          <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[5/3]">
-            <Image
-              key={active.image}
-              src={active.image}
-              alt={active.imageAlt}
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 48vw"
-            />
-          </div>
+export function ConsultingServeContent({ activeId }: { activeId: AudienceId }) {
+  const active = AUDIENCES.find((a) => a.id === activeId) ?? AUDIENCES[0];
 
-          <div className="text-white lg:pt-1">
-            <h3 className="font-heading text-[1.65rem] font-bold tracking-[-0.02em] sm:text-[1.85rem] lg:text-[2rem]">
-              {active.title}
-            </h3>
-            <p className="mt-4 max-w-[32rem] text-[14px] leading-[1.7] text-white/78 sm:mt-5 sm:text-[15px] lg:leading-[1.72]">
-              {active.description}
-            </p>
-            <ul className="mt-6 space-y-3.5 sm:mt-7 sm:space-y-4">
-              {active.points.map((point) => (
-                <li key={point} className="flex items-center gap-3 text-[13.5px] text-white/80 sm:text-[14.5px]">
-                  <IconCheckGold className="h-[18px] w-[18px] shrink-0 sm:h-5 sm:w-5" />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+  return (
+    <div className="consulting-serve-content relative z-[1] mx-auto max-w-[1440px]">
+      <div className="consulting-serve-content__grid grid grid-cols-1 items-start gap-8 px-7 py-10 sm:gap-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-12 lg:px-12 lg:py-14 xl:gap-16 xl:px-14">
+        <div className="consulting-serve-content__media relative aspect-[16/10] w-full overflow-hidden sm:aspect-[5/3]">
+          <Image
+            key={active.image}
+            src={active.image}
+            alt={active.imageAlt}
+            fill
+            className={`object-cover ${active.id === "landowners" ? "object-[center_35%]" : "object-center"}`}
+            sizes="(max-width: 1024px) 100vw, 48vw"
+          />
+        </div>
+
+        <div className="consulting-serve-content__copy text-white lg:pt-1">
+          <h3 className="consulting-serve-content__title type-h3 tracking-[-0.02em]">{active.title}</h3>
+          <p className="consulting-serve-content__desc mt-4 max-w-[32rem] text-[14px] leading-[1.7] text-white/78 sm:mt-5 sm:text-[15px] lg:leading-[1.72]">
+            {active.description}
+          </p>
+          <ul className="consulting-serve-content__list mt-6 space-y-3.5 sm:mt-7 sm:space-y-4">
+            {active.points.map((point) => (
+              <li key={point} className="flex items-center gap-3 text-[13.5px] text-white/80 sm:text-[14.5px]">
+                <IconCheckGold className="h-[18px] w-[18px] shrink-0 sm:h-5 sm:w-5" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function ConsultingServeSection() {
+  const [activeId, setActiveId] = useState<AudienceId>("landowners");
+
+  return (
+    <section className="consulting-serve relative overflow-hidden bg-[#121212]">
+      <ConsultingServeTabs activeId={activeId} onSelect={setActiveId} />
+      <ConsultingServeContent activeId={activeId} />
     </section>
   );
 }

@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { GoldDashBullet } from "@/components/ui/GoldDashBullet";
 import { StageMarginRail } from "@/components/ui/StageMarginRail";
 import { IMAGES } from "@/lib/images";
-
-const GOLD = "#b08d57";
-const LIGHT_STROKE = "rgba(26, 26, 26, 0.14)";
 
 const STAGES = [
   {
@@ -42,20 +40,15 @@ const STAGES = [
       "Defects liability period support",
       "Planned maintenance guidance",
     ],
-    image: IMAGES.villa,
+    image: IMAGES.constructionStageCompletion,
+    imagePosition: "center 48%",
     variant: "light" as const,
     imageFirst: true,
   },
 ] as const;
 
 function GoldBullet() {
-  return (
-    <span
-      className="block h-[2px] w-[30px] shrink-0 rounded-none"
-      style={{ backgroundColor: GOLD }}
-      aria-hidden="true"
-    />
-  );
+  return <GoldDashBullet />;
 }
 
 function OutlineNumber({
@@ -65,15 +58,9 @@ function OutlineNumber({
   num: string;
   variant: "light" | "dark";
 }) {
-  const isGold = variant === "dark";
-
   return (
     <span
-      className="pointer-events-none shrink-0 select-none font-heading text-[4.5rem] font-bold leading-none sm:text-[5rem] lg:text-[5.75rem] xl:text-[6.5rem]"
-      style={{
-        WebkitTextStroke: isGold ? `1.25px ${GOLD}` : `1px ${LIGHT_STROKE}`,
-        color: "transparent",
-      }}
+      className={`construction-stage__number construction-stage__number--${variant} pointer-events-none shrink-0 select-none font-heading font-bold`}
       aria-hidden="true"
     >
       {num}
@@ -93,19 +80,12 @@ function StageCopy({
   const bodyTone = tone === "dark" ? "text-white/70" : "text-silver-graphite";
 
   return (
-    <div className="min-w-0 max-w-[18.5rem] lg:max-w-[19.5rem] xl:max-w-[20.5rem]">
-      <h3 className="font-heading text-[1.125rem] font-bold tracking-[-0.015em] text-nebco-red sm:text-[1.2rem] lg:text-[1.26rem] xl:text-[1.3rem]">
-        {title}
-      </h3>
-      <ul className="mt-[1.125rem] flex flex-col gap-4 lg:gap-[1.05rem]">
+    <div className="construction-stage__copy">
+      <h3 className="construction-stage__title">{title}</h3>
+      <ul className="construction-stage__list">
         {items.map((item) => (
-          <li
-            key={item}
-            className="grid grid-cols-[30px_minmax(0,1fr)] gap-x-3.5 text-[12.5px] leading-[1.5] lg:text-[13px] xl:text-[14px]"
-          >
-            <div className="flex h-[1.5em] w-[30px] items-center">
-              <GoldBullet />
-            </div>
+          <li key={item} className="construction-stage__list-item">
+            <GoldBullet />
             <span className={bodyTone}>{item}</span>
           </li>
         ))}
@@ -114,10 +94,25 @@ function StageCopy({
   );
 }
 
-function StageImage({ src, alt }: { src: string; alt: string }) {
+function StageImage({
+  src,
+  alt,
+  objectPosition = "center",
+}: {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+}) {
   return (
     <div className="relative aspect-[16/10] min-h-0 overflow-hidden bg-soft-concrete sm:aspect-[16/9] lg:aspect-auto lg:h-full">
-      <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        style={{ objectPosition }}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+      />
     </div>
   );
 }
@@ -128,8 +123,8 @@ function LightContentPanel({
   stage: (typeof STAGES)[number] & { variant: "light" };
 }) {
   return (
-    <div className="relative flex items-center bg-ivory-light px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-[4.5rem] xl:pl-11 xl:pr-20">
-      <div className="relative z-[2] flex w-full items-center gap-8 sm:gap-9 lg:gap-11 xl:gap-[3.25rem]">
+    <div className="construction-stage__panel construction-stage__panel--light relative flex bg-ivory-light px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-[4.5rem] xl:pl-11 xl:pr-20">
+      <div className="construction-stage__inner relative z-[2]">
         <OutlineNumber num={stage.num} variant="light" />
         <StageCopy title={stage.title} items={stage.items} tone="light" />
       </div>
@@ -145,8 +140,8 @@ function DarkContentPanel({
   stage: (typeof STAGES)[number] & { variant: "dark" };
 }) {
   return (
-    <div className="relative flex items-center bg-arch-black px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-10 xl:pl-11 xl:pr-12">
-      <div className="relative z-[2] flex w-full items-center gap-8 sm:gap-9 lg:gap-11 xl:gap-[3.25rem]">
+    <div className="construction-stage__panel construction-stage__panel--dark relative flex bg-arch-black px-6 py-9 sm:px-8 lg:h-full lg:py-0 lg:pl-9 lg:pr-10 xl:pl-11 xl:pr-12">
+      <div className="construction-stage__inner relative z-[2]">
         <OutlineNumber num={stage.num} variant="dark" />
         <StageCopy title={stage.title} items={stage.items} tone="dark" />
       </div>
@@ -155,7 +150,13 @@ function DarkContentPanel({
 }
 
 function StageRow({ stage }: { stage: (typeof STAGES)[number] }) {
-  const image = <StageImage src={stage.image} alt={stage.title} />;
+  const image = (
+    <StageImage
+      src={stage.image}
+      alt={stage.title}
+      objectPosition={"imagePosition" in stage ? stage.imagePosition : undefined}
+    />
+  );
 
   const content =
     stage.variant === "dark" ? (
@@ -165,7 +166,7 @@ function StageRow({ stage }: { stage: (typeof STAGES)[number] }) {
     );
 
   return (
-    <div className="grid min-h-0 flex-1 grid-cols-1 items-stretch border-b border-soft-concrete/40 last:border-b-0 lg:grid-cols-2">
+    <div className="construction-stage__row grid min-h-0 flex-1 grid-cols-1 items-stretch border-b border-soft-concrete/40 last:border-b-0 lg:grid-cols-2">
       {stage.imageFirst ? (
         <>
           {image}
