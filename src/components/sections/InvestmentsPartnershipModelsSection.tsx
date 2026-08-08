@@ -183,10 +183,10 @@ export function InvestmentsPartnershipModelsSection({
                       </div>
 
                       <h3
-                        className={`font-heading font-bold leading-[1.28] tracking-[-0.01em] ${
+                        className={`font-heading font-bold! leading-[1.28]! tracking-[-0.01em] ${
                           compact
-                            ? "mt-3.5 text-[11.5px] lg:text-[12px] xl:text-[12.5px]"
-                            : "mt-5 text-[12px] sm:mt-6 sm:text-[13px] lg:text-[13.5px]"
+                            ? "mt-3.5 text-[11.5px]! lg:text-[12px]! xl:text-[12.5px]!"
+                            : "mt-5 text-[12px]! sm:mt-6 sm:text-[13px]! lg:text-[13.5px]!"
                         } ${model.dark ? "text-white" : "text-arch-black"}`}
                       >
                         {model.title}

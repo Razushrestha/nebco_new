@@ -18,6 +18,10 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
   workersPlans:
     "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
+  constructionStagePreConstruction:
+    "/Web_images/ChatGPT Image Aug 5, 2026, 08_56_42 PM.png",
+  constructionStageExecution:
+    "/Web_images/ChatGPT Image Aug 5, 2026, 08_56_51 PM.png",
   constructionHero: "/images/construction-hero.png",
   consultingHero: "/images/consulting-hero.png",
   consultingMeeting:
@@ -32,13 +36,17 @@ export const IMAGES = {
   meetingOffice:
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80",
   contactHero: "/images/contact-hero.png",
-  insightsHero: "/images/insights-hero.jpg",
-  partnersHero: "/images/partners-hero.jpg",
+  contactMapDark: "/images/contact-map-dark.png",
+  insightsHero: "/images/insights-hero.png",
+  insightsMarketChart: "/images/insights-market-chart.png",
+  partnersHero: "/images/partners-hero.png",
   partnersMd: "/images/partners-md.jpg",
   nightBuilding:
     "https://images.unsplash.com/photo-1515263487990-61b07816b324?w=1200&q=80",
   startProjectHero: "/Web_images/start-project-hero.png",
   startProjectBlueprint: "/Web_images/start-project-blueprint.png",
+  projectsCtaLandscape: "/images/projects-cta-landscape.png",
+  projectsStoryFormatBg: "/images/projects-story-format-bg.png",
   trustHubDiagram: "/Web_images/trust-hub-diagram.png",
   mountainsSite:
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80",
@@ -52,10 +60,10 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
   brickBuilding:
     "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
-  investmentsHero:
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=85",
-  investmentsApproach:
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&q=85",
+  investmentsHero: "/images/investments-hero.png",
+  projectsHero: "/images/projects-hero.png",
+  investmentsApproach: "/images/investments-approach.png",
+  investmentsApproachBg: "/images/investments-approach-bg-transparent.png",
   qualityWorker:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
   qualityInspector: "/images/quality-inspector.jpg",
@@ -78,7 +86,9 @@ export const IMAGES = {
   distanceProblemRemote: "/images/distance-problem-remote.png",
   distanceProblemOnsite: "/images/distance-problem-onsite.png",
   consultingServeLandowners: "/images/consulting-serve-landowners.png",
-  consultingEngageEarly: "/images/consulting-engage-early.png",
+  consultingEngageEarly: "/Web_images/Gemini_Generated_Image_ezahd6ezahd6ezah.png",
+  consultingCtaWireframe: "/images/consulting-cta-wireframe.png",
+  consultingDisciplinesDiagram: "/images/consulting-disciplines-diagram-tr.png",
   nrnStartConfidentlyWireframe: "/images/nrn-start-confidently-wireframe.png",
   nrnTypicalJourneyWireframe: "/images/nrn-typical-journey-wireframe.png",
   nrnHeroWireframe: "/images/nrn-hero-wireframe.png",

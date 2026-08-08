@@ -1,11 +1,11 @@
-import { heroPanelClipPath } from "@/components/ui/HeroAngleEdge";
+import { heroPanelClipPath, type HeroAngle } from "@/components/ui/HeroAngleEdge";
 
 /** Architectural wireframe texture inside the dark hero panel */
-export function HeroBlueprintOverlay() {
+export function HeroBlueprintOverlay({ angle }: { angle?: HeroAngle } = {}) {
   return (
     <svg
       className="pointer-events-none absolute inset-0 z-[11] hidden h-full w-full opacity-[0.14] lg:block"
-      style={{ clipPath: heroPanelClipPath() }}
+      style={{ clipPath: heroPanelClipPath(angle) }}
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"

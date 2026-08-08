@@ -241,10 +241,10 @@ export function InvestmentsLookForProcessSection({
             </p>
 
             <h2
-              className={`max-w-[22rem] font-heading font-bold leading-[1.25] tracking-[-0.02em] ${
+              className={`max-w-[22rem] font-heading font-bold! leading-[1.25]! tracking-[-0.02em] ${
                 compact
-                  ? "mt-2.5 text-[1.05rem] sm:text-[1.15rem] lg:text-[1.2rem]"
-                  : "mt-5 text-[1.45rem] sm:mt-6 sm:text-[1.65rem] lg:text-[1.75rem]"
+                  ? "mt-2.5 text-[1.05rem]! sm:text-[1.15rem]! lg:text-[1.2rem]!"
+                  : "mt-5 text-[1.45rem]! sm:mt-6 sm:text-[1.65rem]! lg:text-[1.75rem]!"
               }`}
             >
               <span className="text-white">We focus on opportunities that are </span>
@@ -285,10 +285,10 @@ export function InvestmentsLookForProcessSection({
           </p>
 
           <h2
-            className={`max-w-[28rem] font-heading font-bold leading-[1.25] tracking-[-0.02em] text-arch-black ${
+            className={`max-w-[28rem] font-heading font-bold! leading-[1.25]! tracking-[-0.02em] text-arch-black ${
               compact
-                ? "mt-2.5 text-[1.05rem] sm:text-[1.15rem] lg:text-[1.2rem]"
-                : "mt-4 text-[1.4rem] sm:mt-5 sm:text-[1.55rem] lg:text-[1.65rem]"
+                ? "mt-2.5 text-[1.05rem]! sm:text-[1.15rem]! lg:text-[1.2rem]!"
+                : "mt-4 text-[1.4rem]! sm:mt-5 sm:text-[1.55rem]! lg:text-[1.65rem]!"
             }`}
           >
             A disciplined, stage-gated due diligence process.

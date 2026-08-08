@@ -347,20 +347,20 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
   return (
     <div className="bg-[#f5f2ed]">
       {/* 01 / EXPLORE THE PORTFOLIO */}
-      <section className="border-b border-[#d8d2c8]">
+      <section className="border-b border-[#d5cfc4]">
         <div className="mx-auto max-w-[1440px] px-6 pt-7 sm:px-8 sm:pt-8 lg:px-10 xl:px-12">
-          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
             01 / Explore the Portfolio
           </p>
 
-          <div className="mt-4 flex flex-wrap items-end gap-y-0 sm:mt-5">
+          <div className="mt-4 flex items-stretch overflow-x-auto pb-0 sm:mt-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {PROJECT_FILTERS.map((item, index) => {
               const active = filter === item;
               return (
-                <div key={item} className="flex items-end">
+                <div key={item} className="flex shrink-0 items-stretch">
                   {index > 0 && (
                     <span
-                      className="mx-2.5 mb-[11px] h-3.5 w-px bg-[#cfc8bd] sm:mx-3.5"
+                      className="mx-6 self-center h-3 w-px bg-[#cfc8bd] sm:mx-8 lg:mx-10"
                       aria-hidden="true"
                     />
                   )}
@@ -368,17 +368,19 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
                     type="button"
                     onClick={() => onFilterChange(item)}
                     aria-pressed={active}
-                    className={`relative pb-3 font-heading text-[10.61px] font-semibold uppercase tracking-[0.12em] transition-colors sm:text-[11.11px] ${
-                      active ? "text-arch-black" : "text-[#5a5a5a] hover:text-arch-black"
+                    className={`relative whitespace-nowrap pb-3 pt-0.5 font-heading text-[10px] font-bold uppercase tracking-[0.1em] transition-colors sm:text-[10.5px] lg:text-[11px] ${
+                      active
+                        ? "text-nebco-red"
+                        : "text-arch-black hover:text-nebco-red"
                     }`}
                   >
                     {item}
-                    {active && (
+                    {active ? (
                       <span
-                        className="absolute inset-x-0 bottom-0 h-[2.5px] bg-nebco-red"
+                        className="absolute inset-x-0 bottom-0 h-[2px] bg-nebco-red"
                         aria-hidden="true"
                       />
-                    )}
+                    ) : null}
                   </button>
                 </div>
               );

@@ -43,6 +43,43 @@ function CTABlueprint() {
   );
 }
 
+function CTABlueprintImages({ left, right }: { left?: string; right?: string }) {
+  return (
+    <>
+      {left && (
+        <div
+          className="pointer-events-none absolute bottom-[-8%] left-[-2%] h-[130%] w-[min(34vw,380px)] opacity-[0.22]"
+          aria-hidden="true"
+        >
+          <Image
+            src={left}
+            alt=""
+            fill
+            unoptimized
+            className="object-contain object-left-bottom"
+            sizes="380px"
+          />
+        </div>
+      )}
+      {right && (
+        <div
+          className="pointer-events-none absolute bottom-[-10%] right-[-3%] h-[140%] w-[min(40vw,460px)] opacity-[0.24]"
+          aria-hidden="true"
+        >
+          <Image
+            src={right}
+            alt=""
+            fill
+            unoptimized
+            className="object-contain object-right-bottom"
+            sizes="460px"
+          />
+        </div>
+      )}
+    </>
+  );
+}
+
 interface CTABandProps {
   title: string;
   subtitle?: string;
@@ -50,6 +87,8 @@ interface CTABandProps {
   buttonHref: string;
   variant?: "red" | "dark";
   blueprint?: boolean;
+  blueprintLeft?: string;
+  blueprintRight?: string;
 }
 
 export function CTABand({
@@ -59,19 +98,23 @@ export function CTABand({
   buttonHref,
   variant = "red",
   blueprint = true,
+  blueprintLeft,
+  blueprintRight,
 }: CTABandProps) {
   const isRed = variant === "red";
+  const hasCustomBlueprints = Boolean(blueprintLeft || blueprintRight);
 
   return (
     <section className={`relative overflow-hidden ${isRed ? "bg-nebco-red" : "bg-arch-black"}`}>
-      {isRed && blueprint && <CTABlueprint />}
+      {isRed && hasCustomBlueprints && (
+        <CTABlueprintImages left={blueprintLeft} right={blueprintRight} />
+      )}
+      {isRed && blueprint && !hasCustomBlueprints && <CTABlueprint />}
 
       <div className="container-nebco relative z-10 py-12 lg:py-14 xl:py-16">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
           <div className="max-w-xl lg:max-w-2xl">
-            <h2 className="type-h2 text-white tracking-tight">
-              {title}
-            </h2>
+            <h2 className="type-h2 text-white tracking-tight">{title}</h2>
             {subtitle && (
               <p className="mt-3 lg:mt-4 text-[14px] lg:text-[15px] text-white/85 leading-[1.65] max-w-[34rem]">
                 {subtitle}

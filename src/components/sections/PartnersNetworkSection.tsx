@@ -5,7 +5,6 @@ import { useState } from "react";
 /**
  * Partners — External Professional Network
  * Dark split: left copy + right discipline tabs, flush card rail, legend.
- * Image/icon slots are placeholders for assets you’ll add later.
  */
 
 const GOLD = "#c5a059";
@@ -27,9 +26,7 @@ type PartnerCard = {
   id: string;
   title: string;
   subtitle: string;
-  /** Optional — set later, e.g. "/partners/network/architecture-1.png" */
   imageSrc?: string;
-  /** Placeholder mark until real icons/images arrive */
   mark: "buildings" | "set-square" | "chart" | "scales" | "house" | "megaphone";
 };
 
@@ -37,7 +34,7 @@ const CARDS_BY_TAB: Record<TabId, readonly PartnerCard[]> = {
   Architecture: [
     { id: "a1", title: "External Consultant", subtitle: "Project Based", mark: "buildings" },
     { id: "a2", title: "Strategic Partner", subtitle: "Project Based", mark: "buildings" },
-    { id: "a3", title: "Design Collaborator", subtitle: "Appointed", mark: "buildings" },
+    { id: "a3", title: "External Consultant", subtitle: "Project Based", mark: "buildings" },
     { id: "a4", title: "Project-Specific Collaborator", subtitle: "Project Based", mark: "buildings" },
   ],
   Engineering: [
@@ -72,12 +69,12 @@ const CARDS_BY_TAB: Record<TabId, readonly PartnerCard[]> = {
   ],
 };
 
-function PlaceholderIcon({ mark, highlighted }: { mark: PartnerCard["mark"]; highlighted?: boolean }) {
+function PlaceholderIcon({ mark }: { mark: PartnerCard["mark"] }) {
   const common = {
-    className: `partner-network-icon h-[3.75rem] w-auto text-white/75 sm:h-[4.25rem] ${highlighted ? "is-highlighted" : ""}`,
+    className: "h-[5.5rem] w-auto text-white/80 sm:h-[6.25rem] lg:h-[6.75rem]",
     fill: "none" as const,
     stroke: "currentColor",
-    strokeWidth: 1.15,
+    strokeWidth: 1.1,
     "aria-hidden": true as const,
   };
 
@@ -127,49 +124,48 @@ function PlaceholderIcon({ mark, highlighted }: { mark: PartnerCard["mark"]; hig
       );
     default:
       return (
-        <svg viewBox="0 0 120 88" {...common}>
-          <rect x="8" y="28" width="28" height="52" />
-          <rect x="42" y="12" width="36" height="68" />
-          <rect x="84" y="22" width="28" height="58" />
-          <path d="M8 40h28M8 52h28M8 64h28" />
-          <path d="M42 24h36M42 36h36M42 48h36M42 60h36" />
-          <path d="M84 34h28M84 46h28M84 58h28" />
-          <path d="M56 12v68M98 22v58" opacity="0.55" />
+        <svg viewBox="0 0 120 100" {...common}>
+          <rect x="10" y="32" width="26" height="56" />
+          <rect x="42" y="14" width="34" height="74" />
+          <rect x="82" y="26" width="26" height="62" />
+          <path d="M10 44h26M10 56h26M10 68h26" />
+          <path d="M42 28h34M42 40h34M42 52h34M42 64h34M42 76h34" />
+          <path d="M82 38h26M82 50h26M82 62h26M82 74h26" />
+          <path d="M59 14v74M95 26v62" opacity="0.5" />
         </svg>
       );
   }
 }
 
-function CardVisual({ card, highlighted }: { card: PartnerCard; highlighted?: boolean }) {
+function CardVisual({ card }: { card: PartnerCard }) {
   if (card.imageSrc) {
     return (
-      // Native img keeps this slot simple until assets are finalized
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={card.imageSrc}
         alt=""
-        className={`partner-network-icon max-h-[4.75rem] w-auto object-contain opacity-90 ${highlighted ? "is-highlighted" : ""}`}
+        className="max-h-[6.75rem] w-auto object-contain opacity-90"
       />
     );
   }
-  return <PlaceholderIcon mark={card.mark} highlighted={highlighted} />;
+  return <PlaceholderIcon mark={card.mark} />;
 }
 
 function NetworkLegend() {
   return (
-    <ul className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-3 sm:mt-6 sm:gap-x-9 lg:justify-center">
+    <ul className="mt-6 flex flex-wrap items-center justify-start gap-x-8 gap-y-3 sm:mt-7 sm:gap-x-10 lg:justify-center">
       <li className="flex items-center gap-2.5">
-        <span className="relative block h-px w-9" style={{ backgroundColor: GOLD }} aria-hidden="true" />
+        <span className="block h-px w-10" style={{ backgroundColor: GOLD }} aria-hidden="true" />
         <span className="font-mono text-[9px] font-medium uppercase tracking-[0.12em] text-white/55 sm:text-[10px]">
           Selected by NEBCO
         </span>
       </li>
       <li className="flex items-center gap-2.5">
-        <span className="relative flex h-3 w-10 items-center" aria-hidden="true">
+        <span className="relative flex h-3 w-11 items-center" aria-hidden="true">
           <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2" style={{ backgroundColor: RED }} />
           <span
-            className="absolute left-1/2 top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border"
-            style={{ borderColor: RED, backgroundColor: "#0d0d0d" }}
+            className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{ backgroundColor: RED, boxShadow: `0 0 0 2px ${RED}55` }}
           />
         </span>
         <span className="font-mono text-[9px] font-medium uppercase tracking-[0.12em] text-white/55 sm:text-[10px]">
@@ -178,7 +174,7 @@ function NetworkLegend() {
       </li>
       <li className="flex items-center gap-2.5">
         <span
-          className="block h-px w-9 border-t border-dashed border-white/45"
+          className="block h-px w-10 border-t border-dashed border-white/45"
           aria-hidden="true"
         />
         <span className="font-mono text-[9px] font-medium uppercase tracking-[0.12em] text-white/55 sm:text-[10px]">
@@ -191,25 +187,23 @@ function NetworkLegend() {
 
 export function PartnersNetworkSection() {
   const [activeTab, setActiveTab] = useState<TabId>("Architecture");
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const cards = CARDS_BY_TAB[activeTab];
 
   return (
     <section className="bg-[#0d0d0d] text-white">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-6 py-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.55fr)] lg:items-start lg:gap-12 lg:px-10 lg:py-16 xl:gap-14 xl:px-12">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-6 py-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.6fr)] lg:items-start lg:gap-12 lg:px-10 lg:py-16 xl:gap-16 xl:px-12">
         {/* Left copy */}
-        <div className="max-w-[26rem] lg:pt-1">
+        <div className="max-w-[28rem] lg:pt-1">
           <p
-            className="type-label font-semibold uppercase tracking-[0.16em]"
+            className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] sm:text-[11px]"
             style={{ color: GOLD }}
           >
             03 / External Professional Network
           </p>
-          <h2 className="type-h2 mt-4 tracking-[-0.02em] text-white sm:mt-5">
-            Specialized expertise.
-            <br />
-            Aligned by responsibility.
-          </h2>
+          <h3 className="type-h3 mt-4 tracking-[-0.02em] text-white sm:mt-5">
+            <span className="block whitespace-nowrap">Specialized expertise.</span>
+            <span className="block whitespace-nowrap">Aligned by responsibility.</span>
+          </h3>
           <span
             className="mt-5 block h-[2.5px] w-10 sm:mt-6 sm:w-11"
             style={{ backgroundColor: RED }}
@@ -221,7 +215,7 @@ export function PartnersNetworkSection() {
           </p>
         </div>
 
-        {/* Right: tabs + flush cards + legend */}
+        {/* Right: tabs + cards + legend */}
         <div className="min-w-0">
           <div
             className="flex gap-0 overflow-x-auto border-b border-white/15 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -238,9 +232,8 @@ export function PartnersNetworkSection() {
                   aria-selected={active}
                   id={`network-tab-${tab}`}
                   onClick={() => setActiveTab(tab)}
-                  className={`relative shrink-0 px-3 pb-3 pt-1 type-label font-semibold uppercase tracking-[0.16em] transition-colors sm:px-3.5 lg:px-4 ${
-                    active ? "text-white" : "text-white/45 hover:text-white/75"
-                  }`}
+                  className="relative shrink-0 px-3 pb-3 pt-1 font-heading text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors sm:px-3.5 sm:text-[10.5px] lg:px-4"
+                  style={{ color: active ? GOLD : "rgba(255,255,255,0.48)" }}
                 >
                   {tab}
                   {active ? (
@@ -255,42 +248,37 @@ export function PartnersNetworkSection() {
             })}
           </div>
 
-          {/* Flush 4-up card rail — swaps with active tab */}
           <div className="mt-5 overflow-x-auto sm:mt-6">
             <div
               role="tabpanel"
               aria-labelledby={`network-tab-${activeTab}`}
-              className="grid min-w-[680px] grid-cols-4 border border-white/20"
+              className="grid min-w-[720px] grid-cols-4 border border-white/20"
               key={activeTab}
             >
-              {cards.map((card, index) => {
-                const isHovered = hoveredCard === card.id;
-                return (
-                  <article
-                    key={card.id}
-                    onMouseEnter={() => setHoveredCard(card.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                    onFocus={() => setHoveredCard(card.id)}
-                    onBlur={() => setHoveredCard(null)}
-                    className={`group flex min-h-[210px] min-w-0 flex-col justify-between px-3 py-5 transition-colors duration-300 sm:min-h-[230px] sm:px-4 sm:py-6 lg:min-h-[250px] lg:px-5 ${
-                      isHovered ? "bg-white/[0.03]" : ""
-                    } ${index > 0 ? "border-l border-white/20" : ""}`}
-                  >
-                    <div className="flex min-h-[4.5rem] items-center justify-center sm:min-h-[5rem]">
-                      <CardVisual card={card} highlighted={isHovered} />
-                    </div>
+              {cards.map((card, index) => (
+                <article
+                  key={card.id}
+                  className={`flex min-h-[250px] min-w-0 flex-col justify-between px-3.5 py-6 sm:min-h-[270px] sm:px-4 sm:py-7 lg:min-h-[290px] lg:px-5 lg:py-8 ${
+                    index > 0 ? "border-l border-white/20" : ""
+                  }`}
+                >
+                  <div className="flex min-h-[6.5rem] items-center justify-center sm:min-h-[7.25rem]">
+                    <CardVisual card={card} />
+                  </div>
 
-                    <div className="mt-4 min-w-0 sm:mt-5">
-                      <h3 className="font-heading text-[10px] font-bold uppercase leading-[1.25] tracking-[0.05em] text-white sm:text-[10.5px] lg:text-[11px] xl:text-[11.5px]">
-                        {card.title}
-                      </h3>
-                      <p className="mt-2 text-[10px] leading-none sm:text-[10.5px]" style={{ color: INK_MUTED }}>
-                        {card.subtitle}
-                      </p>
-                    </div>
-                  </article>
-                );
-              })}
+                  <div className="mt-5 min-w-0 sm:mt-6">
+                    <h4 className="font-heading text-[10px] font-bold uppercase leading-[1.3] tracking-[0.06em] text-white sm:text-[10.5px] lg:text-[11px]">
+                      {card.title}
+                    </h4>
+                    <p
+                      className="mt-2 text-[10.5px] leading-none sm:text-[11px]"
+                      style={{ color: INK_MUTED }}
+                    >
+                      {card.subtitle}
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
 

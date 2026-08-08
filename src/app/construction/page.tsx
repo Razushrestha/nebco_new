@@ -22,6 +22,8 @@ export default function ConstructionPage() {
         buttonLabel="Request a Construction Proposal"
         buttonHref="/contact?type=construction"
         variant="red"
+        blueprintLeft="/images/construction-cta-wireframe-left.png"
+        blueprintRight="/images/construction-cta-wireframe-right.png"
       />
     </>
   );

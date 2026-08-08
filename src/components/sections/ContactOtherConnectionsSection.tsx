@@ -138,20 +138,36 @@ function ConnectionIcon({ id }: { id: string }) {
  * Contact — 05 / Other Connections
  * Four linked opportunity columns with red icons and tall vertical dividers.
  */
-export function ContactOtherConnectionsSection() {
+export function ContactOtherConnectionsSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section className="border-t border-[#e5e1da] bg-[#f7f5f1]">
-      <div className="mx-auto max-w-[1440px] px-6 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16 xl:px-12">
-        <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+    <section
+      className={`contact-other-connections border-t border-[#e5e1da] bg-[#f7f5f1] ${
+        compact ? "contact-other-connections--compact min-h-0 flex-1" : ""
+      }`}
+    >
+      <div
+        className={`mx-auto flex h-full max-w-[1440px] flex-col justify-center px-6 sm:px-8 lg:px-10 xl:px-12 ${
+          compact ? "py-7 sm:py-8 lg:py-9" : "py-12 sm:py-14 lg:py-16"
+        }`}
+      >
+        <p className="type-label shrink-0 font-semibold uppercase tracking-[0.16em] text-nebco-red">
           05 / Other Connections
         </p>
 
-        <div className="mt-9 grid grid-cols-1 gap-0 sm:mt-10 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+        <div
+          className={`grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-4 ${
+            compact ? "mt-6 sm:mt-7 lg:mt-8" : "mt-9 sm:mt-10 lg:mt-12"
+          }`}
+        >
           {CONNECTIONS.map((item, index) => (
             <Link
               key={item.id}
               href={item.href}
-              className="group relative flex items-start gap-3.5 px-0 py-6 sm:gap-4 sm:px-5 sm:py-3 lg:min-h-[11.5rem] lg:items-center lg:px-7 lg:py-8 xl:px-8"
+              className={`group relative flex items-start gap-3.5 px-0 sm:gap-4 sm:px-5 lg:items-center lg:px-7 xl:px-8 ${
+                compact
+                  ? "py-4 sm:py-2 lg:min-h-0 lg:py-4"
+                  : "py-6 sm:py-3 lg:min-h-[11.5rem] lg:py-8"
+              }`}
             >
               {/* Tall vertical dividers — extend past content, soft red */}
               {index > 0 ? (
@@ -172,11 +188,25 @@ export function ContactOtherConnectionsSection() {
               <ConnectionIcon id={item.id} />
 
               <div className="min-w-0 flex-1 pt-0.5">
-                <h3 className="type-h3 tracking-[-0.01em] text-arch-black">
+                <h3
+                  className={`tracking-[-0.01em] text-arch-black ${
+                    compact ? "type-h4" : "type-h3"
+                  }`}
+                >
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-[13px] leading-[1.5] text-arch-black/55 sm:mt-2">{item.subtitle}</p>
-                <span className="mt-3.5 inline-flex items-center gap-1.5 font-heading text-[10.5px] font-bold uppercase tracking-[0.12em] text-nebco-red transition-transform group-hover:translate-x-0.5 sm:mt-4 sm:text-[11px]">
+                <p
+                  className={`leading-[1.5] text-arch-black/55 ${
+                    compact ? "mt-1 text-[12.5px] sm:mt-1.5" : "mt-1.5 text-[13px] sm:mt-2"
+                  }`}
+                >
+                  {item.subtitle}
+                </p>
+                <span
+                  className={`inline-flex items-center gap-1.5 font-heading text-[10.5px] font-bold uppercase tracking-[0.12em] text-nebco-red transition-transform group-hover:translate-x-0.5 sm:text-[11px] ${
+                    compact ? "mt-2.5 sm:mt-3" : "mt-3.5 sm:mt-4"
+                  }`}
+                >
                   {item.cta}
                   <span aria-hidden="true">→</span>
                 </span>

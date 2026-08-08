@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { IMAGES } from "@/lib/images";
 
 const RED = "#bc2026";
 
@@ -83,28 +84,6 @@ function StepIcon({ src, className }: { src: string; className: string }) {
   );
 }
 
-function StoryFormatBlueprint() {
-  return (
-    <svg
-      className="pointer-events-none absolute inset-y-0 right-0 h-full w-[min(42%,420px)]"
-      viewBox="0 0 420 420"
-      preserveAspectRatio="xMaxYMid slice"
-      aria-hidden="true"
-    >
-      <g stroke="#1a1a1a" strokeWidth="0.85" fill="none" opacity="0.45">
-        <rect x="70" y="60" width="155" height="290" />
-        <path d="M70 110h155M70 160h155M70 210h155M70 260h155M70 310h155M147.5 60v290" />
-        <rect x="245" y="105" width="95" height="245" />
-        <path d="M245 155h95M245 205h95M245 255h95M245 305h95M292.5 105v245" />
-        <rect x="355" y="145" width="52" height="205" opacity="0.75" />
-        <path d="M355 185h52M355 225h52M355 265h52M355 305h52M381 145v205" opacity="0.75" />
-        <path d="M70 60 147.5 18 245 60" opacity="0.65" />
-        <path d="M30 365h370" opacity="0.35" strokeWidth="0.65" />
-      </g>
-    </svg>
-  );
-}
-
 type ProjectsStoryFormatSectionProps = {
   compact?: boolean;
 };
@@ -115,8 +94,25 @@ type ProjectsStoryFormatSectionProps = {
 export function ProjectsStoryFormatSection({ compact = false }: ProjectsStoryFormatSectionProps) {
   return (
     <section className={`relative overflow-hidden ${compact ? "" : "bg-[#f5f2ed]"}`}>
-      <div className="pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden="true">
-        <StoryFormatBlueprint />
+      {/* Architectural sketch — right side, faded like the design */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-[min(46%,480px)]"
+        aria-hidden="true"
+      >
+        <Image
+          src={IMAGES.projectsStoryFormatBg}
+          alt=""
+          fill
+          className="object-contain object-right opacity-[0.42] sm:opacity-[0.48]"
+          sizes="(max-width: 1024px) 50vw, 480px"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, #f5f2ed 0%, rgba(245,242,237,0.75) 28%, rgba(245,242,237,0.15) 62%, transparent 100%)",
+          }}
+        />
       </div>
 
       <div

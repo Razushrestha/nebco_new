@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { IMAGES } from "@/lib/images";
 
 const GOLD = "#c5a059";
 const RED = "#bc2026";
@@ -8,8 +10,6 @@ const PANEL = "#111111";
 /** Official NEBCO office — Google Maps place */
 const NEBCO_MAPS_URL =
   "https://www.google.com/maps/place/NEBCO-+Best+Construction+Company+In+Nepal/@27.6869358,85.2991932,18z/data=!4m6!3m5!1s0x39eb1996b5fc27a7:0xf16f8d7e7c578dab!8m2!3d27.6869358!4d85.2991932!16s%2Fg%2F11kq0t2cj1";
-const NEBCO_MAPS_EMBED =
-  "https://www.google.com/maps?q=27.6869358,85.2991932&z=17&hl=en&output=embed";
 
 type ContactRow = {
   id: string;
@@ -149,26 +149,20 @@ function ContactIcon({ id }: { id: string }) {
   }
 }
 
-/** Live Google Map of NEBCO Kuleshwor — gold frame, dark section fit */
+/** Dark gold-road map of NEBCO Kuleshwor — matches contact mock style */
 function ContactMap() {
   return (
     <div
       className="relative h-full min-h-[320px] overflow-hidden rounded-sm border sm:min-h-[400px] lg:min-h-[520px]"
       style={{ borderColor: `${GOLD}70`, backgroundColor: "#0a0a0a" }}
     >
-      <iframe
-        title="NEBCO office location — Kuleshwor, Kathmandu"
-        src={NEBCO_MAPS_EMBED}
-        className="absolute inset-0 h-full w-full border-0 grayscale-[20%] contrast-[1.05]"
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        allowFullScreen
-      />
-
-      {/* Soft edge vignette so the map sits in the dark panel */}
-      <div
-        className="pointer-events-none absolute inset-0 shadow-[inset_0_0_48px_rgba(0,0,0,0.45)]"
-        aria-hidden="true"
+      <Image
+        src={IMAGES.contactMapDark}
+        alt="NEBCO office location — Kuleshwor, Kathmandu"
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-cover object-center"
+        priority={false}
       />
 
       <a
@@ -192,7 +186,7 @@ function ContactMap() {
 
 /**
  * Contact — 03 / Contact NEBCO
- * Dark contact details + live Google Map of the Kuleshwor office.
+ * Dark contact details + black-style map of the Kuleshwor office.
  */
 export function ContactDetailsMapSection() {
   return (
@@ -256,7 +250,7 @@ export function ContactDetailsMapSection() {
           />
         </div>
 
-        {/* Right — live map */}
+        {/* Right — dark map */}
         <div className="px-6 pb-12 sm:px-8 sm:pb-14 lg:flex lg:px-10 lg:py-16 xl:px-12">
           <div className="w-full lg:flex-1">
             <ContactMap />

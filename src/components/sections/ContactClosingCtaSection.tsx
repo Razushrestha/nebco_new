@@ -1,89 +1,83 @@
 import Link from "next/link";
 
+/** Faint house / skyline wireframe across the red CTA band */
 function HouseBlueprint() {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.12]"
-      viewBox="0 0 1440 180"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.14]"
+      viewBox="0 0 1440 140"
       fill="none"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      <g stroke="white" strokeWidth="1.05">
-        {/* Left house cluster */}
-        <path d="M80 130 L160 70 L240 130" />
-        <rect x="100" y="130" width="120" height="70" />
-        <rect x="130" y="150" width="28" height="50" />
-        <rect x="175" y="148" width="22" height="22" />
-        <line x1="80" y1="130" x2="240" y2="130" />
+      <g stroke="white" strokeWidth="1.1" strokeLinejoin="round">
+        {/* Left houses */}
+        <path d="M40 95 L110 45 L180 95" />
+        <rect x="58" y="95" width="104" height="55" />
+        <rect x="85" y="112" width="22" height="38" />
+        <rect x="120" y="108" width="18" height="18" />
 
-        {/* Mid low roof */}
-        <path d="M280 145 L340 95 L400 145" />
-        <rect x="295" y="145" width="90" height="55" />
-        <rect x="318" y="158" width="20" height="20" />
-        <rect x="350" y="158" width="20" height="42" />
+        <path d="M200 105 L255 62 L310 105" />
+        <rect x="215" y="105" width="80" height="45" />
+        <rect x="240" y="118" width="16" height="16" />
 
-        {/* Tall building */}
-        <rect x="450" y="40" width="90" height="160" />
-        <line x1="450" y1="70" x2="540" y2="70" />
-        <line x1="450" y1="100" x2="540" y2="100" />
-        <line x1="450" y1="130" x2="540" y2="130" />
-        <line x1="450" y1="160" x2="540" y2="160" />
-        <line x1="480" y1="40" x2="480" y2="200" />
-        <line x1="510" y1="40" x2="510" y2="200" />
+        {/* Mid towers */}
+        <rect x="360" y="28" width="72" height="122" />
+        <path d="M360 55h72M360 82h72M360 109h72M384 28v122M408 28v122" />
 
-        {/* Center gable */}
-        <path d="M580 120 L680 55 L780 120" />
-        <rect x="605" y="120" width="150" height="80" />
-        <rect x="655" y="145" width="50" height="55" />
-        <rect x="620" y="140" width="22" height="22" />
-        <rect x="720" y="140" width="22" height="22" />
+        <path d="M470 88 L545 38 L620 88" />
+        <rect x="490" y="88" width="110" height="62" />
+        <rect x="528" y="108" width="34" height="42" />
+        <rect x="502" y="102" width="16" height="16" />
+        <rect x="572" y="102" width="16" height="16" />
+
+        <rect x="660" y="42" width="64" height="108" />
+        <path d="M660 70h64M660 98h64M682 42v108M704 42v108" />
 
         {/* Right houses */}
-        <path d="M820 135 L900 80 L980 135" />
-        <rect x="840" y="135" width="120" height="65" />
-        <rect x="870" y="150" width="24" height="50" />
-        <rect x="915" y="150" width="20" height="20" />
+        <path d="M760 100 L840 52 L920 100" />
+        <rect x="780" y="100" width="100" height="50" />
+        <rect x="810" y="115" width="20" height="35" />
+        <rect x="848" y="112" width="16" height="16" />
 
-        <path d="M1020 140 L1120 70 L1220 140" />
-        <rect x="1045" y="140" width="150" height="60" />
-        <line x1="1045" y1="160" x2="1195" y2="160" />
-        <rect x="1095" y="155" width="50" height="45" />
+        <path d="M960 108 L1045 58 L1130 108" />
+        <rect x="980" y="108" width="120" height="42" />
+        <rect x="1020" y="118" width="40" height="32" />
 
-        <rect x="1260" y="50" width="100" height="150" />
-        <line x1="1260" y1="85" x2="1360" y2="85" />
-        <line x1="1260" y1="120" x2="1360" y2="120" />
-        <line x1="1260" y1="155" x2="1360" y2="155" />
-        <line x1="1293" y1="50" x2="1293" y2="200" />
-        <line x1="1326" y1="50" x2="1326" y2="200" />
+        <rect x="1180" y="35" width="80" height="115" />
+        <path d="M1180 65h80M1180 95h80M1180 125h80M1207 35v115M1234 35v115" />
 
-        <line x1="40" y1="200" x2="1400" y2="200" strokeWidth="0.85" opacity="0.7" />
+        <path d="M1290 98 L1355 55 L1420 98" />
+        <rect x="1308" y="98" width="94" height="52" />
+        <rect x="1340" y="115" width="18" height="35" />
+
+        <line x1="20" y1="150" x2="1420" y2="150" strokeWidth="0.85" opacity="0.55" />
       </g>
     </svg>
   );
 }
 
 /**
- * Contact closing CTA — red band, house blueprint, outlined enquiry button.
+ * Contact closing CTA — compact red band, house blueprint, outlined enquiry button.
  */
 export function ContactClosingCtaSection() {
   return (
     <section className="relative overflow-hidden bg-nebco-red">
       <HouseBlueprint />
 
-      <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-6 py-11 sm:px-8 sm:py-12 lg:flex-row lg:items-center lg:gap-12 lg:px-10 lg:py-14 xl:px-12">
-        <div className="max-w-[34rem]">
-          <h2 className="type-h2 tracking-[-0.02em] text-white">
+      <div className="relative z-10 mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-6 px-6 py-7 sm:px-8 sm:py-8 lg:flex-row lg:items-center lg:gap-10 lg:px-10 lg:py-9 xl:px-12">
+        <div className="max-w-[36rem]">
+          <h2 className="type-h3 tracking-[-0.02em] text-white">
             Tell us what you are planning.
           </h2>
-          <p className="mt-2.5 text-[14px] leading-[1.55] text-white/90 sm:mt-3 sm:text-[15px]">
+          <p className="mt-1.5 text-[13.5px] leading-[1.5] text-white/90 sm:mt-2 sm:text-[14.5px]">
             We are here to help you build it right.
           </p>
         </div>
 
         <Link
           href="#form"
-          className="inline-flex shrink-0 items-center gap-2.5 border border-white px-7 py-3.5 font-heading text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-nebco-red sm:px-8 sm:py-4 sm:text-[12px]"
+          className="inline-flex shrink-0 items-center gap-2.5 border border-white px-6 py-3 font-heading text-[10.5px] font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-nebco-red sm:px-7 sm:py-3.5 sm:text-[11px]"
         >
           Submit Your Enquiry
           <span aria-hidden="true">→</span>

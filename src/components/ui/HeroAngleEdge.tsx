@@ -14,6 +14,23 @@ export const HERO_ANGLE = HOME_HERO_ANGLE;
 /** Red seam — thin accent (~4–6px on desktop) */
 export const HOME_HERO_RED_BAND = 0.52;
 
+/**
+ * Investments hero — ~50/50 split, slight `/` diagonal,
+ * red accent thicker at top and tapering down the seam.
+ */
+export const INVESTMENTS_HERO_ANGLE: HeroAngle = { top: 50, bottom: 54 };
+
+/** Right edge of red wedge at top (%). */
+export const INVESTMENTS_RED_TOP_RIGHT = 60;
+
+/** Tip of red accent on the panel diagonal. */
+export const INVESTMENTS_RED_TIP = {
+  x:
+    INVESTMENTS_HERO_ANGLE.top +
+    (INVESTMENTS_HERO_ANGLE.bottom - INVESTMENTS_HERO_ANGLE.top) * 0.72,
+  y: 72,
+} as const;
+
 export function heroPanelClipPath(angle: HeroAngle = HOME_HERO_ANGLE) {
   return `polygon(0 0, ${angle.top}% 0, ${angle.bottom}% 100%, 0 100%)`;
 }
@@ -43,6 +60,10 @@ function seamPoints(angle: HeroAngle, band: number) {
   ].join(" ");
 }
 
+function wedgePoints(angle: HeroAngle, topRight: number, tip: { x: number; y: number }) {
+  return [`${angle.top},0`, `${topRight},0`, `${tip.x},${tip.y}`].join(" ");
+}
+
 export function heroAngleStyle(angle: HeroAngle = HOME_HERO_ANGLE): CSSProperties {
   return {
     ["--hero-angle-top" as string]: `${angle.top}%`,
@@ -53,15 +74,34 @@ export function heroAngleStyle(angle: HeroAngle = HOME_HERO_ANGLE): CSSPropertie
 type HeroAngleLayersProps = {
   angle?: HeroAngle;
   redBand?: number;
+  redWedge?: {
+    topRight: number;
+    tip: { readonly x: number; readonly y: number };
+  };
 };
 
 export function HeroAngleLayers({
   angle = HOME_HERO_ANGLE,
   redBand = HOME_HERO_RED_BAND,
+  redWedge,
 }: HeroAngleLayersProps = {}) {
   const clip = heroPanelClipPath(angle);
-  const redBandPoints = seamPoints(angle, redBand);
+  const redBandPoints = redWedge
+    ? wedgePoints(angle, redWedge.topRight, redWedge.tip)
+    : seamPoints(angle, redBand);
+
   const shadowBand = (() => {
+    if (redWedge) {
+      const { topRight, tip } = redWedge;
+      const o = 1.2;
+      return [
+        `${topRight},0`,
+        `${tip.x},${tip.y}`,
+        `${tip.x + o},${tip.y}`,
+        `${topRight + o},0`,
+      ].join(" ");
+    }
+
     const topOuter = bandOuter(angle, redBand, angle.top, 0);
     const bottomOuter = bandOuter(angle, redBand, angle.bottom, 100);
     const dx = angle.bottom - angle.top;
@@ -93,7 +133,7 @@ export function HeroAngleLayers({
             <feGaussianBlur in="SourceGraphic" stdDeviation="0.9" />
           </filter>
         </defs>
-        <polygon points={shadowBand} fill="rgba(0,0,0,0.22)" filter="url(#hero-seam-shadow)" />
+        <polygon points={shadowBand} fill="rgba(0,0,0,0.28)" filter="url(#hero-seam-shadow)" />
       </svg>
 
       <svg

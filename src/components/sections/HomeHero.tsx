@@ -49,23 +49,21 @@ export function HomeHero() {
                 experienced platform.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="home-hero__actions mt-8 flex flex-row flex-nowrap items-stretch gap-2.5 lg:mt-9 lg:gap-3">
                 <Link
                   href="/contact?type=project"
-                  className="type-caption inline-flex items-center gap-2 bg-nebco-red px-5 py-3 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-nebco-red-hover"
+                  className="home-hero__btn inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap bg-nebco-red px-5 py-3 font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-nebco-red-hover lg:px-6 lg:py-3.5 lg:text-[11px]"
                 >
                   Discuss Your Project
                   <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="/about"
-                  className="type-caption inline-flex items-center gap-2 border px-5 py-3 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/5"
+                  className="home-hero__btn inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap border bg-transparent px-5 py-3 font-heading text-[10px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/5 lg:px-6 lg:py-3.5 lg:text-[11px]"
                   style={{ borderColor: GOLD }}
                 >
                   See How NEBCO Works
-                  <span aria-hidden="true" style={{ color: GOLD }}>
-                    →
-                  </span>
+                  <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>

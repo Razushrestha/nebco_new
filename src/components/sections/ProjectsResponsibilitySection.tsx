@@ -139,8 +139,10 @@ export function ProjectsResponsibilitySection({
                   }`}
                 >
                   <div
-                    className={`pointer-events-none absolute bottom-0 right-0 ${
-                      isLight ? "opacity-[0.55]" : "opacity-[0.5]"
+                    className={`pointer-events-none absolute -bottom-12 right-0 opacity-[0.5] sm:-bottom-14 lg:-bottom-16 ${
+                      item.tone === "dark"
+                        ? "translate-x-[10%] sm:translate-x-[14%] lg:translate-x-[18%]"
+                        : ""
                     }`}
                     aria-hidden="true"
                   >
@@ -149,10 +151,10 @@ export function ProjectsResponsibilitySection({
                       alt=""
                       width={480}
                       height={480}
-                      className={`h-auto max-w-none ${
+                      className={`h-auto max-w-none origin-bottom-right ${
                         compact
-                          ? "w-[min(100%,16rem)] sm:w-[min(100%,18rem)]"
-                          : "w-[min(100%,24rem)] sm:w-[min(100%,27rem)] lg:w-[min(100%,30rem)]"
+                          ? "w-[24rem] translate-x-[6%] sm:w-[26rem] sm:translate-x-[8%]"
+                          : "w-[34rem] translate-x-[4%] sm:w-[38rem] sm:translate-x-[6%] lg:w-[42rem] lg:translate-x-[8%]"
                       }`}
                     />
                   </div>

@@ -32,8 +32,8 @@ export function BeyondDistanceSection({ compact = false }: BeyondDistanceSection
         </h2>
         <Link
           href="/nrn"
-          className={`type-caption mt-5 inline-flex items-center gap-2 rounded-[2px] border border-white/90 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/10 lg:mt-6 ${
-            compact ? "px-5 py-2.5" : "mt-7 px-6 py-3"
+          className={`type-caption mt-5 inline-flex w-fit items-center gap-2 self-start rounded-[2px] border border-white/90 px-5 py-2.5 font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/10 lg:mt-6 ${
+            compact ? "" : "mt-7 px-6 py-3"
           }`}
         >
           Explore NRN Services

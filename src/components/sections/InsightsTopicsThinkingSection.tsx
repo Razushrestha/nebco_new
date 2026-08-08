@@ -471,21 +471,24 @@ export function InsightsTopicsThinkingSection() {
               02 / Topics
             </p>
 
-            <nav className="mt-3 overflow-x-auto sm:mt-3.5" aria-label="Insight topics">
-              <ul className="flex min-w-max items-center gap-0 pb-0.5">
+            <nav className="mt-3 sm:mt-3.5" aria-label="Insight topics">
+              <ul className="flex flex-wrap items-center gap-y-2.5 pb-0.5">
                 {TOPICS.map((item, index) => {
                   const active = item === topic;
                   return (
                     <li key={item} className="flex items-center">
                       {index > 0 ? (
-                        <span className="mx-2 text-[11.11px] text-arch-black/25 sm:mx-2.5" aria-hidden="true">
+                        <span
+                          className="mx-2.5 text-[11px] text-arch-black/30 sm:mx-3.5 lg:mx-4"
+                          aria-hidden="true"
+                        >
                           /
                         </span>
                       ) : null}
                       <button
                         type="button"
                         onClick={() => selectTopic(item)}
-                        className={`relative whitespace-nowrap pb-1.5 font-heading text-[10.61px] font-semibold uppercase tracking-[0.06em] transition-colors sm:text-[11.62px] ${
+                        className={`relative whitespace-nowrap pb-1.5 font-heading text-[10px] font-semibold uppercase tracking-[0.06em] transition-colors sm:text-[11px] lg:text-[11.5px] ${
                           active ? "" : "text-arch-black/40 hover:text-arch-black/65"
                         }`}
                         style={active ? { color: GOLD } : undefined}

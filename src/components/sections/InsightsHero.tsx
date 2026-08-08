@@ -12,6 +12,8 @@ const PANEL = "#111111";
  */
 const ANGLE = { top: 42, bottom: 56 } as const;
 const BLACK_CLIP = `polygon(0 0, ${ANGLE.top}% 0, ${ANGLE.bottom}% 100%, 0 100%)`;
+/** Photo starts left of the diagonal so cover never gaps under the seam */
+const PHOTO_LEFT = "34%";
 
 const VALUES = ["Experience", "Integrity", "Timely Delivery"] as const;
 
@@ -40,27 +42,41 @@ function SkylineOnRail() {
 }
 
 /**
- * Insights hero — diagonal dark panel + photo (swap IMAGES.insightsHero when ready).
+ * Insights hero — diagonal dark panel + site planning photo.
  */
 export function InsightsHero() {
   return (
     <section className="relative flex min-h-[calc(100svh-88px)] flex-col overflow-hidden bg-[#111111]">
-      {/* Full-bleed photo — replace public/images/insights-hero.jpg later */}
-      <div className="absolute inset-0 z-0">
+      {/*
+        Desktop photo lives in the right wedge (not full-bleed) so the landscape
+        frame matches the mock: blueprints low, team right, crane + sky behind.
+      */}
+      <div
+        className="absolute inset-y-0 right-0 z-0 hidden overflow-hidden lg:block"
+        style={{ left: PHOTO_LEFT }}
+      >
+        <Image
+          src={IMAGES.insightsHero}
+          alt="Construction planning with blueprints, calculator and site professionals"
+          fill
+          priority
+          sizes="70vw"
+          className="object-cover object-[54%_48%]"
+        />
+      </div>
+
+      {/* Mobile — full-bleed with dark scrim for type */}
+      <div className="absolute inset-0 z-0 lg:hidden">
         <Image
           src={IMAGES.insightsHero}
           alt="Construction planning with blueprints, calculator and site professionals"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[58%_42%]"
+          className="object-cover object-[58%_46%]"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-[#1a1a1a]/25"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[#111111]/90 lg:hidden"
+          className="pointer-events-none absolute inset-0 bg-[#111111]/90"
           aria-hidden="true"
         />
       </div>
@@ -81,8 +97,10 @@ export function InsightsHero() {
               <span className="text-nebco-red">Insights</span>
             </p>
 
-            <h1 className="type-h1 mt-5 tracking-[-0.02em] text-white sm:mt-6">
-              Practical insight for better property and project decisions.
+            <h1 className="type-h2 mt-5 tracking-[-0.02em] text-white sm:mt-6">
+              Practical insight for better
+              <br />
+              property and project decisions.
             </h1>
 
             <p className="mt-5 max-w-[28rem] text-[14px] leading-[1.65] text-white/70 sm:mt-6 sm:text-[15px] lg:text-[16px]">

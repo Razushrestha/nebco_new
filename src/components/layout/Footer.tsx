@@ -1,92 +1,43 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { Logo } from "@/components/ui/Logo";
 
-const GOLD = "#c5a059";
-
-function SocialLink({ href, label, children }: { href: string; label: string; children: ReactNode }) {
+function SocialIcon({ type }: { type: "linkedin" | "facebook" | "instagram" }) {
+  const label = type.charAt(0).toUpperCase() + type.slice(1);
   return (
     <a
-      href={href}
-      className="w-8 h-8 border border-white/25 flex items-center justify-center text-white/70 hover:border-pale-gold hover:text-white transition-colors"
+      href="#"
+      className="flex h-7 w-7 items-center justify-center rounded-full border border-white/25 text-white/70 transition-colors hover:border-white hover:text-white"
       aria-label={label}
     >
-      {children}
+      <span className="font-mono text-[8px] uppercase">{type[0]}</span>
     </a>
   );
 }
 
-function SocialLinkedIn() {
+function MarkN() {
   return (
-    <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-      <path d="M3.5 5.5h2v6h-2v-6zm1-3a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM6.5 5.5h1.9v.8c.3-.5.9-.9 1.7-.9 1.8 0 2.1 1.2 2.1 2.7v3.4h-2v-3c0-.7 0-1.7-1-1.7s-1.2.8-1.2 1.7v3h-2v-6z" />
-    </svg>
+    <span
+      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/35"
+      aria-hidden="true"
+    >
+      <span className="font-heading text-[9px] font-bold leading-none text-white">N</span>
+    </span>
   );
 }
 
-function SocialFacebook() {
-  return (
-    <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-      <path d="M9.2 5.5H11V3.6C10.6 3.5 9.7 3.4 8.7 3.4 6.7 3.4 5.3 4.7 5.3 7v1.5H3.5v2.2h1.8v5.6h2.3V9.7h1.9l.3-2.2H7.6V7.1c0-.6.2-1 1.2-1h.4z" />
-    </svg>
-  );
-}
-
-function SocialInstagram() {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.1" className="w-3.5 h-3.5" aria-hidden="true">
-      <rect x="3" y="3" width="10" height="10" rx="2.5" />
-      <circle cx="8" cy="8" r="2.2" />
-      <circle cx="11.2" cy="4.8" r="0.55" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function SocialYouTube() {
-  return (
-    <svg viewBox="0 0 16 16" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-      <path d="M14.5 5.2a1.4 1.4 0 00-.9-1C12.4 4 8 4 8 4s-4.4 0-5.6.2a1.4 1.4 0 00-.9 1C1.3 6.4 1.3 8 1.3 8s0 1.6.2 2.8a1.4 1.4 0 00.9 1C3.6 12 8 12 8 12s4.4 0 5.6-.2a1.4 1.4 0 00.9-1c.2-1.2.2-2.8.2-2.8s0-1.6-.2-2.8zM6.5 10V6l3.5 2-3.5 2z" />
-    </svg>
-  );
-}
-
-function ContactIcon({ type }: { type: "phone" | "email" | "web" }) {
-  if (type === "phone") {
-    return (
-      <svg viewBox="0 0 16 16" fill="none" stroke={GOLD} strokeWidth="1.1" className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true">
-        <path d="M4 2.5h2l1 3-2 1.2a7 7 0 003.3 3.3L9.5 9l3 1v2a1 1 0 01-1.1 1A11.5 11.5 0 013 3.6 1 1 0 014 2.5z" strokeLinejoin="round" />
-      </svg>
-    );
-  }
-  if (type === "email") {
-    return (
-      <svg viewBox="0 0 16 16" fill="none" stroke={GOLD} strokeWidth="1.1" className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true">
-        <rect x="2" y="4" width="12" height="8" rx="0.5" />
-        <path d="M2 5l6 4 6-4" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 16 16" fill="none" stroke={GOLD} strokeWidth="1.1" className="w-3.5 h-3.5 shrink-0 mt-0.5" aria-hidden="true">
-      <circle cx="8" cy="8" r="5.5" />
-      <path d="M2.5 8h11M8 2.5c1.8 2 1.8 8.5 0 11M8 2.5c-1.8 2-1.8 8.5 0 11" />
-    </svg>
-  );
-}
-
-const FOOTER_COLUMNS = [
+const COLUMNS = [
   {
     title: "Company",
     links: [
       { label: "About NEBCO", href: "/about" },
       { label: "Leadership", href: "/partners" },
       { label: "Careers", href: "/contact?type=career" },
-      { label: "News & Updates", href: "/insights" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "Quality & Safety", href: "/construction" },
+      { label: "News", href: "/insights" },
     ],
   },
   {
-    title: "Our Services",
+    title: "Services",
     links: [
       { label: "Construction", href: "/construction" },
       { label: "Consulting", href: "/consulting" },
@@ -95,51 +46,54 @@ const FOOTER_COLUMNS = [
     ],
   },
   {
-    title: "Quick Links",
+    title: "Projects",
     links: [
-      { label: "Projects", href: "/projects" },
-      { label: "Partners & Experts", href: "/partners" },
-      { label: "Insights", href: "/insights" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms & Conditions", href: "/terms" },
+      { label: "All Projects", href: "/projects" },
+      { label: "Development Consulting", href: "/projects?filter=consulting" },
+      { label: "Construction", href: "/projects?filter=construction" },
+      { label: "Commercial", href: "/projects?filter=commercial" },
+      { label: "Residential", href: "/projects?filter=residential" },
+    ],
+  },
+  {
+    title: "Insights",
+    links: [
+      { label: "Articles", href: "/insights" },
+      { label: "Market Updates", href: "/insights" },
+      { label: "Guides", href: "/insights" },
     ],
   },
 ] as const;
 
+/**
+ * Site footer — same content & style on every page.
+ */
 export function Footer() {
   return (
     <footer className="bg-[#141414] text-white">
-      <div className="container-nebco py-8 lg:py-9 xl:py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-y-7 lg:gap-y-0">
-          <div className="lg:pr-8 lg:border-r lg:border-pale-gold/25">
+      <div className="container-nebco py-12 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-8 lg:gap-y-0">
+          {/* Brand */}
+          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Logo variant="light" />
-            <div className="flex gap-2.5 mt-5">
-              <SocialLink href="#" label="LinkedIn">
-                <SocialLinkedIn />
-              </SocialLink>
-              <SocialLink href="#" label="Facebook">
-                <SocialFacebook />
-              </SocialLink>
-              <SocialLink href="#" label="Instagram">
-                <SocialInstagram />
-              </SocialLink>
-              <SocialLink href="#" label="YouTube">
-                <SocialYouTube />
-              </SocialLink>
-            </div>
+            <p className="mt-4 max-w-[12.5rem] text-[11px] leading-[1.55] text-white/50">
+              Construction • Consulting • Investments
+              <br />
+              Built on experience. Driven by purpose.
+            </p>
           </div>
 
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.title} className="lg:px-7 lg:border-r lg:border-pale-gold/25">
-              <h4 className="type-h4 font-mono uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
+          {COLUMNS.map((col) => (
+            <div key={col.title}>
+              <h4 className="font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-white">
                 {col.title}
               </h4>
-              <ul className="space-y-2">
+              <ul className="mt-4 space-y-2.5">
                 {col.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={`${col.title}-${link.label}`}>
                     <Link
                       href={link.href}
-                      className="text-[13px] text-white/75 hover:text-white transition-colors leading-snug"
+                      className="text-[12px] leading-snug text-white/50 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -149,50 +103,54 @@ export function Footer() {
             </div>
           ))}
 
-          <div className="lg:pl-7">
-            <h4 className="type-h4 font-mono uppercase tracking-[0.16em] mb-3.5" style={{ color: GOLD }}>
-              Contact
+          {/* Connect */}
+          <div>
+            <h4 className="font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+              Connect
             </h4>
-            <div className="space-y-2.5 text-[13px] text-white/75 leading-snug">
-              <p>
-                NEBCO Pvt. Ltd.
-                <br />
-                Dhumbarahi, Kathmandu, Nepal
-              </p>
-              <a href="tel:+97714813054" className="flex items-start gap-2.5 hover:text-white transition-colors">
-                <ContactIcon type="phone" />
-                +977 1 481 3054
-              </a>
-              <a href="mailto:info@nebco.com.np" className="flex items-start gap-2.5 hover:text-white transition-colors">
-                <ContactIcon type="email" />
-                info@nebco.com.np
-              </a>
-              <a
-                href="https://www.nebco.com.np"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-2.5 hover:text-white transition-colors"
-              >
-                <ContactIcon type="web" />
-                www.nebco.com.np
-              </a>
+            <ul className="mt-4 space-y-2.5 text-[12px] leading-snug text-white/50">
+              <li>Kathmandu, Nepal</li>
+              <li>
+                <a href="tel:+97714107600" className="transition-colors hover:text-white">
+                  +977 1 410 7600
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@nebco.com.np" className="transition-colors hover:text-white">
+                  info@nebco.com.np
+                </a>
+              </li>
+            </ul>
+            <div className="mt-5 flex gap-2.5">
+              <SocialIcon type="linkedin" />
+              <SocialIcon type="facebook" />
+              <SocialIcon type="instagram" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-pale-gold/20">
-        <div className="container-nebco py-3.5 lg:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/45">
-          <p>© {new Date().getFullYear()} NEBCO Pvt. Ltd. All rights reserved.</p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+      <div className="border-t border-white/10">
+        <div className="container-nebco flex flex-col items-center justify-between gap-3 py-4 text-[11px] text-white/40 sm:flex-row sm:gap-4">
+          <p className="flex items-center gap-2.5">
+            <MarkN />
+            <span>© NEBCO Pvt. Ltd. All rights reserved.</span>
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            <Link href="/privacy" className="transition-colors hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              Terms & Conditions
+            <span className="text-white/20" aria-hidden="true">
+              |
+            </span>
+            <Link href="/terms" className="transition-colors hover:text-white">
+              Terms of Use
             </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              Disclaimer
+            <span className="text-white/20" aria-hidden="true">
+              |
+            </span>
+            <Link href="/contact" className="transition-colors hover:text-white">
+              Compliance
             </Link>
           </div>
         </div>
