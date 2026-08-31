@@ -91,7 +91,7 @@ function IconTower({ className }: { className?: string }) {
 const MODELS: readonly Model[] = [
   {
     num: "01",
-    title: "Landowner–Developer Partnership",
+    title: "Landowner-Developer Partnership",
     description:
       "Landowner contributes land. NEBCO contributes capital, planning, approvals and development expertise. Profits shared as per agreed structure.",
     dark: false,
@@ -165,7 +165,7 @@ export function InvestmentsPartnershipModelsSection({
                       key={model.num}
                       className={`flex flex-col ${
                         compact
-                          ? "min-h-[168px] px-3.5 py-3.5 lg:min-h-[172px] xl:px-4"
+                          ? "min-h-[168px] px-3.5 py-3.5 lg:min-h-[176px] xl:px-4"
                           : "min-h-[280px] px-4 py-4 sm:min-h-[300px] sm:px-4 sm:py-5 lg:min-h-[310px] xl:px-5"
                       } ${
                         model.dark
@@ -173,20 +173,28 @@ export function InvestmentsPartnershipModelsSection({
                           : "border border-[#ddd7ce] bg-[#f5f2ed] text-arch-black"
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-2">
-                        <span className="font-mono text-[11px] font-medium tabular-nums text-nebco-red sm:text-[12px]">
-                          {model.num}
-                        </span>
-                        <span className="text-[#c5a059]" aria-hidden="true">
-                          <Icon className={compact ? "h-6 w-6" : "h-8 w-8 sm:h-9 sm:w-9"} />
-                        </span>
-                      </div>
+                      <span className="font-mono text-[11px] font-medium tabular-nums text-nebco-red sm:text-[12px]">
+                        {model.num}
+                      </span>
+
+                      <span
+                        className={`mt-2 block h-px w-7 ${compact ? "mt-1.5 w-6" : "sm:mt-2.5"}`}
+                        style={{ backgroundColor: GOLD }}
+                        aria-hidden="true"
+                      />
+
+                      <span
+                        className={`text-[#c5a059] ${compact ? "mt-2.5" : "mt-4 sm:mt-5"}`}
+                        aria-hidden="true"
+                      >
+                        <Icon className={compact ? "h-7 w-7" : "h-9 w-9 sm:h-10 sm:w-10"} />
+                      </span>
 
                       <h3
                         className={`font-heading font-bold! leading-[1.28]! tracking-[-0.01em] ${
                           compact
-                            ? "mt-3.5 text-[11.5px]! lg:text-[12px]! xl:text-[12.5px]!"
-                            : "mt-5 text-[12px]! sm:mt-6 sm:text-[13px]! lg:text-[13.5px]!"
+                            ? "mt-2.5 text-[11.5px]! lg:text-[12px]! xl:text-[12.5px]!"
+                            : "mt-4 text-[12px]! sm:mt-5 sm:text-[13px]! lg:text-[13.5px]!"
                         } ${model.dark ? "text-white" : "text-arch-black"}`}
                       >
                         {model.title}

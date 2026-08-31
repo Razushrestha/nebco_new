@@ -135,7 +135,7 @@ function ConnectionIcon({ id }: { id: string }) {
 }
 
 /**
- * Contact — 05 / Other Connections
+ * Contact - 05 / Other Connections
  * Four linked opportunity columns with red icons and tall vertical dividers.
  */
 export function ContactOtherConnectionsSection({ compact = false }: { compact?: boolean }) {
@@ -169,7 +169,7 @@ export function ContactOtherConnectionsSection({ compact = false }: { compact?: 
                   : "py-6 sm:py-3 lg:min-h-[11.5rem] lg:py-8"
               }`}
             >
-              {/* Tall vertical dividers — extend past content, soft red */}
+              {/* Tall vertical dividers - extend past content, soft red */}
               {index > 0 ? (
                 <span
                   className="pointer-events-none absolute left-0 top-1/2 hidden h-[85%] w-px -translate-y-1/2 lg:block"

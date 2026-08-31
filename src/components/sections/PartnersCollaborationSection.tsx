@@ -6,7 +6,7 @@ import { IMAGES } from "@/lib/images";
 type Props = { compact?: boolean; inPair?: boolean };
 
 /**
- * Partners — 05 / Collaboration Categories
+ * Partners - 05 / Collaboration Categories
  * Project coordination hub diagram (shared asset with section 01).
  */
 export function PartnersCollaborationSection({ compact = false, inPair = false }: Props) {

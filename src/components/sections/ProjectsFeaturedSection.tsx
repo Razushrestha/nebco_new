@@ -170,7 +170,7 @@ const FEATURED_BY_FILTER: Record<ProjectFilter, FeaturedProject> = {
     ],
   },
   "Development Partnership": {
-    title: "Landowner–Developer Partnership",
+    title: "Landowner-Developer Partnership",
     location: "Balkumari, Lalitpur",
     image: IMAGES.modernApartment,
     imageAlt: "Residential development partnership project",
@@ -418,7 +418,7 @@ export function ProjectsFeaturedSection({ filter, onFilterChange }: ProjectsFeat
             </p>
 
             <h2 className="type-h2 mt-3 tracking-[-0.02em] text-white">
-              {display.title} — {display.location}
+              {display.title} - {display.location}
             </h2>
 
             <div className="mt-6 grid grid-cols-2 gap-y-4 text-center sm:mt-7 sm:grid-cols-4 sm:gap-y-0">

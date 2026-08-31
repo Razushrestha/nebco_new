@@ -6,7 +6,7 @@ import { IMAGES } from "@/lib/images";
 const RED = "#bc2026";
 
 /**
- * Partners — 01 / How the Model Works
+ * Partners - 01 / How the Model Works
  * Cream band + left copy + project coordination hub diagram.
  */
 export function PartnersModelSection({ compact = false }: { compact?: boolean }) {
@@ -20,22 +20,26 @@ export function PartnersModelSection({ compact = false }: { compact?: boolean })
         }`}
       >
         <div
-          className={`w-full shrink-0 ${
-            compact ? "lg:w-[15rem] xl:w-[16rem]" : "lg:w-[16.5rem] xl:w-[17.5rem]"
+          className={`w-full shrink-0 text-left ${
+            compact ? "lg:w-[14rem] xl:w-[15.5rem]" : "lg:max-w-[20rem] lg:w-[38%] xl:max-w-[22rem]"
           }`}
         >
-          <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
+          <p className="type-label text-left font-semibold uppercase tracking-[0.16em] text-nebco-red">
             01 / How the Model Works
           </p>
           <h2
-            className={`type-h2 tracking-[-0.02em] text-arch-black ${
-              compact ? "partners-model__heading mt-2" : "mt-2.5"
+            className={`text-left font-heading font-extrabold tracking-[-0.02em] text-arch-black ${
+              compact
+                ? "partners-model__heading mt-2 text-[1.35rem] leading-[1.18] sm:text-[1.45rem]"
+                : "mt-3 text-[1.65rem] leading-[1.18] sm:text-[1.85rem] lg:text-[2rem] xl:text-[2.15rem]"
             }`}
           >
-            No single discipline develops a real estate project alone.
+            <span className="block">No single discipline</span>
+            <span className="block">develops a real estate</span>
+            <span className="block">project alone.</span>
           </h2>
           <span
-            className={`block h-[3px] w-10 ${compact ? "mt-2.5" : "mt-3.5"}`}
+            className={`block h-[3px] w-10 ${compact ? "mt-2.5" : "mt-4"}`}
             style={{ backgroundColor: RED }}
             aria-hidden="true"
           />
@@ -48,7 +52,7 @@ export function PartnersModelSection({ compact = false }: { compact?: boolean })
             width={2994}
             height={1408}
             className="partners-model__diagram-img h-auto w-full object-contain object-center"
-            sizes="(min-width: 1024px) 65vw, 100vw"
+            sizes="(min-width: 1024px) 80vw, 100vw"
             priority
           />
         </div>

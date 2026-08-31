@@ -31,7 +31,7 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
   title: "NEBCO Nepal | Construction, Real Estate Consulting & Development",
   description:
-    "NEBCO provides construction, real estate development consulting, project management and selective development partnerships in Nepal—from land to landmark.",
+    "NEBCO provides construction, real estate development consulting, project management and selective development partnerships in Nepal - from land to landmark.",
 };
 
 export default function RootLayout({

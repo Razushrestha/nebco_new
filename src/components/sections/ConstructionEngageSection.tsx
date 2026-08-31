@@ -61,7 +61,7 @@ const ENGAGEMENT_MODELS: readonly EngagementModel[] = [
     id: "turnkey",
     labelLines: ["TURNKEY", "COORDINATION"],
     description:
-      "Integrated coordination from design alignment through to handover — one structured path for clients who want a ready outcome.",
+      "Integrated coordination from design alignment through to handover - one structured path for clients who want a ready outcome.",
     columns: [
       ["Design-to-build coordination", "Early contractor involvement", "Streamlined approvals and procurement"],
       ["Aligned commercial structure", "Faster decision cycles", "Ready-for-use delivery"],
@@ -74,7 +74,7 @@ const ENGAGEMENT_MODELS: readonly EngagementModel[] = [
     id: "management",
     labelLines: ["CONSTRUCTION", "MANAGEMENT"],
     description:
-      "Professional management on your behalf — planning, procurement, supervision and reporting without transferring build risk.",
+      "Professional management on your behalf - planning, procurement, supervision and reporting without transferring build risk.",
     columns: [
       ["Client-side programme control", "Procurement and tender support", "Independent site supervision"],
       ["Cost and change management", "Contract administration", "Stakeholder and progress reporting"],
@@ -87,7 +87,7 @@ const ENGAGEMENT_MODELS: readonly EngagementModel[] = [
     id: "specialised",
     labelLines: ["SPECIALISED", "WORKS"],
     description:
-      "Targeted delivery for technical or complex scopes — structural, MEP, finishing or specialist packages within wider projects.",
+      "Targeted delivery for technical or complex scopes - structural, MEP, finishing or specialist packages within wider projects.",
     columns: [
       ["Technical scope definition", "Specialist trade coordination", "Quality-critical execution"],
       ["Interface and sequencing control", "Testing and commissioning support", "Documented specialist handover"],

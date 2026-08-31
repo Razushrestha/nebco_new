@@ -470,7 +470,7 @@ function ProjectPortalDashboard({
 }
 
 /**
- * 04 / Digital Visibility — feature list + Project Portal dashboard.
+ * 04 / Digital Visibility - feature list + Project Portal dashboard.
  */
 export function NrnDigitalVisibilitySection({ compact = false }: { compact?: boolean }) {
   const [activeFeature, setActiveFeature] = useState(2);
@@ -504,7 +504,7 @@ export function NrnDigitalVisibilitySection({ compact = false }: { compact?: boo
               Real-time clarity. Documented progress.
             </h2>
             <p className={`digital-visibility__lede ${compact ? "is-compact" : ""}`}>
-              Your project dashboard—anytime, anywhere.
+              Your project dashboard-anytime, anywhere.
             </p>
           </div>
 

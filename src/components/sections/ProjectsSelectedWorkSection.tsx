@@ -109,7 +109,7 @@ function Tone({
   );
 }
 
-/** Gold label + white value — used in dark bars */
+/** Gold label + white value - used in dark bars */
 function MetaBlock({ label, value }: { label: string; value: string }) {
   return (
     <div>
@@ -148,7 +148,7 @@ function ZoomImage({ src, alt, sizes }: { src: string; alt: string; sizes: strin
 }
 
 function CardFront({ card }: { card: WorkCard }) {
-  /* ——— Image top (~58%) + dark/red bar: title left, Service|Status right ——— */
+  /* --- Image top (~58%) + dark/red bar: title left, Service|Status right --- */
   if (card.layout === "stack-bar") {
     return (
       <div className="flex h-full flex-col">
@@ -171,7 +171,7 @@ function CardFront({ card }: { card: WorkCard }) {
     );
   }
 
-  /* ——— Image top + panel: title, then Service | Status columns ——— */
+  /* --- Image top + panel: title, then Service | Status columns --- */
   if (card.layout === "stack-split") {
     const Meta = card.tone === "red" ? MetaBlockLight : MetaBlock;
     return (
@@ -193,8 +193,8 @@ function CardFront({ card }: { card: WorkCard }) {
     );
   }
 
-  /* ——— Full-bleed image + dark info panel OVERLAID on the right
-       (panel stops short of the bottom so the photo peeks through) ——— */
+  /* --- Full-bleed image + dark info panel OVERLAID on the right
+       (panel stops short of the bottom so the photo peeks through) --- */
   if (card.layout === "rail-right") {
     return (
       <div className="relative h-full min-h-[300px] overflow-hidden lg:min-h-[320px]">
@@ -240,8 +240,8 @@ function CardFront({ card }: { card: WorkCard }) {
     );
   }
 
-  /* ——— Full-bleed image + red info panel OVERLAID on the left
-       (panel stops short of the bottom so the photo peeks through) ——— */
+  /* --- Full-bleed image + red info panel OVERLAID on the left
+       (panel stops short of the bottom so the photo peeks through) --- */
   return (
     <div className="relative h-full min-h-[300px] overflow-hidden lg:min-h-[320px]">
       <ZoomImage src={card.image} alt={card.title} sizes="(max-width: 1024px) 100vw, 33vw" />

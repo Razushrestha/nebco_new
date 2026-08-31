@@ -101,7 +101,7 @@ function PartnersExpertiseRail() {
 }
 
 /**
- * Partners & Experts hero — diagonal dark panel + meeting photo + expertise rail.
+ * Partners & Experts hero - diagonal dark panel + meeting photo + expertise rail.
  */
 export function PartnersHero() {
   return (
@@ -127,7 +127,7 @@ export function PartnersHero() {
         <PartnersDiagonalSeam />
       </div>
 
-      {/* Dark panel — sharp black cut over the photo */}
+      {/* Dark panel - sharp black cut over the photo */}
       <div
         className="absolute inset-0 z-10 hidden lg:block"
         style={{ clipPath: BLACK_CLIP, backgroundColor: PANEL }}

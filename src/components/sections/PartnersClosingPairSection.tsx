@@ -2,7 +2,7 @@ import { PartnersCollaborationSection } from "@/components/sections/PartnersColl
 import { PartnersWorkWithSection } from "@/components/sections/PartnersWorkWithSection";
 
 /**
- * Partners closing pair — 05 Collaboration Categories | 06 Work With NEBCO
+ * Partners closing pair - 05 Collaboration Categories | 06 Work With NEBCO
  * Wider diagram column + narrower CTA column, eyebrows aligned.
  */
 export function PartnersClosingPairSection() {

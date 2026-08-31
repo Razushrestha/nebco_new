@@ -58,7 +58,7 @@ type ProjectsResponsibilitySectionProps = {
 };
 
 /**
- * 04 / WORK BY RESPONSIBILITY — three flush panels with provided icons + backgrounds.
+ * 04 / WORK BY RESPONSIBILITY - three flush panels with provided icons + backgrounds.
  */
 export function ProjectsResponsibilitySection({
   onSelect,

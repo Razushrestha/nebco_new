@@ -2,7 +2,7 @@ import { ContactWhatHappensNextSection } from "@/components/sections/ContactWhat
 import { ContactOtherConnectionsSection } from "@/components/sections/ContactOtherConnectionsSection";
 
 /**
- * Contact — 04 + 05 in one desktop viewport.
+ * Contact - 04 + 05 in one desktop viewport.
  */
 export function ContactNextConnectionsBand() {
   return (

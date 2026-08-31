@@ -7,7 +7,7 @@ const GOLD_MUTED = "#a8864d";
 export function ConsultingHero() {
   return (
     <section className="consulting-hero relative flex h-auto min-h-[calc(100svh-88px)] flex-col overflow-hidden bg-[#111111] lg:h-[calc(100svh-88px)] lg:flex-row">
-      {/* Left — content panel */}
+      {/* Left - content panel */}
       <div className="consulting-hero__panel relative z-10 flex min-h-[380px] flex-col justify-center px-7 py-10 sm:px-9 sm:py-12 lg:min-h-0 lg:px-11 lg:py-10 xl:px-14">
         <ConstructionHeroBlueprint />
         <div className="hero-grid-bg pointer-events-none absolute inset-0 opacity-[0.35]" aria-hidden="true" />
@@ -27,7 +27,7 @@ export function ConsultingHero() {
           </h1>
 
           <p className="consulting-hero__body">
-            End-to-end real estate development and construction project management—from land evaluation
+            End-to-end real estate development and construction project management - from land evaluation
             to a functioning asset.
           </p>
 
@@ -51,7 +51,7 @@ export function ConsultingHero() {
         </div>
       </div>
 
-      {/* Right — design composite */}
+      {/* Right - design composite */}
       <div className="consulting-hero__visual relative min-h-[300px] flex-1 sm:min-h-[340px] lg:min-h-0">
         <ConsultingHeroCollage />
       </div>

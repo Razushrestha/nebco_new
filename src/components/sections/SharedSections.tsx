@@ -43,40 +43,35 @@ function CTABlueprint() {
   );
 }
 
+/** Wireframe PNGs are white-on-black - screen blend drops the black onto dark red. */
 function CTABlueprintImages({ left, right }: { left?: string; right?: string }) {
   return (
-    <>
+    <div className="cta-band__blueprints pointer-events-none absolute inset-0" aria-hidden="true">
       {left && (
-        <div
-          className="pointer-events-none absolute bottom-[-8%] left-[-2%] h-[130%] w-[min(34vw,380px)] opacity-[0.22]"
-          aria-hidden="true"
-        >
+        <div className="cta-band__blueprint cta-band__blueprint--left">
           <Image
             src={left}
             alt=""
             fill
             unoptimized
             className="object-contain object-left-bottom"
-            sizes="380px"
+            sizes="(max-width: 1024px) 42vw, 420px"
           />
         </div>
       )}
       {right && (
-        <div
-          className="pointer-events-none absolute bottom-[-10%] right-[-3%] h-[140%] w-[min(40vw,460px)] opacity-[0.24]"
-          aria-hidden="true"
-        >
+        <div className="cta-band__blueprint cta-band__blueprint--right">
           <Image
             src={right}
             alt=""
             fill
             unoptimized
             className="object-contain object-right-bottom"
-            sizes="460px"
+            sizes="(max-width: 1024px) 48vw, 520px"
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
 
@@ -105,35 +100,28 @@ export function CTABand({
   const hasCustomBlueprints = Boolean(blueprintLeft || blueprintRight);
 
   return (
-    <section className={`relative overflow-hidden ${isRed ? "bg-nebco-red" : "bg-arch-black"}`}>
+    <section
+      className={`cta-band relative overflow-hidden ${
+        isRed ? "cta-band--red bg-[#9a1a1f]" : "bg-arch-black"
+      }`}
+    >
       {isRed && hasCustomBlueprints && (
         <CTABlueprintImages left={blueprintLeft} right={blueprintRight} />
       )}
       {isRed && blueprint && !hasCustomBlueprints && <CTABlueprint />}
 
-      <div className="container-nebco relative z-10 py-12 lg:py-14 xl:py-16">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
-          <div className="max-w-xl lg:max-w-2xl">
-            <h2 className="type-h2 text-white tracking-tight">{title}</h2>
-            {subtitle && (
-              <p className="mt-3 lg:mt-4 text-[14px] lg:text-[15px] text-white/85 leading-[1.65] max-w-[34rem]">
-                {subtitle}
-              </p>
-            )}
-          </div>
+      <div className="cta-band__inner relative z-10">
+        <h2 className="cta-band__heading">{title}</h2>
 
+        {subtitle ? <p className="cta-band__body">{subtitle}</p> : <span className="cta-band__body-spacer" aria-hidden="true" />}
+
+        <div className="cta-band__action">
           <Link
             href={buttonHref}
-            className={`inline-flex items-center justify-center shrink-0 px-7 lg:px-8 py-3.5 lg:py-4 text-[11px] lg:text-[12px] font-heading font-bold uppercase tracking-[0.08em] transition-all duration-200 hover:brightness-[0.97] ${
-              isRed
-                ? "bg-white text-nebco-red hover:bg-ivory-light"
-                : "bg-nebco-red text-white hover:bg-nebco-red-hover"
-            }`}
+            className={`cta-band__btn ${isRed ? "cta-band__btn--on-red" : "cta-band__btn--on-dark"}`}
           >
             {buttonLabel}
-            <span className="ml-2" aria-hidden="true">
-              →
-            </span>
+            <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
@@ -174,7 +162,7 @@ export function ProjectCard({
           large ? "aspect-[4/5] min-h-[280px] lg:aspect-auto lg:h-full" : "aspect-[4/3]"
         }`}
       >
-        {/* Front — photo */}
+        {/* Front - photo */}
         <div className="absolute inset-0 overflow-hidden [backface-visibility:hidden]">
           <Image
             src={image}
@@ -200,7 +188,7 @@ export function ProjectCard({
           </div>
         </div>
 
-        {/* Back — solid info face */}
+        {/* Back - solid info face */}
         <div
           className={`absolute inset-0 flex flex-col justify-end p-5 sm:p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] ${backTone}`}
         >

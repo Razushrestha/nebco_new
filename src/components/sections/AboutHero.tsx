@@ -11,7 +11,7 @@ const BLACK = "#000000";
 
 /**
  * Shared diagonal system (/% of full hero width on lg+).
- * All seams are parallel `/` cuts — same SLANT top→bottom.
+ * All seams are parallel `/` cuts - same SLANT top→bottom.
  * Copy | 1970s+ | Today | 2020s+
  */
 const SLANT = 8.5;
@@ -27,7 +27,7 @@ const S1_BOT = S1_MID - SLANT / 2;
 const S2_TOP = S2_MID + SLANT / 2;
 const S2_BOT = S2_MID - SLANT / 2;
 
-/** Zero gap — seams are only the SVG hairline (no white band between clips). */
+/** Zero gap - seams are only the SVG hairline (no white band between clips). */
 const GAP = 0;
 
 function seamX(top: number, bot: number, y: number) {
@@ -44,16 +44,16 @@ const ERA_LABELS = ["1970s+", "Today", "2020s+"] as const;
 
 const SLICES = [
   {
-    src: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=1000&q=80",
-    alt: "Historical construction foundations",
+    src: IMAGES.aboutFoundationSite,
+    alt: "Early construction work that shaped the company",
     clip: `polygon(${COPY_TOP + GAP}% 0, ${S1_TOP - GAP}% 0, ${S1_BOT - GAP}% 100%, ${COPY_BOT + GAP}% 100%)`,
-    className: "object-cover object-[42%_40%] grayscale contrast-[1.08] saturate-[0.3]",
+    className: "object-cover object-[45%_45%] grayscale contrast-[1.1]",
   },
   {
-    src: IMAGES.qualityInspector,
-    alt: "Engineers reviewing plans on site today",
+    src: IMAGES.aboutStoryPlans,
+    alt: "Engineers reviewing drawings on an active site today",
     clip: `polygon(${S1_TOP + GAP}% 0, ${S2_TOP - GAP}% 0, ${S2_BOT - GAP}% 100%, ${S1_BOT + GAP}% 100%)`,
-    className: "object-cover object-[50%_28%]",
+    className: "object-cover object-[50%_38%]",
   },
   {
     src: IMAGES.nightBuilding,
@@ -135,7 +135,7 @@ function CopyBlock({ className = "" }: { className?: string }) {
 }
 
 /**
- * True pixel hairline trend — measures the collage box and draws 1px CSS
+ * True pixel hairline trend - measures the collage box and draws 1px CSS
  * segments in screen space so diagonals never fatten from SVG stretching.
  */
 function TrendOverlay({
@@ -238,7 +238,7 @@ function EraDateRail({
             }}
             aria-hidden="true"
           />
-          {/* Hairline where black meets cream — same angle as the hero seam */}
+          {/* Hairline where black meets cream - same angle as the hero seam */}
           <svg
             className="pointer-events-none absolute inset-0 z-[1] h-full w-full"
             viewBox="0 0 100 100"
@@ -261,20 +261,32 @@ function EraDateRail({
       )}
 
       {ERA_LABELS.map((label, i) => (
-        <p
+        <span
           key={label}
-          className="absolute top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-heading text-[12px] font-medium tracking-[0.06em] sm:text-[13px]"
-          style={{ left: `${centers[i]}%`, color: GOLD }}
+          className="absolute top-1/2 z-[2] flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 sm:gap-4"
+          style={{ left: `${centers[i]}%` }}
         >
-          {label}
-        </p>
+          <span
+            className="block h-px w-8 sm:w-12"
+            style={{ backgroundColor: `${GOLD}80` }}
+            aria-hidden="true"
+          />
+          <span className="whitespace-nowrap font-heading text-[12px] font-medium tracking-[0.06em] sm:text-[13px]" style={{ color: GOLD }}>
+            {label}
+          </span>
+          <span
+            className="block h-px w-8 sm:w-12"
+            style={{ backgroundColor: `${GOLD}80` }}
+            aria-hidden="true"
+          />
+        </span>
       ))}
     </div>
   );
 }
 
 /**
- * About hero — full single-screen cover (viewport minus sticky header).
+ * About hero - full single-screen cover (viewport minus sticky header).
  */
 export function AboutHero() {
   return (
@@ -282,7 +294,7 @@ export function AboutHero() {
       className="flex h-[calc(100svh-88px)] min-h-[calc(100svh-88px)] max-h-[calc(100svh-88px)] flex-col overflow-hidden"
       style={{ backgroundColor: BLACK }}
     >
-      {/* —— Mobile: stacked copy + collage filling the screen —— */}
+      {/* -- Mobile: stacked copy + collage filling the screen -- */}
       <div className="flex min-h-0 flex-1 flex-col lg:hidden">
         <div className="shrink-0 px-6 py-8 sm:px-8 sm:py-10">
           <CopyBlock className="max-w-[22rem]" />
@@ -307,7 +319,7 @@ export function AboutHero() {
         <EraDateRail centers={M_CX} className="h-[44px] sm:h-[48px]" />
       </div>
 
-      {/* —— Desktop: unified slant bands —— */}
+      {/* -- Desktop: unified slant bands -- */}
       <div className="relative hidden min-h-0 flex-1 bg-black lg:block">
         <div
           className="absolute inset-0 z-[5] flex flex-col justify-center px-10 xl:px-12"

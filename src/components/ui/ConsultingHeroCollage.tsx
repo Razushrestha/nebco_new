@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { IMAGES } from "@/lib/images";
 
-/** Right panel — design composite (building, data overlays, meeting scene). */
+/** Right panel - design composite (building, data overlays, meeting scene). */
 export function ConsultingHeroCollage() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-[#1a1a1a]">

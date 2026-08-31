@@ -117,83 +117,123 @@ function IconShieldCheck({ className }: { className?: string }) {
 }
 
 /**
- * 06 Dual CTA + 07 Disclaimer + closing CTA — one desktop viewport.
+ * 06 / Landowner + Strategic Participant dual CTA.
+ */
+export function InvestmentsLandownerParticipantSection({
+  compact = false,
+}: {
+  compact?: boolean;
+} = {}) {
+  const panelPad = compact
+    ? "px-5 py-5 sm:px-6 sm:py-5 lg:px-7 lg:py-6"
+    : "px-6 py-7 sm:px-8 sm:py-8 lg:px-9 lg:py-9 xl:px-11 xl:py-10";
+  const iconClass = compact
+    ? "h-14 w-14 sm:h-16 sm:w-16"
+    : "h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] lg:h-[5.25rem] lg:w-[5.25rem]";
+  const titleClass = compact
+    ? "text-[0.95rem] leading-[1.25] sm:text-[1.05rem]"
+    : "text-[1.05rem] leading-[1.25] sm:text-[1.15rem] lg:text-[1.25rem]";
+  const bodyClass = compact
+    ? "mt-1.5 text-[11.5px] leading-[1.5] sm:text-[12px]"
+    : "mt-2 text-[12.5px] leading-[1.55] sm:mt-2.5 sm:text-[13px]";
+  const btnClass = compact
+    ? "mt-3 px-3 py-2 text-[9px] sm:mt-3.5 sm:text-[9.5px]"
+    : "mt-4 px-4 py-2.5 text-[10px] sm:mt-5 sm:text-[10.5px]";
+
+  return (
+    <section className={compact ? "shrink-0" : undefined}>
+      <p
+        className={`font-heading font-semibold uppercase tracking-[0.16em] text-nebco-red ${
+          compact ? "text-[9.5px] sm:text-[10px]" : "text-[10px] sm:text-[11px]"
+        }`}
+      >
+        06 / LANDOWNER + STRATEGIC PARTICIPANT
+      </p>
+
+      <div className={`relative border border-nebco-red ${compact ? "mt-2.5 lg:mt-3" : "mt-4 lg:mt-5"}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Landowner - cream panel */}
+          <article
+            className={`relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 bg-[#f5f2ed] sm:gap-x-5 lg:gap-x-6 lg:border-r lg:border-nebco-red ${panelPad}`}
+          >
+            <span className="col-start-1 row-start-1 self-center" style={{ color: GOLD }} aria-hidden="true">
+              <IconLandPlot className={iconClass} />
+            </span>
+
+            <div className="col-start-2 row-start-1 flex min-w-0 flex-col items-start text-left">
+              <p
+                role="heading"
+                aria-level={3}
+                className={`m-0 w-full text-left font-heading font-extrabold tracking-[-0.02em] text-arch-black ${titleClass}`}
+              >
+                Have Land with Development Potential?
+              </p>
+              <p className={`m-0 w-full text-left text-[#4a4a4a] ${bodyClass}`}>
+                Let&apos;s explore how your land can be developed through a structured partnership.
+              </p>
+              <Link
+                href="/contact?type=opportunity"
+                className={`inline-flex shrink-0 items-center gap-2 self-start border border-nebco-red font-heading font-bold uppercase tracking-[0.1em] text-nebco-red transition-colors hover:bg-nebco-red hover:text-white ${btnClass}`}
+              >
+                Submit an Opportunity
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </article>
+
+          {/* Strategic participant - red panel */}
+          <article
+            className={`relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 bg-nebco-red text-white sm:gap-x-5 lg:gap-x-6 ${panelPad}`}
+          >
+            <span className="col-start-1 row-start-1 self-center text-white" aria-hidden="true">
+              <IconBuildings className={iconClass} />
+            </span>
+
+            <div className="col-start-2 row-start-1 flex min-w-0 flex-col items-start text-left">
+              <p
+                role="heading"
+                aria-level={3}
+                className={`m-0 w-full text-left font-heading font-extrabold tracking-[-0.02em] text-white ${titleClass}`}
+              >
+                Interested in Project-Specific Collaboration?
+              </p>
+              <p className={`m-0 w-full text-left text-white/90 ${bodyClass}`}>
+                Partner with us in select projects where our capabilities and your capital can create
+                value.
+              </p>
+              <Link
+                href="/investments#models"
+                className={`inline-flex shrink-0 items-center gap-2 self-start border border-white font-heading font-bold uppercase tracking-[0.1em] text-white transition-colors hover:bg-white hover:text-nebco-red ${btnClass}`}
+              >
+                Explore Partnership Models
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </article>
+        </div>
+
+        {/* OR badge - bottom center seam */}
+        <span
+          className={`absolute bottom-0 left-1/2 z-[3] flex -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border border-nebco-red bg-white font-heading font-bold uppercase leading-none tracking-[0.1em] text-arch-black ${
+            compact ? "h-7 w-7 text-[8px]" : "h-8 w-8 text-[9px] lg:h-9 lg:w-9 lg:text-[10px]"
+          }`}
+          aria-hidden="true"
+        >
+          OR
+        </span>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * 07 Disclaimer + closing CTA.
  */
 export function InvestmentsClosingPairSection() {
   return (
     <div className="flex flex-col bg-[#f5f2ed]">
-      {/* 06 */}
-      <div className="mx-auto w-full max-w-[1440px] shrink-0 px-6 pb-3 pt-5 sm:px-8 sm:pb-3.5 sm:pt-6 lg:px-10 lg:pb-3 lg:pt-5 xl:px-12">
-        <section>
-          <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.16em] text-nebco-red sm:text-[11px]">
-            06 / LANDOWNER + STRATEGIC PARTICIPANT
-          </p>
-
-          <div className="relative mt-4 border border-nebco-red lg:mt-5">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              {/* Landowner — icon left, copy right */}
-              <article className="relative flex items-center gap-5 bg-[#f5f2ed] px-5 py-6 sm:gap-6 sm:px-7 sm:py-7 lg:gap-7 lg:border-r lg:border-nebco-red lg:px-8 lg:py-8 xl:gap-8 xl:px-10">
-                <span className="shrink-0 text-nebco-red" aria-hidden="true">
-                  <IconLandPlot className="h-[4.5rem] w-[4.5rem] sm:h-[5.25rem] sm:w-[5.25rem] lg:h-[5.75rem] lg:w-[5.75rem]" />
-                </span>
-
-                <div className="min-w-0 flex-1">
-                  <h3 className="max-w-[17rem] font-heading text-[1.05rem] font-extrabold leading-[1.2] tracking-[-0.02em] text-nebco-red sm:text-[1.15rem] lg:text-[1.2rem]">
-                    Have Land with Development Potential?
-                  </h3>
-                  <p className="mt-2 max-w-[22rem] text-[12px] leading-[1.5] text-nebco-red/85 sm:text-[12.5px]">
-                    Let&apos;s explore how your land can be developed through a structured partnership.
-                  </p>
-
-                  <Link
-                    href="/contact?type=opportunity"
-                    className="mt-4 inline-flex w-fit items-center gap-2 border border-nebco-red px-3.5 py-2 font-heading text-[9.5px] font-bold uppercase tracking-[0.1em] text-nebco-red transition-colors hover:bg-nebco-red hover:text-white sm:mt-5 sm:px-4 sm:py-2.5 sm:text-[10px]"
-                  >
-                    Submit an Opportunity
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </article>
-
-              {/* Strategic participant — icon left, copy right */}
-              <article className="relative flex items-center gap-5 bg-nebco-red px-5 py-6 text-white sm:gap-6 sm:px-7 sm:py-7 lg:gap-7 lg:px-8 lg:py-8 xl:gap-8 xl:px-10">
-                <span className="shrink-0 text-white" aria-hidden="true">
-                  <IconBuildings className="h-[4.5rem] w-[4.5rem] sm:h-[5.25rem] sm:w-[5.25rem] lg:h-[5.75rem] lg:w-[5.75rem]" />
-                </span>
-
-                <div className="min-w-0 flex-1">
-                  <h3 className="max-w-[19rem] font-heading text-[1.05rem] font-extrabold leading-[1.2] tracking-[-0.02em] text-white sm:text-[1.15rem] lg:text-[1.2rem]">
-                    Interested in Project-Specific Collaboration?
-                  </h3>
-                  <p className="mt-2 max-w-[23rem] text-[12px] leading-[1.5] text-white/88 sm:text-[12.5px]">
-                    Partner with us in select projects where our capabilities and your capital can create
-                    value.
-                  </p>
-
-                  <Link
-                    href="/investments#models"
-                    className="mt-4 inline-flex w-fit items-center gap-2 border border-white px-3.5 py-2 font-heading text-[9.5px] font-bold uppercase tracking-[0.1em] text-white transition-colors hover:bg-white hover:text-nebco-red sm:mt-5 sm:px-4 sm:py-2.5 sm:text-[10px]"
-                  >
-                    Explore Partnership Models
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </article>
-            </div>
-
-            {/* OR badge — bottom center seam */}
-            <span
-              className="absolute bottom-0 left-1/2 z-[3] hidden h-8 w-8 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border border-nebco-red bg-white font-heading text-[9px] font-bold uppercase leading-none tracking-[0.1em] text-nebco-red lg:flex"
-              aria-hidden="true"
-            >
-              OR
-            </span>
-          </div>
-        </section>
-      </div>
-
-      {/* 07 / DISCLAIMER — full-bleed marble parchment band */}
-      <section className="relative mt-5 shrink-0 overflow-visible border-t border-[#d5cfc4] lg:mt-6">
+      {/* 07 / DISCLAIMER - full-bleed marble parchment band */}
+      <section className="relative shrink-0 overflow-visible border-t border-[#d5cfc4]">
         <div className="relative overflow-hidden">
           <div
             className="absolute inset-0"

@@ -91,7 +91,7 @@ function SelectChevron() {
 }
 
 /**
- * Contact — 02 / General Project Enquiry
+ * Contact - 02 / General Project Enquiry
  * Left intro + white form card matching the design mock.
  */
 export function ContactEnquiryFormSection() {
@@ -106,10 +106,10 @@ export function ContactEnquiryFormSection() {
   return (
     <section id="form" className="bg-[#f5f2ed]">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-6 py-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] lg:gap-12 lg:px-10 lg:py-16 xl:gap-16 xl:px-12">
-        {/* Left copy — vertical rule, stacked clock, short gold underline */}
+        {/* Left copy - vertical rule, stacked clock, short gold underline */}
         <div className="relative lg:pt-1">
           <div className="relative pl-5 sm:pl-6">
-            {/* Red vertical spine — full content height */}
+            {/* Red vertical spine - full content height */}
             <div
               className="absolute bottom-0 left-0 top-0 w-[2px] bg-nebco-red"
               aria-hidden="true"
@@ -128,11 +128,11 @@ export function ContactEnquiryFormSection() {
               direction.
             </p>
 
-            {/* Clock above text, gold rule below — matches mock stack */}
+            {/* Clock above text, gold rule below - matches mock stack */}
             <div className="mt-9 sm:mt-11">
               <ClockIcon />
               <p className="mt-3 max-w-[18rem] text-[13.5px] leading-[1.5] text-arch-black/65 sm:mt-3.5 sm:text-[14px]">
-                We typically respond within 1–2 working days.
+                We typically respond within 1-2 working days.
               </p>
               <div
                 className="mt-4 h-px w-12 sm:mt-5 sm:w-14"

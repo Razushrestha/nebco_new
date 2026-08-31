@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-/** Floor-plan blueprint image for the proposal panel (section 06) — hairline gold draft lines */
+/** Floor-plan blueprint image for the proposal panel (section 06) - hairline gold draft lines */
 export function ProposalBlueprintOverlay() {
   return (
     <div

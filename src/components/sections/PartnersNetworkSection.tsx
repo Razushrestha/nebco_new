@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 /**
- * Partners — External Professional Network
+ * Partners - External Professional Network
  * Dark split: left copy + right discipline tabs, flush card rail, legend.
  */
 

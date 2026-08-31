@@ -1,7 +1,7 @@
 const STROKE = "#a8864d";
 
 /**
- * Far-right margin marker — hairline vertical with a short horizontal cross
+ * Far-right margin marker - hairline vertical with a short horizontal cross
  * intersecting ~14% from the top (matches design reference proportions).
  */
 export function StageMarginRail() {

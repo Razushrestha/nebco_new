@@ -186,7 +186,7 @@ function JourneyWireframe() {
 }
 
 /**
- * 05 / Typical Journey — 8-step horizontal process timeline.
+ * 05 / Typical Journey - 8-step horizontal process timeline.
  */
 export function NrnTypicalJourneySection({ compact = false }: { compact?: boolean }) {
   return (

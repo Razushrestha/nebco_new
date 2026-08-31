@@ -52,7 +52,7 @@ function StepIcon({
 
   switch (type) {
     case "team":
-      /* Two overlapping busts — rear left, front right */
+      /* Two overlapping busts - rear left, front right */
       return (
         <svg {...common}>
           <circle cx="20" cy="18" r="5" {...s} />
@@ -62,7 +62,7 @@ function StepIcon({
         </svg>
       );
     case "person":
-      /* Large single bust — focal point of highlight card */
+      /* Large single bust - focal point of highlight card */
       return (
         <svg {...common}>
           <circle cx="28" cy="18" r="7.2" {...s} />

@@ -4,7 +4,7 @@ import { NrnDigitalVisibilitySection } from "@/components/sections/NrnDigitalVis
 import { NrnTypicalJourneySection } from "@/components/sections/NrnTypicalJourneySection";
 
 /**
- * 04 Digital Visibility + 05 Typical Journey — one desktop viewport.
+ * 04 Digital Visibility + 05 Typical Journey - one desktop viewport.
  */
 export function NrnVisibilityJourneyBand() {
   return (

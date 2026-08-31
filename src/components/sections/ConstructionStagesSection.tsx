@@ -184,7 +184,7 @@ function StageRow({ stage }: { stage: (typeof STAGES)[number] }) {
 
 export function ConstructionStagesSection() {
   return (
-    <section className="flex flex-col border-t border-soft-concrete/70 bg-ivory-light pt-8 lg:h-screen lg:max-h-[100dvh] lg:min-h-[640px] lg:pt-9 xl:pt-10">
+    <section className="flex flex-col bg-ivory-light pt-8 lg:h-screen lg:max-h-[100dvh] lg:min-h-[640px] lg:pt-9 xl:pt-10">
       <div className="container-nebco mb-5 shrink-0 lg:mb-4 xl:mb-5">
         <div className="flex items-center gap-4 lg:gap-5">
           <SectionEyebrow

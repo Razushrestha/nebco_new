@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const LOGO_PATH = "/nebco-light-ligi.png";
-/** Square-cropped hub mark — artwork centroid at 50%/50% for ring centering. */
+/** Square-cropped hub mark - artwork centroid at 50%/50% for ring centering. */
 export const HUB_LOGO_PATH = "/nebco-hub-mark.png";
 
 export type LogoSize = "header" | "footer" | "compact" | "hub";
@@ -20,12 +20,12 @@ interface LogoImageProps {
   priority?: boolean;
 }
 
-/** Brand mark image — use inside layouts or diagrams (no link). */
+/** Brand mark image - use inside layouts or diagrams (no link). */
 export function LogoImage({ size = "header", className = "", priority = false }: LogoImageProps) {
   return (
     <Image
       src={LOGO_PATH}
-      alt="NEBCO — A Class Company"
+      alt="NEBCO - A Class Company"
       width={180}
       height={108}
       priority={priority}
@@ -46,7 +46,7 @@ function variantToSize(variant: LogoProps["variant"]): LogoSize {
   return "header";
 }
 
-/** Site logo — links to home. */
+/** Site logo - links to home. */
 export function Logo({ variant = "dark", className = "", showSubtitle: _showSubtitle = true }: LogoProps) {
   return (
     <Link href="/" className={`inline-flex shrink-0 ${className}`} aria-label="NEBCO home">

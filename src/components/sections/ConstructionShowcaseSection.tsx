@@ -194,7 +194,7 @@ function FeaturedProjectCard({
       }`}
       style={{ animationDelay: animated ? "0.15s" : undefined }}
     >
-      {/* Portrait image — ~50% of featured card, full card height */}
+      {/* Portrait image - ~50% of featured card, full card height */}
       <div className="relative min-h-[260px] overflow-hidden sm:min-h-[320px] lg:min-h-0 lg:h-full">
         <Image
           src={project.image}
@@ -291,11 +291,11 @@ export function ConstructionShowcaseSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-ivory-light border-t border-soft-concrete/70">
-      {/* 05 + 06 — spaced cards, ascending widths */}
+    <section ref={sectionRef} className="bg-ivory-light">
+      {/* 05 + 06 - spaced cards, ascending widths */}
       <div className="container-nebco !px-4 sm:!px-5 lg:!px-7 xl:!px-9 py-6 lg:py-8">
         <div className="grid grid-cols-1 md:grid-cols-[0.62fr_1fr_1.28fr] lg:grid-cols-[0.58fr_1fr_1.42fr] xl:grid-cols-[0.55fr_1fr_1.45fr] gap-2.5 md:gap-2.5 lg:gap-3">
-          {/* 05a — photo card */}
+          {/* 05a - photo card */}
           <div
             className={`flex flex-col bg-ivory-light overflow-hidden min-h-[380px] md:min-h-[460px] lg:min-h-[490px] ${
               inView ? "showcase-image-reveal" : ""
@@ -320,7 +320,7 @@ export function ConstructionShowcaseSection() {
             </div>
           </div>
 
-          {/* 05b — quality card */}
+          {/* 05b - quality card */}
           <div className="bg-arch-black text-white px-6 sm:px-7 lg:px-8 xl:px-9 py-7 sm:py-8 lg:py-9 flex flex-col min-h-[380px] md:min-h-[460px] lg:min-h-[490px]">
             <h2
               className={`font-heading font-bold text-[1.05rem] sm:text-[1.12rem] lg:text-[1.2rem] xl:text-[1.26rem] leading-[1.28] tracking-tight max-w-[17rem] ${
@@ -355,7 +355,7 @@ export function ConstructionShowcaseSection() {
             </ul>
           </div>
 
-          {/* 06 — proposal card */}
+          {/* 06 - proposal card */}
           <div className="relative flex min-h-[380px] flex-col overflow-hidden bg-nebco-red-dark px-6 py-7 text-white sm:min-h-[460px] sm:px-7 sm:py-8 md:min-h-[460px] lg:min-h-[490px] lg:px-8 lg:py-9 xl:px-9">
             <ProposalBlueprintOverlay />
 
@@ -402,8 +402,8 @@ export function ConstructionShowcaseSection() {
         </div>
       </div>
 
-      {/* 07 — selected work */}
-      <div className="container-nebco !px-5 sm:!px-6 lg:!px-8 xl:!px-10 py-8 lg:py-10 xl:py-12 border-t border-soft-concrete/70 bg-ivory-light">
+      {/* 07 - selected work */}
+      <div className="container-nebco !px-5 sm:!px-6 lg:!px-8 xl:!px-10 py-8 lg:py-10 xl:py-12 bg-ivory-light">
         <div
           className={`flex items-center gap-4 lg:gap-5 mb-6 lg:mb-7 ${inView ? "showcase-step-rise" : ""}`}
           style={{ animationDelay: inView ? "0.1s" : undefined }}

@@ -10,7 +10,7 @@ const PANEL = "#111111";
 const CREAM = "#f5f2ed";
 
 /**
- * Diagonal `/` — black ~38% at top, ~52% at bottom so the portal straddles the seam.
+ * Diagonal `/` - black ~38% at top, ~52% at bottom so the portal straddles the seam.
  */
 const ANGLE = { top: 38, bottom: 52 } as const;
 const BLACK_CLIP = `polygon(0 0, ${ANGLE.top}% 0, ${ANGLE.bottom}% 100%, 0 100%)`;
@@ -126,7 +126,7 @@ function StatusMark({ tone }: { tone: "green" | "amber" }) {
   );
 }
 
-/** Project Portal floating card — matches NRN hero mock */
+/** Project Portal floating card - matches NRN hero mock */
 function ProjectPortalCard() {
   return (
     <div
@@ -176,7 +176,7 @@ function ProjectPortalCard() {
               />
             </div>
             <p className="mt-2 font-heading text-[11.5px] font-bold leading-snug text-arch-black sm:mt-2.5 sm:text-[12.5px]">
-              Basement Slab – Area B
+              Basement Slab - Area B
             </p>
             <p className="mt-1 text-[10.5px] leading-snug text-arch-black/55 sm:text-[11px]">
               Rebar tying and MEP sleeves in progress.
@@ -215,7 +215,7 @@ function ProjectPortalCard() {
             Milestone
           </p>
           <div className="mt-1.5 flex items-end justify-between gap-3">
-            <p className="text-[11.5px] font-medium text-arch-black sm:text-[12px]">Structure – Level 2</p>
+            <p className="text-[11.5px] font-medium text-arch-black sm:text-[12px]">Structure - Level 2</p>
             <p className="text-[11px] font-semibold text-arch-black sm:text-[11.5px]">65%</p>
           </div>
           <div className="mt-2 h-[7px] w-full overflow-hidden rounded-[2px] bg-[#e4dfd6]">
@@ -228,7 +228,7 @@ function ProjectPortalCard() {
 }
 
 /**
- * NRN hero — diagonal dark panel + site photo + Project Portal card.
+ * NRN hero - diagonal dark panel + site photo + Project Portal card.
  * Portal is absolutely placed so it straddles the diagonal like the mock.
  */
 export function NrnHero() {
@@ -248,7 +248,7 @@ export function NrnHero() {
           className="pointer-events-none absolute inset-0 bg-[#111111]/88 lg:hidden"
           aria-hidden="true"
         />
-        {/* Mobile — wireframe over photo, under copy */}
+        {/* Mobile - wireframe over photo, under copy */}
         <div className="pointer-events-none absolute inset-0 z-[1] lg:hidden">
           <NrnHeroWireframe />
         </div>
@@ -264,7 +264,7 @@ export function NrnHero() {
         <NrnHeroWireframe />
       </div>
 
-      {/* Copy — sits in the dark panel */}
+      {/* Copy - sits in the dark panel */}
       <div className="relative z-20 mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
         <div className="nrn-hero__panel relative flex flex-1 flex-col justify-between px-6 py-12 sm:px-8 sm:py-14 lg:max-w-[min(42%,32rem)] lg:px-10 lg:py-16 xl:max-w-[36rem] xl:px-12 xl:pl-14">
           <div className="relative z-[1] flex flex-1 flex-col justify-between lg:my-auto">
@@ -274,7 +274,7 @@ export function NrnHero() {
               </p>
 
               <h1 className="nrn-hero__heading mt-5 tracking-[-0.02em] text-white sm:mt-6">
-                <span className="block">Develop your property in Nepal—</span>
+                <span className="block">Develop your property in Nepal-</span>
                 <span className="block">without losing visibility or control.</span>
               </h1>
 
@@ -327,14 +327,14 @@ export function NrnHero() {
           </div>
         </div>
 
-        {/* Mobile / tablet portal — in flow */}
+        {/* Mobile / tablet portal - in flow */}
         <div className="relative z-20 px-6 pb-12 sm:px-8 sm:pb-14 lg:hidden">
           <ProjectPortalCard />
         </div>
       </div>
 
       {/*
-        Desktop portal — pinned to the right edge, vertically centered over the photo.
+        Desktop portal - pinned to the right edge, vertically centered over the photo.
       */}
       <div className="pointer-events-none absolute inset-0 z-30 hidden lg:block">
         <div className="relative mx-auto h-full w-full max-w-[1440px]">

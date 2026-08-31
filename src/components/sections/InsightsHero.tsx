@@ -7,7 +7,7 @@ const GOLD = "#c5a059";
 const PANEL = "#111111";
 
 /**
- * Diagonal `/` — narrower dark panel at top, wider at bottom.
+ * Diagonal `/` - narrower dark panel at top, wider at bottom.
  * Matches the Insights hero mock (no red seam).
  */
 const ANGLE = { top: 42, bottom: 56 } as const;
@@ -18,7 +18,7 @@ const PHOTO_LEFT = "34%";
 const VALUES = ["Experience", "Integrity", "Timely Delivery"] as const;
 
 /**
- * Gold skyline — sits on the gold baseline.
+ * Gold skyline - sits on the gold baseline.
  * Cluster of buildings + small square mark (matches mock).
  */
 function SkylineOnRail() {
@@ -42,7 +42,7 @@ function SkylineOnRail() {
 }
 
 /**
- * Insights hero — diagonal dark panel + site planning photo.
+ * Insights hero - diagonal dark panel + site planning photo.
  */
 export function InsightsHero() {
   return (
@@ -65,7 +65,7 @@ export function InsightsHero() {
         />
       </div>
 
-      {/* Mobile — full-bleed with dark scrim for type */}
+      {/* Mobile - full-bleed with dark scrim for type */}
       <div className="absolute inset-0 z-0 lg:hidden">
         <Image
           src={IMAGES.insightsHero}
@@ -109,12 +109,12 @@ export function InsightsHero() {
           </div>
 
           {/*
-            Gold skyline + baseline + values — one composition:
+            Gold skyline + baseline + values - one composition:
             icons sit ON the gold line; tagline left-aligned under the icon.
           */}
           <div className="relative mt-10 w-full max-w-[32rem] sm:mt-12 lg:mt-auto lg:pt-10">
             <div className="relative">
-              {/* Gold baseline — full width; icons sit on it */}
+              {/* Gold baseline - full width; icons sit on it */}
               <div
                 className="absolute bottom-0 left-0 right-0 h-px"
                 style={{ backgroundColor: GOLD }}

@@ -1,7 +1,7 @@
 import { DevelopmentJourneySection } from "@/components/sections/DevelopmentJourneySection";
 import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection";
 
-/** Sections 03 + 04 — exactly one viewport on desktop. */
+/** Sections 03 + 04 - exactly one viewport on desktop. */
 export function DevelopmentWorkSection() {
   return (
     <section className="w-full bg-ivory-light lg:flex lg:h-[100svh] lg:max-h-[100svh] lg:min-h-[100svh] lg:flex-col">

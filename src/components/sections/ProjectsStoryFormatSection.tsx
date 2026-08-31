@@ -45,7 +45,7 @@ const STEPS: readonly StoryStep[] = [
   },
 ] as const;
 
-/** Connector: ... —— ● —— ... (dotted outer, solid mid with center node) */
+/** Connector: ... -- ● -- ... (dotted outer, solid mid with center node) */
 function StepConnector() {
   return (
     <div
@@ -89,12 +89,12 @@ type ProjectsStoryFormatSectionProps = {
 };
 
 /**
- * 05 / PROJECT STORY FORMAT — icons, copy, dotted/solid connectors, blueprint.
+ * 05 / PROJECT STORY FORMAT - icons, copy, dotted/solid connectors, blueprint.
  */
 export function ProjectsStoryFormatSection({ compact = false }: ProjectsStoryFormatSectionProps) {
   return (
     <section className={`relative overflow-hidden ${compact ? "" : "bg-[#f5f2ed]"}`}>
-      {/* Architectural sketch — right side, faded like the design */}
+      {/* Architectural sketch - right side, faded like the design */}
       <div
         className="pointer-events-none absolute inset-y-0 right-0 w-[min(46%,480px)]"
         aria-hidden="true"
@@ -152,7 +152,7 @@ export function ProjectsStoryFormatSection({ compact = false }: ProjectsStoryFor
           ))}
         </div>
 
-        {/* Desktop — centered icons when compact (single-screen pair) */}
+        {/* Desktop - centered icons when compact (single-screen pair) */}
         <div className={`hidden lg:block ${compact ? "mt-5" : "mt-11 lg:mt-12"}`}>
           <div className={`relative grid grid-cols-5 gap-x-5 xl:gap-x-7`}>
             {compact ? (

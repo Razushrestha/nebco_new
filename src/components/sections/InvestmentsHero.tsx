@@ -25,7 +25,7 @@ function SurveyCrosshair() {
 export function InvestmentsHero() {
   return (
     <section className="relative flex min-h-[calc(100svh-88px)] flex-col overflow-hidden bg-[#111111] lg:block lg:min-h-[calc(100svh-88px)]">
-      {/* Full-bleed dusk building — flush to right edge */}
+      {/* Full-bleed dusk building - flush to right edge */}
       <div className="absolute inset-0 hidden overflow-hidden lg:block">
         <Image
           src={IMAGES.investmentsHero}
@@ -53,17 +53,31 @@ export function InvestmentsHero() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-6 pb-5 pt-12">
-          <p
-            className="font-mono text-[9px] font-medium uppercase tracking-[0.14em]"
-            style={{ color: GOLD }}
-          >
-            Disciplined evaluation. Structured partnership. Shared value.
-          </p>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-5 pb-5 pt-12">
+          <div className="flex items-center gap-3">
+            <div className="relative h-px min-w-0 flex-1" style={{ backgroundColor: GOLD }} aria-hidden="true">
+              <span
+                className="absolute right-0 top-1/2 size-[4px] -translate-y-1/2 rounded-full"
+                style={{ backgroundColor: GOLD }}
+              />
+            </div>
+            <p
+              className="max-w-[14rem] shrink-0 text-center font-heading text-[8px] font-semibold uppercase leading-snug tracking-[0.12em] sm:max-w-none sm:text-[9px] sm:tracking-[0.14em]"
+              style={{ color: GOLD }}
+            >
+              Disciplined evaluation. Structured partnership. Shared value.
+            </p>
+            <div className="relative h-px min-w-0 flex-1" style={{ backgroundColor: GOLD }} aria-hidden="true">
+              <span
+                className="absolute left-0 top-1/2 size-[4px] -translate-y-1/2 rounded-full"
+                style={{ backgroundColor: GOLD }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Left content — one flush-left stack matching the mock */}
+      {/* Left content - one flush-left stack matching the mock */}
       <div className="relative z-10 order-1 flex flex-1 flex-col justify-between px-7 py-12 sm:px-9 sm:py-14 lg:absolute lg:inset-0 lg:px-12 lg:pb-9 lg:pt-10 xl:px-14 xl:pb-10 xl:pt-11">
         <div className="flex w-full max-w-[40rem] flex-col items-start text-left">
           <p
@@ -114,7 +128,7 @@ export function InvestmentsHero() {
         </p>
       </div>
 
-      {/* Gold surveying line + coordinates — top-right of photo */}
+      {/* Gold surveying line + coordinates - top-right of photo */}
       <div
         className="pointer-events-none absolute bottom-24 right-10 top-8 z-20 hidden lg:block xl:right-12 xl:bottom-28 xl:top-9"
         aria-hidden="true"
@@ -141,16 +155,27 @@ export function InvestmentsHero() {
         </div>
       </div>
 
-      {/* Bottom tagline on photo — gold rule inline left of text */}
-      <div className="pointer-events-none absolute bottom-4 right-6 z-20 hidden lg:block xl:bottom-5 xl:right-10">
-        <div className="flex items-center justify-end gap-3">
-          <div className="h-px w-10 shrink-0 sm:w-12" style={{ backgroundColor: GOLD }} aria-hidden="true" />
+      {/* Bottom tagline - right side over the photo, gold rules + end dots */}
+      <div className="pointer-events-none absolute bottom-0 right-0 z-20 hidden lg:block lg:left-[min(52%,38rem)] xl:left-[min(50%,36rem)]">
+        <div className="flex items-center gap-3.5 py-5 pr-10 pl-4 xl:gap-4 xl:py-6 xl:pr-14 xl:pl-5">
+          <div className="relative h-px min-w-[2.5rem] flex-1" style={{ backgroundColor: GOLD }} aria-hidden="true">
+            <span
+              className="absolute right-0 top-1/2 size-[5px] -translate-y-1/2 rounded-full"
+              style={{ backgroundColor: GOLD }}
+            />
+          </div>
           <p
-            className="whitespace-nowrap font-heading text-[9px] font-semibold uppercase tracking-[0.14em] xl:text-[10px] xl:tracking-[0.16em]"
+            className="shrink-0 whitespace-nowrap font-heading text-[9px] font-semibold uppercase tracking-[0.16em] xl:text-[10px] xl:tracking-[0.18em]"
             style={{ color: GOLD }}
           >
             Disciplined evaluation. Structured partnership. Shared value.
           </p>
+          <div className="relative h-px min-w-[2.5rem] flex-1" style={{ backgroundColor: GOLD }} aria-hidden="true">
+            <span
+              className="absolute left-0 top-1/2 size-[5px] -translate-y-1/2 rounded-full"
+              style={{ backgroundColor: GOLD }}
+            />
+          </div>
         </div>
       </div>
     </section>

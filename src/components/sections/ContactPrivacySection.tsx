@@ -35,7 +35,7 @@ function ShieldLockIcon() {
 }
 
 /**
- * Contact — 06 / Confidentiality + Privacy
+ * Contact - 06 / Confidentiality + Privacy
  * Shield copy + agreement checkbox matching the design mock.
  */
 export function ContactPrivacySection() {
@@ -49,7 +49,7 @@ export function ContactPrivacySection() {
         </p>
 
         <div className="mt-5 grid grid-cols-1 gap-6 sm:mt-6 lg:grid-cols-[minmax(0,1.45fr)_auto_minmax(0,0.9fr)] lg:items-center lg:gap-0">
-          {/* Left — icon + copy */}
+          {/* Left - icon + copy */}
           <div className="flex items-start gap-4 sm:gap-5 lg:pr-10 xl:pr-12">
             <ShieldLockIcon />
             <div className="min-w-0 pt-0.5">
@@ -63,7 +63,7 @@ export function ContactPrivacySection() {
             </div>
           </div>
 
-          {/* Short vertical gold rule — desktop */}
+          {/* Short vertical gold rule - desktop */}
           <div className="hidden self-stretch px-8 lg:flex xl:px-10" aria-hidden="true">
             <span
               className="my-[8%] w-px self-stretch"
@@ -71,7 +71,7 @@ export function ContactPrivacySection() {
             />
           </div>
 
-          {/* Right — agreement */}
+          {/* Right - agreement */}
           <div className="lg:pl-2 xl:pl-4">
             <label className="flex cursor-pointer items-start gap-3">
               <span className="relative mt-0.5 flex h-[15px] w-[15px] shrink-0 items-center justify-center">

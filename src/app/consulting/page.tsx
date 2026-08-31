@@ -3,11 +3,7 @@
 import { useState } from "react";
 import { ConsultingHero } from "@/components/sections/ConsultingHero";
 import { ConsultingQuestionSection } from "@/components/sections/ConsultingQuestionSection";
-import {
-  ConsultingServeContent,
-  ConsultingServeTabs,
-  type AudienceId,
-} from "@/components/sections/ConsultingServeSection";
+import { ConsultingServeSection } from "@/components/sections/ConsultingServeSection";
 import { ConsultingPillarsSection } from "@/components/sections/ConsultingPillarsSection";
 import {
   ConsultingDevelopmentProcessPanel,
@@ -17,7 +13,6 @@ import { ConsultingDisciplinesSection } from "@/components/sections/ConsultingDi
 import { ConsultingEngageEarlySection } from "@/components/sections/ConsultingEngageEarlySection";
 
 export default function ConsultingPage() {
-  const [serveId, setServeId] = useState<AudienceId>("landowners");
   const [packageId, setPackageId] = useState("land");
 
   return (
@@ -27,8 +22,7 @@ export default function ConsultingPage() {
       <div className="consulting-intro-screen">
         <ConsultingQuestionSection />
         <div className="consulting-intro-screen__serve">
-          <ConsultingServeTabs activeId={serveId} onSelect={setServeId} />
-          <ConsultingServeContent activeId={serveId} />
+          <ConsultingServeSection />
         </div>
       </div>
 

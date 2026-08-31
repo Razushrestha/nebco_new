@@ -5,22 +5,29 @@ import { useLayoutEffect, useState, type RefObject } from "react";
 const GOLD = "#c5a059";
 const RED = "#bc2026";
 
-/** Blueprint center — horizontal fraction within the photo column */
-const PHOTO_TARGET_X = 0.28;
+/** Person / site focal point - fraction across the photo column */
+const PHOTO_TARGET_X = 0.36;
 
-/** Gold crosshair reticle; red vertical drop continues below via overlay */
+/**
+ * Gold concentric target. Red arms continue the overlay lines through center.
+ */
 function ConstructionHeroCrosshair() {
   return (
-    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true" className="block">
-      <circle cx="28" cy="28" r="23" stroke={GOLD} strokeWidth="1.25" />
-      <circle cx="28" cy="28" r="13" stroke={GOLD} strokeWidth="1.1" />
-      {/* Gold ticks above center */}
-      <line x1="28" y1="3" x2="28" y2="9" stroke={GOLD} strokeWidth="1.05" strokeLinecap="round" />
-      <line x1="28" y1="47" x2="28" y2="53" stroke={GOLD} strokeWidth="1.05" strokeLinecap="round" />
-      <line x1="3" y1="28" x2="9" y2="28" stroke={GOLD} strokeWidth="1.05" strokeLinecap="round" />
-      <line x1="47" y1="28" x2="53" y2="28" stroke={GOLD} strokeWidth="1.05" strokeLinecap="round" />
-      {/* Short red segment below center — continues as overlay drop line */}
-      <line x1="28" y1="28" x2="28" y2="34" stroke={RED} strokeWidth="2" strokeLinecap="round" />
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true" className="block drop-shadow-sm">
+      <circle cx="36" cy="36" r="29" stroke={GOLD} strokeWidth="1.5" />
+      <circle cx="36" cy="36" r="17" stroke={GOLD} strokeWidth="1.35" />
+
+      {/* Gold - up + right */}
+      <line x1="36" y1="1" x2="36" y2="12" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="36" y1="7" x2="36" y2="22" stroke={GOLD} strokeWidth="1.25" strokeLinecap="round" />
+      <line x1="60" y1="36" x2="71" y2="36" stroke={GOLD} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="50" y1="36" x2="65" y2="36" stroke={GOLD} strokeWidth="1.25" strokeLinecap="round" />
+
+      {/* Red - left + down (meet overlay strokes) */}
+      <line x1="1" y1="36" x2="36" y2="36" stroke={RED} strokeWidth="2.25" strokeLinecap="round" />
+      <line x1="36" y1="36" x2="36" y2="71" stroke={RED} strokeWidth="2.25" strokeLinecap="round" />
+
+      <circle cx="36" cy="36" r="2.4" fill={RED} />
     </svg>
   );
 }
@@ -29,41 +36,47 @@ type TargetGeometry = {
   startX: number;
   lineY: number;
   targetX: number;
-  sectionHeight: number;
+  dropHeight: number;
 };
 
 type ConstructionHeroTargetingProps = {
   sectionRef: RefObject<HTMLElement | null>;
   photoRef: RefObject<HTMLElement | null>;
-  anchorRef: RefObject<HTMLElement | null>;
+  /** Element whose right-center is the line origin (View Projects control) */
+  anchorEl: HTMLElement | null;
 };
 
-function measureGeometry(
+function readGeometry(
   section: HTMLElement,
   photo: HTMLElement,
   anchor: HTMLElement,
-): TargetGeometry {
-  const sectionRect = section.getBoundingClientRect();
-  const photoRect = photo.getBoundingClientRect();
-  const anchorRect = anchor.getBoundingClientRect();
+): TargetGeometry | null {
+  const s = section.getBoundingClientRect();
+  const p = photo.getBoundingClientRect();
+  const a = anchor.getBoundingClientRect();
 
-  const startX = anchorRect.right - sectionRect.left;
-  const lineY = anchorRect.top + anchorRect.height / 2 - sectionRect.top;
-  const targetX = photoRect.left - sectionRect.left + photoRect.width * PHOTO_TARGET_X;
+  if (s.width < 32 || p.width < 32 || a.width < 8 || a.height < 8) return null;
+
+  const startX = a.right - s.left;
+  const lineY = a.top + a.height / 2 - s.top;
+  const targetX = p.left - s.left + p.width * PHOTO_TARGET_X;
+
+  // Need the target to sit to the right of the button
+  if (targetX - startX < 24) return null;
 
   return {
     startX,
     lineY,
     targetX,
-    sectionHeight: sectionRect.height,
+    dropHeight: Math.max(s.height - lineY, 48),
   };
 }
 
-/** Red targeting lines from View Projects through blueprint crosshair */
+/** Red line from View Projects + gold target on the construction photo */
 export function ConstructionHeroTargeting({
   sectionRef,
   photoRef,
-  anchorRef,
+  anchorEl,
 }: ConstructionHeroTargetingProps) {
   const [geometry, setGeometry] = useState<TargetGeometry | null>(null);
 
@@ -71,69 +84,73 @@ export function ConstructionHeroTargeting({
     const update = () => {
       const section = sectionRef.current;
       const photo = photoRef.current;
-      const anchor = anchorRef.current;
-      if (!section || !photo || !anchor) return;
-
-      setGeometry(measureGeometry(section, photo, anchor));
+      if (!section || !photo || !anchorEl) {
+        setGeometry(null);
+        return;
+      }
+      setGeometry(readGeometry(section, photo, anchorEl));
     };
 
     update();
 
+    const timers = [0, 50, 150, 400].map((ms) => window.setTimeout(update, ms));
     const raf = window.requestAnimationFrame(update);
-    window.addEventListener("resize", update);
 
+    window.addEventListener("resize", update);
+    window.addEventListener("load", update);
+
+    const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
     const section = sectionRef.current;
     const photo = photoRef.current;
-    const anchor = anchorRef.current;
-
-    const observer =
-      typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
-
     if (observer) {
       if (section) observer.observe(section);
       if (photo) observer.observe(photo);
-      if (anchor) observer.observe(anchor);
+      if (anchorEl) observer.observe(anchorEl);
     }
 
     return () => {
+      timers.forEach(clearTimeout);
       window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", update);
+      window.removeEventListener("load", update);
       observer?.disconnect();
     };
-  }, [sectionRef, photoRef, anchorRef]);
+  }, [sectionRef, photoRef, anchorEl]);
 
   if (!geometry) return null;
 
-  const { startX, lineY, targetX, sectionHeight } = geometry;
-  const horizontalWidth = Math.max(targetX - startX, 0);
+  const { startX, lineY, targetX, dropHeight } = geometry;
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[30] hidden lg:block" aria-hidden="true">
-      {/* Horizontal red line — level with View Projects button center */}
+    <div
+      className="construction-hero__targeting pointer-events-none absolute inset-0 z-[50] hidden lg:block"
+      aria-hidden="true"
+    >
+      {/* Horizontal red - button mid → target center */}
       <div
-        className="absolute bg-nebco-red"
+        className="absolute"
         style={{
           left: startX,
-          top: lineY,
-          width: horizontalWidth,
-          height: "2px",
-          transform: "translateY(-50%)",
+          top: lineY - 1,
+          width: targetX - startX,
+          height: 2,
+          backgroundColor: RED,
         }}
       />
 
-      {/* Vertical red drop — centered on crosshair, from center downward */}
+      {/* Vertical red drop */}
       <div
-        className="absolute bg-nebco-red"
+        className="absolute"
         style={{
-          left: targetX,
+          left: targetX - 1,
           top: lineY,
-          width: "2px",
-          height: sectionHeight - lineY,
-          transform: "translateX(-50%)",
+          width: 2,
+          height: dropHeight,
+          backgroundColor: RED,
         }}
       />
 
-      {/* Gold crosshair — centered exactly on line intersection */}
+      {/* Gold target */}
       <div
         className="absolute"
         style={{

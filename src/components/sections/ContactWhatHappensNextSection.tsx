@@ -26,7 +26,7 @@ const STEPS = [
 ] as const;
 
 /**
- * Contact — 04 / What Happens Next
+ * Contact - 04 / What Happens Next
  * Horizontal process timeline matching the design mock.
  */
 export function ContactWhatHappensNextSection({ compact = false }: { compact?: boolean }) {
@@ -46,7 +46,7 @@ export function ContactWhatHappensNextSection({ compact = false }: { compact?: b
         </p>
 
         {/*
-          Desktop timeline — equal quarters (no column gap) so the rail
+          Desktop timeline - equal quarters (no column gap) so the rail
           left/right 12.5% lands exactly on the first & last circle centers.
         */}
         <div

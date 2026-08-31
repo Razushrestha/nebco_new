@@ -84,7 +84,7 @@ export function ConsultingEngageEarlySection() {
             property become?
           </h2>
           <p className="consulting-engage-early-cta__body">
-            Let&apos;s explore the possibilities—together.
+            Let&apos;s explore the possibilities - together.
           </p>
 
           <div className="consulting-engage-early-cta__action">

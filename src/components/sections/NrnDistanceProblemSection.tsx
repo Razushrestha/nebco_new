@@ -4,7 +4,7 @@ import Image from "next/image";
 import { IMAGES } from "@/lib/images";
 
 /**
- * 01 / The Distance Problem — three equal columns: copy | remote | on-site.
+ * 01 / The Distance Problem - three equal columns: copy | remote | on-site.
  */
 export function NrnDistanceProblemSection() {
   return (
@@ -49,7 +49,7 @@ export function NrnDistanceProblemSection() {
           />
         </div>
 
-        {/* Red connector — centered on gutter between photos */}
+        {/* Red connector - centered on gutter between photos */}
         <div className="distance-problem__connector" aria-hidden="true">
           <span className="distance-problem__connector-line" />
           <span className="distance-problem__connector-node" />

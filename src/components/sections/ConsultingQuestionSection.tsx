@@ -5,7 +5,7 @@ export function ConsultingQuestionSection() {
   return (
     <section className="consulting-question relative overflow-hidden">
       <div className="consulting-question__grid">
-        {/* Left — copy */}
+        {/* Left - copy */}
         <div className="consulting-question__copy">
           <p className="consulting-question__eyebrow">
             01 / THE QUESTION BEFORE THE DRAWING
@@ -33,7 +33,7 @@ export function ConsultingQuestionSection() {
           </p>
         </div>
 
-        {/* Right — panoramic transition image (full-bleed to viewport edge) */}
+        {/* Right - panoramic transition image (full-bleed to viewport edge) */}
         <div className="consulting-question__visual">
           <Image
             src={IMAGES.consultingQuestionVisual}

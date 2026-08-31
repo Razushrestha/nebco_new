@@ -107,7 +107,7 @@ function CheckIcon() {
 }
 
 /**
- * 01 Our Approach + 02 Who Can Approach Us — one cream band,
+ * 01 Our Approach + 02 Who Can Approach Us - one cream band,
  * matched to the design mockup.
  */
 export function InvestmentsApproachPairSection() {
@@ -117,9 +117,9 @@ export function InvestmentsApproachPairSection() {
   return (
     <section className="relative overflow-hidden bg-[#f7f4ef]">
       <div className="relative z-[1] mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-12 xl:gap-12 xl:px-14 xl:py-14">
-        {/* ——— 01 / OUR APPROACH ——— */}
+        {/* --- 01 / OUR APPROACH --- */}
         <div className="relative shrink-0">
-          <div className="relative grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-10 xl:gap-14">
+          <div className="relative grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 xl:gap-12">
             <div className="relative min-w-0">
               <div
                 className="pointer-events-none absolute bottom-0 right-0 z-0 h-[52%] w-[100%] max-w-[28rem] translate-x-[20%]"
@@ -135,26 +135,28 @@ export function InvestmentsApproachPairSection() {
                 />
               </div>
 
-              <div className="relative z-[1]">
-                <p className="font-heading text-[9px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[10px]">
+              <div className="relative z-[1] flex flex-col items-start text-left">
+                <p className="font-heading text-[10px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[11px]">
                   01 / OUR APPROACH
                 </p>
 
-                <h2 className="mt-2.5 max-w-[26rem] font-heading text-[1.55rem]! font-extrabold! leading-[1.2]! tracking-[-0.02em] text-arch-black sm:text-[1.75rem]! sm:max-w-[30rem] lg:mt-3 lg:max-w-[32rem] lg:text-[1.85rem]! xl:max-w-none xl:text-[2.05rem]!">
-                  Participation is built on feasibility—
-                  <br />
-                  not assumptions.
+                <h2 className="mt-3.5 max-w-[22ch] text-left font-heading text-[1.35rem] font-extrabold leading-[1.18] tracking-[-0.02em] text-arch-black sm:mt-4 sm:max-w-none sm:text-[1.5rem] lg:text-[clamp(1.4rem,1.35vw+0.85rem,1.7rem)] xl:text-[1.75rem]">
+                  <span className="block xl:whitespace-nowrap">
+                    Participation is built on feasibility-
+                  </span>
+                  <span className="block">not assumptions.</span>
                 </h2>
 
                 <span
-                  className="mt-3 block h-px w-[2.75rem] bg-nebco-red"
+                  className="mt-3.5 block h-[2px] w-10 shrink-0 sm:mt-4 sm:w-11"
+                  style={{ backgroundColor: "#c5a059" }}
                   aria-hidden="true"
                 />
 
-                <div className="mt-3.5 max-w-[26rem] space-y-2.5 text-[12px] leading-[1.55] text-[#4a4a4a] sm:text-[12.5px] lg:leading-[1.6]">
+                <div className="mt-4 max-w-[26rem] space-y-2.5 text-left text-[12px] leading-[1.55] text-[#4a4a4a] sm:mt-4.5 sm:text-[12.5px] lg:leading-[1.6]">
                   <p>
-                    We participate where a project makes sense—on paper and in reality. Our role is to bring
-                    structure, capital, and execution capability—aligned with your goals.
+                    We participate where a project makes sense - on paper and in reality. Our role is to bring
+                    structure, capital, and execution capability - aligned with your goals.
                   </p>
                   <p>
                     Every opportunity is evaluated against clear financial, technical and market criteria before we
@@ -179,7 +181,7 @@ export function InvestmentsApproachPairSection() {
           </div>
         </div>
 
-        {/* ——— 02 / WHO CAN APPROACH US ——— */}
+        {/* --- 02 / WHO CAN APPROACH US --- */}
         <div className="relative z-[2] w-full shrink-0 border-t border-[#ddd6cb] pt-5 lg:pt-4">
           <p className="font-heading text-[9px] font-semibold uppercase tracking-[0.18em] text-nebco-red sm:text-[10px]">
             02 / WHO CAN APPROACH US
@@ -189,13 +191,16 @@ export function InvestmentsApproachPairSection() {
             <div className="grid w-full grid-cols-1 border border-b-0 border-[#d4cdc2] sm:grid-cols-2 lg:grid-cols-5">
               {AUDIENCES.map((aud, i) => {
                 const isActive = aud.id === activeId;
+                const label = aud.labelLines.join(" ");
 
                 return (
                   <button
                     key={aud.id}
                     type="button"
                     onClick={() => setActiveId(aud.id)}
-                    className={`relative flex min-h-[4.25rem] items-center justify-start gap-3.5 px-3 py-3 text-left transition-colors sm:min-h-[4.5rem] lg:min-h-[4.75rem] lg:gap-4 lg:px-4 ${
+                    aria-label={label}
+                    aria-pressed={isActive}
+                    className={`relative flex min-h-[6.5rem] items-center justify-center px-3 py-5 transition-colors sm:min-h-[7rem] lg:min-h-[7.5rem] lg:px-4 ${
                       isActive
                         ? "z-[1] bg-nebco-red text-white"
                         : "z-0 bg-transparent hover:bg-[#efebe3]"
@@ -206,23 +211,12 @@ export function InvestmentsApproachPairSection() {
                     <Image
                       src={aud.icon}
                       alt=""
-                      width={56}
-                      height={56}
-                      className={`h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12 ${
+                      width={128}
+                      height={128}
+                      className={`h-20 w-20 object-contain sm:h-24 sm:w-24 lg:h-[7rem] lg:w-[7rem] ${
                         isActive ? "brightness-0 invert" : "opacity-90"
                       }`}
                     />
-                    <span
-                      className={`font-heading text-[10px] font-bold uppercase leading-[1.25] tracking-[0.04em] sm:text-[10.5px] ${
-                        isActive ? "text-white" : "text-arch-black"
-                      }`}
-                    >
-                      {aud.labelLines.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </span>
                   </button>
                 );
               })}

@@ -46,7 +46,7 @@ const PACKAGES: readonly Package[] = [
   {
     id: "nrn",
     title: "NRN PROJECT MANAGEMENT",
-    description: "Specialized support for NRNs—representation, reporting and end-to-end execution.",
+    description: "Specialized support for NRNs-representation, reporting and end-to-end execution.",
     icon: "/icons/nrn-project-management.png",
   },
 ] as const;
@@ -135,14 +135,32 @@ function PackageIcon({
       role="img"
       aria-label={alt}
     >
-      <Image
-        src={src}
-        alt=""
-        width={72}
-        height={72}
-        unoptimized
-        className="consulting-packages__icon-img"
-      />
+      {src.includes("land-potential") ? (
+        <svg
+          viewBox="0 0 64 64"
+          fill="none"
+          className="consulting-packages__icon-img"
+          aria-hidden="true"
+        >
+          <path
+            d="M32 8c-9.4 0-17 7.4-17 16.5 0 12.2 17 31.5 17 31.5s17-19.3 17-31.5C49 15.4 41.4 8 32 8z"
+            stroke="#bc2026"
+            strokeWidth="2.4"
+            strokeLinejoin="round"
+          />
+          <circle cx="32" cy="24" r="6.5" stroke="#bc2026" strokeWidth="2.4" />
+          <ellipse cx="32" cy="56" rx="9" ry="2.4" stroke="#bc2026" strokeWidth="2" />
+        </svg>
+      ) : (
+        <Image
+          src={src}
+          alt=""
+          width={72}
+          height={72}
+          unoptimized
+          className="consulting-packages__icon-img"
+        />
+      )}
     </span>
   );
 }
@@ -266,7 +284,7 @@ function DevelopmentProcessPanel({ packageId }: { packageId: string }) {
   );
 }
 
-/** 04 / Service packages strip — six selectable package cards. */
+/** 04 / Service packages strip - six selectable package cards. */
 export function ConsultingPackagesStrip({
   activeId,
   onSelect,

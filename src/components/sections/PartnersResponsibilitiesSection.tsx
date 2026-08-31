@@ -1,5 +1,5 @@
 /**
- * Partners — 04 / Responsibilities Remain Clear
+ * Partners - 04 / Responsibilities Remain Clear
  * Left copy + responsibility matrix with gold column icons and red titles.
  */
 
@@ -52,7 +52,7 @@ const ROWS: {
       design: "Contributes",
       feasibility: "Contributes",
       documentation: "Provides",
-      market: "—",
+      market: "-",
       construction: "Executes",
       coordination: "Reports",
     },

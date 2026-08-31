@@ -241,14 +241,25 @@ export function InvestmentsLookForProcessSection({
             </p>
 
             <h2
-              className={`max-w-[22rem] font-heading font-bold! leading-[1.25]! tracking-[-0.02em] ${
+              className={`max-w-[22rem] font-heading font-bold! leading-[1.28]! tracking-[-0.02em] ${
                 compact
                   ? "mt-2.5 text-[1.05rem]! sm:text-[1.15rem]! lg:text-[1.2rem]!"
                   : "mt-5 text-[1.45rem]! sm:mt-6 sm:text-[1.65rem]! lg:text-[1.75rem]!"
               }`}
             >
               <span className="text-white">We focus on opportunities that are </span>
-              <span className="text-nebco-red">aligned, feasible and investable.</span>
+              <span className="text-nebco-red underline decoration-nebco-red decoration-1 underline-offset-[5px]">
+                aligned
+              </span>
+              <span className="text-nebco-red">, </span>
+              <span className="text-nebco-red underline decoration-nebco-red decoration-1 underline-offset-[5px]">
+                feasible
+              </span>
+              <span className="text-nebco-red"> and </span>
+              <span className="text-nebco-red underline decoration-nebco-red decoration-1 underline-offset-[5px]">
+                investable
+              </span>
+              <span className="text-nebco-red">.</span>
             </h2>
 
             <ul className={compact ? "mt-3.5 space-y-1.5" : "mt-8 space-y-3.5 sm:mt-9 sm:space-y-4"}>

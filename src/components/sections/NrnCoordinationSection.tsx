@@ -7,7 +7,7 @@ const GOLD = "#c5a059";
 const RED = "#bc2026";
 const CREAM = "#f5f2ed";
 
-/** Six spokes at 60° — even hexagonal layout around the hub. */
+/** Six spokes at 60° - even hexagonal layout around the hub. */
 const HUB_NODES = [
   { label: "Property", angle: 0, icon: "property" as const, side: "right" as const, accent: "diamond" as const },
   { label: "Consultants", angle: 60, icon: "consultants" as const, side: "right" as const, accent: "reds" as const },
@@ -199,7 +199,7 @@ function CoordinationHub({ highlightedIcon }: { highlightedIcon: (typeof HUB_NOD
           </clipPath>
         </defs>
 
-        {/* Spoke lines — behind hub fill */}
+        {/* Spoke lines - behind hub fill */}
         {spokes.map(({ node, start, end }) => (
           <line
             key={`${node.label}-line`}
@@ -215,7 +215,7 @@ function CoordinationHub({ highlightedIcon }: { highlightedIcon: (typeof HUB_NOD
         {/* Hub center mask */}
         <circle cx={cx} cy={cy} r={ringR + 0.5} fill="#0f0f0f" />
 
-        {/* Logo — square mark, centroid aligned to hub center */}
+        {/* Logo - square mark, centroid aligned to hub center */}
         <image
           href={HUB_LOGO_PATH}
           x={logoX}
@@ -290,7 +290,7 @@ export function NrnCoordinationSection() {
 
   return (
     <div className="nrn-coordination grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-2 lg:items-stretch">
-      {/* 02 — dark hub */}
+      {/* 02 - dark hub */}
       <div className="nrn-coordination__dark flex min-h-0 flex-col bg-[#0f0f0f] px-6 py-8 text-white sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12">
         <p className="nrn-coordination__eyebrow shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           02 / One Local Coordination Point
@@ -306,12 +306,12 @@ export function NrnCoordinationSection() {
         </div>
 
         <p className="nrn-coordination__lede mx-auto max-w-[28rem] shrink-0 text-center text-[12px] leading-[1.55] text-white/65 sm:text-[12.5px]">
-          We coordinate the people, processes and information that keep your project moving—while you stay
+          We coordinate the people, processes and information that keep your project moving - while you stay
           in control.
         </p>
       </div>
 
-      {/* 03 — cream timeline list */}
+      {/* 03 - cream timeline list */}
       <div
         className="nrn-coordination__light flex min-h-0 flex-col px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-7 xl:px-12"
         style={{ backgroundColor: CREAM }}

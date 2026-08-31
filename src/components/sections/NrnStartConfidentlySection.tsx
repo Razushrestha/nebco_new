@@ -155,7 +155,7 @@ function StartConfidentlyPanel({
 }
 
 /**
- * 07 / Start Confidently — closing split CTA for the NRN page.
+ * 07 / Start Confidently - closing split CTA for the NRN page.
  */
 export function NrnStartConfidentlySection({ compact = false }: { compact?: boolean }) {
   if (compact) {

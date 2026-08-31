@@ -4,7 +4,7 @@ import { NrnYouDecideSection } from "@/components/sections/NrnYouDecideSection";
 import { NrnStartConfidentlySection } from "@/components/sections/NrnStartConfidentlySection";
 
 /**
- * 06 You Decide + 07 Start Confidently — one desktop viewport.
+ * 06 You Decide + 07 Start Confidently - one desktop viewport.
  */
 export function NrnDecideStartBand() {
   return (

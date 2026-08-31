@@ -2,7 +2,7 @@ const RED = "#bc2026";
 const GOLD = "#c5a059";
 
 /**
- * Full-hero coordinates (0–100). Left panel ~0–38, visual ~38–100.
+ * Full-hero coordinates (0-100). Left panel ~0-38, visual ~38-100.
  * Thin gold lead-in on the dark blueprint; red curve continues into the collage.
  */
 const GOLD_LEAD = "M 28 90 L 32 84 L 36 78";

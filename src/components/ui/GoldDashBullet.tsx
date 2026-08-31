@@ -1,6 +1,6 @@
 const GOLD = "#c5a059";
 
-/** Thin gold dash — fixed 30×1px for consistent bullet lines */
+/** Thin gold dash - fixed 30×1px for consistent bullet lines */
 export function GoldDashBullet() {
   return (
     <span className="gold-dash-bullet" aria-hidden="true">

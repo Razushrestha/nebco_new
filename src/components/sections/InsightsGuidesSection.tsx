@@ -92,7 +92,7 @@ function GuideIcon({ id }: { id: string }) {
 }
 
 /**
- * Insights — 05 / Guides for Different Readers
+ * Insights - 05 / Guides for Different Readers
  * Three equal cards: large red icon + title/body + Explore Guides.
  */
 export function InsightsGuidesSection() {

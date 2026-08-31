@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 export type HeroAngle = { readonly top: number; readonly bottom: number };
 
 /**
- * Homepage hero diagonal — original reference:
+ * Homepage hero diagonal - original reference:
  * ~36% at top → ~44% at bottom (panel narrows at top, opens toward bottom-right).
  */
 export const HOME_HERO_ANGLE: HeroAngle = { top: 36, bottom: 44 };
@@ -11,11 +11,11 @@ export const HOME_HERO_ANGLE: HeroAngle = { top: 36, bottom: 44 };
 /** @deprecated Use HOME_HERO_ANGLE for homepage; kept for investments hero */
 export const HERO_ANGLE = HOME_HERO_ANGLE;
 
-/** Red seam — thin accent (~4–6px on desktop) */
+/** Red seam - thin accent (~4-6px on desktop) */
 export const HOME_HERO_RED_BAND = 0.52;
 
 /**
- * Investments hero — ~50/50 split, slight `/` diagonal,
+ * Investments hero - ~50/50 split, slight `/` diagonal,
  * red accent thicker at top and tapering down the seam.
  */
 export const INVESTMENTS_HERO_ANGLE: HeroAngle = { top: 50, bottom: 54 };

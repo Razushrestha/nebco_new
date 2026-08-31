@@ -67,6 +67,14 @@ export const IMAGES = {
   qualityWorker:
     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
   qualityInspector: "/images/quality-inspector.jpg",
+  aboutHeroTalent: "/images/about/hero-talent.jpg",
+  aboutHeroInspection: "/images/about/hero-inspection.jpg",
+  // Two hard-hat workers reviewing plans on an active site
+  aboutStoryPlans:
+    "https://images.unsplash.com/photo-1742112125554-fdb788faedaa?w=1600&q=85",
+  // Early-years construction, rendered grayscale
+  aboutFoundationSite:
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80",
   hotelConstruction:
     "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=85",
   schoolBuilding:

@@ -9,7 +9,7 @@ import type { CSSProperties } from "react";
 const GOLD = "#c5a059";
 const PANEL = "#111111";
 
-/** Contact hero diagonal — reference: ~45% top → ~55% bottom */
+/** Contact hero diagonal - reference: ~45% top → ~55% bottom */
 const CONTACT_ANGLE = { top: 45, bottom: 55 } as const;
 
 function contactPanelClip() {

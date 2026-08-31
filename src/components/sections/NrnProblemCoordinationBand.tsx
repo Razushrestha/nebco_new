@@ -4,7 +4,7 @@ import { NrnDistanceProblemSection } from "@/components/sections/NrnDistanceProb
 import { NrnCoordinationSection } from "@/components/sections/NrnCoordinationSection";
 
 /**
- * 01 Distance Problem + 02/03 Coordination — one desktop viewport.
+ * 01 Distance Problem + 02/03 Coordination - one desktop viewport.
  */
 export function NrnProblemCoordinationBand() {
   return (

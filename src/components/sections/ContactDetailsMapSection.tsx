@@ -7,7 +7,7 @@ const GOLD = "#c5a059";
 const RED = "#bc2026";
 const PANEL = "#111111";
 
-/** Official NEBCO office — Google Maps place */
+/** Official NEBCO office - Google Maps place */
 const NEBCO_MAPS_URL =
   "https://www.google.com/maps/place/NEBCO-+Best+Construction+Company+In+Nepal/@27.6869358,85.2991932,18z/data=!4m6!3m5!1s0x39eb1996b5fc27a7:0xf16f8d7e7c578dab!8m2!3d27.6869358!4d85.2991932!16s%2Fg%2F11kq0t2cj1";
 
@@ -46,7 +46,7 @@ const CONTACTS: readonly ContactRow[] = [
   {
     id: "hours",
     title: "Office Hours",
-    lines: ["Sunday – Friday: 9:00 AM – 6:00 PM NST", "(Closed on public holidays)"],
+    lines: ["Sunday - Friday: 9:00 AM - 6:00 PM NST", "(Closed on public holidays)"],
   },
 ];
 
@@ -149,7 +149,7 @@ function ContactIcon({ id }: { id: string }) {
   }
 }
 
-/** Dark gold-road map of NEBCO Kuleshwor — matches contact mock style */
+/** Dark gold-road map of NEBCO Kuleshwor - matches contact mock style */
 function ContactMap() {
   return (
     <div
@@ -158,7 +158,7 @@ function ContactMap() {
     >
       <Image
         src={IMAGES.contactMapDark}
-        alt="NEBCO office location — Kuleshwor, Kathmandu"
+        alt="NEBCO office location - Kuleshwor, Kathmandu"
         fill
         sizes="(max-width: 1024px) 100vw, 50vw"
         className="object-cover object-center"
@@ -185,14 +185,14 @@ function ContactMap() {
 }
 
 /**
- * Contact — 03 / Contact NEBCO
+ * Contact - 03 / Contact NEBCO
  * Dark contact details + black-style map of the Kuleshwor office.
  */
 export function ContactDetailsMapSection() {
   return (
     <section className="text-white" style={{ backgroundColor: PANEL }}>
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
-        {/* Left — details */}
+        {/* Left - details */}
         <div className="relative flex flex-col justify-center px-6 py-12 sm:px-8 sm:py-14 lg:px-10 lg:py-16 xl:px-12">
           <p className="type-label font-semibold uppercase tracking-[0.16em]">
             <span className="text-nebco-red">03 /</span>{" "}
@@ -242,7 +242,7 @@ export function ContactDetailsMapSection() {
             })}
           </ul>
 
-          {/* Vertical gold rule — desktop */}
+          {/* Vertical gold rule - desktop */}
           <div
             className="pointer-events-none absolute bottom-10 right-0 top-10 hidden w-px lg:block"
             style={{ backgroundColor: `${GOLD}55` }}
@@ -250,7 +250,7 @@ export function ContactDetailsMapSection() {
           />
         </div>
 
-        {/* Right — dark map */}
+        {/* Right - dark map */}
         <div className="px-6 pb-12 sm:px-8 sm:pb-14 lg:flex lg:px-10 lg:py-16 xl:px-12">
           <div className="w-full lg:flex-1">
             <ContactMap />

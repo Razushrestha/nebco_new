@@ -7,7 +7,7 @@ type ProjectsResponsibilityStoryPairSectionProps = {
 };
 
 /**
- * 04 Work by Responsibility + 05 Project Story Format — one desktop viewport.
+ * 04 Work by Responsibility + 05 Project Story Format - one desktop viewport.
  */
 export function ProjectsResponsibilityStoryPairSection({
   onSelect,

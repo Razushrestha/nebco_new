@@ -72,14 +72,14 @@ function InsightIcon({ id }: { id: string }) {
 }
 
 /**
- * Insights — 04 / NEBCO Market Perspective
+ * Insights - 04 / NEBCO Market Perspective
  * Dark three-column band: copy + chart image + insight list.
  */
 export function InsightsMarketPerspectiveSection() {
   return (
     <section className="text-white" style={{ backgroundColor: PANEL }}>
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-6 py-12 sm:gap-12 sm:px-8 sm:py-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.1fr)_minmax(0,0.95fr)] lg:items-center lg:gap-10 lg:px-10 lg:py-16 xl:gap-14 xl:px-12">
-        {/* Left — intro */}
+        {/* Left - intro */}
         <div>
           <p className="type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
             04 / Nebco Market Perspective
@@ -104,7 +104,7 @@ export function InsightsMarketPerspectiveSection() {
           </Link>
         </div>
 
-        {/* Center — chart */}
+        {/* Center - chart */}
         <div className="relative min-w-0 overflow-hidden">
           <Image
             src={IMAGES.insightsMarketChart}
@@ -117,7 +117,7 @@ export function InsightsMarketPerspectiveSection() {
           />
         </div>
 
-        {/* Right — insight list */}
+        {/* Right - insight list */}
         <ul className="space-y-7 sm:space-y-8">
           {INSIGHTS.map((item) => (
             <li key={item.id} className="flex items-start gap-3.5 sm:gap-4">

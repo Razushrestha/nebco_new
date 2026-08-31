@@ -89,7 +89,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "c4",
         title: "Should You Find Tenants Before Construction?",
-        excerpt: "When pre-leasing strengthens a commercial brief — and when it does not.",
+        excerpt: "When pre-leasing strengthens a commercial brief - and when it does not.",
         image: IMAGES.brickBuilding,
         minutes: 4,
         href: "/insights",
@@ -98,7 +98,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
   },
   "Real Estate Development": {
     featured: {
-      title: "Joint development or owner-led — which structure fits?",
+      title: "Joint development or owner-led - which structure fits?",
       category: "Real Estate Development",
       body: "Compare control, capital and risk when landowners choose how a project should move forward.",
       image: IMAGES.modernApartment,
@@ -147,7 +147,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
     featured: {
       title: "How to test project feasibility before you commit capital",
       category: "Feasibility & Finance",
-      body: "A clear sequence for cost, revenue and delivery assumptions — before drawings lock you in.",
+      body: "A clear sequence for cost, revenue and delivery assumptions - before drawings lock you in.",
       image: IMAGES.calculatorPlans,
       author: "Author Name Placeholder",
       reviewer: "Reviewed by Name Placeholder",
@@ -175,7 +175,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "f3",
         title: "Contingency that actually protects the programme",
-        excerpt: "Where soft costs hide — and how to surface them early.",
+        excerpt: "Where soft costs hide - and how to surface them early.",
         image: IMAGES.heroBlueprint,
         minutes: 4,
         href: "/insights",
@@ -230,7 +230,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "l4",
         title: "Documents every landowner should prepare first",
-        excerpt: "Title, survey and utilities — the quiet blockers.",
+        excerpt: "Title, survey and utilities - the quiet blockers.",
         image: IMAGES.calculatorPlans,
         minutes: 3,
         href: "/insights",
@@ -253,7 +253,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "n1",
         title: "Remote approval without slowing the site",
-        excerpt: "What needs a signature — and what needs a weekly note.",
+        excerpt: "What needs a signature - and what needs a weekly note.",
         image: IMAGES.consultingMeeting,
         minutes: 4,
         href: "/insights",
@@ -288,7 +288,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
     featured: {
       title: "Should you find tenants before construction?",
       category: "Commercial Leasing",
-      body: "When pre-commitment strengthens design — and when flexibility is worth more than an early lease.",
+      body: "When pre-commitment strengthens design - and when flexibility is worth more than an early lease.",
       image: IMAGES.brickBuilding,
       author: "Author Name Placeholder",
       reviewer: "Reviewed by Name Placeholder",
@@ -315,7 +315,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       },
       {
         id: "cl3",
-        title: "Fit-out responsibility — who owns what",
+        title: "Fit-out responsibility - who owns what",
         excerpt: "Clear lines between base build and tenant works.",
         image: IMAGES.workersPlans,
         minutes: 4,
@@ -355,7 +355,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "reg2",
         title: "Utility clearances that stall good projects",
-        excerpt: "Electricity, water and road cutting — sequence matters.",
+        excerpt: "Electricity, water and road cutting - sequence matters.",
         image: IMAGES.constructionSite,
         minutes: 4,
         href: "/insights",
@@ -363,14 +363,14 @@ const CONTENT: Record<Topic, TopicBundle> = {
       {
         id: "reg3",
         title: "Documentation packs that move faster",
-        excerpt: "What authorities expect — prepared once, reused well.",
+        excerpt: "What authorities expect - prepared once, reused well.",
         image: IMAGES.calculatorPlans,
         minutes: 4,
         href: "/insights",
       },
       {
         id: "reg4",
-        title: "When a variance is realistic — and when it is not",
+        title: "When a variance is realistic - and when it is not",
         excerpt: "Protect programme by testing exceptions early.",
         image: IMAGES.cityKathmandu,
         minutes: 5,
@@ -380,7 +380,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
   },
   "NEBCO News": {
     featured: {
-      title: "NEBCO notes from the field — this quarter",
+      title: "NEBCO notes from the field - this quarter",
       category: "NEBCO News",
       body: "Project milestones, partnership updates and practical lessons from active sites across the Valley.",
       image: IMAGES.constructionHero,
@@ -409,7 +409,7 @@ const CONTENT: Record<Topic, TopicBundle> = {
       },
       {
         id: "news3",
-        title: "Community and construction — working carefully",
+        title: "Community and construction - working carefully",
         excerpt: "Neighbour engagement that protects programme.",
         image: IMAGES.sunsetSite,
         minutes: 3,
@@ -446,7 +446,7 @@ function CalendarIcon() {
 }
 
 /**
- * Insights — 02 / Topics + 03 / Latest Thinking
+ * Insights - 02 / Topics + 03 / Latest Thinking
  * One-screen composition on desktop; topic clicks swap featured + articles.
  */
 export function InsightsTopicsThinkingSection() {
@@ -463,7 +463,7 @@ export function InsightsTopicsThinkingSection() {
 
   return (
     <section className="flex flex-col bg-[#f5f2ed] lg:min-h-[100svh]">
-      {/* 02 / Topics — compact rail */}
+      {/* 02 / Topics - compact rail */}
       <div className="shrink-0 border-y" style={{ borderColor: LINE }}>
         <div className="mx-auto flex max-w-[1440px] items-end gap-4 px-6 py-4 sm:px-8 sm:py-5 lg:px-10 xl:px-12">
           <div className="min-w-0 flex-1">
@@ -518,7 +518,7 @@ export function InsightsTopicsThinkingSection() {
         </div>
       </div>
 
-      {/* 03 / Latest Thinking — featured + four compact cards */}
+      {/* 03 / Latest Thinking - featured + four compact cards */}
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-6 py-5 sm:px-8 sm:py-6 lg:min-h-0 lg:px-10 lg:py-6 xl:px-12">
         <p className="shrink-0 type-label font-semibold uppercase tracking-[0.16em] text-nebco-red">
           03 / Latest Thinking
@@ -616,7 +616,7 @@ function ArticleCardCompact({
         // Tablet 2×2
         index % 2 === 1 ? "sm:border-l" : "",
         index < 2 ? "sm:border-b" : "sm:border-b-0",
-        // Desktop 4-across — vertical rules only
+        // Desktop 4-across - vertical rules only
         index > 0 ? "lg:border-l" : "",
         "lg:border-t-0 lg:border-b-0",
       ].join(" ")}

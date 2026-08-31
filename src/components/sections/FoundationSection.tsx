@@ -23,7 +23,7 @@ const MILESTONES = [
   {
     era: "Today",
     title: "Integrated Platform",
-    desc: "Construction, consulting and investments—aligned.",
+    desc: "Construction, consulting and investments - aligned.",
     imageSrc: "/Web_images/foundation3-trim.png",
     imageWidth: 1378,
     imageHeight: 826,

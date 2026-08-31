@@ -24,7 +24,7 @@ export function TrustSection({ compact = false }: TrustSectionProps) {
       <div className="trust-section__diagram">
         <Image
           src={IMAGES.trustHubDiagram}
-          alt="NEBCO integrated expertise hub — Construction, Marketing, Real Estate, Engineering, Finance, Legal, and Banking"
+          alt="NEBCO integrated expertise hub - Construction, Marketing, Real Estate, Engineering, Finance, Legal, and Banking"
           width={3872}
           height={1056}
           quality={100}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /**
- * Partners — 06 / Work With NEBCO
+ * Partners - 06 / Work With NEBCO
  * Carefully matched to design: 2-line H3, flush centered cards, centered CTA.
  */
 

@@ -27,7 +27,7 @@ function CoordinateCrosshair({ className }: { className?: string }) {
 }
 
 /**
- * Projects page hero — left copy (H2 / H4) + right composite life-cycle image.
+ * Projects page hero - left copy (H2 / H4) + right composite life-cycle image.
  */
 export function ProjectsHero() {
   return (
@@ -42,7 +42,7 @@ export function ProjectsHero() {
         }}
       />
 
-      {/* Left — content */}
+      {/* Left - content */}
       <div className="relative z-10 flex min-h-[420px] flex-col justify-between px-7 py-12 sm:px-9 sm:py-14 lg:min-h-0 lg:flex-[0_0_42%] lg:px-11 lg:pb-10 lg:pt-16 xl:flex-[0_0_40%] xl:px-14 xl:pb-11 xl:pt-[4.5rem]">
         <ConstructionHeroBlueprint />
         <div className="hero-grid-bg pointer-events-none absolute inset-0 opacity-[0.28]" aria-hidden="true" />
@@ -60,12 +60,12 @@ export function ProjectsHero() {
           </h1>
 
           <p className="type-h4 mt-5 max-w-[26rem] font-normal text-white/80 sm:mt-6">
-            Construction, development consulting and project coordination—presented through the role
+            Construction, development consulting and project coordination-presented through the role
             NEBCO actually performed.
           </p>
         </div>
 
-        {/* Coordinates — bottom of left panel */}
+        {/* Coordinates - bottom of left panel */}
         <div className="relative z-[1] mt-10 lg:mt-0">
           <span className="mb-3 block h-px w-full max-w-[16rem] bg-nebco-red/80" aria-hidden="true" />
           <div className="flex items-center gap-2.5" style={{ color: GOLD }}>
@@ -78,11 +78,11 @@ export function ProjectsHero() {
         </div>
       </div>
 
-      {/* Right — provided composite image */}
+      {/* Right - provided composite image */}
       <div className="relative min-h-[360px] flex-1 sm:min-h-[420px] lg:min-h-0">
         <Image
           src={IMAGES.projectsHero}
-          alt="Project life cycle — completed building, construction, and architectural wireframe"
+          alt="Project life cycle - completed building, construction, and architectural wireframe"
           fill
           priority
           className="object-cover object-center"

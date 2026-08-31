@@ -1,6 +1,6 @@
 import { heroPhotoClipPath, HOME_HERO_ANGLE } from "@/components/ui/HeroAngleEdge";
 
-/** Wireframe on photo — blueprint near seam, fades to full render on the right */
+/** Wireframe on photo - blueprint near seam, fades to full render on the right */
 export function HeroPhotoWireframe() {
   const seamMid = (HOME_HERO_ANGLE.top + HOME_HERO_ANGLE.bottom) / 2;
 

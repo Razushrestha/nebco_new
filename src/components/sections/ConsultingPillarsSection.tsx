@@ -28,7 +28,7 @@ const PILLARS: readonly Pillar[] = [
     number: "02",
     title: "CONCEPT & FEASIBILITY",
     description:
-      "We test concepts against market demand, costs and returns—so the idea is commercially viable before design commitment.",
+      "We test concepts against market demand, costs and returns-so the idea is commercially viable before design commitment.",
     points: [
       "Concept options and massing",
       "Market and demand testing",
@@ -40,7 +40,7 @@ const PILLARS: readonly Pillar[] = [
     number: "03",
     title: "PROJECT STRUCTURING",
     description:
-      "We structure the project for clarity, control and bankability—aligning scope, costs, revenue and execution strategy.",
+      "We structure the project for clarity, control and bankability-aligning scope, costs, revenue and execution strategy.",
     points: [
       "Project structure and phasing",
       "Cost planning and budgeting",
@@ -64,7 +64,7 @@ const PILLARS: readonly Pillar[] = [
     number: "05",
     title: "FINANCE COORDINATION",
     description:
-      "We help prepare the project for lenders and partners—clear numbers, documentation and a structure that supports funding.",
+      "We help prepare the project for lenders and partners-clear numbers, documentation and a structure that supports funding.",
     points: [
       "Funding pack and documentation",
       "Lender and partner coordination",
@@ -76,7 +76,7 @@ const PILLARS: readonly Pillar[] = [
     number: "06",
     title: "MARKET & LEASING",
     description:
-      "We align the product with buyer and tenant demand—positioning, pricing logic and go-to-market timing.",
+      "We align the product with buyer and tenant demand-positioning, pricing logic and go-to-market timing.",
     points: [
       "Product and pricing strategy",
       "Sales and leasing readiness",
@@ -88,7 +88,7 @@ const PILLARS: readonly Pillar[] = [
     number: "07",
     title: "CONSTRUCTION PROJECT MANAGEMENT",
     description:
-      "We oversee construction with focus on quality, schedule, cost and safety—delivering the asset as promised.",
+      "We oversee construction with focus on quality, schedule, cost and safety-delivering the asset as promised.",
     points: [
       "Tendering and contractor management",
       "Site supervision and reporting",

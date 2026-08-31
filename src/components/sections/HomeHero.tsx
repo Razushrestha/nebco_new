@@ -45,7 +45,7 @@ export function HomeHero() {
               </h1>
 
               <p className="type-body mt-5 max-w-[25rem] text-white/80">
-                Construction, development intelligence and project coordination—brought together through one
+                Construction, development intelligence and project coordination-brought together through one
                 experienced platform.
               </p>
 

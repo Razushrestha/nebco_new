@@ -3,13 +3,13 @@ import Link from "next/link";
 import { IMAGES } from "@/lib/images";
 
 /**
- * Projects closing CTA — cream band with Himalayan town sketch on the left,
+ * Projects closing CTA - cream band with Himalayan town sketch on the left,
  * copy + discuss button on the right.
  */
 export function ProjectsClosingCtaSection() {
   return (
     <section className="relative overflow-hidden border-t border-[#e4ddd3] border-b border-[#c5a059] bg-[#f5f2ed]">
-      {/* Landscape sketch — left side */}
+      {/* Landscape sketch - left side */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 w-[min(58%,640px)]"
         aria-hidden="true"

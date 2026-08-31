@@ -58,7 +58,7 @@ function HouseBlueprint() {
 }
 
 /**
- * Contact closing CTA — compact red band, house blueprint, outlined enquiry button.
+ * Contact closing CTA - compact red band, house blueprint, outlined enquiry button.
  */
 export function ContactClosingCtaSection() {
   return (

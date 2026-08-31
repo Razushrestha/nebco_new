@@ -5,6 +5,8 @@ import Image from "next/image";
 import { IMAGES } from "@/lib/images";
 
 const GOLD = "#c5a059";
+const GOLD_BORDER = "rgba(197, 160, 89, 0.55)";
+const SERVE_BG = "#0d0d0d";
 
 export type AudienceId =
   | "landowners"
@@ -29,7 +31,7 @@ export const AUDIENCES: readonly Audience[] = [
     label: "LANDOWNERS",
     title: "Landowners",
     description:
-      "You own the land. We help you understand its true potential, the best use, approvals required, likely costs and returns—so you can decide with confidence.",
+      "You own the land. We help you understand its true potential, the best use, approvals required, likely costs and returns-so you can decide with confidence.",
     points: [
       "Land potential and zoning review",
       "Best use and development concept",
@@ -44,7 +46,7 @@ export const AUDIENCES: readonly Audience[] = [
     label: "NRNS",
     title: "NRNs",
     description:
-      "Building or investing from abroad needs a reliable local partner. We coordinate evaluation, decisions and delivery—with clear reporting at every stage.",
+      "Building or investing from abroad needs a reliable local partner. We coordinate evaluation, decisions and delivery - with clear reporting at every stage.",
     points: [
       "Local coordination with digital updates",
       "Documented decisions and milestone reporting",
@@ -209,7 +211,7 @@ export function ConsultingServeTabs({
   onSelect: (id: AudienceId) => void;
 }) {
   return (
-    <div className="consulting-serve-tabs relative">
+    <div className="consulting-serve-tabs relative shrink-0" style={{ backgroundColor: SERVE_BG }}>
       <div
         className="pointer-events-none absolute bottom-0 right-0 top-0 hidden w-[min(28%,280px)] opacity-90 lg:block"
         aria-hidden="true"
@@ -218,16 +220,21 @@ export function ConsultingServeTabs({
       </div>
 
       <div className="relative z-[1] mx-auto max-w-[1440px] px-0">
-        <p
-          className="consulting-serve-tabs__eyebrow font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] sm:text-[11px]"
-          style={{ color: GOLD }}
-        >
-          02 / WHO WE SERVE
-        </p>
+        <div className="consulting-serve-tabs__eyebrow flex items-center gap-3 px-7 sm:px-10 lg:px-12 xl:px-14">
+          <p
+            className="shrink-0 font-mono text-[10.5px] font-medium uppercase tracking-[0.16em] sm:text-[11px]"
+            style={{ color: GOLD }}
+          >
+            02 / WHO WE SERVE
+          </p>
+          <span className="h-px min-w-0 flex-1" style={{ backgroundColor: GOLD }} aria-hidden="true" />
+        </div>
 
         <div
+          role="tablist"
+          aria-label="Who we serve"
           className="flex flex-col border-y lg:flex-row"
-          style={{ borderColor: `${GOLD}55` }}
+          style={{ borderColor: GOLD_BORDER }}
         >
           {AUDIENCES.map((aud, i) => {
             const Icon = TAB_ICONS[aud.id];
@@ -236,13 +243,18 @@ export function ConsultingServeTabs({
               <button
                 key={aud.id}
                 type="button"
+                role="tab"
+                id={`serve-tab-${aud.id}`}
+                aria-selected={isActive}
+                aria-controls="serve-tab-panel"
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => onSelect(aud.id)}
-                className={`consulting-serve-tabs__btn relative flex flex-1 flex-col items-center justify-center gap-1.5 border-b px-2 py-3.5 text-center transition-colors last:border-b-0 lg:border-b-0 lg:px-3 ${
+                className={`consulting-serve-tabs__btn relative z-[2] flex flex-1 cursor-pointer flex-col items-center justify-center gap-1.5 border-b px-2 py-3.5 text-center transition-colors last:border-b-0 lg:border-b-0 lg:px-3 ${
                   isActive
                     ? "bg-nebco-red text-white"
                     : "bg-transparent text-white/90 hover:bg-white/[0.04] hover:text-white"
                 } ${i > 0 ? "lg:border-l" : ""}`}
-                style={{ borderColor: `${GOLD}55` }}
+                style={{ borderColor: GOLD_BORDER }}
               >
                 <Icon className="h-[18px] w-[18px] shrink-0 sm:h-5 sm:w-5" />
                 <span className="max-w-[11rem] font-heading text-[9px] font-semibold uppercase leading-tight tracking-[0.1em] sm:text-[10px] lg:text-[10.5px] lg:tracking-[0.12em]">
@@ -261,8 +273,17 @@ export function ConsultingServeContent({ activeId }: { activeId: AudienceId }) {
   const active = AUDIENCES.find((a) => a.id === activeId) ?? AUDIENCES[0];
 
   return (
-    <div className="consulting-serve-content relative z-[1] mx-auto max-w-[1440px]">
-      <div className="consulting-serve-content__grid grid grid-cols-1 items-start gap-8 px-7 py-10 sm:gap-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-12 lg:px-12 lg:py-14 xl:gap-16 xl:px-14">
+    <div
+      className="consulting-serve-content relative z-[1] mx-auto min-h-0 w-full max-w-[1440px] flex-1"
+      style={{ backgroundColor: SERVE_BG }}
+    >
+      <div
+        key={active.id}
+        id="serve-tab-panel"
+        role="tabpanel"
+        aria-labelledby={`serve-tab-${active.id}`}
+        className="consulting-serve-content__grid grid h-full grid-cols-1 items-start gap-8 px-7 py-10 sm:gap-10 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-12 lg:px-12 lg:py-14 xl:gap-16 xl:px-14"
+      >
         <div className="consulting-serve-content__media relative aspect-[16/10] w-full overflow-hidden sm:aspect-[5/3]">
           <Image
             key={active.image}
@@ -271,17 +292,18 @@ export function ConsultingServeContent({ activeId }: { activeId: AudienceId }) {
             fill
             className={`object-cover ${active.id === "landowners" ? "object-[center_35%]" : "object-center"}`}
             sizes="(max-width: 1024px) 100vw, 48vw"
+            priority={active.id === "landowners"}
           />
         </div>
 
         <div className="consulting-serve-content__copy text-white lg:pt-1">
           <h3 className="consulting-serve-content__title type-h3 tracking-[-0.02em]">{active.title}</h3>
-          <p className="consulting-serve-content__desc mt-4 max-w-[32rem] text-[14px] leading-[1.7] text-white/78 sm:mt-5 sm:text-[15px] lg:leading-[1.72]">
+          <p className="consulting-serve-content__desc mt-4 max-w-[32rem] text-[14px] leading-[1.7] text-white/75 sm:mt-5 sm:text-[15px] lg:leading-[1.72]">
             {active.description}
           </p>
           <ul className="consulting-serve-content__list mt-6 space-y-3.5 sm:mt-7 sm:space-y-4">
             {active.points.map((point) => (
-              <li key={point} className="flex items-center gap-3 text-[13.5px] text-white/80 sm:text-[14.5px]">
+              <li key={point} className="flex items-center gap-3 text-[13.5px] text-white/78 sm:text-[14.5px]">
                 <IconCheckGold className="h-[18px] w-[18px] shrink-0 sm:h-5 sm:w-5" />
                 <span>{point}</span>
               </li>
@@ -297,9 +319,12 @@ export function ConsultingServeSection() {
   const [activeId, setActiveId] = useState<AudienceId>("landowners");
 
   return (
-    <section className="consulting-serve relative overflow-hidden bg-[#121212]">
+    <div
+      className="consulting-serve relative flex min-h-0 flex-1 flex-col overflow-hidden"
+      style={{ backgroundColor: SERVE_BG }}
+    >
       <ConsultingServeTabs activeId={activeId} onSelect={setActiveId} />
       <ConsultingServeContent activeId={activeId} />
-    </section>
+    </div>
   );
 }

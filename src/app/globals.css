@@ -15,7 +15,7 @@
   --background: #efe9e2;
   --foreground: #1a1a1a;
 
-  /* Brand type scale (px → rem @ 16) — size / line-height */
+  /* Brand type scale (px → rem @ 16) - size / line-height */
   --type-h1-size: 4rem; /* 64 */
   --type-h1-leading: 4.5rem; /* 72 */
   --type-h2-size: 3rem; /* 48 */
@@ -26,6 +26,8 @@
   --type-h4-leading: 2rem; /* 32 */
   --type-h5-size: 1.125rem; /* 18 */
   --type-h5-leading: 1.5rem; /* 24 */
+  --type-h6-size: 1rem; /* 16 */
+  --type-h6-leading: 1.5rem; /* 24 */
   --type-body-size: 1rem; /* 16 */
   --type-body-leading: 1.625rem; /* 26 */
   --type-small-size: 0.875rem; /* 14 */
@@ -35,7 +37,7 @@
   --type-label-size: 0.75rem; /* 12 */
   --type-label-leading: 1rem; /* 16 */
 
-  /* Shared horizontal inset — matches .container-nebco */
+  /* Shared horizontal inset - matches .container-nebco */
   --nebco-gutter: 1.5rem;
 }
 
@@ -86,6 +88,9 @@
   --text-h5: var(--type-h5-size);
   --text-h5--line-height: var(--type-h5-leading);
   --text-h5--font-weight: 600;
+  --text-h6: var(--type-h6-size);
+  --text-h6--line-height: var(--type-h6-leading);
+  --text-h6--font-weight: 600;
   --text-body: var(--type-body-size);
   --text-body--line-height: var(--type-body-leading);
   --text-small: var(--type-small-size);
@@ -116,7 +121,7 @@ body {
 }
 
 /*
- * Brand type roles — prefer these over one-off text-[…] sizes.
+ * Brand type roles - prefer these over one-off text-[…] sizes.
  * Desktop matches the type scale; smaller viewports step down proportionally.
  */
 .type-h1,
@@ -159,9 +164,12 @@ h5 {
   line-height: clamp(1.375rem, 1.3rem + 0.4vw, var(--type-h5-leading));
 }
 
+.type-h6,
 h6 {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-weight: 600;
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, var(--type-h6-size));
+  line-height: clamp(1.375rem, 1.3rem + 0.3vw, var(--type-h6-leading));
 }
 
 .type-body {
@@ -209,7 +217,7 @@ h6 {
   background-size: 44px 44px;
 }
 
-/* NRN — hero headline (2-line, smaller than global h1) */
+/* NRN - hero headline (2-line, smaller than global h1) */
 .nrn-hero__heading {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-weight: 700;
@@ -218,7 +226,7 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-/* Wireframe — bottom-right of dark panel, matches reference PNG */
+/* Wireframe - bottom-right of dark panel, matches reference PNG */
 .nrn-hero__wireframe {
   z-index: 2;
   right: -3%;
@@ -248,7 +256,7 @@ h6 {
   }
 }
 
-/* NRN — hero copy column (Partners-style left axis) */
+/* NRN - hero copy column (Partners-style left axis) */
 .nrn-hero__content,
 .nrn-hero__meta {
   text-align: left;
@@ -263,7 +271,7 @@ h6 {
   white-space: nowrap;
 }
 
-/* Construction — hero copy column */
+/* Construction - hero copy column */
 .construction-hero__copy,
 .construction-hero__meta {
   text-align: left;
@@ -294,7 +302,7 @@ h6 {
   white-space: nowrap;
 }
 
-/* Home hero — horizontal CTA pair */
+/* Home hero - horizontal CTA pair */
 .home-hero__actions {
   width: fit-content;
   max-width: 100%;
@@ -304,8 +312,12 @@ h6 {
   white-space: nowrap;
 }
 
+.construction-hero__survey {
+  width: 15px;
+}
+
 .construction-hero__rail {
-  background-color: rgb(197 160 89 / 0.6);
+  background-color: #c5a059;
 }
 
 @media (min-width: 1024px) {
@@ -314,17 +326,22 @@ h6 {
   }
 
   .construction-hero__panel {
-    flex-basis: 55%;
-    max-width: 55%;
+    flex-basis: 52%;
+    max-width: 52%;
+    overflow: visible;
   }
 
   .construction-hero__photo {
-    flex: 1 1 45%;
+    flex: 1 1 48%;
     min-width: 0;
+  }
+
+  .construction-hero__sight-svg {
+    display: block;
   }
 }
 
-/* NRN — 01 Distance Problem (three equal columns) */
+/* NRN - 01 Distance Problem (three equal columns) */
 .distance-problem {
   background-color: var(--ivory-light);
 }
@@ -533,7 +550,7 @@ h6 {
   }
 }
 
-/* NRN — 01 + 02/03 in one viewport */
+/* NRN - 01 + 02/03 in one viewport */
 @media (min-width: 1024px) {
   .nrn-problem-coordination-band {
     height: calc(100svh - 88px);
@@ -591,7 +608,7 @@ h6 {
     padding: 0.65rem 1.25rem 0.5rem 1.5rem;
   }
 
-  /* Dark panel — hub fills full area; copy overlays top-left */
+  /* Dark panel - hub fills full area; copy overlays top-left */
   .nrn-problem-coordination-band .nrn-coordination__dark {
     position: relative;
     height: 100%;
@@ -697,7 +714,7 @@ h6 {
   }
 }
 
-/* Contact — 04 + 05 in one viewport */
+/* Contact - 04 + 05 in one viewport */
 @media (min-width: 1024px) {
   .contact-next-connections-band {
     height: calc(100svh - 88px);
@@ -730,7 +747,7 @@ h6 {
   }
 }
 
-/* Partners — 01 + 02 in one viewport */
+/* Partners - 01 + 02 in one viewport */
 @media (min-width: 1024px) {
   .partners-model-team-band {
     height: calc(100svh - 88px);
@@ -740,9 +757,9 @@ h6 {
   }
 
   .partners-model-team-band .partners-model {
-    flex: 0 0 36%;
+    flex: 0 0 46%;
     min-height: 0;
-    max-height: 36%;
+    max-height: 46%;
     overflow: hidden;
   }
 
@@ -775,39 +792,44 @@ h6 {
   .partners-model-team-band .partners-team {
     flex: 1 1 0;
     min-height: 0;
-    max-height: 64%;
+    max-height: 54%;
     overflow: hidden;
   }
 
   .partners-model-team-band .partners-team > div {
     min-height: 0;
     height: 100%;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .partners-model-team-band .partners-team__grid {
     align-items: stretch;
     min-height: 0;
+    /* Shared row height so MD + silhouette frame tops/bottoms align */
+    grid-template-rows: minmax(0, 1fr) auto;
   }
 
   .partners-model-team-band .partners-team__card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
     min-height: 0;
     height: 100%;
   }
 
   .partners-model-team-band .partners-team__frame {
-    flex: 1 1 auto;
     min-height: 0;
+    width: 100%;
+    height: 100%;
     max-height: none;
     aspect-ratio: auto;
-    height: 100%;
   }
 }
 
 @media (min-width: 1024px) and (max-height: 820px) {
   .partners-model-team-band .partners-model {
-    flex-basis: 34%;
-    max-height: 34%;
+    flex-basis: 44%;
+    max-height: 44%;
   }
 
   .partners-model-team-band .partners-model__heading {
@@ -815,11 +837,11 @@ h6 {
   }
 
   .partners-model-team-band .partners-team {
-    max-height: 66%;
+    max-height: 56%;
   }
 }
 
-/* Partners — 05 + 06 closing pair alignment */
+/* Partners - 05 + 06 closing pair alignment */
 @media (min-width: 768px) {
   .partners-closing-pair__grid {
     grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr);
@@ -880,7 +902,7 @@ h6 {
   }
 }
 
-/* NRN — 05 Typical Journey
+/* NRN - 05 Typical Journey
    Wireframe source: 4162×1024 (~4.06:1). Panoramic sketch behind timeline. */
 .nrn-journey__wireframe {
   position: absolute;
@@ -1092,7 +1114,7 @@ h6 {
   }
 }
 
-/* NRN — 04 + 05 in one viewport */
+/* NRN - 04 + 05 in one viewport */
 @media (min-width: 1024px) {
   .nrn-visibility-journey-band {
     display: flex;
@@ -1299,7 +1321,7 @@ h6 {
   }
 }
 
-/* Shorter viewports — keep all 6 feature rows visible */
+/* Shorter viewports - keep all 6 feature rows visible */
 @media (min-width: 1024px) and (max-height: 860px) {
   .nrn-visibility-journey-band .nrn-digital-visibility--compact {
     padding-top: 0.2rem;
@@ -1351,7 +1373,7 @@ h6 {
   }
 }
 
-/* NRN — 06 + 07 in one viewport */
+/* NRN - 06 + 07 in one viewport */
 @media (min-width: 1024px) {
   .nrn-decide-start-band {
     display: grid;
@@ -1366,7 +1388,7 @@ h6 {
     overflow: hidden;
   }
 
-  /* 06 — red band — match reference proportions */
+  /* 06 - red band - match reference proportions */
   .nrn-decide-start-band .nrn-you-decide {
     display: flex;
     align-items: center;
@@ -1485,7 +1507,7 @@ h6 {
     height: 13px;
   }
 
-  /* 07 — split CTA */
+  /* 07 - split CTA */
   .nrn-decide-start-band .nrn-start-confidently {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1576,7 +1598,7 @@ h6 {
   }
 }
 
-/* 06 — You Decide process flow */
+/* 06 - You Decide process flow */
 .nrn-you-decide__inner {
   display: grid;
   grid-template-columns: 1fr;
@@ -1932,7 +1954,7 @@ h6 {
 }
 
 
-/* 03 / DEVELOPMENT JOURNEY — intro panel + building sketch */
+/* 03 / DEVELOPMENT JOURNEY - intro panel + building sketch */
 .development-journey-intro {
   display: flex;
   min-height: 18rem;
@@ -2199,7 +2221,7 @@ h6 {
   }
 }
 
-/* 03 / DEVELOPMENT JOURNEY — step timeline (+3% spacing scale) */
+/* 03 / DEVELOPMENT JOURNEY - step timeline (+3% spacing scale) */
 .development-journey-timeline {
   --journey-scale: 1.03;
   --journey-column-gap: calc(0.25rem * var(--journey-scale));
@@ -2304,7 +2326,7 @@ h6 {
 }
 
 /*
- * Hero diagonal — original reference (36% top → 44% bottom)
+ * Hero diagonal - original reference (36% top → 44% bottom)
  */
 .hero-panel-clip {
   clip-path: polygon(0 0, var(--hero-angle-top, 36%) 0, var(--hero-angle-bottom, 44%) 100%, 0 100%);
@@ -2358,7 +2380,7 @@ h6 {
   animation: engage-panel-in 0.32s ease forwards;
 }
 
-/* 03 / HOW WE ENGAGE — detail panel */
+/* 03 / HOW WE ENGAGE - detail panel */
 .engage-detail-panel {
   position: relative;
   min-height: 220px;
@@ -2518,7 +2540,7 @@ h6 {
   color: #c5a059;
 }
 
-/* 03 / HOW WE ENGAGE — tab bar */
+/* 03 / HOW WE ENGAGE - tab bar */
 .engage-tablist {
   --engage-icon-size: 120px;
   --engage-tab-color: #8f7358;
@@ -2761,7 +2783,7 @@ h6 {
   animation: capability-panel-in 0.28s ease forwards;
 }
 
-/* Consulting — 05 / Development process timeline */
+/* Consulting - 05 / Development process timeline */
 @keyframes consulting-process-line-draw {
   from {
     transform: translateY(-50%) scaleX(0);
@@ -2960,83 +2982,87 @@ h6 {
   animation: capability-image-in 0.4s ease forwards;
 }
 
-/* 01 / CAPABILITY — construction page */
+/* 01 / CAPABILITY - clean three-column layout matching design */
 .capability-section {
-  --capability-left-width: 17.5rem;
-  --capability-image-height: 280px;
-  --capability-tab-size: 12px;
-  --capability-title-size: 21px;
-  --capability-body-size: 14px;
-  --capability-gold: #9a7840;
-  --capability-col-gap: 0.875rem;
+  --capability-left-width: 19.5rem;
+  --capability-image-height: 320px;
+  --capability-tab-size: 11.5px;
+  --capability-title-size: 1.25rem;
+  --capability-body-size: 0.9375rem;
+  --capability-gold: #c5a059;
+  --capability-rule: color-mix(in srgb, #c5a059 55%, transparent);
+  padding-block: 2.75rem 2.5rem;
 }
 
 @media (min-width: 1280px) {
   .capability-section {
-    --capability-left-width: 18rem;
-    --capability-image-height: 290px;
-    --capability-title-size: 22px;
-    --capability-body-size: 15px;
-    --capability-tab-size: 12.5px;
-    --capability-col-gap: 1rem;
+    --capability-left-width: 21.5rem;
+    --capability-image-height: 360px;
+    --capability-title-size: 1.375rem;
+    --capability-body-size: 1rem;
+    --capability-tab-size: 12px;
+    padding-block: 3.25rem 3rem;
   }
 }
 
 .capability-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.75rem;
 }
 
 @media (min-width: 1024px) {
   .capability-layout {
     grid-template-columns: minmax(0, var(--capability-left-width)) minmax(0, 1fr);
-    column-gap: var(--capability-col-gap);
-    row-gap: 0;
+    column-gap: 1.75rem;
     align-items: start;
   }
 }
 
+@media (min-width: 1280px) {
+  .capability-layout {
+    column-gap: 2.25rem;
+  }
+}
+
 .capability-heading-block {
-  max-width: var(--capability-left-width);
+  max-width: 22rem;
   text-align: left;
 }
 
 @media (min-width: 1024px) {
   .capability-heading-block {
-    padding-top: 0;
+    max-width: var(--capability-left-width);
+    padding-top: 0.15rem;
   }
+}
+
+.capability-eyebrow {
+  margin-bottom: 1rem !important;
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
 }
 
 .capability-heading {
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: clamp(1.45rem, 1.75vw, 1.875rem);
+  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 1.875rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.018em;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
   color: var(--arch-black);
   text-align: left;
+  max-width: 16.5em;
 }
 
-.capability-heading-line {
-  display: block;
-}
-
-.capability-heading-line--second {
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 1024px) {
-  .capability-heading-line {
-    white-space: nowrap;
-  }
+.capability-main {
+  min-width: 0;
 }
 
 .capability-tabs-wrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: 0 -0.25rem;
-  padding: 0 0.25rem;
+  margin-inline: -0.25rem;
+  padding-inline: 0.25rem;
 }
 
 @media (min-width: 1024px) {
@@ -3050,32 +3076,34 @@ h6 {
 .capability-tabs {
   display: flex;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 1.125rem;
   min-width: max-content;
-  padding-bottom: 0;
+  width: 100%;
+  border-bottom: 1px solid var(--capability-rule);
 }
 
 @media (min-width: 1024px) {
   .capability-tabs {
-    gap: 1.125rem;
+    gap: 1.35rem;
   }
 }
 
 @media (min-width: 1280px) {
   .capability-tabs {
-    gap: 1.375rem;
+    gap: 1.6rem;
   }
 }
 
 .capability-tab {
   position: relative;
-  padding: 0 0 0.375rem;
-  font-family: var(--font-ibm-mono), monospace;
+  padding: 0 0 0.55rem;
+  margin-bottom: -1px;
+  font-family: var(--font-ibm-mono), ui-monospace, monospace;
   font-size: var(--capability-tab-size);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--arch-black) 72%, transparent);
+  color: color-mix(in srgb, var(--arch-black) 55%, transparent);
   white-space: nowrap;
   transition: color 0.2s ease;
   border: none;
@@ -3088,7 +3116,7 @@ h6 {
 }
 
 .capability-tab--active {
-  color: var(--arch-black);
+  color: var(--nebco-red);
   font-weight: 600;
 }
 
@@ -3105,23 +3133,24 @@ h6 {
 .capability-panel-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 0.625rem;
+  gap: 1.25rem;
+  margin-top: 1.15rem;
 }
 
 @media (min-width: 768px) {
   .capability-panel-grid {
-    grid-template-columns: minmax(0, 1.68fr) minmax(0, 0.9fr);
-    gap: 0.875rem;
-    margin-top: 0.75rem;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 1.35rem;
+    margin-top: 1.25rem;
+    align-items: stretch;
   }
 }
 
 @media (min-width: 1280px) {
   .capability-panel-grid {
-    gap: 1rem;
-    margin-top: 0.875rem;
+    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+    gap: 1.75rem;
+    margin-top: 1.35rem;
   }
 }
 
@@ -3135,57 +3164,57 @@ h6 {
 
 .capability-image-frame img {
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center 40%;
 }
 
 .capability-copy-column {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.625rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   min-height: 0;
-  padding-top: 0;
+  padding-top: 0.15rem;
+}
+
+@media (min-width: 768px) {
+  .capability-copy-column {
+    min-height: var(--capability-image-height);
+    padding-top: 0.25rem;
+    padding-bottom: 0.1rem;
+  }
 }
 
 .capability-slide-title {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: var(--capability-title-size);
   font-weight: 700;
-  line-height: 1.22;
+  line-height: 1.28;
   letter-spacing: -0.015em;
   color: var(--arch-black);
-  max-width: 18rem;
+  max-width: 16rem;
 }
 
 .capability-slide-body {
-  margin-top: 0.375rem;
+  margin-top: 0.65rem;
   font-family: var(--font-ibm-plex), system-ui, sans-serif;
   font-size: var(--capability-body-size);
-  line-height: 1.55;
-  color: color-mix(in srgb, var(--silver-graphite) 95%, transparent);
-  max-width: 18.5rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--silver-graphite) 92%, transparent);
+  max-width: 17.5rem;
 }
 
 .capability-nav {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 0.125rem;
+  gap: 1.125rem;
   color: var(--capability-gold);
-}
-
-@media (min-width: 768px) {
-  .capability-nav {
-    margin-top: 0.25rem;
-    gap: 1.125rem;
-  }
 }
 
 .capability-nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem;
+  padding: 0.2rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -3194,101 +3223,539 @@ h6 {
 }
 
 .capability-nav-btn:hover {
-  opacity: 0.72;
+  opacity: 0.7;
 }
 
 .capability-nav-arrow {
-  width: 1.875rem;
-  height: 1.125rem;
+  width: 1.75rem;
+  height: 1rem;
   display: block;
 }
 
 .capability-nav-count {
-  font-family: var(--font-ibm-mono), monospace;
-  font-size: 13px;
+  font-family: var(--font-ibm-mono), ui-monospace, monospace;
+  font-size: 12.5px;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--capability-gold);
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--arch-black) 78%, transparent);
+  line-height: 1;
 }
 
-/* 04 / THE CONSTRUCTION SYSTEM — timeline motion */
-.construction-system-timeline__diamond {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
+/* Construction / shared CTA band - dark red + wireframe side art */
+.cta-band {
+  isolation: isolate;
+}
+
+.cta-band--red {
+  background-color: #9a1a1f;
+}
+
+.cta-band__blueprints {
+  z-index: 0;
+}
+
+.cta-band__blueprint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* screen: black PNG bg disappears, white lines stay on dark red */
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+.cta-band__blueprint--left {
+  left: 0;
+  width: min(42vw, 420px);
+}
+
+.cta-band__blueprint--right {
+  right: 0;
+  width: min(48vw, 520px);
+}
+
+@media (min-width: 1024px) {
+  .cta-band__blueprint {
+    opacity: 0.62;
+  }
+}
+
+/* Match consulting CTA: title | subtitle | button, vertically centered */
+.cta-band__inner {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 2.5rem 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .cta-band__inner {
+    padding: 2.75rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta-band__inner {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.25fr) auto;
+    gap: 2rem 2.75rem;
+    padding: 2.85rem max(2.75rem, calc((100vw - 1440px) / 2 + 2.75rem));
+  }
+}
+
+@media (min-width: 1280px) {
+  .cta-band__inner {
+    padding-left: max(3.75rem, calc((100vw - 1440px) / 2 + 3.75rem));
+    padding-right: max(3.75rem, calc((100vw - 1440px) / 2 + 3.75rem));
+  }
+}
+
+.cta-band__heading {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+}
+
+.cta-band__body {
+  margin: 0;
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.cta-band__body-spacer {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .cta-band__body {
+    max-width: 26rem;
+    justify-self: center;
+  }
+
+  .cta-band__body-spacer {
+    display: block;
+  }
+}
+
+.cta-band__action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .cta-band__action {
+    justify-content: flex-end;
+    min-width: 16rem;
+  }
+}
+
+.cta-band__btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.55rem;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+}
+
+@media (min-width: 1024px) {
+  .cta-band__btn {
+    white-space: nowrap;
+  }
+}
+
+.cta-band__btn--on-red {
+  color: #9a1a1f;
+  background-color: #ffffff;
+}
+
+.cta-band__btn--on-red:hover {
+  background-color: #f5f2ed;
+}
+
+.cta-band__btn--on-dark {
+  color: #ffffff;
+  background-color: var(--nebco-red);
+}
+
+.cta-band__btn--on-dark:hover {
+  background-color: var(--nebco-red-hover);
+}
+
+/* 04 / THE CONSTRUCTION SYSTEM - clean layout matching design */
+.construction-system-section {
+  padding-block: 2.75rem 3rem;
+}
+
+@media (min-width: 1024px) {
+  .construction-system-section {
+    padding-block: 3.25rem 3.5rem;
+  }
+}
+
+.construction-system-section__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .construction-system-section__header {
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.construction-system-section__eyebrow {
+  margin-bottom: 0 !important;
   flex-shrink: 0;
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+}
+
+.construction-system-section__rule {
+  height: 1px;
+  flex: 1 1 auto;
+  min-width: 2rem;
+  background-color: var(--nebco-red);
+}
+
+.construction-system-section__body {
+  min-width: 0;
+}
+
+.construction-system-section__skyline {
+  width: 100%;
+  margin-bottom: 1.75rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 1024px) {
+  .construction-system-section__skyline {
+    margin-bottom: 2.25rem;
+  }
+}
+
+.construction-system-section__body {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 1024px) {
+  .construction-system-section__body {
+    overflow: visible;
+  }
+}
+
+.construction-system-timeline {
+  --system-node-size: 10px;
+  --system-line-thickness: 2px;
+  position: relative;
+  width: 100%;
+  min-width: 900px;
+}
+
+@media (min-width: 1024px) {
+  .construction-system-timeline {
+    min-width: 0;
+  }
+}
+
+/* Shared row: line + diamonds + dots all vertically centered together */
+.construction-system-timeline__rail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--system-node-size);
+}
+
+.construction-system-timeline__line-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.construction-system-timeline__diamond {
+  display: block;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background-color: #c5a059;
   transform: rotate(45deg);
+  opacity: 1;
+}
+
+.construction-system-timeline.is-active .construction-system-timeline__diamond {
+  animation: system-diamond-in 0.4s ease both;
+}
+
+.construction-system-timeline.is-active
+  .construction-system-timeline__line-wrap
+  > .construction-system-timeline__diamond:last-child {
+  animation-delay: 1.2s;
 }
 
 .construction-system-timeline__track {
+  position: relative;
+  flex: 1 1 auto;
+  height: var(--system-line-thickness);
+  margin-inline: 2px;
   overflow: hidden;
-  background-color: color-mix(in srgb, var(--nebco-red) 22%, transparent);
+  background-color: transparent;
 }
 
 .construction-system-timeline__line {
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 0;
-  height: 1px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--nebco-red);
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 .construction-system-timeline.is-active .construction-system-timeline__line {
-  animation: system-line-fill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: system-line-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .construction-system-timeline__glow {
+  display: none;
   position: absolute;
   top: 50%;
   left: 0;
-  width: 64px;
-  height: 3px;
-  margin-top: -1.5px;
+  width: 72px;
+  height: 4px;
   border-radius: 9999px;
   background: linear-gradient(90deg, transparent, var(--nebco-red), transparent);
-  opacity: 0;
-  filter: blur(0.5px);
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .construction-system-timeline.is-active .construction-system-timeline__glow {
-  animation: system-line-glow 2.8s ease-in-out 1.4s infinite;
+  display: block;
+  animation: system-line-glow 2.6s ease-in-out 1.35s infinite;
+}
+
+.construction-system-timeline__nodes {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.construction-system-timeline__node-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding-inline: 0.35rem;
 }
 
 .construction-system-timeline__node {
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
-  width: 10px;
-  height: 10px;
+  width: var(--system-node-size);
+  height: var(--system-node-size);
   flex-shrink: 0;
-  border-radius: 9999px;
-  border: 1px solid var(--nebco-red);
-  background-color: var(--ivory-light);
-  opacity: 0.35;
-  transform: scale(0.7);
+  border-radius: 50%;
+  background-color: var(--nebco-red);
+  transform-origin: center center;
+  opacity: 1;
 }
 
 .construction-system-timeline.is-active .construction-system-timeline__node {
-  animation: system-node-pop 0.45s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+  animation: system-node-pop 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(1)
+  .construction-system-timeline__node {
+  animation-delay: 0.2s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(2)
+  .construction-system-timeline__node {
+  animation-delay: 0.38s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(3)
+  .construction-system-timeline__node {
+  animation-delay: 0.56s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(4)
+  .construction-system-timeline__node {
+  animation-delay: 0.74s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(5)
+  .construction-system-timeline__node {
+  animation-delay: 0.92s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(6)
+  .construction-system-timeline__node {
+  animation-delay: 1.1s;
+}
+.construction-system-timeline.is-active
+  .construction-system-timeline__node-cell:nth-child(7)
+  .construction-system-timeline__node {
+  animation-delay: 1.28s;
+}
+
+/* Matching 7-column grid for labels under each dot */
+.construction-system-timeline__steps {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .construction-system-timeline__step {
-  opacity: 0;
-  transform: translateY(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding-inline: 0.35rem;
+  text-align: center;
+  opacity: 1;
 }
 
 .construction-system-timeline.is-active .construction-system-timeline__step {
-  animation: system-step-in 0.4s ease forwards;
+  animation: system-step-rise 0.5s ease both;
 }
 
-@keyframes system-line-fill {
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(2) {
+  animation-delay: 0.48s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(3) {
+  animation-delay: 0.66s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(4) {
+  animation-delay: 0.84s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(5) {
+  animation-delay: 1.02s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(6) {
+  animation-delay: 1.2s;
+}
+.construction-system-timeline.is-active .construction-system-timeline__step:nth-child(7) {
+  animation-delay: 1.38s;
+}
+
+.construction-system-timeline__label {
+  margin: 0;
+  width: 100%;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.construction-system-timeline__num {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--nebco-red);
+}
+
+.construction-system-timeline__title {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--arch-black);
+}
+
+@media (min-width: 640px) {
+  .construction-system-timeline__num,
+  .construction-system-timeline__title {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .construction-system-timeline__num,
+  .construction-system-timeline__title {
+    font-size: 13px;
+  }
+}
+
+.construction-system-timeline__desc {
+  margin: 0.4rem 0 0;
+  width: 100%;
+  max-width: 9.5rem;
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--arch-black) 55%, transparent);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .construction-system-timeline__desc {
+    font-size: 11px;
+  }
+}
+
+@keyframes system-diamond-in {
+  from {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.4);
+  }
   to {
-    width: 100%;
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes system-line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
   }
 }
 
 @keyframes system-line-glow {
   0% {
-    left: -8%;
+    left: -10%;
     opacity: 0;
   }
   12% {
@@ -3303,62 +3770,45 @@ h6 {
   }
 }
 
-@keyframes system-node-pop {
-  0% {
-    opacity: 0.35;
-    transform: scale(0.7);
-    background-color: var(--ivory-light);
-  }
-  55% {
-    opacity: 1;
-    transform: scale(1.35);
-    background-color: var(--nebco-red);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--nebco-red) 20%, transparent);
-  }
+@keyframes system-node-pulse {
+  0%,
   100% {
-    opacity: 1;
-    transform: scale(1);
-    background-color: var(--nebco-red);
-    box-shadow: none;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--nebco-red) 35%, transparent);
   }
-}
-
-@keyframes system-step-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--nebco-red) 12%, transparent);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .construction-system-timeline.is-active .construction-system-timeline__line,
-  .construction-system-timeline.is-active .construction-system-timeline__glow,
-  .construction-system-timeline.is-active .construction-system-timeline__node,
-  .construction-system-timeline.is-active .construction-system-timeline__step {
-    animation: none;
+  .construction-system-timeline__line {
+    transform: scaleX(1);
   }
 
-  .construction-system-timeline__line {
-    width: 100%;
+  .construction-system-timeline.is-active .construction-system-timeline__line,
+  .construction-system-timeline.is-active .construction-system-timeline__glow,
+  .construction-system-timeline.is-active .construction-system-timeline__diamond,
+  .construction-system-timeline.is-active .construction-system-timeline__node,
+  .construction-system-timeline.is-active .construction-system-timeline__step {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .construction-system-timeline.is-active .construction-system-timeline__diamond {
+    transform: rotate(45deg);
+  }
+
+  .construction-system-timeline.is-active .construction-system-timeline__node,
+  .construction-system-timeline.is-active .construction-system-timeline__step {
+    transform: none;
   }
 
   .construction-system-timeline__glow {
-    display: none;
-  }
-
-  .construction-system-timeline__node {
-    opacity: 1;
-    transform: none;
-    background-color: var(--nebco-red);
-  }
-
-  .construction-system-timeline__step {
-    opacity: 1;
-    transform: none;
+    display: none !important;
   }
 }
 
-/* 02 / THREE STAGES — construction page */
+/* 02 / THREE STAGES - construction page */
 .construction-stage__panel {
   align-items: center;
   min-height: 0;
@@ -3624,7 +4074,7 @@ h6 {
   }
 }
 
-/* Consulting — 01 / The question before the drawing */
+/* Consulting - 01 / The question before the drawing */
 .consulting-question {
   background-color: #f7f6f2;
   --cq-stack: 1.125rem;
@@ -3798,7 +4248,7 @@ h6 {
   }
 }
 
-/* Consulting — 01 + 02 on one screen */
+/* Consulting - 01 + 02 on one screen */
 .consulting-intro-screen {
   display: flex;
   flex-direction: column;
@@ -3806,7 +4256,10 @@ h6 {
 }
 
 .consulting-intro-screen__serve {
-  background-color: #121212;
+  background-color: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 @media (min-width: 1024px) {
@@ -3888,6 +4341,9 @@ h6 {
   .consulting-intro-screen .consulting-serve-tabs__eyebrow {
     margin: 0;
     padding: 0.875rem 2rem 0.625rem max(3rem, calc((100vw - 1440px) / 2 + 3rem));
+  }
+
+  .consulting-intro-screen .consulting-serve-tabs__eyebrow p {
     font-size: 10.5px;
   }
 
@@ -4011,7 +4467,7 @@ h6 {
   }
 }
 
-/* Consulting — 03 / Seven service pillars */
+/* Consulting - 03 / Seven service pillars */
 .consulting-pillars__inner {
   padding: 2rem 1.75rem 0.75rem;
 }
@@ -4370,7 +4826,7 @@ h6 {
   background-color: #c5a059;
 }
 
-/* Consulting — 04 / Service packages */
+/* Consulting - 04 / Service packages */
 .consulting-packages__inner {
   padding: 0.75rem 1.25rem 0;
 }
@@ -4536,6 +4992,11 @@ h6 {
   object-fit: contain;
 }
 
+.consulting-packages__icon svg.consulting-packages__icon-img {
+  padding: 18%;
+  box-sizing: border-box;
+}
+
 .consulting-packages__icon--active .consulting-packages__icon-img {
   filter: brightness(0) invert(1);
 }
@@ -4549,7 +5010,7 @@ h6 {
   min-height: 14.25rem;
   margin-block: -0.5rem;
   padding-block: 1.75rem;
-  background-color: var(--nebco-red);
+  background-color: #bc2026;
   color: #fff;
 }
 
@@ -4683,7 +5144,7 @@ h6 {
   transform: translateX(-50%);
 }
 
-/* Consulting — 03 + 04 on one screen */
+/* Consulting - 03 + 04 on one screen */
 .consulting-pillars-packages-screen {
   display: flex;
   flex-direction: column;
@@ -4874,7 +5335,7 @@ h6 {
   }
 }
 
-/* Consulting — 06 + 07 + CTA single screen */
+/* Consulting - 06 + 07 + CTA single screen */
 .consulting-closing-screen {
   display: flex;
   flex-direction: column;
@@ -5049,7 +5510,7 @@ h6 {
   }
 }
 
-/* Consulting — 07 Why Engage Early */
+/* Consulting - 07 Why Engage Early */
 .consulting-engage-early {
   overflow: visible;
   background-color: #f5f2ed;
@@ -5342,6 +5803,9 @@ h6 {
   .consulting-serve-tabs__eyebrow {
     margin: 0;
     padding: 0.875rem 2rem 0.625rem max(3rem, calc((100vw - 1440px) / 2 + 3rem));
+  }
+
+  .consulting-serve-tabs__eyebrow p {
     font-size: 10.5px;
   }
 
@@ -5465,7 +5929,7 @@ h6 {
   }
 }
 
-/* Consulting hero — trend labels + nodes */
+/* Consulting hero - trend labels + nodes */
 .consulting-trend-label {
   font-size: 9px;
   font-weight: 600;
@@ -5498,7 +5962,7 @@ h6 {
     0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-/* Start node — glowing gold orb on dark blueprint (LAND OPPORTUNITY) */
+/* Start node - glowing gold orb on dark blueprint (LAND OPPORTUNITY) */
 .consulting-trend-node--start {
   width: 13px;
   height: 13px;
@@ -5530,7 +5994,7 @@ h6 {
   opacity: 0.9;
 }
 
-/* 02 / THREE DIVISIONS — tile typography & icon scale matched to design ref */
+/* 02 / THREE DIVISIONS - tile typography & icon scale matched to design ref */
 .three-divisions-tile {
   --division-icon-size: 104px;
   --division-title-size: 30px;
@@ -5593,7 +6057,7 @@ h6 {
   padding: var(--division-tile-padding);
 }
 
-/* 01 / FOUNDATION — milestone timeline */
+/* 01 / FOUNDATION - milestone timeline */
 .foundation-section-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -5850,7 +6314,7 @@ h6 {
   margin-top: 0.35rem;
 }
 
-/* 02 / THREE DIVISIONS — hover flip card */
+/* 02 / THREE DIVISIONS - hover flip card */
 .division-flip-card {
   perspective: 1200px;
 }
@@ -5928,7 +6392,7 @@ h6 {
 }
 
 .division-flip-services li::before {
-  content: "—";
+  content: "-";
   margin-right: 0.5rem;
   opacity: 0.75;
 }
@@ -5939,7 +6403,7 @@ h6 {
   }
 }
 
-/* 04 / SELECTED WORK — layout matched to design ref */
+/* 04 / SELECTED WORK - layout matched to design ref */
 .selected-work-card {
   --selected-work-border: #d4cec4;
   --selected-work-card-shade: #f2f0eb;
@@ -6032,7 +6496,17 @@ h6 {
   min-height: 200px;
   height: 100%;
   align-self: stretch;
+  overflow: hidden;
   background-color: color-mix(in srgb, var(--soft-concrete) 30%, transparent);
+}
+
+.selected-work-featured-image img {
+  transition: transform 0.55s ease;
+  will-change: transform;
+}
+
+.selected-work-featured-image:hover img {
+  transform: scale(1.06);
 }
 
 @media (min-width: 1024px) {
@@ -6041,7 +6515,7 @@ h6 {
   }
 }
 
-/* Shared text panel — same inset on featured + secondary so lines align with image tops */
+/* Shared text panel - same inset on featured + secondary so lines align with image tops */
 .selected-work-text-panel {
   display: flex;
   height: 100%;
@@ -6211,7 +6685,17 @@ h6 {
   min-height: 0;
   height: 100%;
   align-self: stretch;
+  overflow: hidden;
   background-color: color-mix(in srgb, var(--soft-concrete) 30%, transparent);
+}
+
+.selected-work-secondary-thumb img {
+  transition: transform 0.55s ease;
+  will-change: transform;
+}
+
+.selected-work-secondary-card:hover .selected-work-secondary-thumb img {
+  transform: scale(1.06);
 }
 
 .selected-work-secondary-title {
@@ -6252,7 +6736,7 @@ h6 {
   color: var(--nebco-red);
 }
 
-/* 07 / START A PROJECT — photo + dark CTA */
+/* 07 / START A PROJECT - photo + dark CTA */
 .start-project-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -6422,7 +6906,7 @@ h6 {
   font-size: 11px;
 }
 
-/* 05 / TRUST + INTEGRATED EXPERTISE — copy + hub diagram */
+/* 05 / TRUST + INTEGRATED EXPERTISE - copy + hub diagram */
 .trust-section {
   display: grid;
   width: 100%;
@@ -6526,7 +7010,7 @@ h6 {
   }
 }
 
-/* About — 02 Journey timeline light sweep */
+/* About - 02 Journey timeline light sweep */
 @keyframes journey-line-light-travel {
   0%,
   100% {
@@ -6568,7 +7052,7 @@ h6 {
   }
 }
 
-/* About — certificate carousel */
+/* About - certificate carousel */
 .certificate-carousel-image {
   opacity: 0;
   transition: opacity 0.85s ease-in-out;
@@ -6591,7 +7075,7 @@ h6 {
   transform: scale(1.15);
 }
 
-/* NRN — 02/03 coordination band typography + list columns */
+/* NRN - 02/03 coordination band typography + list columns */
 .nrn-coordination__eyebrow {
   margin: 0;
 }
@@ -6659,7 +7143,7 @@ h6 {
   }
 }
 
-/* NRN — coordination hub icon zoom on list hover */
+/* NRN - coordination hub icon zoom on list hover */
 .coordination-hub-spoke {
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -6676,7 +7160,7 @@ h6 {
   font-size: 15px;
 }
 
-/* NRN — coordination hub sizing outside compact band */
+/* NRN - coordination hub sizing outside compact band */
 .coordination-hub-diagram {
   width: min(100%, 520px);
   overflow: visible;
@@ -6700,7 +7184,7 @@ h6 {
   }
 }
 
-/* NRN — digital visibility feature list
+/* NRN - digital visibility feature list
    Header + table share the same left edge; icon column is a fixed gutter. */
 .digital-visibility__copy {
   display: flex;
@@ -6715,7 +7199,7 @@ h6 {
 
 .digital-visibility__heading {
   margin-top: 0.75rem;
-  font-size: 2rem; /* 32px — match reference */
+  font-size: 2rem; /* 32px - match reference */
   line-height: 1.2;
   letter-spacing: -0.02em;
   font-weight: 700;
@@ -6732,7 +7216,7 @@ h6 {
 
 .digital-visibility__lede {
   margin-top: 0.5rem;
-  font-size: 1.125rem; /* 18px — ~55% of headline */
+  font-size: 1.125rem; /* 18px - ~55% of headline */
   line-height: 1.4;
   font-weight: 400;
   color: #666;
@@ -6881,7 +7365,7 @@ h6 {
   gap: 0.1rem;
 }
 
-/* NRN — digital visibility feature icon zoom */
+/* NRN - digital visibility feature icon zoom */
 .digital-feature-icon {
   transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   transform-origin: center;
@@ -6891,7 +7375,7 @@ h6 {
   transform: scale(1.06);
 }
 
-/* Partners — network card icon zoom */
+/* Partners - network card icon zoom */
 .partner-network-icon {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
